@@ -2,8 +2,8 @@ name: Update Guild Data
 
 on:
   schedule:
-    - cron: '0 4 * * *'  # щодня о 04:00 UTC (06:00 за Києвом)
-  workflow_dispatch:       # також можна запустити вручну з Actions
+    - cron: '0 4 * * *'
+  workflow_dispatch:
 
 jobs:
   update:
@@ -27,7 +27,7 @@ jobs:
       - name: Run Heal collector
         run: python fetch_heal_data.py
 
-      - name: Commit and push updated data
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
