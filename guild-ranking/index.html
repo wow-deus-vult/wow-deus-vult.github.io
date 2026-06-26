@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Рейтинг DPS — Deus Vult</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
+    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
+    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
+    --icc:#1a2535; --icc-border:#2a4060;
+    --rs:#1a251a;  --rs-border:#2a5030;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+
+  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  .nav-links a:hover { color:var(--text); background:var(--bg3); }
+  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+
+  .page-header { padding:32px 24px 20px; max-width:1600px; margin:0 auto; border-bottom:1px solid var(--border); }
+  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+  .page-header p { color:var(--text-muted); font-size:13px; }
+  .page-header p a { color:var(--ice); text-decoration:none; }
+  .updated-at { font-size:11px; color:var(--text-muted); margin-top:4px; }
+
+  .controls { max-width:1600px; margin:0 auto; padding:16px 24px; display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; }
+  .control-group { display:flex; flex-direction:column; gap:4px; }
+  .control-group label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); }
+  select { background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:6px; font-size:13px; font-family:'Inter',sans-serif; cursor:pointer; outline:none; min-width:160px; }
+  select:hover,select:focus { border-color:var(--gold-dim); }
+  .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); }
+  .results-info strong { color:var(--text); }
+
+  .table-wrap { max-width:1600px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+
+  /* ── Заголовки ── */
+  thead th {
+    text-align:left; padding:8px 10px;
+    font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-muted); border-bottom:1px solid var(--border); white-space:nowrap;
+  }
+
+  /* Рядок групових заголовків */
+  thead tr.group-row th { border-bottom:none; padding:6px 4px 4px; }
+  thead tr.group-row th.g-icc {
+    text-align:center; font-size:10px; font-weight:700; letter-spacing:.12em;
+    color:#7ecfef; background:var(--icc); border:1px solid var(--icc-border);
+    border-bottom:none; border-radius:4px 4px 0 0; padding:5px 8px;
+  }
+  thead tr.group-row th.g-rs {
+    text-align:center; font-size:10px; font-weight:700; letter-spacing:.12em;
+    color:#7ecf8a; background:var(--rs); border:1px solid var(--rs-border);
+    border-bottom:none; border-radius:4px 4px 0 0; padding:5px 8px;
+  }
+
+  /* Рядок назв колонок */
+  thead tr.col-row th { border-bottom:1px solid var(--border); }
+  thead tr.col-row th.boss-icc {
+    text-align:center; font-size:10px; font-weight:400; letter-spacing:0;
+    background:var(--icc); border-left:1px solid var(--icc-border); border-right:1px solid var(--icc-border);
+    color:#7ecfef; padding:6px 6px;
+  }
+  thead tr.col-row th.boss-icc:first-of-type { border-left:1px solid var(--icc-border); }
+  thead tr.col-row th.boss-rs {
+    text-align:center; font-size:10px; font-weight:400; letter-spacing:0;
+    background:var(--rs); border-left:1px solid var(--rs-border); border-right:1px solid var(--rs-border);
+    color:#7ecf8a; padding:6px 6px;
+  }
+
+  tbody tr { border-bottom:1px solid rgba(42,45,53,.6); transition:background .1s; }
+  tbody tr:hover { background:var(--bg2); }
+  td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
+  td:first-child { text-align:center; color:var(--text-muted); font-size:11px; width:36px; }
+
+  /* Boss DPS cells */
+  td.boss-icc { text-align:center; font-size:12px; font-variant-numeric:tabular-nums; background:rgba(26,37,53,.3); border-left:1px solid rgba(42,64,96,.2); border-right:1px solid rgba(42,64,96,.2); }
+  td.boss-rs  { text-align:center; font-size:12px; font-variant-numeric:tabular-nums; background:rgba(26,37,26,.3); border-left:1px solid rgba(42,80,48,.2); border-right:1px solid rgba(42,80,48,.2); }
+  td.boss-zero { color:var(--border); }
+
+  .player-name { font-weight:600; }
+  .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border); padding:2px 7px; border-radius:4px; font-size:11px; color:var(--text-muted); }
+
+  .score-bar { display:flex; align-items:center; gap:8px; }
+  .score-val { font-weight:600; font-variant-numeric:tabular-nums; min-width:38px; text-align:right; }
+  .bar-track { width:50px; height:3px; background:var(--bg3); border-radius:2px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:2px; }
+
+  .rank-badge { font-size:12px; font-variant-numeric:tabular-nums; font-weight:600; }
+  .rank-guild  { color:var(--text-muted); }
+  .rank-top10  { color:#ffd700; }
+  .rank-top50  { color:var(--gold); }
+  .rank-other  { color:var(--text-muted); }
+
+  /* WoW class colors */
+  .cls-Death\ Knight { color:#c41e3a; }
+  .cls-Druid         { color:#ff7c0a; }
+  .cls-Hunter        { color:#aad372; }
+  .cls-Mage          { color:#3fc7eb; }
+  .cls-Paladin       { color:#f48cba; }
+  .cls-Priest        { color:#e0e0e0; }
+  .cls-Rogue         { color:#fff468; }
+  .cls-Shaman        { color:#0070dd; }
+  .cls-Warlock       { color:#8788ee; }
+  .cls-Warrior       { color:#c69b3a; }
+
+  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
+  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); }
+  footer a { color:var(--ice); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">✠ DEUS VULT</a>
+  <div class="nav-links">
+    <a href="../">Головна</a>
+    <a href="./" class="active">Рейтинг DPS</a>
+    <a href="../analytics/">Аналітика</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Рейтинг DPS</h1>
+  <p>Дані з <a href="https://uwu-logs.xyz" target="_blank">uwu-logs.xyz</a> — ЦЛК + РС, 25 ХМ. Оновлюється раз на добу.</p>
+  <div class="updated-at" id="updatedAt"></div>
+</div>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Клас</label>
+    <select id="classSelect"><option value="">Всі класи</option></select>
+  </div>
+  <div class="control-group">
+    <label>Спеціалізація</label>
+    <select id="specSelect"><option value="">Всі спеки</option></select>
+  </div>
+  <div class="results-info" id="resultsInfo"></div>
+</div>
+
+<div class="table-wrap">
+  <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження...</div></div>
+  <table id="rankTable" style="display:none">
+    <thead id="tableHead"></thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
+
+<script>
+const DATA_URL = '../data/guild-data.json';
+
+const ICC_BOSSES = [
+  'Lord Marrowgar','Lady Deathwhisper','Deathbringer Saurfang',
+  'Festergut','Rotface','Professor Putricide','Blood Prince Council',
+  "Blood-Queen Lana'thel",'Sindragosa','The Lich King',
+];
+const RS_BOSSES = [
+  'Halion','Saviana Ragefire','General Zarithrian','Baltharus the Warborn',
+];
+
+const BOSS_LABELS = {
+  'Lord Marrowgar':'Marrowgar','Lady Deathwhisper':'Deathwhisper',
+  'Deathbringer Saurfang':'Saurfang','Festergut':'Festergut',
+  'Rotface':'Rotface','Professor Putricide':'Putricide',
+  'Blood Prince Council':'BPC',"Blood-Queen Lana'thel":"Lana'thel",
+  'Sindragosa':'Sindragosa','The Lich King':'Lich King',
+  'Halion':'Halion','Saviana Ragefire':'Saviana',
+  'General Zarithrian':'Zarithrian','Baltharus the Warborn':'Baltharus',
+};
+
+const ALL_BOSSES = [...ICC_BOSSES, ...RS_BOSSES];
+
+let allRows = [], classes = [], specsByClass = {};
+
+const classSelect = document.getElementById('classSelect');
+const specSelect  = document.getElementById('specSelect');
+
+function scoreColor(s) {
+  if (s >= 95) return '#ffd700';
+  if (s >= 75) return '#a335ee';
+  if (s >= 50) return '#0070dd';
+  if (s >= 25) return '#1eff00';
+  return '#9d9d9d';
+}
+
+async function loadData() {
+  try {
+    const res  = await fetch(DATA_URL);
+    const data = await res.json();
+    allRows      = data.rows || [];
+    classes      = data.classes || [];
+    specsByClass = data.specsByClass || {};
+
+    if (data.lastUpdated) {
+      const d = new Date(data.lastUpdated);
+      document.getElementById('updatedAt').textContent =
+        'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    }
+
+    classes.forEach(cls => {
+      const o = document.createElement('option');
+      o.value = cls; o.textContent = cls;
+      classSelect.appendChild(o);
+    });
+
+    buildHeader();
+    render();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('rankTable').style.display = '';
+  } catch(e) {
+    document.getElementById('loading').innerHTML = '<p style="color:#e05555">Помилка завантаження</p>';
+  }
+}
+
+classSelect.addEventListener('change', () => {
+  const cls = classSelect.value;
+  specSelect.innerHTML = '<option value="">Всі спеки</option>';
+  if (cls && specsByClass[cls]) {
+    specsByClass[cls].forEach(sp => {
+      const o = document.createElement('option');
+      o.value = sp; o.textContent = sp;
+      specSelect.appendChild(o);
+    });
+  }
+  render();
+});
+specSelect.addEventListener('change', render);
+
+function buildHeader() {
+  const thead = document.getElementById('tableHead');
+
+  // Рядок 1 — групові заголовки
+  const tr1 = document.createElement('tr');
+  tr1.className = 'group-row';
+
+  // Порожні клітинки для фіксованих колонок: #, Гравець, Клас/Спек, Guild Rank, Server Rank, Score
+  for (let i = 0; i < 6; i++) {
+    tr1.appendChild(document.createElement('th'));
+  }
+
+  const thIcc = document.createElement('th');
+  thIcc.colSpan = ICC_BOSSES.length;
+  thIcc.className = 'g-icc';
+  thIcc.textContent = 'ICECROWN CITADEL';
+  tr1.appendChild(thIcc);
+
+  const thRs = document.createElement('th');
+  thRs.colSpan = RS_BOSSES.length;
+  thRs.className = 'g-rs';
+  thRs.textContent = 'RUBY SANCTUM';
+  tr1.appendChild(thRs);
+
+  thead.appendChild(tr1);
+
+  // Рядок 2 — назви колонок
+  const tr2 = document.createElement('tr');
+  tr2.className = 'col-row';
+
+  // Фіксовані колонки — Guild Rank перед Server Rank
+  ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Score'].forEach(t => {
+    const th = document.createElement('th');
+    th.textContent = t;
+    tr2.appendChild(th);
+  });
+
+  ICC_BOSSES.forEach(boss => {
+    const th = document.createElement('th');
+    th.className = 'boss-icc';
+    th.textContent = BOSS_LABELS[boss] || boss;
+    tr2.appendChild(th);
+  });
+
+  RS_BOSSES.forEach(boss => {
+    const th = document.createElement('th');
+    th.className = 'boss-rs';
+    th.textContent = BOSS_LABELS[boss] || boss;
+    tr2.appendChild(th);
+  });
+
+  thead.appendChild(tr2);
+}
+
+function render() {
+  const cls  = classSelect.value;
+  const spec = specSelect.value;
+
+  let rows = allRows.filter(r => {
+    if (cls  && r.class !== cls)  return false;
+    if (spec && r.spec  !== spec) return false;
+    return true;
+  }).sort((a,b) => (b.overallScore||0) - (a.overallScore||0));
+
+  document.getElementById('resultsInfo').innerHTML =
+    `Знайдено: <strong>${rows.length}</strong>`;
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  rows.forEach((row, idx) => {
+    const guildRank  = idx + 1;
+    const serverRank = row.overallRank || 9999;
+    const tr = document.createElement('tr');
+
+    // #
+    addTd(tr, guildRank, 'text-align:center;color:var(--text-muted);font-size:11px');
+
+    // Name
+    addTd(tr, `<span class="player-name cls-${row.class}">${row.name}</span>`);
+
+    // Class / Spec
+    addTd(tr, `<span class="cls-${row.class}" style="font-weight:600">${row.class}</span> <span class="spec-badge">${row.spec}</span>`);
+
+    // Guild Rank (перша!)
+    addTd(tr, `<span class="rank-badge rank-guild">#${guildRank}</span>`);
+
+    // Server Rank (друга)
+    const srCls = serverRank <= 10 ? 'rank-top10' : serverRank <= 50 ? 'rank-top50' : 'rank-other';
+    addTd(tr, `<span class="rank-badge ${srCls}">#${serverRank}</span>`);
+
+    // Score
+    const sc  = row.overallScore || 0;
+    const col = scoreColor(sc);
+    addTd(tr, `<div class="score-bar">
+      <span class="score-val" style="color:${col}">${sc.toFixed(1)}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.min(sc,100)}%;background:${col}"></div></div>
+    </div>`);
+
+    // ICC bosses
+    ICC_BOSSES.forEach(boss => {
+      const val = row.bosses?.[boss] || 0;
+      const td  = document.createElement('td');
+      td.className = 'boss-icc' + (val > 0 ? '' : ' boss-zero');
+      td.textContent = val > 0 ? Math.round(val).toLocaleString('uk-UA') : '—';
+      tr.appendChild(td);
+    });
+
+    // RS bosses
+    RS_BOSSES.forEach(boss => {
+      const val = row.bosses?.[boss] || 0;
+      const td  = document.createElement('td');
+      td.className = 'boss-rs' + (val > 0 ? '' : ' boss-zero');
+      td.textContent = val > 0 ? Math.round(val).toLocaleString('uk-UA') : '—';
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+}
+
+function addTd(tr, html, style) {
+  const td = document.createElement('td');
+  if (style) td.style.cssText = style;
+  td.innerHTML = String(html);
+  tr.appendChild(td);
+}
+
+loadData();
+</script>
+</body>
+</html>
