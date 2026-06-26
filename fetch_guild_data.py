@@ -8,6 +8,11 @@ import json, os, re, time, requests
 from datetime import datetime, timezone
 
 SERVER    = "FreedomUA"
+
+# Виключення — (ім'я, клас, спек)
+EXCLUSIONS = {
+    ("Oppenheimer", "Priest", "Shadow"),
+}
 MODE      = "25H"
 MODE_RS   = "25N"   # міні-боси РС тільки в 25N
 CHAR_URL  = "https://uwu-logs.xyz/character"
@@ -150,9 +155,14 @@ def fetch_rs_mini_bosses(members_specs):
                         name = entry[3]
                         if name not in members_specs:
                             continue
-                        # entry[7][0][0] = DPS найкращого логу
-                        logs = entry[7] if len(entry) > 7 and entry[7] else []
-                        udps = round(logs[0][0], 1) if logs else 0
+                        # uDPS = useful_damage / duration_seconds
+                        # e[4] = useful damage, e[1] = duration in minutes
+                        useful_dmg = entry[4] if len(entry) > 4 else 0
+                        duration_m = entry[1] if len(entry) > 1 else 0
+                        if duration_m > 0:
+                            udps = round(useful_dmg / (duration_m * 60), 1)
+                        else:
+                            udps = 0
                         # Знаходимо відповідний спек для цього гравця
                         for (c, s, si) in members_specs.get(name, []):
                             if c == cls_name and s == spec_name:
@@ -185,6 +195,11 @@ def build_guild_data(members):
         for cls_name, spec_name, spec_i in specs:
             done += 1
             print(f"  [{done}/{total}] {name} / {cls_name} {spec_name}...", end=" ", flush=True)
+
+            # Перевіряємо виключення
+            if (name, cls_name, spec_name) in EXCLUSIONS:
+                print("виключено")
+                continue
 
             data = fetch_character(name, spec_i)
             if not data:
