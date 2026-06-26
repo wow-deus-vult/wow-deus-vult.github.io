@@ -1,20 +1,9 @@
 """
-fetch_guild_data.py
--------------------
-Збирає дані гільдії з uwu-logs.xyz і зберігає в data/guild-data.json.
-Список гравців автоматично береться з EPGP.lua (найсвіжіший snapshot).
-
-Запуск:
-    python fetch_guild_data.py
-
-Залежності:
-    pip install requests
+fetch_guild_data.py — Deus Vult / FreedomUA / ЦЛК 25 ХМ
 """
 
 import json, os, re, time, requests
 from datetime import datetime, timezone
-
-# ─── НАЛАШТУВАННЯ ────────────────────────────────────────────────────────────
 
 SERVER    = "FreedomUA"
 MODE      = "25H"
@@ -22,13 +11,15 @@ BASE_URL  = "https://uwu-logs.xyz/top"
 EPGP_FILE = os.path.join(os.path.dirname(__file__), "EPGP.lua")
 OUTPUT    = os.path.join(os.path.dirname(__file__), "data", "guild-data.json")
 
-# ─── КОНСТАНТИ ───────────────────────────────────────────────────────────────
-
 BOSS_ORDER = [
     "Lord Marrowgar", "Lady Deathwhisper", "Deathbringer Saurfang",
     "Festergut", "Rotface", "Professor Putricide", "Blood Prince Council",
     "Blood-Queen Lana'thel", "Sindragosa", "The Lich King",
-    "Toravon the Ice Watcher", "Halion", "Anub'arak", "Valithria Dreamwalker",
+    "Halion",
+    # Ruby Sanctum міні-боси
+    "Saviana Ragefire", "General Zarithrian", "Baltharus the Warborn",
+    # Хіл-бос окремо
+    "Valithria Dreamwalker",
 ]
 
 CLASSES = [
@@ -49,21 +40,17 @@ SPECS_BY_CLASS = {
     "Warrior":      ["Arms", "Fury", "Protection"],
 }
 
-# Індекси класів (1-based) для API
 CLASS_INDEX = {cls: str(i) for i, cls in enumerate(CLASSES)}
-
-# Індекси спеків (1-based) для API
-SPEC_INDEX = {
+SPEC_INDEX  = {
     cls: {spec: str(i + 1) for i, spec in enumerate(specs)}
     for cls, specs in SPECS_BY_CLASS.items()
 }
 
-# ─── ПАРСИНГ EPGP.lua ────────────────────────────────────────────────────────
+# ─── EPGP ────────────────────────────────────────────────────────────────────
 
-def parse_epgp_members(path: str) -> set[str]:
+def parse_epgp_members(path):
     with open(path, encoding="utf-8") as f:
         content = f.read()
-
     pattern = re.compile(
         r'\["time"\]\s*=\s*(\d+).*?\["roster_info"\]\s*=\s*\{(.*?)\},\s*\n\s*\}',
         re.DOTALL
@@ -71,28 +58,16 @@ def parse_epgp_members(path: str) -> set[str]:
     snapshots = list(pattern.finditer(content))
     if not snapshots:
         raise ValueError("Не знайдено snapshot у EPGP.lua")
-
     latest = max(snapshots, key=lambda m: int(m.group(1)))
     ts = int(latest.group(1))
     dt = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M')
     names = re.findall(r'"([^"]+)",\s*--\s*\[1\]', latest.group(2))
-
     print(f"   EPGP snapshot від {dt} → {len(names)} гравців")
     return set(names)
 
-# ─── API uwu-logs ─────────────────────────────────────────────────────────────
+# ─── API ─────────────────────────────────────────────────────────────────────
 
-# Формат відповіді (масив на гравця):
-# [0] log_name (str)
-# [1] uDPS (float)
-# [2] class_color (str)
-# [3] name (str)
-# [4] useful_damage (int)
-# [5] total_damage (int)
-# [6] externals (int)
-# [7] logs (list of [dps, count, score, flag])
-
-def fetch_top(boss: str, class_i: str, spec_i: str) -> list:
+def fetch_top(boss, class_i, spec_i):
     payload = {
         "server":    SERVER,
         "boss":      boss,
@@ -115,30 +90,32 @@ def fetch_top(boss: str, class_i: str, spec_i: str) -> list:
         data = r.json()
         return data if isinstance(data, list) else []
     except Exception as e:
-        print(f"  ⚠  {boss} {class_i}/{spec_i}: {e}")
+        print(f"  ⚠  {e}")
         return []
 
-def parse_entry(entry: list) -> dict:
-    """Перетворює сирий масив відповіді на зручний словник."""
-    # [7] — масив логів: [[dps, count, score, externals_flag], ...]
-    # Беремо перший (найкращий) лог
+def parse_entry(entry, server_rank):
+    """
+    entry[0] = log_name
+    entry[1] = uDPS (корисний DPS)
+    entry[3] = name
+    entry[7] = [[dps, count, score, ext_flag], ...]  — масив логів гравця
+    server_rank = позиція в масиві відповіді (1-based) = реальний ранг на сервері
+    """
     logs = entry[7] if len(entry) > 7 and isinstance(entry[7], list) else []
-    best_log = logs[0] if logs else []
-
+    # Знаходимо лог з найкращим score
+    best = max(logs, key=lambda l: l[2] if len(l) > 2 else 0, default=[0, 0, 0, 0])
     return {
         "name":  entry[3],
-        "udps":  entry[1],                          # useful DPS
-        "score": best_log[2] if len(best_log) > 2 else 0.0,
-        "rank":  best_log[1] if len(best_log) > 1 else 9999,
+        "udps":  round(entry[1], 1),
+        "score": best[2] if len(best) > 2 else 0.0,
+        "rank":  server_rank,   # реальна позиція в топі сервера
     }
 
-# ─── ОСНОВНА ЛОГІКА ──────────────────────────────────────────────────────────
+# ─── MAIN ────────────────────────────────────────────────────────────────────
 
-def build_guild_data(members: set[str]) -> dict:
-    # key: (name, class, spec) → row
-    rows_map: dict[tuple, dict] = {}
-
-    total = len(CLASSES) * 3 * len(BOSS_ORDER)   # ~14 босів × 10 класів × 3 спеки = 420
+def build_guild_data(members):
+    rows_map = {}
+    total = len(CLASSES) * 3 * len(BOSS_ORDER)
     done  = 0
 
     for boss in BOSS_ORDER:
@@ -152,12 +129,12 @@ def build_guild_data(members: set[str]) -> dict:
 
                 entries = fetch_top(boss, cls_i, spec_i)
 
-                # Фільтруємо тільки гравців гільдії
-                guild_entries = [e for e in entries if e[3] in members]
-                print(f"{len(guild_entries)} з {len(entries)}")
-
-                for entry in guild_entries:
-                    p = parse_entry(entry)
+                found = 0
+                for server_rank, entry in enumerate(entries, start=1):
+                    if entry[3] not in members:
+                        continue
+                    found += 1
+                    p   = parse_entry(entry, server_rank)
                     key = (p["name"], cls_name, spec_name)
 
                     if key not in rows_map:
@@ -173,19 +150,17 @@ def build_guild_data(members: set[str]) -> dict:
                         }
 
                     row = rows_map[key]
-                    row["bosses"][boss] = round(p["udps"], 1)
+                    row["bosses"][boss] = p["udps"]
 
-                    # Оновлюємо загальний score/rank якщо цей лог кращий
                     if p["score"] > row["overallScore"]:
                         row["overallScore"] = p["score"]
                         row["overallRank"]  = p["rank"]
 
-                time.sleep(0.3)   # не перевантажуємо сервер
+                print(f"{found}")
+                time.sleep(0.3)
 
     rows = sorted(rows_map.values(), key=lambda r: r["overallScore"], reverse=True)
-
     return {
-        "updatedAt":            datetime.now(timezone.utc).isoformat(),
         "lastUpdated":          datetime.now(timezone.utc).isoformat(),
         "totalPlayersInSource": len({r["name"] for r in rows}),
         "totalRows":            len(rows),
@@ -193,26 +168,18 @@ def build_guild_data(members: set[str]) -> dict:
         "classes":              CLASSES,
         "specsByClass":         SPECS_BY_CLASS,
         "rows":                 rows,
-        "updateSummary":        {"totalRows": len(rows), "failedPlayers": 0},
     }
-
-# ─── ТОЧКА ВХОДУ ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     print("🏰 Deus Vult / FreedomUA / ЦЛК 25 ХМ\n")
-
     if not os.path.exists(EPGP_FILE):
-        print(f"❌ Файл {EPGP_FILE} не знайдено!")
+        print(f"❌ {EPGP_FILE} не знайдено!")
         exit(1)
-
     members = parse_epgp_members(EPGP_FILE)
-    print(f"   Шукаємо {len(members)} гравців на uwu-logs\n")
-
+    print(f"   Шукаємо {len(members)} гравців\n")
     os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
     data = build_guild_data(members)
-
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-
-    print(f"\n✅ Готово! {len(data['rows'])} рядків → {OUTPUT}")
+    print(f"\n✅ {len(data['rows'])} рядків → {OUTPUT}")
     print(f"   Унікальних гравців: {data['totalPlayersInSource']}")
