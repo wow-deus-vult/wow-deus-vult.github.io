@@ -1,1 +1,275 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Рейтинг Heal — Deus Vult</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
+    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
+    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
+    --heal:#1a2a1a; --heal-border:#2a5a2a;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+
+  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  .nav-links a:hover { color:var(--text); background:var(--bg3); }
+  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+
+  .page-header { padding:32px 24px 20px; max-width:900px; margin:0 auto; border-bottom:1px solid var(--border); }
+  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+  .page-header p { color:var(--text-muted); font-size:13px; }
+  .page-header p a { color:var(--ice); text-decoration:none; }
+  .updated-at { font-size:11px; color:var(--text-muted); margin-top:4px; }
+
+  .controls { max-width:900px; margin:0 auto; padding:16px 24px; display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; }
+  .control-group { display:flex; flex-direction:column; gap:4px; }
+  .control-group label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); }
+  select { background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:6px; font-size:13px; font-family:'Inter',sans-serif; cursor:pointer; outline:none; min-width:160px; }
+  select:hover,select:focus { border-color:var(--gold-dim); }
+  .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); }
+  .results-info strong { color:var(--text); }
+
+  .table-wrap { max-width:900px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+
+  thead th {
+    text-align:left; padding:8px 10px;
+    font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-muted); border-bottom:1px solid var(--border); white-space:nowrap;
+  }
+
+  tbody tr { border-bottom:1px solid rgba(42,45,53,.6); transition:background .1s; }
+  tbody tr:hover { background:var(--bg2); }
+  td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
+  td:first-child { text-align:center; color:var(--text-muted); font-size:11px; width:36px; }
+
+  td.hps-cell {
+    text-align:center; font-size:13px; font-variant-numeric:tabular-nums;
+    font-weight:600; color:#7ecf8a;
+  }
+
+  .player-name { font-weight:600; }
+  .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border); padding:2px 7px; border-radius:4px; font-size:11px; color:var(--text-muted); }
+
+  .rank-badge { font-size:12px; font-variant-numeric:tabular-nums; font-weight:600; }
+  .rank-guild  { color:var(--text-muted); }
+  .rank-top10  { color:#ffd700; }
+  .rank-top50  { color:var(--gold); }
+  .rank-other  { color:var(--text-muted); }
+
+  .pct-badge { font-size:12px; font-variant-numeric:tabular-nums; }
+
+  /* WoW class colors */
+  .cls-Death-Knight { color:#c41e3a; }
+  .cls-Druid        { color:#ff7c0a; }
+  .cls-Hunter       { color:#aad372; }
+  .cls-Mage         { color:#3fc7eb; }
+  .cls-Paladin      { color:#f48cba; }
+  .cls-Priest       { color:#e0e0e0; }
+  .cls-Rogue        { color:#fff468; }
+  .cls-Shaman       { color:#0070dd; }
+  .cls-Warlock      { color:#8788ee; }
+  .cls-Warrior      { color:#c69b3a; }
+
+  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
+  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); }
+  footer a { color:var(--ice); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">✠ DEUS VULT</a>
+  <div class="nav-links">
+    <a href="../">Головна</a>
+    <a href="../guild-ranking/">Рейтинг DPS</a>
+    <a href="./" class="active">Рейтинг Heal</a>
+    <a href="../analytics/">Аналітика</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Рейтинг Heal</h1>
+  <p>Дані з <a href="https://uwu-logs.xyz" target="_blank">uwu-logs.xyz</a> — Валітрія Dreamwalker, 25 ХМ. Оновлюється раз на добу.</p>
+  <div class="updated-at" id="updatedAt"></div>
+</div>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Клас</label>
+    <select id="classSelect"><option value="">Всі класи</option></select>
+  </div>
+  <div class="control-group">
+    <label>Спеціалізація</label>
+    <select id="specSelect"><option value="">Всі спеки</option></select>
+  </div>
+  <div class="results-info" id="resultsInfo"></div>
+</div>
+
+<div class="table-wrap">
+  <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження...</div></div>
+  <table id="rankTable" style="display:none">
+    <thead id="tableHead"></thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
+
+<script>
+const DATA_URL = '../data/guild-heal.json';
+
+let allRows = [];
+const classSelect = document.getElementById('classSelect');
+const specSelect  = document.getElementById('specSelect');
+
+// Збираємо унікальні класи і спеки з даних
+let classesMap = {};
+
+function pctColor(p) {
+  if (p >= 95) return '#ffd700';
+  if (p >= 75) return '#a335ee';
+  if (p >= 50) return '#0070dd';
+  if (p >= 25) return '#1eff00';
+  return '#9d9d9d';
+}
+
+async function loadData() {
+  try {
+    const res  = await fetch(DATA_URL);
+    const data = await res.json();
+    allRows = data.rows || [];
+
+    if (data.lastUpdated) {
+      const d = new Date(data.lastUpdated);
+      document.getElementById('updatedAt').textContent =
+        'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    }
+
+    // Збираємо класи/спеки
+    allRows.forEach(r => {
+      if (!classesMap[r.class]) classesMap[r.class] = new Set();
+      classesMap[r.class].add(r.spec);
+    });
+
+    Object.keys(classesMap).sort().forEach(cls => {
+      const o = document.createElement('option');
+      o.value = cls; o.textContent = cls;
+      classSelect.appendChild(o);
+    });
+
+    buildHeader();
+    render();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('rankTable').style.display = '';
+  } catch(e) {
+    document.getElementById('loading').innerHTML = '<p style="color:#e05555">Помилка завантаження</p>';
+  }
+}
+
+classSelect.addEventListener('change', () => {
+  const cls = classSelect.value;
+  specSelect.innerHTML = '<option value="">Всі спеки</option>';
+  if (cls && classesMap[cls]) {
+    [...classesMap[cls]].sort().forEach(sp => {
+      const o = document.createElement('option');
+      o.value = sp; o.textContent = sp;
+      specSelect.appendChild(o);
+    });
+  }
+  render();
+});
+specSelect.addEventListener('change', render);
+
+function buildHeader() {
+  const thead = document.getElementById('tableHead');
+  const tr = document.createElement('tr');
+  ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Percentile','HPS'].forEach(t => {
+    const th = document.createElement('th');
+    th.textContent = t;
+    if (t === 'HPS') th.style.textAlign = 'center';
+    tr.appendChild(th);
+  });
+  thead.appendChild(tr);
+}
+
+function render() {
+  const cls  = classSelect.value;
+  const spec = specSelect.value;
+
+  let rows = allRows.filter(r => {
+    if (cls  && r.class !== cls)  return false;
+    if (spec && r.spec  !== spec) return false;
+    return true;
+  }).sort((a,b) => (b.hps||0) - (a.hps||0));
+
+  // Перераховуємо guild_rank після фільтрації
+  rows.forEach((r, i) => r._filteredRank = i + 1);
+
+  document.getElementById('resultsInfo').innerHTML =
+    `Знайдено: <strong>${rows.length}</strong>`;
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  rows.forEach((row, idx) => {
+    const tr = document.createElement('tr');
+
+    // #
+    addTd(tr, idx + 1, 'text-align:center;color:var(--text-muted);font-size:11px');
+
+    // Name
+    const clsKey = row.class.replace(/ /g, '-');
+    addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
+
+    // Class / Spec
+    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:600">${row.class}</span> <span class="spec-badge">${row.spec}</span>`);
+
+    // Guild Rank
+    addTd(tr, `<span class="rank-badge rank-guild">#${row.guild_rank}</span>`);
+
+    // Server Rank
+    const sr = row.server_rank;
+    const srCls = sr && sr <= 10 ? 'rank-top10' : sr && sr <= 50 ? 'rank-top50' : 'rank-other';
+    addTd(tr, sr ? `<span class="rank-badge ${srCls}">#${sr}</span>` : '<span style="color:var(--text-muted)">—</span>');
+
+    // Percentile
+    const pct = row.server_percentile;
+    const pctCol = pct ? pctColor(pct) : 'var(--text-muted)';
+    addTd(tr, pct ? `<span class="pct-badge" style="color:${pctCol};font-weight:600">${pct.toFixed(1)}%</span>` : '—');
+
+    // HPS
+    const hps = row.hps || 0;
+    const td = document.createElement('td');
+    td.className = 'hps-cell';
+    td.textContent = hps > 0 ? Math.round(hps).toLocaleString('uk-UA') : '—';
+    tr.appendChild(td);
+
+    tbody.appendChild(tr);
+  });
+}
+
+function addTd(tr, html, style) {
+  const td = document.createElement('td');
+  if (style) td.style.cssText = style;
+  td.innerHTML = String(html);
+  tr.appendChild(td);
+}
+
+loadData();
+</script>
+</body>
+</html>
 
