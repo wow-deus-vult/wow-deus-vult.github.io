@@ -101,16 +101,17 @@
   .rank-other  { color:var(--text-muted); }
 
   /* WoW class colors */
-  .cls-Death\ Knight { color:#c41e3a; }
-  .cls-Druid         { color:#ff7c0a; }
-  .cls-Hunter        { color:#aad372; }
-  .cls-Mage          { color:#3fc7eb; }
-  .cls-Paladin       { color:#f48cba; }
-  .cls-Priest        { color:#e0e0e0; }
-  .cls-Rogue         { color:#fff468; }
-  .cls-Shaman        { color:#0070dd; }
-  .cls-Warlock       { color:#8788ee; }
-  .cls-Warrior       { color:#c69b3a; }
+  .cls-Death-Knight { color:#c41e3a; }
+  .cls-Druid        { color:#ff7c0a; }
+  .cls-Hunter       { color:#aad372; }
+  .cls-Mage         { color:#3fc7eb; }
+  .cls-Paladin      { color:#f48cba; }
+  .cls-Priest       { color:#e0e0e0; }
+  .cls-Rogue        { color:#fff468; }
+  .cls-Shaman       { color:#0070dd; }
+  .cls-Warlock      { color:#8788ee; }
+  .cls-Warrior      { color:#c69b3a; }
+  .cls-Feral-Combat { color:#ff7c0a; }
 
   .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
   .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
@@ -123,11 +124,11 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="/">✠ DEUS VULT</a>
+  <a class="nav-logo" href="../">✠ DEUS VULT</a>
   <div class="nav-links">
-    <a href="/">Головна</a>
-    <a href="/guild-ranking/" class="active">Рейтинг DPS</a>
-    <a href="/analytics/">Аналітика</a>
+    <a href="../">Головна</a>
+    <a href="./" class="active">Рейтинг DPS</a>
+    <a href="../analytics/">Аналітика</a>
   </div>
 </nav>
 
@@ -318,10 +319,11 @@ function render() {
     addTd(tr, guildRank, 'text-align:center;color:var(--text-muted);font-size:11px');
 
     // Name
-    addTd(tr, `<span class="player-name cls-${row.class}">${row.name}</span>`);
+    const clsKey = row.class.replace(/ /g, '-');
+    addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
 
     // Class / Spec
-    addTd(tr, `<span class="cls-${row.class}" style="font-weight:600">${row.class}</span> <span class="spec-badge">${row.spec}</span>`);
+    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:600">${row.class}</span> <span class="spec-badge">${row.spec}</span>`);
 
     // Guild Rank (перша!)
     addTd(tr, `<span class="rank-badge rank-guild">#${guildRank}</span>`);
@@ -330,13 +332,10 @@ function render() {
     const srCls = serverRank <= 10 ? 'rank-top10' : serverRank <= 50 ? 'rank-top50' : 'rank-other';
     addTd(tr, `<span class="rank-badge ${srCls}">#${serverRank}</span>`);
 
-    // Score
+    // Score — тільки число, без полоски
     const sc  = row.overallScore || 0;
     const col = scoreColor(sc);
-    addTd(tr, `<div class="score-bar">
-      <span class="score-val" style="color:${col}">${sc.toFixed(1)}</span>
-      <div class="bar-track"><div class="bar-fill" style="width:${Math.min(sc,100)}%;background:${col}"></div></div>
-    </div>`);
+    addTd(tr, `<span class="score-val" style="color:${col};font-weight:600">${sc.toFixed(2)}</span>`);
 
     // ICC bosses
     ICC_BOSSES.forEach(boss => {
