@@ -150,7 +150,9 @@ def fetch_rs_mini_bosses(members_specs):
                         name = entry[3]
                         if name not in members_specs:
                             continue
-                        udps = round(entry[1], 1)
+                        # entry[7][0][0] = DPS найкращого логу
+                        logs = entry[7] if len(entry) > 7 and entry[7] else []
+                        udps = round(logs[0][0], 1) if logs else 0
                         # Знаходимо відповідний спек для цього гравця
                         for (c, s, si) in members_specs.get(name, []):
                             if c == cls_name and s == spec_name:
