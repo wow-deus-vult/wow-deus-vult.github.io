@@ -1,5 +1,6 @@
 """
-fetch_guild_data.py — Deus Vult / FreedomUA / ЦЛК 25 ХМ
+fetch_guild_data.py — Deus Vult / FreedomUA
+Збирає дані через /character API (overall_points, dps_max по босах).
 """
 
 import json, os, re, time, requests
@@ -7,18 +8,22 @@ from datetime import datetime, timezone
 
 SERVER    = "FreedomUA"
 MODE      = "25H"
-BASE_URL  = "https://uwu-logs.xyz/top"
+CHAR_URL  = "https://uwu-logs.xyz/character"
+TOP_URL   = "https://uwu-logs.xyz/top"
 EPGP_FILE = os.path.join(os.path.dirname(__file__), "EPGP.lua")
 OUTPUT    = os.path.join(os.path.dirname(__file__), "data", "guild-data.json")
+
+HEADERS = {
+    "Content-Type": "application/json",
+    "Origin":       "https://uwu-logs.xyz",
+    "Referer":      "https://uwu-logs.xyz/character",
+}
 
 BOSS_ORDER = [
     "Lord Marrowgar", "Lady Deathwhisper", "Deathbringer Saurfang",
     "Festergut", "Rotface", "Professor Putricide", "Blood Prince Council",
     "Blood-Queen Lana'thel", "Sindragosa", "The Lich King",
-    "Halion",
-    # Ruby Sanctum міні-боси
-    "Saviana Ragefire", "General Zarithrian", "Baltharus the Warborn",
-    # Хіл-бос окремо
+    "Halion", "Saviana Ragefire", "General Zarithrian", "Baltharus the Warborn",
     "Valithria Dreamwalker",
 ]
 
@@ -65,101 +70,125 @@ def parse_epgp_members(path):
     print(f"   EPGP snapshot від {dt} → {len(names)} гравців")
     return set(names)
 
-# ─── API ─────────────────────────────────────────────────────────────────────
+# ─── Крок 1: знайти які гравці з гільдії є на сервері і їх спеки ─────────────
 
-def fetch_top(boss, class_i, spec_i):
-    payload = {
-        "server":    SERVER,
-        "boss":      boss,
-        "mode":      MODE,
-        "best_only": True,
-        "class_i":   class_i,
-        "spec_i":    spec_i,
-        "externals": True,
-        "limit":     "1000",
-        "sort_by":   "head-useful-dps",
-    }
-    headers = {
-        "Content-Type": "application/json",
-        "Origin":       "https://uwu-logs.xyz",
-        "Referer":      "https://uwu-logs.xyz/top",
-    }
-    try:
-        r = requests.post(BASE_URL, json=payload, headers=headers, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        return data if isinstance(data, list) else []
-    except Exception as e:
-        print(f"  ⚠  {e}")
-        return []
-
-def parse_entry(entry, server_rank):
+def find_guild_members_on_server(members):
     """
-    entry[0] = log_name
-    entry[1] = uDPS (корисний DPS)
-    entry[3] = name
-    entry[7] = [[dps, count, score, ext_flag], ...]  — масив логів гравця
-    server_rank = позиція в масиві відповіді (1-based) = реальний ранг на сервері
+    Проходить по /top для кожного класу/спеку і збирає
+    унікальних гравців гільдії разом з їх класом/спеком.
+    Повертає dict: {name: [(class, spec, spec_i), ...]}
     """
-    logs = entry[7] if len(entry) > 7 and isinstance(entry[7], list) else []
-    # Знаходимо лог з найкращим score
-    best = max(logs, key=lambda l: l[2] if len(l) > 2 else 0, default=[0, 0, 0, 0])
-    return {
-        "name":  entry[3],
-        "udps":  round(entry[1], 1),
-        "score": best[2] if len(best) > 2 else 0.0,
-        "rank":  server_rank,   # реальна позиція в топі сервера
-    }
-
-# ─── MAIN ────────────────────────────────────────────────────────────────────
-
-def build_guild_data(members):
-    rows_map = {}
-    total = len(CLASSES) * 3 * len(BOSS_ORDER)
+    found = {}  # name → list of (cls, spec, spec_i)
+    total = len(CLASSES) * 3
     done  = 0
 
-    for boss in BOSS_ORDER:
-        print(f"\n📜 {boss}")
-        for cls_name, specs in SPECS_BY_CLASS.items():
-            cls_i = CLASS_INDEX[cls_name]
-            for spec_name in specs:
-                spec_i = SPEC_INDEX[cls_name][spec_name]
-                done += 1
-                print(f"  [{done}/{total}] {cls_name}/{spec_name}...", end=" ", flush=True)
+    print("🔍 Крок 1: шукаємо гравців гільдії на сервері...")
 
-                entries = fetch_top(boss, cls_i, spec_i)
+    for cls_name, specs in SPECS_BY_CLASS.items():
+        cls_i = CLASS_INDEX[cls_name]
+        for spec_name in specs:
+            spec_i = SPEC_INDEX[cls_name][spec_name]
+            done += 1
+            print(f"  [{done}/{total}] {cls_name}/{spec_name}...", end=" ", flush=True)
 
-                found = 0
-                for server_rank, entry in enumerate(entries, start=1):
-                    if entry[3] not in members:
-                        continue
-                    found += 1
-                    p   = parse_entry(entry, server_rank)
-                    key = (p["name"], cls_name, spec_name)
+            # Запитуємо будь-якого боса щоб знайти хто є на сервері
+            payload = {
+                "server":    SERVER,
+                "boss":      "Lord Marrowgar",
+                "mode":      MODE,
+                "best_only": True,
+                "class_i":   cls_i,
+                "spec_i":    spec_i,
+                "externals": True,
+                "limit":     "1000",
+                "sort_by":   "head-useful-dps",
+            }
+            try:
+                r = requests.post(TOP_URL, json=payload, headers=HEADERS, timeout=30)
+                r.raise_for_status()
+                entries = r.json()
+                guild_found = [e[3] for e in entries if e[3] in members]
+                print(f"{len(guild_found)}")
+                for name in guild_found:
+                    if name not in found:
+                        found[name] = []
+                    found[name].append((cls_name, spec_name, spec_i))
+            except Exception as e:
+                print(f"⚠ {e}")
 
-                    if key not in rows_map:
-                        rows_map[key] = {
-                            "name":         p["name"],
-                            "server":       SERVER,
-                            "class":        cls_name,
-                            "spec":         spec_name,
-                            "specIndex":    int(spec_i),
-                            "overallRank":  p["rank"],
-                            "overallScore": p["score"],
-                            "bosses":       {b: 0 for b in BOSS_ORDER},
-                        }
+            time.sleep(0.3)
 
-                    row = rows_map[key]
-                    row["bosses"][boss] = p["udps"]
+    return found
 
-                    if p["score"] > row["overallScore"]:
-                        row["overallScore"] = p["score"]
-                        row["overallRank"]  = p["rank"]
+# ─── Крок 2: для кожного гравця отримати дані через /character ───────────────
 
-                print(f"{found}")
-                time.sleep(0.3)
+def fetch_character(name, spec_i):
+    """
+    POST /character → {name, server, spec}
+    Повертає overall_points, overall_rank, bosses з dps_max і rank_players
+    """
+    payload = {"name": name, "server": SERVER, "spec": spec_i}
+    try:
+        r = requests.post(CHAR_URL, json=payload, headers={
+            **HEADERS, "Referer": "https://uwu-logs.xyz/character"
+        }, timeout=30)
+        r.raise_for_status()
+        return r.json()
+    except Exception as e:
+        print(f"  ⚠ {name}/{spec_i}: {e}")
+        return None
 
-    rows = sorted(rows_map.values(), key=lambda r: r["overallScore"], reverse=True)
+def build_guild_data(members):
+    # Крок 1: знайти спеки гравців
+    members_specs = find_guild_members_on_server(members)
+    print(f"\n   Знайдено {len(members_specs)} гравців з {len(members)} можливих\n")
+
+    # Крок 2: для кожного гравця і кожного його спеку — запит /character
+    rows = []
+    total = sum(len(specs) for specs in members_specs.values())
+    done  = 0
+
+    print("📊 Крок 2: отримуємо дані по кожному гравцю...")
+
+    for name, specs in members_specs.items():
+        for cls_name, spec_name, spec_i in specs:
+            done += 1
+            print(f"  [{done}/{total}] {name} / {cls_name} {spec_name}...", end=" ", flush=True)
+
+            data = fetch_character(name, spec_i)
+            if not data:
+                print("пропущено")
+                continue
+
+            overall_points = data.get("overall_points", 0) or 0
+            overall_rank   = data.get("overall_rank", 9999) or 9999
+            bosses_data    = data.get("bosses", {})
+
+            # Збираємо DPS по босах
+            bosses = {}
+            for boss in BOSS_ORDER:
+                bd = bosses_data.get(boss, {})
+                bosses[boss] = round(bd.get("dps_max", 0) or 0, 1)
+
+            # overall_points наприклад 9935.09 → score 99.35
+            score = round(overall_points / 100.0, 2)
+
+            row = {
+                "name":         name,
+                "server":       SERVER,
+                "class":        cls_name,
+                "spec":         spec_name,
+                "specIndex":    int(spec_i),
+                "overallRank":  overall_rank,
+                "overallScore": score,
+                "bosses":       bosses,
+            }
+            rows.append(row)
+            print(f"score={score:.2f} rank=#{overall_rank}")
+            time.sleep(0.2)
+
+    rows.sort(key=lambda r: r["overallScore"], reverse=True)
+
     return {
         "lastUpdated":          datetime.now(timezone.utc).isoformat(),
         "totalPlayersInSource": len({r["name"] for r in rows}),
@@ -171,7 +200,7 @@ def build_guild_data(members):
     }
 
 if __name__ == "__main__":
-    print("🏰 Deus Vult / FreedomUA / ЦЛК 25 ХМ\n")
+    print("🏰 Deus Vult / FreedomUA / ЦЛК+РС 25 ХМ\n")
     if not os.path.exists(EPGP_FILE):
         print(f"❌ {EPGP_FILE} не знайдено!")
         exit(1)
