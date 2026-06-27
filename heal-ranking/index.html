@@ -1,172 +1,275 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Рейтинг Heal — Deus Vult</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>html,body{margin:0;background:#070a0f;}a{text-decoration:none;}</style>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
+    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
+    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
+    --heal:#1a2a1a; --heal-border:#2a5a2a;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+
+  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  .nav-links a:hover { color:var(--text); background:var(--bg3); }
+  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+
+  .page-header { padding:32px 24px 20px; max-width:900px; margin:0 auto; border-bottom:1px solid var(--border); }
+  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+  .page-header p { color:var(--text-muted); font-size:13px; }
+  .page-header p a { color:var(--ice); text-decoration:none; }
+  .updated-at { font-size:11px; color:var(--text-muted); margin-top:4px; }
+
+  .controls { max-width:900px; margin:0 auto; padding:16px 24px; display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; }
+  .control-group { display:flex; flex-direction:column; gap:4px; }
+  .control-group label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); }
+  select { background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:6px; font-size:13px; font-family:'Inter',sans-serif; cursor:pointer; outline:none; min-width:160px; }
+  select:hover,select:focus { border-color:var(--gold-dim); }
+  .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); }
+  .results-info strong { color:var(--text); }
+
+  .table-wrap { max-width:900px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+
+  thead th {
+    text-align:left; padding:8px 10px;
+    font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-muted); border-bottom:1px solid var(--border); white-space:nowrap;
+  }
+
+  tbody tr { border-bottom:1px solid rgba(42,45,53,.6); transition:background .1s; }
+  tbody tr:hover { background:var(--bg2); }
+  td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
+  td:first-child { text-align:center; color:var(--text-muted); font-size:11px; width:36px; }
+
+  td.hps-cell {
+    text-align:center; font-size:13px; font-variant-numeric:tabular-nums;
+    font-weight:600; color:#7ecf8a;
+  }
+
+  .player-name { font-weight:600; }
+  .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border); padding:2px 7px; border-radius:4px; font-size:11px; color:var(--text-muted); }
+
+  .rank-badge { font-size:12px; font-variant-numeric:tabular-nums; font-weight:600; }
+  .rank-guild  { color:var(--text-muted); }
+  .rank-top10  { color:#ffd700; }
+  .rank-top50  { color:var(--gold); }
+  .rank-other  { color:var(--text-muted); }
+
+  .pct-badge { font-size:12px; font-variant-numeric:tabular-nums; }
+  .score-val { font-weight:600; font-variant-numeric:tabular-nums; min-width:38px; text-align:right; }
+
+  /* WoW class colors */
+  .cls-Death-Knight { color:#c41e3a; }
+  .cls-Druid        { color:#ff7c0a; }
+  .cls-Hunter       { color:#aad372; }
+  .cls-Mage         { color:#3fc7eb; }
+  .cls-Paladin      { color:#f48cba; }
+  .cls-Priest       { color:#e0e0e0; }
+  .cls-Rogue        { color:#fff468; }
+  .cls-Shaman       { color:#0070dd; }
+  .cls-Warlock      { color:#8788ee; }
+  .cls-Warrior      { color:#c69b3a; }
+
+  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
+  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); }
+  footer a { color:var(--ice); text-decoration:none; }
+</style>
 </head>
 <body>
-<div style="min-height: 100vh; background: rgb(7, 10, 15); font-family: Manrope, sans-serif;">
-  <div style="max-width: 1280px; margin: 0px auto; padding: 0px 40px;">
 
-    
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 24px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-      <a href="/" style="display: flex; align-items: center; gap: 10px; font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.14em; color: rgb(231, 236, 243);">
-        <span style="color: rgb(143, 193, 227);">✠</span><span>DEUS VULT</span>
-      </a>
-      <div style="display: flex; align-items: center; gap: 28px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
-        <a href="/" style="color: rgb(130, 140, 157);">Головна</a>
-        <a href="/guild-ranking/" style="color: rgb(130, 140, 157);">Рейтинг DPS</a>
-        <a href="/heal-ranking/" style="color: rgb(143, 193, 227);">Рейтинг Heal</a>
-        <a href="/potion-stats/" style="color: rgb(130, 140, 157);">Статистика Зіль</a>
-        <a href="/analytics/" style="color: rgb(130, 140, 157);">Аналітика</a>
-      </div>
-    </div>
+<nav>
+  <a class="nav-logo" href="../">✠ DEUS VULT</a>
+  <div class="nav-links">
+    <a href="../">Головна</a>
+    <a href="../guild-ranking/">Рейтинг DPS</a>
+    <a href="./" class="active">Рейтинг Heal</a>
+    <a href="../potion-stats/">Статистика Потів</a>
+    <a href="../analytics/">Аналітика</a>
+  </div>
+</nav>
 
-    
-    <div style="display: flex; align-items: flex-end; justify-content: space-between; padding: 48px 0px 28px; flex-wrap: wrap; gap: 20px;">
-      <div>
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgb(143, 193, 227);">Рейтинг</div>
-        <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 800; font-size: 38px; letter-spacing: 0.01em; color: rgb(231, 236, 243); margin-top: 10px;">Лікування за секунду</div>
-        <div style="font-family: Manrope, sans-serif; font-size: 15px; color: rgb(130, 140, 157); margin-top: 8px;">Ефективний HPS по останньому рейдовому вечору. Парс — перцентиль серед усього серверу.</div>
-      </div>
-      <div style="display: flex; gap: 10px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">
-        <div style="background: rgb(16, 21, 31); border: 1px solid rgba(255, 255, 255, 0.1); color: rgb(205, 214, 226); padding: 9px 16px; border-radius: 3px;">Усі хілери</div>
-        <div style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: rgb(107, 117, 137); padding: 9px 16px; border-radius: 3px;">Mythic</div>
-        <div style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: rgb(107, 117, 137); padding: 9px 16px; border-radius: 3px;">27.06.26</div>
-      </div>
-    </div>
+<div class="page-header">
+  <h1>Рейтинг Heal Deus Vult</h1>
+  <div class="updated-at" id="updatedAt"></div>
+</div>
 
-    
-    <div style="border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 6px; overflow: hidden; margin-bottom: 64px;">
-      <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; padding: 14px 22px; background: rgb(13, 17, 25); border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgb(107, 117, 137);">
-        <div>#</div><div>Гравець</div><div>Спек</div><div style="text-align: right;">HPS</div><div></div><div style="text-align: right;">Парс</div>
-      </div>
-      
-        <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; align-items: center; padding: 15px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgb(10, 13, 19);">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(127, 220, 180);"><span class="sc-interp">1</span></div>
-          <div style="display: flex; align-items: center; gap: 11px;">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(232, 232, 232); flex: 0 0 auto;"></span>
-            <span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px; color: rgb(231, 236, 243);"><span class="sc-interp">Гравець-Альфа</span></span>
-          </div>
-          <div style="font-family: Manrope, sans-serif; font-size: 13px; color: rgb(130, 140, 157);"><span class="sc-interp">Holy</span></div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(231, 236, 243); text-align: right;"><span class="sc-interp">142.0k</span></div>
-          <div style="height: 7px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden;">
-            <div style="height: 100%; width: 100%; background: linear-gradient(90deg, rgb(79, 154, 122), rgb(127, 220, 180)); border-radius: 4px;"></div>
-          </div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(127, 220, 180); text-align: right;"><span class="sc-interp">99</span></div>
-        </div>
-      
-        <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; align-items: center; padding: 15px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgb(10, 13, 19);">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(127, 220, 180);"><span class="sc-interp">2</span></div>
-          <div style="display: flex; align-items: center; gap: 11px;">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(245, 140, 186); flex: 0 0 auto;"></span>
-            <span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px; color: rgb(231, 236, 243);"><span class="sc-interp">Гравець-Бета</span></span>
-          </div>
-          <div style="font-family: Manrope, sans-serif; font-size: 13px; color: rgb(130, 140, 157);"><span class="sc-interp">Holy</span></div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(231, 236, 243); text-align: right;"><span class="sc-interp">134.5k</span></div>
-          <div style="height: 7px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden;">
-            <div style="height: 100%; width: 94.7%; background: linear-gradient(90deg, rgb(79, 154, 122), rgb(127, 220, 180)); border-radius: 4px;"></div>
-          </div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(127, 220, 180); text-align: right;"><span class="sc-interp">97</span></div>
-        </div>
-      
-        <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; align-items: center; padding: 15px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgb(10, 13, 19);">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(127, 220, 180);"><span class="sc-interp">3</span></div>
-          <div style="display: flex; align-items: center; gap: 11px;">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(255, 125, 10); flex: 0 0 auto;"></span>
-            <span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px; color: rgb(231, 236, 243);"><span class="sc-interp">Гравець-Гамма</span></span>
-          </div>
-          <div style="font-family: Manrope, sans-serif; font-size: 13px; color: rgb(130, 140, 157);"><span class="sc-interp">Restoration</span></div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(231, 236, 243); text-align: right;"><span class="sc-interp">129.8k</span></div>
-          <div style="height: 7px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden;">
-            <div style="height: 100%; width: 91.4%; background: linear-gradient(90deg, rgb(79, 154, 122), rgb(127, 220, 180)); border-radius: 4px;"></div>
-          </div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(127, 220, 180); text-align: right;"><span class="sc-interp">95</span></div>
-        </div>
-      
-        <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; align-items: center; padding: 15px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgb(10, 13, 19);">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108);"><span class="sc-interp">4</span></div>
-          <div style="display: flex; align-items: center; gap: 11px;">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(0, 112, 222); flex: 0 0 auto;"></span>
-            <span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px; color: rgb(231, 236, 243);"><span class="sc-interp">Гравець-Дельта</span></span>
-          </div>
-          <div style="font-family: Manrope, sans-serif; font-size: 13px; color: rgb(130, 140, 157);"><span class="sc-interp">Restoration</span></div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(231, 236, 243); text-align: right;"><span class="sc-interp">122.4k</span></div>
-          <div style="height: 7px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden;">
-            <div style="height: 100%; width: 86.2%; background: linear-gradient(90deg, rgb(79, 154, 122), rgb(127, 220, 180)); border-radius: 4px;"></div>
-          </div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(127, 220, 180); text-align: right;"><span class="sc-interp">92</span></div>
-        </div>
-      
-        <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; align-items: center; padding: 15px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgb(10, 13, 19);">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108);"><span class="sc-interp">5</span></div>
-          <div style="display: flex; align-items: center; gap: 11px;">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(0, 255, 150); flex: 0 0 auto;"></span>
-            <span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px; color: rgb(231, 236, 243);"><span class="sc-interp">Гравець-Епсилон</span></span>
-          </div>
-          <div style="font-family: Manrope, sans-serif; font-size: 13px; color: rgb(130, 140, 157);"><span class="sc-interp">Mistweaver</span></div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(231, 236, 243); text-align: right;"><span class="sc-interp">118.1k</span></div>
-          <div style="height: 7px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden;">
-            <div style="height: 100%; width: 83.2%; background: linear-gradient(90deg, rgb(79, 154, 122), rgb(127, 220, 180)); border-radius: 4px;"></div>
-          </div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(127, 220, 180); text-align: right;"><span class="sc-interp">90</span></div>
-        </div>
-      
-        <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; align-items: center; padding: 15px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgb(10, 13, 19);">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108);"><span class="sc-interp">6</span></div>
-          <div style="display: flex; align-items: center; gap: 11px;">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(51, 147, 127); flex: 0 0 auto;"></span>
-            <span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px; color: rgb(231, 236, 243);"><span class="sc-interp">Гравець-Дзета</span></span>
-          </div>
-          <div style="font-family: Manrope, sans-serif; font-size: 13px; color: rgb(130, 140, 157);"><span class="sc-interp">Preservation</span></div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(231, 236, 243); text-align: right;"><span class="sc-interp">113.7k</span></div>
-          <div style="height: 7px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden;">
-            <div style="height: 100%; width: 80.1%; background: linear-gradient(90deg, rgb(79, 154, 122), rgb(127, 220, 180)); border-radius: 4px;"></div>
-          </div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(127, 220, 180); text-align: right;"><span class="sc-interp">88</span></div>
-        </div>
-      
-        <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; align-items: center; padding: 15px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgb(10, 13, 19);">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108);"><span class="sc-interp">7</span></div>
-          <div style="display: flex; align-items: center; gap: 11px;">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(232, 232, 232); flex: 0 0 auto;"></span>
-            <span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px; color: rgb(231, 236, 243);"><span class="sc-interp">Гравець-Ета</span></span>
-          </div>
-          <div style="font-family: Manrope, sans-serif; font-size: 13px; color: rgb(130, 140, 157);"><span class="sc-interp">Discipline</span></div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(231, 236, 243); text-align: right;"><span class="sc-interp">108.2k</span></div>
-          <div style="height: 7px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden;">
-            <div style="height: 100%; width: 76.2%; background: linear-gradient(90deg, rgb(79, 154, 122), rgb(127, 220, 180)); border-radius: 4px;"></div>
-          </div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(127, 220, 180); text-align: right;"><span class="sc-interp">85</span></div>
-        </div>
-      
-        <div style="display: grid; grid-template-columns: 56px 1.4fr 170px 120px 1fr 72px; gap: 16px; align-items: center; padding: 15px 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgb(10, 13, 19);">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108);"><span class="sc-interp">8</span></div>
-          <div style="display: flex; align-items: center; gap: 11px;">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(245, 140, 186); flex: 0 0 auto;"></span>
-            <span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px; color: rgb(231, 236, 243);"><span class="sc-interp">Гравець-Тета</span></span>
-          </div>
-          <div style="font-family: Manrope, sans-serif; font-size: 13px; color: rgb(130, 140, 157);"><span class="sc-interp">Holy</span></div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(231, 236, 243); text-align: right;"><span class="sc-interp">102.9k</span></div>
-          <div style="height: 7px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden;">
-            <div style="height: 100%; width: 72.5%; background: linear-gradient(90deg, rgb(79, 154, 122), rgb(127, 220, 180)); border-radius: 4px;"></div>
-          </div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(127, 220, 180); text-align: right;"><span class="sc-interp">82</span></div>
-        </div>
-      
-    </div>
+<div class="controls">
+  <div class="control-group">
+    <label>Клас</label>
+    <select id="classSelect"><option value="">Всі класи</option></select>
+  </div>
+  <div class="control-group">
+    <label>Спеціалізація</label>
+    <select id="specSelect"><option value="">Всі спеки</option></select>
+  </div>
+  <div class="results-info" id="resultsInfo"></div>
+</div>
 
-    
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 26px 0px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(82, 91, 108);">
-      <span>© Гільдія «Deus Vult»</span>
-      <span>оновлено 27.06.26</span>
-    </div>
+<div class="table-wrap">
+  <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження...</div></div>
+  <table id="rankTable" style="display:none">
+    <thead id="tableHead"></thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
 
-  </div></div>
+<footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
+
+<script>
+const DATA_URL = '../data/guild-heal.json';
+
+let allRows = [];
+const classSelect = document.getElementById('classSelect');
+const specSelect  = document.getElementById('specSelect');
+
+// Збираємо унікальні класи і спеки з даних
+let classesMap = {};
+
+function pctColor(p) {
+  if (p >= 95) return '#ffd700';
+  if (p >= 75) return '#a335ee';
+  if (p >= 50) return '#0070dd';
+  if (p >= 25) return '#1eff00';
+  return '#9d9d9d';
+}
+
+async function loadData() {
+  try {
+    const res  = await fetch(DATA_URL);
+    const data = await res.json();
+    allRows = data.rows || [];
+
+    if (data.lastUpdated) {
+      const d = new Date(data.lastUpdated);
+      document.getElementById('updatedAt').textContent =
+        'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    }
+
+    // Збираємо класи/спеки
+    allRows.forEach(r => {
+      if (!classesMap[r.class]) classesMap[r.class] = new Set();
+      classesMap[r.class].add(r.spec);
+    });
+
+    Object.keys(classesMap).sort().forEach(cls => {
+      const o = document.createElement('option');
+      o.value = cls; o.textContent = cls;
+      classSelect.appendChild(o);
+    });
+
+    buildHeader();
+    render();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('rankTable').style.display = '';
+  } catch(e) {
+    document.getElementById('loading').innerHTML = '<p style="color:#e05555">Помилка завантаження</p>';
+  }
+}
+
+classSelect.addEventListener('change', () => {
+  const cls = classSelect.value;
+  specSelect.innerHTML = '<option value="">Всі спеки</option>';
+  if (cls && classesMap[cls]) {
+    [...classesMap[cls]].sort().forEach(sp => {
+      const o = document.createElement('option');
+      o.value = sp; o.textContent = sp;
+      specSelect.appendChild(o);
+    });
+  }
+  render();
+});
+specSelect.addEventListener('change', render);
+
+function buildHeader() {
+  const thead = document.getElementById('tableHead');
+  const tr = document.createElement('tr');
+  ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Score','HPS'].forEach(t => {
+    const th = document.createElement('th');
+    th.textContent = t;
+    if (t === 'HPS') th.style.textAlign = 'center';
+    tr.appendChild(th);
+  });
+  thead.appendChild(tr);
+}
+
+function render() {
+  const cls  = classSelect.value;
+  const spec = specSelect.value;
+
+  let rows = allRows.filter(r => {
+    if (cls  && r.class !== cls)  return false;
+    if (spec && r.spec  !== spec) return false;
+    return true;
+  }).sort((a,b) => (b.hps||0) - (a.hps||0));
+
+  // Перераховуємо guild_rank після фільтрації
+  rows.forEach((r, i) => r._filteredRank = i + 1);
+
+  document.getElementById('resultsInfo').innerHTML =
+    `Знайдено: <strong>${rows.length}</strong>`;
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  rows.forEach((row, idx) => {
+    const tr = document.createElement('tr');
+
+    // #
+    addTd(tr, idx + 1, 'text-align:center;color:var(--text-muted);font-size:11px');
+
+    // Name
+    const clsKey = row.class.replace(/ /g, '-');
+    addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
+
+    // Class / Spec
+    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:600">${row.class}</span> <span class="spec-badge">${row.spec}</span>`);
+
+    // Guild Rank
+    addTd(tr, `<span class="rank-badge rank-guild">#${row.guild_rank}</span>`);
+
+    // Server Rank
+    const sr = row.server_rank;
+    const srCls = sr && sr <= 10 ? 'rank-top10' : sr && sr <= 50 ? 'rank-top50' : 'rank-other';
+    addTd(tr, sr ? `<span class="rank-badge ${srCls}">#${sr}</span>` : '<span style="color:var(--text-muted)">—</span>');
+
+    // Score (percentile перетворений як на DPS)
+    const pct = row.server_percentile;
+    const pctCol = pct ? pctColor(pct) : 'var(--text-muted)';
+    addTd(tr, pct ? `<span class="score-val" style="color:${pctCol};font-weight:600">${pct.toFixed(2)}</span>` : '—');
+
+    // HPS
+    const hps = row.hps || 0;
+    const td = document.createElement('td');
+    td.className = 'hps-cell';
+    td.textContent = hps > 0 ? Math.round(hps).toLocaleString('uk-UA') : '—';
+    tr.appendChild(td);
+
+    tbody.appendChild(tr);
+  });
+}
+
+function addTd(tr, html, style) {
+  const td = document.createElement('td');
+  if (style) td.style.cssText = style;
+  td.innerHTML = String(html);
+  tr.appendChild(td);
+}
+
+loadData();
+</script>
 </body>
 </html>

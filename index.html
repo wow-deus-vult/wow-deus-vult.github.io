@@ -1,121 +1,467 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deus Vult — Freedom WoW</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>html,body{margin:0;background:#070a0f;}a{text-decoration:none;}</style>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0c10;
+    --bg2: #111318;
+    --bg3: #1a1d24;
+    --border: #2a2d35;
+    --gold: #c9a84c;
+    --gold-glow: rgba(201,168,76,.15);
+    --ice: #7ecfef;
+    --ice-dim: #2a4a5a;
+    --text: #d4d8e0;
+    --text-muted: #6b7080;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: .05em;
+    margin-right: 32px;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color .15s, background .15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg3); }
+  .nav-links a.active { color: var(--gold); background: rgba(201,168,76,.1); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 80px 24px;
+  }
+
+  /* Анімований фон — льодяні промені */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(126,207,239,.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 100%, rgba(201,168,76,.05) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 100%, rgba(201,168,76,.05) 0%, transparent 60%);
+    animation: pulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes pulse {
+    from { opacity: .6; }
+    to   { opacity: 1; }
+  }
+
+  /* Льодяні лінії зверху */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ice), transparent);
+    opacity: .4;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-cross {
+    font-size: 28px;
+    color: var(--gold);
+    opacity: .6;
+    display: block;
+    margin-bottom: 16px;
+    letter-spacing: .3em;
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: .06em;
+    line-height: 1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 60px rgba(201,168,76,.3);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(12px, 2vw, 15px);
+    color: var(--text-muted);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 32px;
+    opacity: .4;
+  }
+
+  .hero-desc {
+    max-width: 480px;
+    margin: 0 auto 40px;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s;
+    letter-spacing: .02em;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #0a0c10;
+  }
+  .btn-primary:hover {
+    background: #dbb85a;
+    box-shadow: 0 0 24px rgba(201,168,76,.35);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+    transform: translateY(-1px);
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    padding: 20px 40px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-value {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-muted);
+  }
+
+  /* ── CARDS ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card:hover {
+    border-color: var(--gold-dim, #7a6030);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  }
+
+  .card-icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: .03em;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .card-link {
+    font-size: 12px;
+    color: var(--ice);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-link::after { content: '→'; transition: transform .2s; }
+  .card:hover .card-link::after { transform: translateX(4px); }
+
+  /* ── PROGRESSION ── */
+  .progress-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .progress-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .raids {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .raid-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .raid-name {
+    font-weight: 600;
+    font-size: 13px;
+    min-width: 200px;
+  }
+
+  .raid-mode {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-muted);
+    min-width: 60px;
+  }
+
+  .bosses-track {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .boss-pip {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--text-muted);
+    position: relative;
+    cursor: default;
+  }
+  .boss-pip.killed {
+    background: rgba(201,168,76,.15);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .boss-pip.killed::after {
+    content: '✓';
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .raid-progress-text {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
 </head>
 <body>
-<div style="min-height: 100vh; background: rgb(7, 10, 15); font-family: Manrope, sans-serif;">
-  <div style="max-width: 1280px; margin: 0px auto; padding: 0px 40px;">
 
-    
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 24px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-      <a href="/" style="display: flex; align-items: center; gap: 10px; font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.14em; color: rgb(231, 236, 243);">
-        <span style="color: rgb(143, 193, 227);">✠</span><span>DEUS VULT</span>
-      </a>
-      <div style="display: flex; align-items: center; gap: 28px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
-        <a href="/" style="color: rgb(143, 193, 227);">Головна</a>
-        <a href="/guild-ranking/" style="color: rgb(130, 140, 157);">Рейтинг DPS</a>
-        <a href="/heal-ranking/" style="color: rgb(130, 140, 157);">Рейтинг Heal</a>
-        <a href="/potion-stats/" style="color: rgb(130, 140, 157);">Статистика Зіль</a>
-        <a href="/analytics/" style="color: rgb(130, 140, 157);">Аналітика</a>
-      </div>
-    </div>
+<nav>
+  <a class="nav-logo" href="./">✠ DEUS VULT</a>
+  <div class="nav-links">
+    <a href="./" class="active">Головна</a>
+    <a href="./guild-ranking/">Рейтинг DPS</a>
+    <a href="./heal-ranking/">Рейтинг Heal</a>
+    <a href="./potion-stats/">Статистика Потів</a>
+    <a href="./analytics/">Аналітика</a>
+  </div>
+</nav>
 
-    
-    <div style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; padding: 64px 0px; align-items: center;">
-      
-      <div style="position: relative; display: flex; flex-direction: column; align-items: flex-start;">
-        <img src="logo.png" alt="Deus Vult" style="position: relative; z-index: 1; width: 280px; height: auto;">
-        <div style="position: relative; z-index: 1; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgb(143, 193, 227); margin-top: 30px;">Freedom WoW · Рейдова гільдія</div>
-        <div style="position: relative; z-index: 1; font-family: Manrope, sans-serif; font-size: 18px; line-height: 1.6; color: rgb(154, 163, 178); max-width: 400px; margin-top: 16px;">Слідкуй за формою ростеру в реальному часі — DPS, хіл, витрата зіль і прогрес по рейдах.</div>
-        <div style="position: relative; z-index: 1; display: flex; gap: 13px; margin-top: 32px;">
-          <a href="#" style="background: rgb(143, 193, 227); color: rgb(7, 16, 26); padding: 13px 24px; border-radius: 3px; font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;">Вступити</a>
-          <a href="#" style="border: 1px solid rgba(255, 255, 255, 0.16); color: rgb(231, 236, 243); padding: 13px 24px; border-radius: 3px; font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;">Discord</a>
-        </div>
-      </div>
-      
-      <div style="background: rgb(16, 21, 31); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 6px; padding: 28px 30px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(107, 117, 137);">Зведення гільдії</div>
-          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(82, 91, 108);">оновлено 27.06</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 5px; overflow: hidden;">
-          <div style="background: rgb(13, 17, 25); padding: 22px 24px;">
-            <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 32px; color: rgb(231, 236, 243);">48</div>
-            <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(107, 117, 137); margin-top: 6px;">Гравців</div>
-          </div>
-          <div style="background: rgb(13, 17, 25); padding: 22px 24px;">
-            <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 32px; color: rgb(143, 193, 227);">184k</div>
-            <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(107, 117, 137); margin-top: 6px;">Топ DPS</div>
-          </div>
-          <div style="background: rgb(13, 17, 25); padding: 22px 24px;">
-            <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 32px; color: rgb(231, 236, 243);">142k</div>
-            <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(107, 117, 137); margin-top: 6px;">Топ Heal</div>
-          </div>
-          <div style="background: rgb(13, 17, 25); padding: 22px 24px;">
-            <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 32px; color: rgb(231, 236, 243);">12</div>
-            <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(107, 117, 137); margin-top: 6px;">Рейдів / тижд.</div>
-          </div>
-        </div>
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(107, 117, 137); margin: 24px 0px 12px;">Топ-3 цього тижня</div>
-        <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(255, 255, 255, 0.05); border-radius: 5px; overflow: hidden;">
-          <div style="display: flex; align-items: center; justify-content: space-between; background: rgb(13, 17, 25); padding: 13px 16px;">
-            <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(143, 193, 227);">1</span><span style="font-family: Manrope, sans-serif; font-size: 14px; color: rgb(231, 236, 243);">Гравець-Один</span></div>
-            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(205, 214, 226);">184k</span>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; background: rgb(13, 17, 25); padding: 13px 16px;">
-            <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(130, 140, 157);">2</span><span style="font-family: Manrope, sans-serif; font-size: 14px; color: rgb(231, 236, 243);">Гравець-Два</span></div>
-            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(205, 214, 226);">171k</span>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; background: rgb(13, 17, 25); padding: 13px 16px;">
-            <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(130, 140, 157);">3</span><span style="font-family: Manrope, sans-serif; font-size: 14px; color: rgb(231, 236, 243);">Гравець-Три</span></div>
-            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(205, 214, 226);">168k</span>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-cross">✠ · ✠ · ✠</span>
+    <h1>DEUS VULT</h1>
+    <p class="hero-subtitle">Freedom WoW</p>
+    <div class="hero-divider"></div>
 
-    
-    <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgb(82, 91, 108); margin: 20px 0px 16px;">Розділи</div>
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding-bottom: 64px;">
-      <a href="/guild-ranking/" style="background: rgb(16, 21, 31); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 6px; padding: 24px;">
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(143, 193, 227);">01</div>
-        <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 16px; color: rgb(231, 236, 243); margin-top: 12px;">Рейтинг DPS</div>
-        <div style="font-family: Manrope, sans-serif; font-size: 13px; line-height: 1.55; color: rgb(130, 140, 157); margin-top: 8px;">Хто видає максимум урону по боссах.</div>
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108); margin-top: 18px;">→</div>
-      </a>
-      <a href="/heal-ranking/" style="background: rgb(16, 21, 31); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 6px; padding: 24px;">
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(143, 193, 227);">02</div>
-        <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 16px; color: rgb(231, 236, 243); margin-top: 12px;">Рейтинг Heal</div>
-        <div style="font-family: Manrope, sans-serif; font-size: 13px; line-height: 1.55; color: rgb(130, 140, 157); margin-top: 8px;">Хто тримає рейд живим.</div>
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108); margin-top: 18px;">→</div>
-      </a>
-      <a href="/potion-stats/" style="background: rgb(16, 21, 31); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 6px; padding: 24px;">
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(143, 193, 227);">03</div>
-        <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 16px; color: rgb(231, 236, 243); margin-top: 12px;">Статистика Зіль</div>
-        <div style="font-family: Manrope, sans-serif; font-size: 13px; line-height: 1.55; color: rgb(130, 140, 157); margin-top: 8px;">Хто не шкодує расходників.</div>
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108); margin-top: 18px;">→</div>
-      </a>
-      <a href="/analytics/" style="background: rgb(16, 21, 31); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 6px; padding: 24px;">
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(143, 193, 227);">04</div>
-        <div style="font-family: &quot;Exo 2&quot;, sans-serif; font-weight: 700; font-size: 16px; color: rgb(231, 236, 243); margin-top: 12px;">Аналітика</div>
-        <div style="font-family: Manrope, sans-serif; font-size: 13px; line-height: 1.55; color: rgb(130, 140, 157); margin-top: 8px;">Динаміка та тренди по рейдах.</div>
-        <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 14px; color: rgb(82, 91, 108); margin-top: 18px;">→</div>
-      </a>
-    </div>
 
-    
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 26px 0px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(82, 91, 108);">
-      <span>© Гільдія «Deus Vult»</span>
-      <span>сервер Freedom WoW</span>
-    </div>
+  </div>
+</section>
 
-  </div></div>
+<!-- STATS BAR -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat-item">
+    <span class="stat-value" id="statPlayers">—</span>
+    <span class="stat-label">Гравців</span>
+  </div>
+
+  <div class="stat-item">
+    <span class="stat-value" id="statUpdated">—</span>
+    <span class="stat-label">Оновлено</span>
+  </div>
+</div>
+
+
+
+
+<footer>
+  © Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a>
+</footer>
+
+<script>
+// Підтягуємо лічильник гравців з guild-data.json
+fetch('./data/guild-data.json')
+  .then(r => r.json())
+  .then(data => {
+    const players = new Set(data.rows.map(r => r.name)).size;
+    document.getElementById('statPlayers').textContent = players;
+
+    if (data.lastUpdated) {
+      const d = new Date(data.lastUpdated);
+      const today = new Date();
+      const diff  = Math.floor((today - d) / 86400000);
+      document.getElementById('statUpdated').textContent =
+        diff === 0 ? 'Сьогодні'
+        : diff === 1 ? 'Вчора'
+        : diff + ' дн. тому';
+    }
+  })
+  .catch(() => {
+    document.getElementById('statPlayers').textContent = '—';
+  });
+</script>
 </body>
 </html>
