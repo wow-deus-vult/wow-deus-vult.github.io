@@ -1,0 +1,9 @@
+{
+  "lastUpdated": "2026-06-21T19:00:00+00:00",
+  "raidsCount": 1,
+  "totalRows": 1,
+  "_note": "ТИМЧАСОВІ дані-заглушка. Достеменно відомий лише Мараксус = 10 986 683 (з тестового звіту 26-06-21 Denmark--FreedomUA). Решта зʼявиться після реального запуску fetch_total_damage.py, коли uwu-logs запрацює.",
+  "rows": [
+    { "name": "Мараксус", "server": "FreedomUA", "class": "Warrior", "spec": "Fury Warrior", "totalDamage": 10986683 }
+  ]
+}

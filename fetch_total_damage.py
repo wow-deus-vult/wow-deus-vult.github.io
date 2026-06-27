@@ -22,6 +22,15 @@ SERVER   = "FreedomUA"
 OUTPUT   = "data/total-damage.json"
 HEADERS  = {"User-Agent": "Mozilla/5.0", "Origin": BASE_URL}
 
+# ─── ТЕСТОВИЙ РЕЖИМ ───────────────────────────────────────────────────────────
+# Якщо список НЕ порожній — беруться ТІЛЬКИ ці логи (без обходу /logs_list).
+# Зручно перевірити парсинг на одному відомому звіті, поки uwu-logs нестабільний.
+# Коли все працює — очисти список (TEST_LOGS = []), щоб збирати всі рейди автоматично.
+TEST_LOGS = [
+    "26-06-21--22-00--Denmark--FreedomUA",
+]
+# ──────────────────────────────────────────────────────────────────────────────
+
 # CSS-клас класу в <a> → людська назва (uwu-logs: <a class="warrior">)
 CLASS_CSS_TO_NAME = {
     "deathknight": "Death Knight", "death-knight": "Death Knight",
@@ -187,7 +196,12 @@ def save(rows, raids_used):
 if __name__ == "__main__":
     print("=== Збирач Total Damage Deus Vult ===\n")
     members = parse_epgp_members()
-    log_ids = get_all_freedom_logs()
+
+    if TEST_LOGS:
+        print(f"⚙ ТЕСТОВИЙ РЕЖИМ — лише {len(TEST_LOGS)} лог(ів), без /logs_list\n")
+        log_ids = TEST_LOGS
+    else:
+        log_ids = get_all_freedom_logs()
 
     rows, raids_used = build_rows(members, log_ids)
     save(rows, raids_used)
@@ -195,3 +209,9 @@ if __name__ == "__main__":
     print(f"\n✓ Готово! {OUTPUT}")
     print(f"  Рейдів використано: {raids_used}")
     print(f"  Гравців: {len(rows)}")
+
+    # короткий топ-5 для швидкої очної перевірки
+    if rows:
+        print("\n  Топ-5 за Total Damage:")
+        for r in rows[:5]:
+            print(f"    {r['name']:20} {r['totalDamage']:>16,}".replace(",", " "))
