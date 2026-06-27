@@ -109,17 +109,18 @@
     nav { padding:0 16px; height:52px; flex-wrap:wrap; }
     .nav-logo { margin-right:0; font-size:15px; }
     .nav-toggle { display:flex; }
-    /* меню як накладка: суцільний фон, поверх контенту */
+    /* меню-накладка: суцільний фон, клікабельне, поверх усього */
+    nav { z-index:200; }
     .nav-links { display:none; flex-direction:column; gap:2px; width:100%;
       padding:10px 16px 16px; order:3;
       position:absolute; top:52px; left:0; right:0;
       background:#0b1019; border-bottom:1px solid var(--border);
-      box-shadow:0 18px 40px rgba(0,0,0,.55); z-index:120; }
+      box-shadow:0 18px 40px rgba(0,0,0,.55); z-index:210; }
     .nav-links.open { display:flex; }
-    .nav-links a { padding:13px 14px; font-size:15px; border-radius:8px; }
+    .nav-links a { padding:13px 14px; font-size:15px; border-radius:8px; position:relative; z-index:1; }
 
-    /* затемнення+блюр контенту під відкритим меню */
-    .nav-overlay { position:fixed; inset:52px 0 0 0; z-index:110;
+    /* затемнення+блюр контенту — НИЖЧЕ навбару й меню, але вище контенту */
+    .nav-overlay { position:fixed; inset:52px 0 0 0; z-index:150;
       background:rgba(4,7,12,.55); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
       opacity:0; pointer-events:none; transition:opacity .18s; }
     .nav-overlay.show { opacity:1; pointer-events:auto; }
