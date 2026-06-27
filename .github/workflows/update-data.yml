@@ -17,14 +17,20 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install requests beautifulsoup4
+
       - name: Run DPS collector
+        continue-on-error: true
         run: python fetch_guild_data.py
       - name: Run Heal collector
+        continue-on-error: true
         run: python fetch_heal_data.py
       - name: Run Potion collector
+        continue-on-error: true
         run: python fetch_potion_data.py
       - name: Run Total Damage collector
+        continue-on-error: true
         run: python fetch_total_damage.py
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
