@@ -19,7 +19,7 @@ POTION_COLUMNS = {
     "Potion of Wild Magic":   "potionOfWildMagic",
     "Insane Strength Potion": "insaneStrength",
     "Flame Cap":              "flameCap",
-    "Destruction Potion":     "destructionPotion",
+    "Indestructible Potion":  "indestructiblePotion",
 }
 
 
