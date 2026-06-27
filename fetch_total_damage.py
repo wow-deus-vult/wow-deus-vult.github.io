@@ -22,6 +22,7 @@ Total Damage кожного гравця, розбитий ПО СЕЗОНАХ.
 import json, os, re, time, requests
 from datetime import datetime, timezone, date
 from bs4 import BeautifulSoup
+from epgp_parser import parse_epgp_members  # спільний парсер EPGP
 
 BASE_URL     = "https://uwu-logs.xyz"
 SERVER       = "FreedomUA"
@@ -45,18 +46,6 @@ CLASS_CSS_TO_NAME = {
 }
 
 
-def parse_epgp_members():
-    with open('EPGP.lua', encoding='utf-8') as f:
-        content = f.read()
-    pattern = re.compile(
-        r'\["time"\]\s*=\s*(\d+).*?\["roster_info"\]\s*=\s*\{(.*?)\},\s*\n\s*\}',
-        re.DOTALL
-    )
-    snapshots = list(pattern.finditer(content))
-    latest = max(snapshots, key=lambda m: int(m.group(1)))
-    names = set(re.findall(r'"([^"]+)",\s*--\s*\[1\]', latest.group(2)))
-    print(f"  EPGP: {len(names)} гравців")
-    return names
 
 
 def load_seasons():

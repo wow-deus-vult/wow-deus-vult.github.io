@@ -5,6 +5,7 @@ fetch_heal_data.py — Deus Vult / FreedomUA
 
 import json, os, re, time, requests
 from datetime import datetime, timezone
+from epgp_parser import parse_epgp_members  # спільний парсер EPGP
 
 SERVER    = "FreedomUA"
 CHAR_URL  = "https://uwu-logs.xyz/character"
@@ -38,22 +39,6 @@ CLASS_INDEX = {cls: str(i) for i, cls in enumerate(CLASSES)}
 
 # ─── EPGP ────────────────────────────────────────────────────────────────────
 
-def parse_epgp_members(path):
-    with open(path, encoding="utf-8") as f:
-        content = f.read()
-    pattern = re.compile(
-        r'\["time"\]\s*=\s*(\d+).*?\["roster_info"\]\s*=\s*\{(.*?)\},\s*\n\s*\}',
-        re.DOTALL
-    )
-    snapshots = list(pattern.finditer(content))
-    if not snapshots:
-        raise ValueError("Не знайдено snapshot у EPGP.lua")
-    latest = max(snapshots, key=lambda m: int(m.group(1)))
-    ts = int(latest.group(1))
-    dt = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M')
-    names = re.findall(r'"([^"]+)",\s*--\s*\[1\]', latest.group(2))
-    print(f"   EPGP snapshot від {dt} → {len(names)} гравців")
-    return set(names)
 
 
 # ─── Крок 1: знайти хілів гільдії через /top ─────────────────────────────────
