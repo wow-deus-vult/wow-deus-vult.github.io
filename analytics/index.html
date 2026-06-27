@@ -64,6 +64,15 @@
 
 <div class="charts-wrap" id="chartsWrap" style="display:none">
 
+  <!-- 5. Топ-3 по спеку -->
+  <div class="chart-block">
+    <div class="chart-title">Топ-3 по спеку</div>
+    <div class="chart-desc">3 найкращих гравця кожної спеки за Score.</div>
+    <div class="chart-container" style="height:500px">
+      <canvas id="chartTop3"></canvas>
+    </div>
+  </div>
+
   <!-- 1. Топ-50 по спеку -->
   <div class="chart-block">
     <div class="chart-title">Топ-50 серверу по спеку</div>
@@ -315,67 +324,40 @@ function renderTop3(rows) {
     })
     .sort((a,b) => (b.top3[0]?.overallScore||0) - (a.top3[0]?.overallScore||0));
 
-  // Будуємо плоский список рядків: кожен спек — 3 рядки
-  const labels = [];
-  const values = [];
-  const bgColors = [];
-  const bdColors = [];
-  const tooltipNames = [];
+  const labels = [], values = [], bgColors = [], bdColors = [];
   const medals = ['🥇', '🥈', '🥉'];
 
   specs.forEach(({ spec, top3 }) => {
-    const cls = SPEC_CLASS[spec] || '';
-    const color = CLASS_COLORS[cls] || '#888';
-    top3.forEach((p, i) => {
-      labels.push(`${p.name} • ${spec} ${medals[i]}`);
-      values.push(p.overallScore || 0);
-      const opacity = i === 0 ? 'dd' : i === 1 ? 'aa' : '77';
-      bgColors.push(color + opacity);
-      bdColors.push(color);
-      tooltipNames.push(p.name);
-    });
-    // Якщо менше 3 гравців — заповнюємо пустими
-    for (let i = top3.length; i < 3; i++) {
-      labels.push(`— • ${spec} ${medals[i]}`);
-      values.push(0);
-      bgColors.push('#2a2d3555');
-      bdColors.push('#2a2d35');
-      tooltipNames.push('');
+    const color = CLASS_COLORS[SPEC_CLASS[spec]] || '#888';
+    for (let i = 0; i < 3; i++) {
+      const p = top3[i];
+      labels.push(p ? `${p.name} • ${spec} ${medals[i]}` : `— • ${spec} ${medals[i]}`);
+      values.push(p ? p.overallScore || 0 : 0);
+      const op = i === 0 ? 'dd' : i === 1 ? 'aa' : '66';
+      bgColors.push(p ? color + op : '#2a2d3544');
+      bdColors.push(p ? color : '#2a2d35');
     }
   });
 
-  const totalRows = labels.length;
-  const height = Math.max(400, totalRows * 28);
+  const height = Math.max(500, labels.length * 26);
   document.getElementById('chartTop3').parentElement.style.height = height + 'px';
 
   makeChart('chartTop3', {
     type: 'bar',
     data: {
       labels,
-      datasets: [{
-        data: values,
-        backgroundColor: bgColors,
-        borderColor: bdColors,
-        borderWidth: 1,
-        borderRadius: 3,
-      }]
+      datasets: [{ data: values, backgroundColor: bgColors, borderColor: bdColors, borderWidth:1, borderRadius:3 }]
     },
     options: {
       indexAxis: 'y',
       responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => ctx.raw > 0 ? ` Score: ${ctx.raw.toFixed(2)}` : ' —'
-          }
-        }
+        tooltip: { callbacks: { label: ctx => ctx.raw > 0 ? ` Score: ${ctx.raw.toFixed(2)}` : ' —' } }
       },
       scales: {
-        x: { min: 0, max: 100, grid: { color: '#2a2d35' },
-          ticks: { callback: v => v } },
-        y: { grid: { display: false },
-          ticks: { font: { size: 12 }, color: '#d4d8e0' } }
+        x: { min: 0, max: 100, grid: { color: '#2a2d35' } },
+        y: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#d4d8e0' } }
       }
     }
   });
