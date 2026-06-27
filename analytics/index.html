@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Аналітика — Deus Vult</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
+    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
+    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+
+  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  .nav-links a:hover { color:var(--text); background:var(--bg3); }
+  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+
+  .page-header { padding:32px 24px 20px; max-width:1200px; margin:0 auto; border-bottom:1px solid var(--border); }
+  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+  .page-header p { color:var(--text-muted); font-size:13px; }
+  .page-header p a { color:var(--ice); text-decoration:none; }
+
+  .charts-wrap { max-width:1200px; margin:0 auto; padding:24px; display:flex; flex-direction:column; gap:32px; }
+
+  .chart-block { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:24px; }
+  .chart-title { font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--gold); margin-bottom:4px; }
+  .chart-desc { font-size:12px; color:var(--text-muted); margin-bottom:20px; }
+  .chart-container { position:relative; }
+
+  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
+  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); margin-top:24px; }
+  footer a { color:var(--ice); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">✠ DEUS VULT</a>
+  <div class="nav-links">
+    <a href="../">Головна</a>
+    <a href="../guild-ranking/">Рейтинг DPS</a>
+    <a href="../heal-ranking/">Рейтинг Heal</a>
+    <a href="./" class="active">Аналітика</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Аналітика</h1>
+  <p>Графіки на основі даних <a href="https://uwu-logs.xyz" target="_blank">uwu-logs.xyz</a> — ЦЛК 25 ХМ.</p>
+</div>
+
+<div id="loading" class="loading"><div class="loading-spinner"></div><div>Завантаження...</div></div>
+
+<div class="charts-wrap" id="chartsWrap" style="display:none">
+
+  <!-- 1. Топ-50 по спеку -->
+  <div class="chart-block">
+    <div class="chart-title">Топ-50 серверу по спеку</div>
+    <div class="chart-desc">Кількість гравців гільдії в топ-50 серверу для кожної спеціалізації.</div>
+    <div class="chart-container" style="height:320px">
+      <canvas id="chartTop50"></canvas>
+    </div>
+  </div>
+
+  <!-- 2. Популярність спеків -->
+  <div class="chart-block">
+    <div class="chart-title">Популярність спеків</div>
+    <div class="chart-desc">Скільки активних гравців є по кожній спеціалізації.</div>
+    <div class="chart-container" style="height:320px">
+      <canvas id="chartSpecPop"></canvas>
+    </div>
+  </div>
+
+  <!-- 3. Середній Score по класу -->
+  <div class="chart-block">
+    <div class="chart-title">Середній Score по класу</div>
+    <div class="chart-desc">Який клас в середньому показує кращий результат (Score) в рейдах.</div>
+    <div class="chart-container" style="height:320px">
+      <canvas id="chartAvgScore"></canvas>
+    </div>
+  </div>
+
+  <!-- 4. Гільдія проти серверу -->
+  <div class="chart-block">
+    <div class="chart-title">Гільдія проти серверу</div>
+    <div class="chart-desc">Скільки гравців гільдії потрапляють в топ-50/100/200/500 серверу (за найкращим спеком кожного гравця).</div>
+    <div class="chart-container" style="height:300px">
+      <canvas id="chartVsServer"></canvas>
+    </div>
+  </div>
+
+  <!-- 5. Топ-3 по спеку -->
+  <div class="chart-block">
+    <div class="chart-title">Топ-3 по спеку</div>
+    <div class="chart-desc">3 найкращих гравця кожної спеки за Score.</div>
+    <div class="chart-container" style="height:420px">
+      <canvas id="chartTop3"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
+
+<script>
+const DATA_URL = '../data/guild-data.json';
+
+const CLASS_COLORS = {
+  'Death Knight': '#c41e3a',
+  'Druid':        '#ff7c0a',
+  'Hunter':       '#aad372',
+  'Mage':         '#3fc7eb',
+  'Paladin':      '#f48cba',
+  'Priest':       '#e0e0e0',
+  'Rogue':        '#fff468',
+  'Shaman':       '#0070dd',
+  'Warlock':      '#8788ee',
+  'Warrior':      '#c69b3a',
+};
+
+const SPEC_CLASS = {};
+
+Chart.defaults.color = '#6b7080';
+Chart.defaults.borderColor = '#2a2d35';
+Chart.defaults.font.family = 'Inter';
+
+function makeChart(id, config) {
+  const ctx = document.getElementById(id).getContext('2d');
+  return new Chart(ctx, config);
+}
+
+async function loadAndRender() {
+  const res  = await fetch(DATA_URL);
+  const data = await res.json();
+  const rows = data.rows || [];
+
+  // Будуємо map клас→спек
+  rows.forEach(r => { SPEC_CLASS[r.spec] = r.class; });
+
+  // Беремо найкращий спек кожного гравця (по overallScore)
+  const bestByPlayer = {};
+  rows.forEach(r => {
+    if (!bestByPlayer[r.name] || r.overallScore > bestByPlayer[r.name].overallScore) {
+      bestByPlayer[r.name] = r;
+    }
+  });
+  const bestRows = Object.values(bestByPlayer);
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('chartsWrap').style.display = '';
+
+  renderTop50(rows);
+  renderSpecPop(rows);
+  renderAvgScore(rows);
+  renderVsServer(bestRows);
+  renderTop3(rows);
+}
+
+// ── 1. Топ-50 по спеку ──────────────────────────────────────────────────────
+function renderTop50(rows) {
+  const specCount = {};
+  rows.forEach(r => {
+    if (r.overallRank <= 50) {
+      specCount[r.spec] = (specCount[r.spec] || 0) + 1;
+    }
+  });
+
+  const sorted = Object.entries(specCount).sort((a,b) => b[1]-a[1]);
+  const labels = sorted.map(([s]) => s);
+  const values = sorted.map(([,v]) => v);
+  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#888');
+
+  makeChart('chartTop50', {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: colors.map(c => c + 'bb'),
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+      }
+    }
+  });
+}
+
+// ── 2. Популярність спеків ───────────────────────────────────────────────────
+function renderSpecPop(rows) {
+  const specCount = {};
+  rows.forEach(r => { specCount[r.spec] = (specCount[r.spec] || 0) + 1; });
+
+  const sorted = Object.entries(specCount).sort((a,b) => b[1]-a[1]);
+  const labels = sorted.map(([s]) => s);
+  const values = sorted.map(([,v]) => v);
+  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#888');
+
+  makeChart('chartSpecPop', {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: colors.map(c => c + 'bb'),
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+      }
+    }
+  });
+}
+
+// ── 3. Середній Score по класу ───────────────────────────────────────────────
+function renderAvgScore(rows) {
+  const classData = {};
+  rows.forEach(r => {
+    if (!classData[r.class]) classData[r.class] = [];
+    classData[r.class].push(r.overallScore || 0);
+  });
+
+  const sorted = Object.entries(classData)
+    .map(([cls, scores]) => ({ cls, avg: scores.reduce((a,b)=>a+b,0)/scores.length }))
+    .sort((a,b) => b.avg - a.avg);
+
+  const labels = sorted.map(d => d.cls);
+  const values = sorted.map(d => +d.avg.toFixed(2));
+  const colors = labels.map(c => CLASS_COLORS[c] || '#888');
+
+  makeChart('chartAvgScore', {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: colors.map(c => c + 'bb'),
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' Score: ' + ctx.raw } }
+      },
+      scales: {
+        y: { min: 0, max: 100, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+}
+
+// ── 4. Гільдія проти серверу ─────────────────────────────────────────────────
+function renderVsServer(bestRows) {
+  const thresholds = [50, 100, 200, 500];
+  const counts = thresholds.map(t => bestRows.filter(r => r.overallRank <= t).length);
+
+  makeChart('chartVsServer', {
+    type: 'bar',
+    data: {
+      labels: thresholds.map(t => 'Топ-' + t),
+      datasets: [{
+        label: 'Гравців гільдії',
+        data: counts,
+        backgroundColor: ['#ffd700bb','#c9a84cbb','#0070ddbb','#2a2d35bb'],
+        borderColor:     ['#ffd700',  '#c9a84c',  '#0070dd',  '#4a5060'],
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' гравців' } }
+      },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+}
+
+// ── 5. Топ-3 по спеку ───────────────────────────────────────────────────────
+function renderTop3(rows) {
+  // Групуємо по спеку, беремо топ-3
+  const bySpec = {};
+  rows.forEach(r => {
+    if (!bySpec[r.spec]) bySpec[r.spec] = [];
+    bySpec[r.spec].push(r);
+  });
+
+  // Спеки з хоча б 1 гравцем, сортовані за середнім score топ-3
+  const specs = Object.entries(bySpec)
+    .map(([spec, players]) => {
+      const top3 = players.sort((a,b) => b.overallScore - a.overallScore).slice(0, 3);
+      return { spec, top3 };
+    })
+    .sort((a,b) => (b.top3[0]?.overallScore||0) - (a.top3[0]?.overallScore||0));
+
+  const labels = specs.map(s => s.spec);
+  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#888');
+
+  // 3 датасети для місць 1, 2, 3
+  const d1 = specs.map(s => s.top3[0]?.overallScore || 0);
+  const d2 = specs.map(s => s.top3[1]?.overallScore || 0);
+  const d3 = specs.map(s => s.top3[2]?.overallScore || 0);
+
+  const n1 = specs.map(s => s.top3[0]?.name || '');
+  const n2 = specs.map(s => s.top3[1]?.name || '');
+  const n3 = specs.map(s => s.top3[2]?.name || '');
+
+  makeChart('chartTop3', {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: '🥇 1-е місце', data: d1, backgroundColor: colors.map(c=>c+'dd'), borderColor: colors, borderWidth:1, borderRadius:4, names: n1 },
+        { label: '🥈 2-е місце', data: d2, backgroundColor: colors.map(c=>c+'88'), borderColor: colors, borderWidth:1, borderRadius:4, names: n2 },
+        { label: '🥉 3-є місце', data: d3, backgroundColor: colors.map(c=>c+'44'), borderColor: colors, borderWidth:1, borderRadius:4, names: n3 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#d4d8e0' } },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const name = ctx.dataset.names?.[ctx.dataIndex];
+              return ` ${name}: ${ctx.raw.toFixed(2)}`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: { min: 0, max: 100, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+      }
+    }
+  });
+}
+
+loadAndRender().catch(e => {
+  document.getElementById('loading').innerHTML = '<p style="color:#e05555">Помилка завантаження</p>';
+  console.error(e);
+});
+</script>
+</body>
+</html>
