@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Рейтинг Heal — Deus Vult</title>
+<title>Total Damage — Deus Vult</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
@@ -12,7 +12,7 @@
     --border:#1e2836; --border2:#283447;
     --accent:#8fc1e3; --accent-dim:#4a6f8a;
     --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
-    --heal:#7fd4a0; --danger:#e06a6a;
+    --danger:#e06a6a;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px;
@@ -28,13 +28,13 @@
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
   .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
 
-  .page-header { padding:40px 24px 20px; max-width:920px; margin:0 auto; }
+  .page-header { padding:40px 24px 18px; max-width:1100px; margin:0 auto; }
   .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:10px; }
   .page-header h1 { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; color:var(--text); margin-bottom:8px; }
   .page-header h1 b { color:var(--accent); }
   .updated-at { font-size:12px; color:var(--text-faint); margin-top:6px; }
 
-  .controls { max-width:920px; margin:0 auto; padding:8px 24px 20px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
+  .controls { max-width:1100px; margin:0 auto; padding:8px 24px 18px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
   .control-group { display:flex; flex-direction:column; gap:6px; }
   .control-group label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
   select { background:var(--bg2); border:1px solid var(--border2); color:var(--text); padding:9px 13px; border-radius:8px;
@@ -43,26 +43,29 @@
   .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); align-self:center; }
   .results-info strong { color:var(--accent); font-size:14px; }
 
-  .table-wrap { max-width:920px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; }
+  .stats-bar { max-width:1100px; margin:0 auto; padding:0 24px 8px; display:flex; gap:32px; }
+  .stat { font-size:12px; color:var(--text-muted); }
+  .stat strong { color:var(--accent); font-size:16px; font-family:'Exo 2',sans-serif; }
+
+  .table-wrap { max-width:1100px; margin:0 auto; padding:12px 24px 48px; overflow-x:auto; }
   table { width:100%; border-collapse:collapse; font-size:13px; }
   thead th { text-align:left; padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
     letter-spacing:.08em; color:var(--text-muted); border-bottom:1px solid var(--border2); white-space:nowrap; }
+  thead th.num { text-align:right; }
 
   tbody tr { border-bottom:1px solid rgba(30,40,54,.6); transition:background .1s; }
   tbody tr:hover { background:var(--bg2); }
   td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
   td:first-child { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
 
-  td.hps-cell { text-align:center; font-size:13px; font-variant-numeric:tabular-nums; font-weight:700; color:var(--heal); }
-
   .player-name { font-weight:700; }
   .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border2); padding:2px 8px; border-radius:5px; font-size:11px; color:var(--text-muted); }
-  .rank-badge { font-size:12px; font-variant-numeric:tabular-nums; font-weight:700; }
-  .rank-guild  { color:var(--text-muted); }
-  .rank-top10  { color:#ffd96b; }
-  .rank-top50  { color:var(--accent); }
-  .rank-other  { color:var(--text-muted); }
-  .score-val { font-weight:700; font-variant-numeric:tabular-nums; min-width:38px; text-align:right; }
+
+  /* стовпчик-смуга для total damage */
+  td.dmg-cell { text-align:right; font-variant-numeric:tabular-nums; font-weight:700; position:relative; min-width:160px; }
+  .dmg-bar { position:absolute; left:0; top:50%; transform:translateY(-50%); height:22px;
+    background:linear-gradient(90deg, rgba(143,193,227,.10), rgba(143,193,227,.28)); border-radius:4px; z-index:0; }
+  .dmg-val { position:relative; z-index:1; color:var(--accent); padding-right:2px; }
 
   .cls-Death-Knight { color:#c41e3a; }
   .cls-Druid        { color:#ff7c0a; }
@@ -91,16 +94,16 @@
   <div class="nav-links">
     <a href="../">Головна</a>
     <a href="../guild-ranking/">Рейтинг DPS</a>
-    <a href="./" class="active">Рейтинг Heal</a>
+    <a href="../heal-ranking/">Рейтинг Heal</a>
     <a href="../potion-stats/">Статистика Зіль</a>
-    <a href="../total-damage/">Total Damage</a>
+    <a href="./" class="active">Total Damage</a>
     <a href="../analytics/">Аналітика</a>
   </div>
 </nav>
 
 <div class="page-header">
-  <div class="eyebrow">Рейтинг лікування</div>
-  <h1>Рейтинг Heal <b>Deus Vult</b></h1>
+  <div class="eyebrow">Сумарний урон за рейди</div>
+  <h1>Total Damage <b>Deus Vult</b></h1>
   <div class="updated-at" id="updatedAt"></div>
 </div>
 
@@ -116,6 +119,11 @@
   <div class="results-info" id="resultsInfo"></div>
 </div>
 
+<div class="stats-bar" id="statsBar" style="display:none">
+  <div class="stat">Рейдів: <strong id="statRaids">—</strong></div>
+  <div class="stat">Гравців: <strong id="statPlayers">—</strong></div>
+</div>
+
 <div class="table-wrap">
   <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
   <table id="rankTable" style="display:none">
@@ -127,19 +135,20 @@
 <footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
 
 <script>
-const DATA_URL = '../data/guild-heal.json';
+const DATA_URL = '../data/total-damage.json';
 
 let allRows = [];
+let classesMap = {};
+let maxDamage = 1;
+
 const classSelect = document.getElementById('classSelect');
 const specSelect  = document.getElementById('specSelect');
-let classesMap = {};
 
-function pctColor(p) {
-  if (p >= 95) return '#ffd96b';
-  if (p >= 75) return '#c08bf0';
-  if (p >= 50) return '#5a9bd4';
-  if (p >= 25) return '#5ad17a';
-  return '#7c8aa0';
+// спек у JSON може бути "Fury Warrior" — для бейджа показуємо коротко (без назви класу)
+function shortSpec(spec, cls) {
+  if (!spec) return '';
+  if (cls && spec.endsWith(cls)) return spec.slice(0, spec.length - cls.length).trim();
+  return spec;
 }
 
 async function loadData() {
@@ -147,6 +156,7 @@ async function loadData() {
     const res  = await fetch(DATA_URL);
     const data = await res.json();
     allRows = data.rows || [];
+    maxDamage = Math.max(1, ...allRows.map(r => r.totalDamage || 0));
 
     if (data.lastUpdated) {
       const d = new Date(data.lastUpdated);
@@ -154,11 +164,14 @@ async function loadData() {
         'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
     }
 
+    document.getElementById('statRaids').textContent = data.raidsCount ?? '—';
+    document.getElementById('statPlayers').textContent = allRows.length;
+    document.getElementById('statsBar').style.display = '';
+
     allRows.forEach(r => {
       if (!classesMap[r.class]) classesMap[r.class] = new Set();
-      classesMap[r.class].add(r.spec);
+      if (r.spec) classesMap[r.class].add(r.spec);
     });
-
     Object.keys(classesMap).sort().forEach(cls => {
       const o = document.createElement('option');
       o.value = cls; o.textContent = cls;
@@ -191,10 +204,10 @@ specSelect.addEventListener('change', render);
 function buildHeader() {
   const thead = document.getElementById('tableHead');
   const tr = document.createElement('tr');
-  ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Score','HPS'].forEach(t => {
+  ['#','Гравець','Клас / Спек','Total Damage'].forEach(t => {
     const th = document.createElement('th');
     th.textContent = t;
-    if (t === 'HPS') th.style.textAlign = 'center';
+    if (t === 'Total Damage') th.className = 'num';
     tr.appendChild(th);
   });
   thead.appendChild(tr);
@@ -208,9 +221,7 @@ function render() {
     if (cls  && r.class !== cls)  return false;
     if (spec && r.spec  !== spec) return false;
     return true;
-  }).sort((a,b) => (b.hps||0) - (a.hps||0));
-
-  rows.forEach((r, i) => r._filteredRank = i + 1);
+  }).sort((a,b) => (b.totalDamage||0) - (a.totalDamage||0));
 
   document.getElementById('resultsInfo').innerHTML =
     `Знайдено: <strong>${rows.length}</strong>`;
@@ -223,23 +234,17 @@ function render() {
 
     addTd(tr, idx + 1, 'text-align:center;color:var(--text-faint);font-size:11px');
 
-    const clsKey = row.class.replace(/ /g, '-');
+    const clsKey = (row.class || '').replace(/ /g, '-');
     addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
-    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class}</span> <span class="spec-badge">${row.spec}</span>`);
-    addTd(tr, `<span class="rank-badge rank-guild">#${row.guild_rank}</span>`);
+    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class || ''}</span> <span class="spec-badge">${shortSpec(row.spec, row.class)}</span>`);
 
-    const sr = row.server_rank;
-    const srCls = sr && sr <= 10 ? 'rank-top10' : sr && sr <= 50 ? 'rank-top50' : 'rank-other';
-    addTd(tr, sr ? `<span class="rank-badge ${srCls}">#${sr}</span>` : '<span style="color:var(--text-faint)">—</span>');
-
-    const pct = row.server_percentile;
-    const pctCol = pct ? pctColor(pct) : 'var(--text-muted)';
-    addTd(tr, pct ? `<span class="score-val" style="color:${pctCol};font-weight:700">${pct.toFixed(2)}</span>` : '—');
-
-    const hps = row.hps || 0;
+    const dmg = row.totalDamage || 0;
+    const pct = Math.max(2, (dmg / maxDamage) * 100);
     const td = document.createElement('td');
-    td.className = 'hps-cell';
-    td.textContent = hps > 0 ? Math.round(hps).toLocaleString('uk-UA') : '—';
+    td.className = 'dmg-cell';
+    td.innerHTML =
+      `<span class="dmg-bar" style="width:${pct}%"></span>` +
+      `<span class="dmg-val">${dmg.toLocaleString('uk-UA')}</span>`;
     tr.appendChild(td);
 
     tbody.appendChild(tr);
