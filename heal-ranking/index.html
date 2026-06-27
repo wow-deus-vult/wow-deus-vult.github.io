@@ -94,10 +94,20 @@
     nav { padding:0 16px; height:52px; flex-wrap:wrap; }
     .nav-logo { margin-right:0; font-size:15px; }
     .nav-toggle { display:flex; }
+    /* меню як накладка: суцільний фон, поверх контенту */
     .nav-links { display:none; flex-direction:column; gap:2px; width:100%;
-      padding:8px 0 12px; order:3; }
+      padding:10px 16px 16px; order:3;
+      position:absolute; top:52px; left:0; right:0;
+      background:#0b1019; border-bottom:1px solid var(--border);
+      box-shadow:0 18px 40px rgba(0,0,0,.55); z-index:120; }
     .nav-links.open { display:flex; }
-    .nav-links a { padding:11px 12px; font-size:14px; border-radius:8px; }
+    .nav-links a { padding:13px 14px; font-size:15px; border-radius:8px; }
+
+    /* затемнення+блюр контенту під відкритим меню */
+    .nav-overlay { position:fixed; inset:52px 0 0 0; z-index:110;
+      background:rgba(4,7,12,.55); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+      opacity:0; pointer-events:none; transition:opacity .18s; }
+    .nav-overlay.show { opacity:1; pointer-events:auto; }
 
     .page-header { padding:24px 16px 12px !important; }
     .page-header h1 { font-size:23px !important; }
@@ -300,12 +310,18 @@ loadData();
 (function(){
   var t = document.querySelector('.nav-toggle');
   var l = document.querySelector('.nav-links');
-  if (t && l) {
-    t.addEventListener('click', function(){ l.classList.toggle('open'); });
-    l.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){ l.classList.remove('open'); });
-    });
+  if (!t || !l) return;
+  var ov = document.createElement('div');
+  ov.className = 'nav-overlay';
+  document.body.appendChild(ov);
+  function close(){ l.classList.remove('open'); ov.classList.remove('show'); }
+  function toggle(){
+    var open = l.classList.toggle('open');
+    ov.classList.toggle('show', open);
   }
+  t.addEventListener('click', toggle);
+  ov.addEventListener('click', close);
+  l.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
 })();
 </script>
 
