@@ -41,9 +41,7 @@
 
   /* блок ромбів — підпис бренду */
   .hero-content { position:relative; z-index:1; }
-  .hero-mark { display:flex; gap:10px; justify-content:center; margin-bottom:22px; }
-  .hero-mark i { width:9px; height:9px; background:var(--accent-dim); border-radius:2px; transform:rotate(45deg); }
-  .hero-mark i:nth-child(2) { background:var(--accent); box-shadow:0 0 14px var(--accent); }
+  .hero-logo { width:130px; height:auto; margin-bottom:24px; filter:drop-shadow(0 0 24px rgba(143,193,227,.35)); }
 
   .hero h1 { font-family:'Exo 2',sans-serif; font-size:clamp(40px,7vw,72px); font-weight:900; color:var(--text);
     letter-spacing:.08em; line-height:1; margin-bottom:12px; text-shadow:0 0 50px rgba(143,193,227,.25); }
@@ -103,11 +101,10 @@
 
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-mark"><i></i><i></i><i></i></div>
+    <img class="hero-logo" src="./logo.png" alt="Deus Vult">
     <h1>DEUS <b>VULT</b></h1>
     <p class="hero-subtitle">Freedom WoW</p>
     <div class="hero-divider"></div>
-    <p class="hero-desc">Рейтинги DPS та Heal, статистика зіль і аналітика складу гільдії. Дані оновлюються з рейдів ICC та Ruby Sanctum.</p>
   </div>
 </section>
 
@@ -121,36 +118,6 @@
     <span class="stat-label">Оновлено</span>
   </div>
 </div>
-
-<section class="section">
-  <div class="section-title">Розділи</div>
-  <div class="cards">
-    <a class="card" href="./guild-ranking/">
-      <span class="card-icon">⚔️</span>
-      <span class="card-title">Рейтинг DPS</span>
-      <span class="card-desc">Урон по босах ICC та Ruby Sanctum, ранги гільдії й сервера, фільтри по класах і спеках.</span>
-      <span class="card-link">Відкрити</span>
-    </a>
-    <a class="card" href="./heal-ranking/">
-      <span class="card-icon">✨</span>
-      <span class="card-title">Рейтинг Heal</span>
-      <span class="card-desc">HPS лікарів, перцентилі та позиції в рейтингу сервера за спеціалізаціями.</span>
-      <span class="card-link">Відкрити</span>
-    </a>
-    <a class="card" href="./potion-stats/">
-      <span class="card-icon">🧪</span>
-      <span class="card-title">Статистика Зіль</span>
-      <span class="card-desc">Хто скільки зіль випиває за рейд: Speed, Wild Magic, Insane Strength та інші.</span>
-      <span class="card-link">Відкрити</span>
-    </a>
-    <a class="card" href="./analytics/">
-      <span class="card-icon">📊</span>
-      <span class="card-title">Аналітика</span>
-      <span class="card-desc">Графіки складу гільдії: топ по спеках, популярність класів, гільдія проти сервера.</span>
-      <span class="card-link">Відкрити</span>
-    </a>
-  </div>
-</section>
 
 <footer>
   © Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a>
