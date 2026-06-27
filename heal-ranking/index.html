@@ -67,6 +67,7 @@
   .rank-other  { color:var(--text-muted); }
 
   .pct-badge { font-size:12px; font-variant-numeric:tabular-nums; }
+  .score-val { font-weight:600; font-variant-numeric:tabular-nums; min-width:38px; text-align:right; }
 
   /* WoW class colors */
   .cls-Death-Knight { color:#c41e3a; }
@@ -101,8 +102,7 @@
 </nav>
 
 <div class="page-header">
-  <h1>Рейтинг Heal</h1>
-  <p>Дані з <a href="https://uwu-logs.xyz" target="_blank">uwu-logs.xyz</a> — Валітрія Dreamwalker, 25 ХМ. Оновлюється раз на добу.</p>
+  <h1>Рейтинг Heal Deus Vult</h1>
   <div class="updated-at" id="updatedAt"></div>
 </div>
 
@@ -196,7 +196,7 @@ specSelect.addEventListener('change', render);
 function buildHeader() {
   const thead = document.getElementById('tableHead');
   const tr = document.createElement('tr');
-  ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Percentile','HPS'].forEach(t => {
+  ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Score','HPS'].forEach(t => {
     const th = document.createElement('th');
     th.textContent = t;
     if (t === 'HPS') th.style.textAlign = 'center';
@@ -245,10 +245,10 @@ function render() {
     const srCls = sr && sr <= 10 ? 'rank-top10' : sr && sr <= 50 ? 'rank-top50' : 'rank-other';
     addTd(tr, sr ? `<span class="rank-badge ${srCls}">#${sr}</span>` : '<span style="color:var(--text-muted)">—</span>');
 
-    // Percentile
+    // Score (percentile перетворений як на DPS)
     const pct = row.server_percentile;
     const pctCol = pct ? pctColor(pct) : 'var(--text-muted)';
-    addTd(tr, pct ? `<span class="pct-badge" style="color:${pctCol};font-weight:600">${pct.toFixed(1)}%</span>` : '—');
+    addTd(tr, pct ? `<span class="score-val" style="color:${pctCol};font-weight:600">${pct.toFixed(2)}</span>` : '—');
 
     // HPS
     const hps = row.hps || 0;
