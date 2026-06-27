@@ -126,6 +126,22 @@
 
 <script>
 const DATA_URL = '../data/potion-stats.json';
+const GUILD_DATA_URL = '../data/guild-data.json';
+
+const CLASS_COLORS = {
+  'Death Knight': 'cls-Death-Knight',
+  'Druid':        'cls-Druid',
+  'Hunter':       'cls-Hunter',
+  'Mage':         'cls-Mage',
+  'Paladin':      'cls-Paladin',
+  'Priest':       'cls-Priest',
+  'Rogue':        'cls-Rogue',
+  'Shaman':       'cls-Shaman',
+  'Warlock':      'cls-Warlock',
+  'Warrior':      'cls-Warrior',
+};
+
+const playerClass = {}; // name → class
 
 let allRows = [];
 let sortCol = 'avgPerRaid';
@@ -146,8 +162,13 @@ function numCell(v) {
 
 async function loadData() {
   try {
-    const res  = await fetch(DATA_URL);
+    const [res, guildRes] = await Promise.all([fetch(DATA_URL), fetch(GUILD_DATA_URL)]);
     const data = await res.json();
+    const guildData = await guildRes.json();
+    // Будуємо map ім'я → клас
+    (guildData.rows || []).forEach(r => {
+      if (!playerClass[r.name]) playerClass[r.name] = r.class;
+    });
     allRows = data.honorBoard || [];
 
     if (data.generated) {
@@ -185,7 +206,7 @@ function render() {
 
     tr.innerHTML = `
       <td>${idx + 1}</td>
-      <td><span class="player-name">${row.name}</span></td>
+      <td><span class="player-name ${CLASS_COLORS[playerClass[row.name]] || ''}">${row.name}</span></td>
       <td class="num"><span class="avg-badge" style="color:${col}">${avg.toFixed(2)}</span></td>
       <td class="num">${row.raids}</td>
       <td class="num">${row.totalPotions || 0}</td>
