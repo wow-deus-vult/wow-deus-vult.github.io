@@ -100,15 +100,6 @@
     </div>
   </div>
 
-  <!-- 5. Топ-3 по спеку -->
-  <div class="chart-block">
-    <div class="chart-title">Топ-3 по спеку</div>
-    <div class="chart-desc">3 найкращих гравця кожної спеки за Score.</div>
-    <div class="chart-container" style="height:420px">
-      <canvas id="chartTop3"></canvas>
-    </div>
-  </div>
-
 </div>
 
 <footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
@@ -311,14 +302,12 @@ function renderVsServer(bestRows) {
 
 // ── 5. Топ-3 по спеку ───────────────────────────────────────────────────────
 function renderTop3(rows) {
-  // Групуємо по спеку, беремо топ-3
   const bySpec = {};
   rows.forEach(r => {
     if (!bySpec[r.spec]) bySpec[r.spec] = [];
     bySpec[r.spec].push(r);
   });
 
-  // Спеки з хоча б 1 гравцем, сортовані за середнім score топ-3
   const specs = Object.entries(bySpec)
     .map(([spec, players]) => {
       const top3 = players.sort((a,b) => b.overallScore - a.overallScore).slice(0, 3);
@@ -326,44 +315,67 @@ function renderTop3(rows) {
     })
     .sort((a,b) => (b.top3[0]?.overallScore||0) - (a.top3[0]?.overallScore||0));
 
-  const labels = specs.map(s => s.spec);
-  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#888');
+  // Будуємо плоский список рядків: кожен спек — 3 рядки
+  const labels = [];
+  const values = [];
+  const bgColors = [];
+  const bdColors = [];
+  const tooltipNames = [];
+  const medals = ['🥇', '🥈', '🥉'];
 
-  // 3 датасети для місць 1, 2, 3
-  const d1 = specs.map(s => s.top3[0]?.overallScore || 0);
-  const d2 = specs.map(s => s.top3[1]?.overallScore || 0);
-  const d3 = specs.map(s => s.top3[2]?.overallScore || 0);
+  specs.forEach(({ spec, top3 }) => {
+    const cls = SPEC_CLASS[spec] || '';
+    const color = CLASS_COLORS[cls] || '#888';
+    top3.forEach((p, i) => {
+      labels.push(`${p.name} • ${spec} ${medals[i]}`);
+      values.push(p.overallScore || 0);
+      const opacity = i === 0 ? 'dd' : i === 1 ? 'aa' : '77';
+      bgColors.push(color + opacity);
+      bdColors.push(color);
+      tooltipNames.push(p.name);
+    });
+    // Якщо менше 3 гравців — заповнюємо пустими
+    for (let i = top3.length; i < 3; i++) {
+      labels.push(`— • ${spec} ${medals[i]}`);
+      values.push(0);
+      bgColors.push('#2a2d3555');
+      bdColors.push('#2a2d35');
+      tooltipNames.push('');
+    }
+  });
 
-  const n1 = specs.map(s => s.top3[0]?.name || '');
-  const n2 = specs.map(s => s.top3[1]?.name || '');
-  const n3 = specs.map(s => s.top3[2]?.name || '');
+  const totalRows = labels.length;
+  const height = Math.max(400, totalRows * 28);
+  document.getElementById('chartTop3').parentElement.style.height = height + 'px';
 
   makeChart('chartTop3', {
     type: 'bar',
     data: {
       labels,
-      datasets: [
-        { label: '🥇 1-е місце', data: d1, backgroundColor: colors.map(c=>c+'dd'), borderColor: colors, borderWidth:1, borderRadius:4, names: n1 },
-        { label: '🥈 2-е місце', data: d2, backgroundColor: colors.map(c=>c+'88'), borderColor: colors, borderWidth:1, borderRadius:4, names: n2 },
-        { label: '🥉 3-є місце', data: d3, backgroundColor: colors.map(c=>c+'44'), borderColor: colors, borderWidth:1, borderRadius:4, names: n3 },
-      ]
+      datasets: [{
+        data: values,
+        backgroundColor: bgColors,
+        borderColor: bdColors,
+        borderWidth: 1,
+        borderRadius: 3,
+      }]
     },
     options: {
+      indexAxis: 'y',
       responsive: true, maintainAspectRatio: false,
       plugins: {
-        legend: { labels: { color: '#d4d8e0' } },
+        legend: { display: false },
         tooltip: {
           callbacks: {
-            label: ctx => {
-              const name = ctx.dataset.names?.[ctx.dataIndex];
-              return ` ${name}: ${ctx.raw.toFixed(2)}`;
-            }
+            label: ctx => ctx.raw > 0 ? ` Score: ${ctx.raw.toFixed(2)}` : ' —'
           }
         }
       },
       scales: {
-        y: { min: 0, max: 100, grid: { color: '#2a2d35' } },
-        x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+        x: { min: 0, max: 100, grid: { color: '#2a2d35' },
+          ticks: { callback: v => v } },
+        y: { grid: { display: false },
+          ticks: { font: { size: 12 }, color: '#d4d8e0' } }
       }
     }
   });
