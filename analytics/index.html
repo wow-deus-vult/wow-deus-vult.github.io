@@ -80,6 +80,45 @@
     .chart-block { padding:20px 16px 22px; }
   }
   @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } html { scroll-behavior:auto; } }
+
+  /* ── Гамбургер (прихований на десктопі) ── */
+  .nav-toggle { display:none; background:none; border:1px solid var(--border2); border-radius:8px;
+    color:var(--text); width:38px; height:38px; cursor:pointer; margin-left:auto; align-items:center;
+    justify-content:center; font-size:18px; line-height:1; }
+  .nav-toggle:hover { border-color:var(--accent-dim); color:var(--accent); }
+
+  /* ── МОБІЛЬНА ВЕРСІЯ ── */
+  @media (max-width:640px) {
+    nav { padding:0 16px; height:52px; flex-wrap:wrap; }
+    .nav-logo { margin-right:0; font-size:15px; }
+    .nav-toggle { display:flex; }
+    .nav-links { display:none; flex-direction:column; gap:2px; width:100%;
+      padding:8px 0 12px; order:3; }
+    .nav-links.open { display:flex; }
+    .nav-links a { padding:11px 12px; font-size:14px; border-radius:8px; }
+
+    .page-header { padding:24px 16px 12px !important; }
+    .page-header h1 { font-size:23px !important; }
+    .hero { min-height:auto !important; padding:48px 18px !important; }
+    .hero-logo { width:200px !important; }
+    .hero h1 { letter-spacing:.05em !important; }
+
+    .controls, .stats-bar, .windows, .archive, .table-wrap,
+    .charts-wrap, .jump, .section { padding-left:16px !important; padding-right:16px !important; }
+    .controls { gap:10px; }
+    select { min-width:0; width:100%; }
+    .control-group { width:100%; }
+    .results-info { margin-left:0; width:100%; }
+
+    .windows { grid-template-columns:1fr !important; gap:14px; }
+    .stat-item { padding:16px 22px; }
+
+    /* таблиці — горизонтальний скрол на дотик */
+    .table-wrap, .window, .archive-window { -webkit-overflow-scrolling:touch; }
+    .window { overflow-x:auto; }
+    table { min-width:520px; }
+  }
+
 </style>
 </head>
 <body>
@@ -94,6 +133,7 @@
     <a href="../total-damage/">Total Damage</a>
     <a href="./" class="active">Аналітика</a>
   </div>
+  <button class="nav-toggle" aria-label="Меню">☰</button>
 </nav>
 
 <div class="page-header">
@@ -388,5 +428,19 @@ loadAndRender().catch(e => {
   console.error(e);
 });
 </script>
+
+<script>
+(function(){
+  var t = document.querySelector('.nav-toggle');
+  var l = document.querySelector('.nav-links');
+  if (t && l) {
+    t.addEventListener('click', function(){ l.classList.toggle('open'); });
+    l.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ l.classList.remove('open'); });
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
