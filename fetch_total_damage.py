@@ -1,37 +1,42 @@
 """
 fetch_total_damage.py — Deus Vult / FreedomUA
-Сума Total Damage кожного гравця ЗІ ЗВІТІВ усіх рейдів гільдії.
+Total Damage кожного гравця, розбитий ПО СЕЗОНАХ.
 
-Логіка повністю узгоджена з fetch_potion_data.py:
-  - гравці беруться з EPGP.lua
-  - список рейдів — через /logs_list (get_all_freedom_logs), як у потах
-  - у кожному звіті /reports/<id>/ беремо <td class="damage total-cell">
-    по кожному гравцю гільдії й сумуємо по всіх рейдах
-  - один рядок на гравця (клас/спек з найбільшого внеску)
+Логіка узгоджена з fetch_potion_data.py:
+  - гравці з EPGP.lua
+  - список рейдів через /logs_list (get_all_freedom_logs)
+  - у кожному звіті /reports/<id>/ беремо <td class="damage total-cell"> по гравцях
+  - дата рейду береться з log_id (як у потах)
+  - рейди розкладаються по сезонах із seasons.json
 Результат: data/total-damage.json
+  {
+    "lastUpdated": ...,
+    "seasons": [ {id,name,start,end, raidsCount, rows:[...]} , ... ],
+    "currentSeasonId": "s2"   # сезон, у який потрапляє сьогоднішня дата (або останній)
+    "allTime": { raidsCount, rows:[...] }
+  }
 
 Запуск: python fetch_total_damage.py
 """
 
-import json, re, time, requests
-from datetime import datetime, timezone
+import json, os, re, time, requests
+from datetime import datetime, timezone, date
 from bs4 import BeautifulSoup
 
-BASE_URL = "https://uwu-logs.xyz"
-SERVER   = "FreedomUA"
-OUTPUT   = "data/total-damage.json"
-HEADERS  = {"User-Agent": "Mozilla/5.0", "Origin": BASE_URL}
+BASE_URL     = "https://uwu-logs.xyz"
+SERVER       = "FreedomUA"
+OUTPUT       = "data/total-damage.json"
+SEASONS_FILE = "seasons.json"
+HEADERS      = {"User-Agent": "Mozilla/5.0", "Origin": BASE_URL}
 
 # ─── ТЕСТОВИЙ РЕЖИМ ───────────────────────────────────────────────────────────
-# Якщо список НЕ порожній — беруться ТІЛЬКИ ці логи (без обходу /logs_list).
-# Зручно перевірити парсинг на одному відомому звіті, поки uwu-logs нестабільний.
-# Коли все працює — очисти список (TEST_LOGS = []), щоб збирати всі рейди автоматично.
+# Якщо НЕ порожній — беруться ТІЛЬКИ ці логи (без обходу /logs_list).
+# Коли все працює — постав TEST_LOGS = [].
 TEST_LOGS = [
     "26-06-21--22-00--Denmark--FreedomUA",
 ]
 # ──────────────────────────────────────────────────────────────────────────────
 
-# CSS-клас класу в <a> → людська назва (uwu-logs: <a class="warrior">)
 CLASS_CSS_TO_NAME = {
     "deathknight": "Death Knight", "death-knight": "Death Knight",
     "druid": "Druid", "hunter": "Hunter", "mage": "Mage",
@@ -54,8 +59,35 @@ def parse_epgp_members():
     return names
 
 
+def load_seasons():
+    """Читає seasons.json. Якщо немає — створює дефолтний поточний сезон на 3 міс."""
+    if os.path.exists(SEASONS_FILE):
+        with open(SEASONS_FILE, encoding="utf-8") as f:
+            data = json.load(f)
+        seasons = data.get("seasons", [])
+        print(f"  Сезонів у seasons.json: {len(seasons)}")
+        return seasons
+    # дефолт — один поточний сезон
+    today = date.today()
+    s = {
+        "id": "s1", "name": "Season 1",
+        "start": today.replace(day=1).isoformat(),
+        "end":   "2099-12-31",
+    }
+    print("  ⚠ seasons.json не знайдено — створюю дефолтний Season 1")
+    with open(SEASONS_FILE, "w", encoding="utf-8") as f:
+        json.dump({"seasons": [s]}, f, ensure_ascii=False, indent=2)
+    return [s]
+
+
+def log_id_to_date(log_id):
+    """'26-06-21--22-00--Denmark--FreedomUA' -> date(2026, 6, 21)"""
+    parts = log_id.split("--")
+    yy, mm, dd = parts[0].split("-")
+    return date(int("20" + yy), int(mm), int(dd))
+
+
 def get_all_freedom_logs():
-    """Ідентично fetch_potion_data.py — список усіх логів FreedomUA через /logs_list."""
     print("Збираємо список логів FreedomUA...")
     log_ids = []
     visited = set()
@@ -93,11 +125,7 @@ def get_all_freedom_logs():
 
 
 def parse_report_damage(log_id, members):
-    """
-    Зі сторінки звіту /reports/<id>/ дістає сумарний total damage по гравцях гільдії.
-    Повертає dict: name -> {"dmg": int, "class": str, "spec": str}
-    (dmg — сума всіх damage total-cell гравця в цьому звіті).
-    """
+    """name -> {'dmg': int, 'class': str, 'spec': str} для одного звіту."""
     url = f"{BASE_URL}/reports/{log_id}/"
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
@@ -108,7 +136,6 @@ def parse_report_damage(log_id, members):
         return None
 
     per_player = {}
-
     for tr in soup.find_all('tr'):
         player_cell = tr.find('td', class_='player-cell')
         if not player_cell:
@@ -120,17 +147,14 @@ def parse_report_damage(log_id, members):
         if name not in members:
             continue
 
-        # клас із CSS-класу <a>, спек із title player-cell ("Fury Warrior")
         a_cls = " ".join(a.get("class", [])).strip()
         cls_name = CLASS_CSS_TO_NAME.get(a_cls, a_cls)
         spec = player_cell.get("title", "")
 
-        # сумарний damage цього рядка
         dmg_cell = tr.find('td', class_=lambda c: c and 'damage' in c.split() and 'total-cell' in c.split())
         if not dmg_cell:
             continue
-        raw = dmg_cell.get_text(strip=True)
-        num = int(re.sub(r"[^\d]", "", raw) or 0)
+        num = int(re.sub(r"[^\d]", "", dmg_cell.get_text(strip=True)) or 0)
         if not num:
             continue
 
@@ -144,20 +168,10 @@ def parse_report_damage(log_id, members):
     return per_player or None
 
 
-def build_rows(members, log_ids):
-    agg  = {}   # name -> сумарний total damage по всіх рейдах
-    meta = {}   # name -> {class, spec, best}
-    raids_used = 0
-
-    total = len(log_ids)
-    for i, log_id in enumerate(log_ids):
-        print(f"[{i+1}/{total}] {log_id}...", end=" ", flush=True)
-        per_player = parse_report_damage(log_id, members)
-        if not per_player:
-            print("пропущено")
-            time.sleep(0.3)
-            continue
-        raids_used += 1
+def aggregate(per_report_list):
+    """Список per_report -> відсортовані rows[] (сума по гравцях)."""
+    agg, meta = {}, {}
+    for per_player in per_report_list:
         for name, slot in per_player.items():
             agg[name] = agg.get(name, 0) + slot["dmg"]
             m = meta.setdefault(name, {"class": slot["class"], "spec": slot["spec"], "best": 0})
@@ -165,53 +179,96 @@ def build_rows(members, log_ids):
                 m["best"]  = slot["dmg"]
                 m["class"] = slot["class"]
                 m["spec"]  = slot["spec"]
-        print(f"✓ {len(per_player)} гравців")
+    rows = [{
+        "name": n, "server": SERVER,
+        "class": meta[n]["class"], "spec": meta[n]["spec"],
+        "totalDamage": dmg,
+    } for n, dmg in agg.items()]
+    rows.sort(key=lambda r: r["totalDamage"], reverse=True)
+    return rows
+
+
+def build(members, log_ids, seasons):
+    # 1) збираємо damage по кожному рейду + дату
+    raids = []  # {"date": date, "per_player": {...}}
+    total = len(log_ids)
+    for i, log_id in enumerate(log_ids):
+        print(f"[{i+1}/{total}] {log_id}...", end=" ", flush=True)
+        try:
+            rdate = log_id_to_date(log_id)
+        except Exception:
+            print("дата?"); continue
+        per = parse_report_damage(log_id, members)
+        if not per:
+            print("пропущено")
+            time.sleep(0.3)
+            continue
+        raids.append({"date": rdate, "per_player": per})
+        print(f"✓ {len(per)} гравців ({rdate})")
         time.sleep(0.3)
 
-    rows = []
-    for name, dmg in agg.items():
-        m = meta[name]
-        rows.append({
-            "name":        name,
-            "server":      SERVER,
-            "class":       m["class"],
-            "spec":        m["spec"],
-            "totalDamage": dmg,
+    # 2) розкладаємо по сезонах
+    season_out = []
+    today = date.today()
+    current_id = None
+
+    for s in seasons:
+        s_start = date.fromisoformat(s["start"])
+        s_end   = date.fromisoformat(s["end"])
+        in_season = [r["per_player"] for r in raids if s_start <= r["date"] <= s_end]
+        rows = aggregate(in_season)
+        season_out.append({
+            "id": s["id"], "name": s["name"],
+            "start": s["start"], "end": s["end"],
+            "raidsCount": len(in_season),
+            "rows": rows,
         })
-    rows.sort(key=lambda r: r["totalDamage"], reverse=True)
-    return rows, raids_used
+        if s_start <= today <= s_end:
+            current_id = s["id"]
 
+    # якщо сьогодні поза всіма сезонами — беремо останній за датою
+    if current_id is None and season_out:
+        current_id = max(seasons, key=lambda s: s["end"])["id"]
 
-def save(rows, raids_used):
-    data = {
-        "lastUpdated": datetime.now(timezone.utc).isoformat(),
-        "raidsCount":  raids_used,
-        "totalRows":   len(rows),
-        "rows":        rows,
+    # 3) All Time — усі рейди разом
+    all_rows = aggregate([r["per_player"] for r in raids])
+
+    return {
+        "lastUpdated":     datetime.now(timezone.utc).isoformat(),
+        "currentSeasonId": current_id,
+        "seasons":         season_out,
+        "allTime":         {"raidsCount": len(raids), "rows": all_rows},
     }
+
+
+def save(data):
+    os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":
-    print("=== Збирач Total Damage Deus Vult ===\n")
+    print("=== Збирач Total Damage Deus Vult (сезони) ===\n")
     members = parse_epgp_members()
+    seasons = load_seasons()
 
     if TEST_LOGS:
-        print(f"⚙ ТЕСТОВИЙ РЕЖИМ — лише {len(TEST_LOGS)} лог(ів), без /logs_list\n")
+        print(f"⚙ ТЕСТОВИЙ РЕЖИМ — лише {len(TEST_LOGS)} лог(ів)\n")
         log_ids = TEST_LOGS
     else:
         log_ids = get_all_freedom_logs()
 
-    rows, raids_used = build_rows(members, log_ids)
-    save(rows, raids_used)
+    data = build(members, log_ids, seasons)
+    save(data)
 
+    cur = next((s for s in data["seasons"] if s["id"] == data["currentSeasonId"]), None)
     print(f"\n✓ Готово! {OUTPUT}")
-    print(f"  Рейдів використано: {raids_used}")
-    print(f"  Гравців: {len(rows)}")
-
-    # короткий топ-5 для швидкої очної перевірки
-    if rows:
-        print("\n  Топ-5 за Total Damage:")
-        for r in rows[:5]:
+    print(f"  Поточний сезон: {data['currentSeasonId']}")
+    if cur and cur["rows"]:
+        print(f"  Топ-3 сезону ({cur['name']}):")
+        for r in cur["rows"][:3]:
+            print(f"    {r['name']:20} {r['totalDamage']:>16,}".replace(",", " "))
+    if data["allTime"]["rows"]:
+        print(f"  Топ-3 All Time:")
+        for r in data["allTime"]["rows"][:3]:
             print(f"    {r['name']:20} {r['totalDamage']:>16,}".replace(",", " "))

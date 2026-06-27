@@ -1,9 +1,21 @@
 {
   "lastUpdated": "2026-06-21T19:00:00+00:00",
-  "raidsCount": 1,
-  "totalRows": 1,
-  "_note": "ТИМЧАСОВІ дані-заглушка. Достеменно відомий лише Мараксус = 10 986 683 (з тестового звіту 26-06-21 Denmark--FreedomUA). Решта зʼявиться після реального запуску fetch_total_damage.py, коли uwu-logs запрацює.",
-  "rows": [
-    { "name": "Мараксус", "server": "FreedomUA", "class": "Warrior", "spec": "Fury Warrior", "totalDamage": 10986683 }
-  ]
+  "currentSeasonId": "s1",
+  "_note": "ТИМЧАСОВА заглушка. Достеменно відомий лише Мараксус = 10 986 683 (тестовий звіт 26-06-21). Перезапишеться реальним запуском fetch_total_damage.py.",
+  "seasons": [
+    {
+      "id": "s1", "name": "Season 1",
+      "start": "2026-04-01", "end": "2026-06-30",
+      "raidsCount": 1,
+      "rows": [
+        { "name": "Мараксус", "server": "FreedomUA", "class": "Warrior", "spec": "Fury Warrior", "totalDamage": 10986683 }
+      ]
+    }
+  ],
+  "allTime": {
+    "raidsCount": 1,
+    "rows": [
+      { "name": "Мараксус", "server": "FreedomUA", "class": "Warrior", "spec": "Fury Warrior", "totalDamage": 10986683 }
+    ]
+  }
 }

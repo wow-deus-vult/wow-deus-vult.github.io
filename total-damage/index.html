@@ -12,7 +12,7 @@
     --border:#1e2836; --border2:#283447;
     --accent:#8fc1e3; --accent-dim:#4a6f8a;
     --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
-    --danger:#e06a6a;
+    --gold:#ffd96b; --danger:#e06a6a;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px;
@@ -28,55 +28,67 @@
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
   .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
 
-  .page-header { padding:40px 24px 18px; max-width:1100px; margin:0 auto; }
+  .page-header { padding:36px 24px 8px; max-width:1500px; margin:0 auto; }
   .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:10px; }
-  .page-header h1 { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; color:var(--text); margin-bottom:8px; }
+  .page-header h1 { font-family:'Exo 2',sans-serif; font-size:30px; font-weight:800; color:var(--text); margin-bottom:6px; }
   .page-header h1 b { color:var(--accent); }
   .updated-at { font-size:12px; color:var(--text-faint); margin-top:6px; }
 
-  .controls { max-width:1100px; margin:0 auto; padding:8px 24px 18px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
-  .control-group { display:flex; flex-direction:column; gap:6px; }
-  .control-group label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
+  /* два вікна поряд */
+  .windows { max-width:1500px; margin:0 auto; padding:18px 24px 8px;
+    display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:900px) { .windows { grid-template-columns:1fr; } }
+
+  .window { background:linear-gradient(180deg, var(--bg2), rgba(13,18,27,.4)); border:1px solid var(--border);
+    border-radius:14px; padding:20px 20px 8px; position:relative; overflow:hidden; }
+  .window::before { content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--accent-dim), transparent); opacity:.45; }
+  .window.alltime::before { background:linear-gradient(90deg, transparent, var(--gold), transparent); opacity:.4; }
+
+  .window-head { margin-bottom:6px; }
+  .window-kicker { font-family:'Exo 2',sans-serif; font-size:10px; font-weight:700; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--accent-dim); margin-bottom:4px; }
+  .window.alltime .window-kicker { color:var(--gold); }
+  .window-title { font-family:'Exo 2',sans-serif; font-size:17px; font-weight:700; color:var(--text); }
+  .window-sub { font-size:12px; color:var(--text-muted); margin-top:3px; }
+
+  .win-stats { display:flex; gap:20px; padding:8px 0 4px; font-size:12px; color:var(--text-muted); }
+  .win-stats strong { color:var(--accent); font-family:'Exo 2',sans-serif; }
+  .window.alltime .win-stats strong { color:var(--gold); }
+
+  /* архів */
+  .archive { max-width:1500px; margin:0 auto; padding:8px 24px 48px; }
+  .archive-bar { display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    border-top:1px solid var(--border); padding-top:20px; margin-top:8px; }
+  .archive-bar label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
   select { background:var(--bg2); border:1px solid var(--border2); color:var(--text); padding:9px 13px; border-radius:8px;
-    font-size:13px; font-family:'Manrope',sans-serif; cursor:pointer; outline:none; min-width:170px; transition:.15s; }
+    font-size:13px; font-family:'Manrope',sans-serif; cursor:pointer; outline:none; min-width:220px; transition:.15s; }
   select:hover,select:focus { border-color:var(--accent-dim); }
-  .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); align-self:center; }
-  .results-info strong { color:var(--accent); font-size:14px; }
+  .archive-window { margin-top:18px; display:none; }
 
-  .stats-bar { max-width:1100px; margin:0 auto; padding:0 24px 8px; display:flex; gap:32px; }
-  .stat { font-size:12px; color:var(--text-muted); }
-  .stat strong { color:var(--accent); font-size:16px; font-family:'Exo 2',sans-serif; }
-
-  .table-wrap { max-width:1100px; margin:0 auto; padding:12px 24px 48px; overflow-x:auto; }
   table { width:100%; border-collapse:collapse; font-size:13px; }
-  thead th { text-align:left; padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
+  thead th { text-align:left; padding:8px 9px; font-size:10px; font-weight:700; text-transform:uppercase;
     letter-spacing:.08em; color:var(--text-muted); border-bottom:1px solid var(--border2); white-space:nowrap; }
   thead th.num { text-align:right; }
-
   tbody tr { border-bottom:1px solid rgba(30,40,54,.6); transition:background .1s; }
-  tbody tr:hover { background:var(--bg2); }
-  td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
-  td:first-child { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
-
+  tbody tr:hover { background:var(--bg3); }
+  td { padding:8px 9px; white-space:nowrap; vertical-align:middle; }
+  td:first-child { text-align:center; color:var(--text-faint); font-size:11px; width:32px; }
   .player-name { font-weight:700; }
-  .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border2); padding:2px 8px; border-radius:5px; font-size:11px; color:var(--text-muted); }
+  .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border2); padding:2px 7px; border-radius:5px; font-size:11px; color:var(--text-muted); }
 
-  /* стовпчик-смуга для total damage */
-  td.dmg-cell { text-align:right; font-variant-numeric:tabular-nums; font-weight:700; position:relative; min-width:160px; }
-  .dmg-bar { position:absolute; left:0; top:50%; transform:translateY(-50%); height:22px;
+  td.dmg-cell { text-align:right; font-variant-numeric:tabular-nums; font-weight:700; position:relative; min-width:150px; }
+  .dmg-bar { position:absolute; left:0; top:50%; transform:translateY(-50%); height:20px;
     background:linear-gradient(90deg, rgba(143,193,227,.10), rgba(143,193,227,.28)); border-radius:4px; z-index:0; }
+  .alltime-bar { background:linear-gradient(90deg, rgba(255,217,107,.10), rgba(255,217,107,.26)); }
   .dmg-val { position:relative; z-index:1; color:var(--accent); padding-right:2px; }
+  .alltime .dmg-val, .archive-window .dmg-val { color:var(--text); }
 
-  .cls-Death-Knight { color:#c41e3a; }
-  .cls-Druid        { color:#ff7c0a; }
-  .cls-Hunter       { color:#aad372; }
-  .cls-Mage         { color:#3fc7eb; }
-  .cls-Paladin      { color:#f48cba; }
-  .cls-Priest       { color:#e0e0e0; }
-  .cls-Rogue        { color:#fff468; }
-  .cls-Shaman       { color:#0070dd; }
-  .cls-Warlock      { color:#8788ee; }
-  .cls-Warrior      { color:#c69b3a; }
+  .cls-Death-Knight { color:#c41e3a; } .cls-Druid { color:#ff7c0a; } .cls-Hunter { color:#aad372; }
+  .cls-Mage { color:#3fc7eb; } .cls-Paladin { color:#f48cba; } .cls-Priest { color:#e0e0e0; }
+  .cls-Rogue { color:#fff468; } .cls-Shaman { color:#0070dd; } .cls-Warlock { color:#8788ee; } .cls-Warrior { color:#c69b3a; }
+
+  .empty { padding:24px 9px; color:var(--text-faint); font-size:13px; }
 
   .loading { text-align:center; padding:80px 24px; color:var(--text-muted); }
   .loading-spinner { width:34px; height:34px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 18px; }
@@ -102,34 +114,68 @@
 </nav>
 
 <div class="page-header">
-  <div class="eyebrow">Сумарний урон за рейди</div>
+  <div class="eyebrow">Сумарний урон</div>
   <h1>Total Damage <b>Deus Vult</b></h1>
   <div class="updated-at" id="updatedAt"></div>
 </div>
 
-<div class="controls">
-  <div class="control-group">
-    <label>Клас</label>
-    <select id="classSelect"><option value="">Всі класи</option></select>
-  </div>
-  <div class="control-group">
-    <label>Спеціалізація</label>
-    <select id="specSelect"><option value="">Всі спеки</option></select>
-  </div>
-  <div class="results-info" id="resultsInfo"></div>
-</div>
+<div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
 
-<div class="stats-bar" id="statsBar" style="display:none">
-  <div class="stat">Рейдів: <strong id="statRaids">—</strong></div>
-  <div class="stat">Гравців: <strong id="statPlayers">—</strong></div>
-</div>
+<div id="content" style="display:none">
+  <div class="windows">
+    <!-- ЛІВЕ: поточний сезон -->
+    <div class="window season">
+      <div class="window-head">
+        <div class="window-kicker">Поточний сезон</div>
+        <div class="window-title" id="seasonTitle">—</div>
+        <div class="window-sub" id="seasonSub"></div>
+      </div>
+      <div class="win-stats">
+        <span>Рейдів: <strong id="seasonRaids">—</strong></span>
+        <span>Гравців: <strong id="seasonPlayers">—</strong></span>
+      </div>
+      <table><thead><tr><th>#</th><th>Гравець</th><th>Клас / Спек</th><th class="num">Total Damage</th></tr></thead>
+        <tbody id="seasonBody"></tbody></table>
+    </div>
 
-<div class="table-wrap">
-  <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
-  <table id="rankTable" style="display:none">
-    <thead id="tableHead"></thead>
-    <tbody id="tableBody"></tbody>
-  </table>
+    <!-- ПРАВЕ: All Time -->
+    <div class="window alltime">
+      <div class="window-head">
+        <div class="window-kicker">За весь час</div>
+        <div class="window-title">Total Damage Deus Vult — All Time</div>
+        <div class="window-sub">Усі сезони сумарно</div>
+      </div>
+      <div class="win-stats">
+        <span>Рейдів: <strong id="allRaids">—</strong></span>
+        <span>Гравців: <strong id="allPlayers">—</strong></span>
+      </div>
+      <table><thead><tr><th>#</th><th>Гравець</th><th>Клас / Спек</th><th class="num">Total Damage</th></tr></thead>
+        <tbody id="allBody"></tbody></table>
+    </div>
+  </div>
+
+  <!-- АРХІВ -->
+  <div class="archive">
+    <div class="archive-bar">
+      <label for="archiveSelect">Архів сезонів</label>
+      <select id="archiveSelect"><option value="">— оберіть сезон —</option></select>
+    </div>
+    <div class="archive-window" id="archiveWindow">
+      <div class="window season" style="margin-top:6px">
+        <div class="window-head">
+          <div class="window-kicker">Архівний сезон</div>
+          <div class="window-title" id="archTitle">—</div>
+          <div class="window-sub" id="archSub"></div>
+        </div>
+        <div class="win-stats">
+          <span>Рейдів: <strong id="archRaids">—</strong></span>
+          <span>Гравців: <strong id="archPlayers">—</strong></span>
+        </div>
+        <table><thead><tr><th>#</th><th>Гравець</th><th>Клас / Спек</th><th class="num">Total Damage</th></tr></thead>
+          <tbody id="archBody"></tbody></table>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
@@ -137,26 +183,41 @@
 <script>
 const DATA_URL = '../data/total-damage.json';
 
-let allRows = [];
-let classesMap = {};
-let maxDamage = 1;
-
-const classSelect = document.getElementById('classSelect');
-const specSelect  = document.getElementById('specSelect');
-
-// спек у JSON може бути "Fury Warrior" — для бейджа показуємо коротко (без назви класу)
 function shortSpec(spec, cls) {
   if (!spec) return '';
   if (cls && spec.endsWith(cls)) return spec.slice(0, spec.length - cls.length).trim();
   return spec;
 }
+function fmtDate(iso) {
+  if (!iso) return '';
+  const [y,m,d] = iso.split('-');
+  return `${d}.${m}.${y}`;
+}
 
-async function loadData() {
+function renderRows(tbody, rows, barClass) {
+  tbody.innerHTML = '';
+  if (!rows || !rows.length) {
+    tbody.innerHTML = '<tr><td colspan="4" class="empty">Немає даних за цей період</td></tr>';
+    return;
+  }
+  const max = Math.max(1, ...rows.map(r => r.totalDamage || 0));
+  rows.forEach((row, idx) => {
+    const clsKey = (row.class || '').replace(/ /g, '-');
+    const dmg = row.totalDamage || 0;
+    const pct = Math.max(2, (dmg / max) * 100);
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      `<td>${idx + 1}</td>` +
+      `<td><span class="player-name cls-${clsKey}">${row.name}</span></td>` +
+      `<td><span class="cls-${clsKey}" style="font-weight:700">${row.class || ''}</span> <span class="spec-badge">${shortSpec(row.spec, row.class)}</span></td>` +
+      `<td class="dmg-cell"><span class="dmg-bar ${barClass||''}" style="width:${pct}%"></span><span class="dmg-val">${dmg.toLocaleString('uk-UA')}</span></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+async function load() {
   try {
-    const res  = await fetch(DATA_URL);
-    const data = await res.json();
-    allRows = data.rows || [];
-    maxDamage = Math.max(1, ...allRows.map(r => r.totalDamage || 0));
+    const data = await (await fetch(DATA_URL)).json();
 
     if (data.lastUpdated) {
       const d = new Date(data.lastUpdated);
@@ -164,101 +225,56 @@ async function loadData() {
         'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
     }
 
-    document.getElementById('statRaids').textContent = data.raidsCount ?? '—';
-    document.getElementById('statPlayers').textContent = allRows.length;
-    document.getElementById('statsBar').style.display = '';
+    const seasons = data.seasons || [];
+    const byId = Object.fromEntries(seasons.map(s => [s.id, s]));
+    const current = byId[data.currentSeasonId] || seasons[seasons.length - 1] || null;
 
-    allRows.forEach(r => {
-      if (!classesMap[r.class]) classesMap[r.class] = new Set();
-      if (r.spec) classesMap[r.class].add(r.spec);
-    });
-    Object.keys(classesMap).sort().forEach(cls => {
+    // ── ліве: поточний сезон
+    if (current) {
+      document.getElementById('seasonTitle').textContent =
+        `Total Damage Deus Vult — ${current.name}`;
+      document.getElementById('seasonSub').textContent =
+        `${fmtDate(current.start)} – ${fmtDate(current.end)}`;
+      document.getElementById('seasonRaids').textContent = current.raidsCount ?? '—';
+      document.getElementById('seasonPlayers').textContent = (current.rows||[]).length;
+      renderRows(document.getElementById('seasonBody'), current.rows, '');
+    }
+
+    // ── праве: All Time
+    const all = data.allTime || {rows:[], raidsCount:0};
+    document.getElementById('allRaids').textContent = all.raidsCount ?? '—';
+    document.getElementById('allPlayers').textContent = (all.rows||[]).length;
+    renderRows(document.getElementById('allBody'), all.rows, 'alltime-bar');
+
+    // ── архів: усі сезони, крім поточного
+    const sel = document.getElementById('archiveSelect');
+    seasons.filter(s => !current || s.id !== current.id)
+           .sort((a,b) => (b.end||'').localeCompare(a.end||''))
+           .forEach(s => {
       const o = document.createElement('option');
-      o.value = cls; o.textContent = cls;
-      classSelect.appendChild(o);
+      o.value = s.id; o.textContent = `${s.name} (${fmtDate(s.start)} – ${fmtDate(s.end)})`;
+      sel.appendChild(o);
     });
 
-    buildHeader();
-    render();
+    sel.addEventListener('change', () => {
+      const s = byId[sel.value];
+      const win = document.getElementById('archiveWindow');
+      if (!s) { win.style.display = 'none'; return; }
+      document.getElementById('archTitle').textContent = `Total Damage Deus Vult — ${s.name}`;
+      document.getElementById('archSub').textContent = `${fmtDate(s.start)} – ${fmtDate(s.end)}`;
+      document.getElementById('archRaids').textContent = s.raidsCount ?? '—';
+      document.getElementById('archPlayers').textContent = (s.rows||[]).length;
+      renderRows(document.getElementById('archBody'), s.rows, '');
+      win.style.display = 'block';
+    });
+
     document.getElementById('loading').style.display = 'none';
-    document.getElementById('rankTable').style.display = '';
+    document.getElementById('content').style.display = '';
   } catch(e) {
     document.getElementById('loading').innerHTML = '<p style="color:var(--danger)">Помилка завантаження даних</p>';
   }
 }
-
-classSelect.addEventListener('change', () => {
-  const cls = classSelect.value;
-  specSelect.innerHTML = '<option value="">Всі спеки</option>';
-  if (cls && classesMap[cls]) {
-    [...classesMap[cls]].sort().forEach(sp => {
-      const o = document.createElement('option');
-      o.value = sp; o.textContent = sp;
-      specSelect.appendChild(o);
-    });
-  }
-  render();
-});
-specSelect.addEventListener('change', render);
-
-function buildHeader() {
-  const thead = document.getElementById('tableHead');
-  const tr = document.createElement('tr');
-  ['#','Гравець','Клас / Спек','Total Damage'].forEach(t => {
-    const th = document.createElement('th');
-    th.textContent = t;
-    if (t === 'Total Damage') th.className = 'num';
-    tr.appendChild(th);
-  });
-  thead.appendChild(tr);
-}
-
-function render() {
-  const cls  = classSelect.value;
-  const spec = specSelect.value;
-
-  let rows = allRows.filter(r => {
-    if (cls  && r.class !== cls)  return false;
-    if (spec && r.spec  !== spec) return false;
-    return true;
-  }).sort((a,b) => (b.totalDamage||0) - (a.totalDamage||0));
-
-  document.getElementById('resultsInfo').innerHTML =
-    `Знайдено: <strong>${rows.length}</strong>`;
-
-  const tbody = document.getElementById('tableBody');
-  tbody.innerHTML = '';
-
-  rows.forEach((row, idx) => {
-    const tr = document.createElement('tr');
-
-    addTd(tr, idx + 1, 'text-align:center;color:var(--text-faint);font-size:11px');
-
-    const clsKey = (row.class || '').replace(/ /g, '-');
-    addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
-    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class || ''}</span> <span class="spec-badge">${shortSpec(row.spec, row.class)}</span>`);
-
-    const dmg = row.totalDamage || 0;
-    const pct = Math.max(2, (dmg / maxDamage) * 100);
-    const td = document.createElement('td');
-    td.className = 'dmg-cell';
-    td.innerHTML =
-      `<span class="dmg-bar" style="width:${pct}%"></span>` +
-      `<span class="dmg-val">${dmg.toLocaleString('uk-UA')}</span>`;
-    tr.appendChild(td);
-
-    tbody.appendChild(tr);
-  });
-}
-
-function addTd(tr, html, style) {
-  const td = document.createElement('td');
-  if (style) td.style.cssText = style;
-  td.innerHTML = String(html);
-  tr.appendChild(td);
-}
-
-loadData();
+load();
 </script>
 </body>
 </html>
