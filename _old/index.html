@@ -1,0 +1,467 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deus Vult тАФ Freedom WoW</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0c10;
+    --bg2: #111318;
+    --bg3: #1a1d24;
+    --border: #2a2d35;
+    --gold: #c9a84c;
+    --gold-glow: rgba(201,168,76,.15);
+    --ice: #7ecfef;
+    --ice-dim: #2a4a5a;
+    --text: #d4d8e0;
+    --text-muted: #6b7080;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+  }
+
+  /* тФАтФА NAV тФАтФА */
+  nav {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: .05em;
+    margin-right: 32px;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color .15s, background .15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg3); }
+  .nav-links a.active { color: var(--gold); background: rgba(201,168,76,.1); }
+
+  /* тФАтФА HERO тФАтФА */
+  .hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 80px 24px;
+  }
+
+  /* ╨Р╨╜╤Ц╨╝╨╛╨▓╨░╨╜╨╕╨╣ ╤Д╨╛╨╜ тАФ ╨╗╤М╨╛╨┤╤П╨╜╤Ц ╨┐╤А╨╛╨╝╨╡╨╜╤Ц */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(126,207,239,.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 100%, rgba(201,168,76,.05) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 100%, rgba(201,168,76,.05) 0%, transparent 60%);
+    animation: pulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes pulse {
+    from { opacity: .6; }
+    to   { opacity: 1; }
+  }
+
+  /* ╨Ы╤М╨╛╨┤╤П╨╜╤Ц ╨╗╤Ц╨╜╤Ц╤Ч ╨╖╨▓╨╡╤А╤Е╤Г */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ice), transparent);
+    opacity: .4;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-cross {
+    font-size: 28px;
+    color: var(--gold);
+    opacity: .6;
+    display: block;
+    margin-bottom: 16px;
+    letter-spacing: .3em;
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: .06em;
+    line-height: 1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 60px rgba(201,168,76,.3);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(12px, 2vw, 15px);
+    color: var(--text-muted);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 32px;
+    opacity: .4;
+  }
+
+  .hero-desc {
+    max-width: 480px;
+    margin: 0 auto 40px;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s;
+    letter-spacing: .02em;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #0a0c10;
+  }
+  .btn-primary:hover {
+    background: #dbb85a;
+    box-shadow: 0 0 24px rgba(201,168,76,.35);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+    transform: translateY(-1px);
+  }
+
+  /* тФАтФА STATS BAR тФАтФА */
+  .stats-bar {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    padding: 20px 40px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-value {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-muted);
+  }
+
+  /* тФАтФА CARDS тФАтФА */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card:hover {
+    border-color: var(--gold-dim, #7a6030);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  }
+
+  .card-icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: .03em;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .card-link {
+    font-size: 12px;
+    color: var(--ice);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-link::after { content: 'тЖТ'; transition: transform .2s; }
+  .card:hover .card-link::after { transform: translateX(4px); }
+
+  /* тФАтФА PROGRESSION тФАтФА */
+  .progress-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .progress-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .raids {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .raid-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .raid-name {
+    font-weight: 600;
+    font-size: 13px;
+    min-width: 200px;
+  }
+
+  .raid-mode {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-muted);
+    min-width: 60px;
+  }
+
+  .bosses-track {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .boss-pip {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--text-muted);
+    position: relative;
+    cursor: default;
+  }
+  .boss-pip.killed {
+    background: rgba(201,168,76,.15);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .boss-pip.killed::after {
+    content: 'тЬУ';
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .raid-progress-text {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  /* тФАтФА FOOTER тФАтФА */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="./">тЬа DEUS VULT</a>
+  <div class="nav-links">
+    <a href="./" class="active">╨У╨╛╨╗╨╛╨▓╨╜╨░</a>
+    <a href="./guild-ranking/">╨а╨╡╨╣╤В╨╕╨╜╨│ DPS</a>
+    <a href="./heal-ranking/">╨а╨╡╨╣╤В╨╕╨╜╨│ Heal</a>
+    <a href="./potion-stats/">╨б╤В╨░╤В╨╕╤Б╤В╨╕╨║╨░ ╨Я╨╛╤В╤Ц╨▓</a>
+    <a href="./analytics/">╨Р╨╜╨░╨╗╤Ц╤В╨╕╨║╨░</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-cross">тЬа ┬╖ тЬа ┬╖ тЬа</span>
+    <h1>DEUS VULT</h1>
+    <p class="hero-subtitle">Freedom WoW</p>
+    <div class="hero-divider"></div>
+
+
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat-item">
+    <span class="stat-value" id="statPlayers">тАФ</span>
+    <span class="stat-label">╨У╤А╨░╨▓╤Ж╤Ц╨▓</span>
+  </div>
+
+  <div class="stat-item">
+    <span class="stat-value" id="statUpdated">тАФ</span>
+    <span class="stat-label">╨Ю╨╜╨╛╨▓╨╗╨╡╨╜╨╛</span>
+  </div>
+</div>
+
+
+
+
+<footer>
+  ┬й ╨У╤Ц╨╗╤М╨┤╤Ц╤П ┬лDeus Vult┬╗, ╤Б╨╡╤А╨▓╨╡╤А <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a>
+</footer>
+
+<script>
+// ╨Я╤Ц╨┤╤В╤П╨│╤Г╤Ф╨╝╨╛ ╨╗╤Ц╤З╨╕╨╗╤М╨╜╨╕╨║ ╨│╤А╨░╨▓╤Ж╤Ц╨▓ ╨╖ guild-data.json
+fetch('./data/guild-data.json')
+  .then(r => r.json())
+  .then(data => {
+    const players = new Set(data.rows.map(r => r.name)).size;
+    document.getElementById('statPlayers').textContent = players;
+
+    if (data.lastUpdated) {
+      const d = new Date(data.lastUpdated);
+      const today = new Date();
+      const diff  = Math.floor((today - d) / 86400000);
+      document.getElementById('statUpdated').textContent =
+        diff === 0 ? '╨б╤М╨╛╨│╨╛╨┤╨╜╤Ц'
+        : diff === 1 ? '╨Т╤З╨╛╤А╨░'
+        : diff + ' ╨┤╨╜. ╤В╨╛╨╝╤Г';
+    }
+  })
+  .catch(() => {
+    document.getElementById('statPlayers').textContent = 'тАФ';
+  });
+</script>
+</body>
+</html>

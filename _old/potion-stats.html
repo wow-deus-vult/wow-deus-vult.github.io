@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>╨б╤В╨░╤В╨╕╤Б╤В╨╕╨║╨░ ╨Я╨╛╤В╤Ц╨▓ тАФ Deus Vult</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
+    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
+    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
+    --green:#4caf7d;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+
+  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  .nav-links a:hover { color:var(--text); background:var(--bg3); }
+  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+
+  .page-header { padding:32px 24px 20px; max-width:1400px; margin:0 auto; border-bottom:1px solid var(--border); }
+  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+  .updated-at { font-size:11px; color:var(--text-muted); margin-top:4px; }
+
+  .table-wrap { max-width:1400px; margin:0 auto; padding:24px; overflow-x:auto; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  thead th {
+    text-align:left; padding:8px 10px;
+    font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-muted); border-bottom:1px solid var(--border); white-space:nowrap;
+    cursor:pointer; user-select:none;
+  }
+  thead th:hover { color:var(--text); }
+  thead th.sorted { color:var(--gold); }
+  thead th.num { text-align:center; }
+
+  tbody tr { border-bottom:1px solid rgba(42,45,53,.6); transition:background .1s; }
+  tbody tr:hover { background:var(--bg2); }
+  td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
+  td:first-child { text-align:center; color:var(--text-muted); font-size:11px; width:36px; }
+  td.num { text-align:center; font-variant-numeric:tabular-nums; }
+
+  .player-name { font-weight:600; }
+  .val-high { color:#ffd700; font-weight:600; }
+  .val-mid  { color:var(--gold); }
+  .val-low  { color:var(--text-muted); }
+  .val-zero { color:var(--border); }
+
+  .avg-badge { font-weight:700; font-variant-numeric:tabular-nums; }
+
+  /* WoW class colors */
+  .cls-Death-Knight { color:#c41e3a; }
+  .cls-Druid        { color:#ff7c0a; }
+  .cls-Hunter       { color:#aad372; }
+  .cls-Mage         { color:#3fc7eb; }
+  .cls-Paladin      { color:#f48cba; }
+  .cls-Priest       { color:#e0e0e0; }
+  .cls-Rogue        { color:#fff468; }
+  .cls-Shaman       { color:#0070dd; }
+  .cls-Warlock      { color:#8788ee; }
+  .cls-Warrior      { color:#c69b3a; }
+
+  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
+  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  .stats-bar { max-width:1400px; margin:0 auto; padding:16px 24px; display:flex; gap:32px; border-bottom:1px solid var(--border); }
+  .stat { font-size:12px; color:var(--text-muted); }
+  .stat strong { color:var(--text); font-size:14px; }
+
+  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); margin-top:24px; }
+  footer a { color:var(--ice); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">тЬа DEUS VULT</a>
+  <div class="nav-links">
+    <a href="../">╨У╨╛╨╗╨╛╨▓╨╜╨░</a>
+    <a href="../guild-ranking/">╨а╨╡╨╣╤В╨╕╨╜╨│ DPS</a>
+    <a href="../heal-ranking/">╨а╨╡╨╣╤В╨╕╨╜╨│ Heal</a>
+    <a href="../potion-stats/" class="active">╨б╤В╨░╤В╨╕╤Б╤В╨╕╨║╨░ ╨Я╨╛╤В╤Ц╨▓</a>
+    <a href="../analytics/">╨Р╨╜╨░╨╗╤Ц╤В╨╕╨║╨░</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>╨┐╤А╨╡╨Я╨Ю╨в╨Э╨Ж ╨и╨╡╨╣╤Е╨╕</h1>
+  <div class="updated-at" id="updatedAt"></div>
+</div>
+
+<div class="stats-bar" id="statsBar" style="display:none">
+  <div class="stat">╨а╨╡╨╣╨┤╤Ц╨▓: <strong id="statRaids">тАФ</strong></div>
+  <div class="stat">╨У╤А╨░╨▓╤Ж╤Ц╨▓: <strong id="statPlayers">тАФ</strong></div>
+</div>
+
+<div class="table-wrap">
+  <div class="loading" id="loading"><div class="loading-spinner"></div><div>╨Ч╨░╨▓╨░╨╜╤В╨░╨╢╨╡╨╜╨╜╤П...</div></div>
+  <table id="rankTable" style="display:none">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th data-col="name">╨У╤А╨░╨▓╨╡╤Ж╤М</th>
+        <th class="num sorted" data-col="avgPerRaid">╨б╨╡╤А╨╡╨┤╨╜╤Ф / ╤А╨╡╨╣╨┤ тЖУ</th>
+        <th class="num" data-col="raids">╨а╨╡╨╣╨┤╤Ц╨▓</th>
+        <th class="num" data-col="totalPotions">╨Т╤Б╤М╨╛╨│╨╛</th>
+        <th class="num" data-col="potionOfSpeed">ЁЯЯг Speed</th>
+        <th class="num" data-col="potionOfWildMagic">ЁЯФ╡ Wild Magic</th>
+        <th class="num" data-col="insaneStrength">ЁЯФ┤ Insane Str</th>
+        <th class="num" data-col="flameCap">ЁЯЯа Flame Cap</th>
+        <th class="num" data-col="indestructiblePotion">ЁЯЫбя╕П Indestructible</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<footer>┬й ╨У╤Ц╨╗╤М╨┤╤Ц╤П ┬лDeus Vult┬╗, ╤Б╨╡╤А╨▓╨╡╤А <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
+
+<script>
+const DATA_URL = '../data/potion-stats.json';
+const GUILD_DATA_URL = '../data/guild-data.json';
+
+const CLASS_COLORS = {
+  'Death Knight': 'cls-Death-Knight',
+  'Druid':        'cls-Druid',
+  'Hunter':       'cls-Hunter',
+  'Mage':         'cls-Mage',
+  'Paladin':      'cls-Paladin',
+  'Priest':       'cls-Priest',
+  'Rogue':        'cls-Rogue',
+  'Shaman':       'cls-Shaman',
+  'Warlock':      'cls-Warlock',
+  'Warrior':      'cls-Warrior',
+};
+
+const playerClass = {}; // name тЖТ class
+
+let allRows = [];
+let sortCol = 'avgPerRaid';
+let sortAsc = false;
+
+function avgColor(v) {
+  if (v >= 8) return '#ffd700';
+  if (v >= 5) return 'var(--gold)';
+  if (v >= 2) return '#7ecfef';
+  if (v > 0)  return 'var(--text-muted)';
+  return 'var(--border)';
+}
+
+function numCell(v) {
+  if (!v) return '<span class="val-zero">тАФ</span>';
+  return v;
+}
+
+async function loadData() {
+  try {
+    const [res, guildRes] = await Promise.all([fetch(DATA_URL), fetch(GUILD_DATA_URL)]);
+    const data = await res.json();
+    const guildData = await guildRes.json();
+    // ╨С╤Г╨┤╤Г╤Ф╨╝╨╛ map ╤Ц╨╝'╤П тЖТ ╨║╨╗╨░╤Б
+    (guildData.rows || []).forEach(r => {
+      if (!playerClass[r.name]) playerClass[r.name] = r.class;
+    });
+    allRows = data.honorBoard || [];
+
+    if (data.generated) {
+      const d = new Date(data.generated);
+      document.getElementById('updatedAt').textContent =
+        '╨Ю╨╜╨╛╨▓╨╗╨╡╨╜╨╛: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    }
+
+    document.getElementById('statRaids').textContent = data.totalRaids || 0;
+    document.getElementById('statPlayers').textContent = allRows.length;
+    document.getElementById('statsBar').style.display = '';
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('rankTable').style.display = '';
+
+    render();
+  } catch(e) {
+    document.getElementById('loading').innerHTML = '<p style="color:#e05555">╨Я╨╛╨╝╨╕╨╗╨║╨░ ╨╖╨░╨▓╨░╨╜╤В╨░╨╢╨╡╨╜╨╜╤П</p>';
+  }
+}
+
+function render() {
+  const rows = [...allRows].sort((a, b) => {
+    let av = a[sortCol] ?? 0, bv = b[sortCol] ?? 0;
+    if (typeof av === 'string') return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+    return sortAsc ? av - bv : bv - av;
+  });
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  rows.forEach((row, idx) => {
+    const tr = document.createElement('tr');
+    const avg = row.avgPerRaid || 0;
+    const col = avgColor(avg);
+
+    tr.innerHTML = `
+      <td>${idx + 1}</td>
+      <td><span class="player-name ${CLASS_COLORS[playerClass[row.name]] || ''}">${row.name}</span></td>
+      <td class="num"><span class="avg-badge" style="color:${col}">${avg.toFixed(2)}</span></td>
+      <td class="num">${row.raids}</td>
+      <td class="num">${row.totalPotions || 0}</td>
+      <td class="num">${numCell(row.potionOfSpeed)}</td>
+      <td class="num">${numCell(row.potionOfWildMagic)}</td>
+      <td class="num">${numCell(row.insaneStrength)}</td>
+      <td class="num">${numCell(row.flameCap)}</td>
+      <td class="num">${numCell(row.indestructiblePotion)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ╨б╨╛╤А╤В╤Г╨▓╨░╨╜╨╜╤П ╨┐╨╛ ╨║╨╗╤Ц╨║╤Г ╨╜╨░ ╨╖╨░╨│╨╛╨╗╨╛╨▓╨╛╨║
+document.querySelectorAll('thead th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    if (sortCol === col) {
+      sortAsc = !sortAsc;
+    } else {
+      sortCol = col;
+      sortAsc = col === 'name';
+    }
+    document.querySelectorAll('thead th').forEach(t => {
+      t.classList.remove('sorted');
+      t.textContent = t.textContent.replace(' тЖС','').replace(' тЖУ','');
+    });
+    th.classList.add('sorted');
+    th.textContent += sortAsc ? ' тЖС' : ' тЖУ';
+    render();
+  });
+});
+
+loadData();
+</script>
+</body>
+</html>

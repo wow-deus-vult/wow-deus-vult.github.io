@@ -1,0 +1,372 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>╨Р╨╜╨░╨╗╤Ц╤В╨╕╨║╨░ тАФ Deus Vult</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
+    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
+    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+
+  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  .nav-links a:hover { color:var(--text); background:var(--bg3); }
+  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+
+  .page-header { padding:32px 24px 20px; max-width:1200px; margin:0 auto; border-bottom:1px solid var(--border); }
+  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+  .page-header p { color:var(--text-muted); font-size:13px; }
+  .page-header p a { color:var(--ice); text-decoration:none; }
+
+  .charts-wrap { max-width:1200px; margin:0 auto; padding:24px; display:flex; flex-direction:column; gap:32px; }
+
+  .chart-block { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:24px; }
+  .chart-title { font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--gold); margin-bottom:4px; }
+  .chart-desc { font-size:12px; color:var(--text-muted); margin-bottom:20px; }
+  .chart-container { position:relative; }
+
+  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
+  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); margin-top:24px; }
+  footer a { color:var(--ice); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">тЬа DEUS VULT</a>
+  <div class="nav-links">
+    <a href="../">╨У╨╛╨╗╨╛╨▓╨╜╨░</a>
+    <a href="../guild-ranking/">╨а╨╡╨╣╤В╨╕╨╜╨│ DPS</a>
+    <a href="../heal-ranking/">╨а╨╡╨╣╤В╨╕╨╜╨│ Heal</a>
+    <a href="../potion-stats/">╨б╤В╨░╤В╨╕╤Б╤В╨╕╨║╨░ ╨Я╨╛╤В╤Ц╨▓</a>
+    <a href="./" class="active">╨Р╨╜╨░╨╗╤Ц╤В╨╕╨║╨░</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>╨Р╨╜╨░╨╗╤Ц╤В╨╕╨║╨░ Deus Vult</h1>
+</div>
+
+<div id="loading" class="loading"><div class="loading-spinner"></div><div>╨Ч╨░╨▓╨░╨╜╤В╨░╨╢╨╡╨╜╨╜╤П...</div></div>
+
+<div class="charts-wrap" id="chartsWrap" style="display:none">
+
+  <!-- 5. ╨в╨╛╨┐-3 ╨┐╨╛ ╤Б╨┐╨╡╨║╤Г -->
+  <div class="chart-block">
+    <div class="chart-title">╨в╨╛╨┐-3 ╨┐╨╛ ╤Б╨┐╨╡╨║╤Г</div>
+    <div class="chart-desc">3 ╨╜╨░╨╣╨║╤А╨░╤Й╨╕╤Е ╨│╤А╨░╨▓╤Ж╤П ╨║╨╛╨╢╨╜╨╛╤Ч ╤Б╨┐╨╡╨║╨╕ ╨╖╨░ Score.</div>
+    <div class="chart-container" style="height:500px">
+      <canvas id="chartTop3"></canvas>
+    </div>
+  </div>
+
+  <!-- 1. ╨в╨╛╨┐-50 ╨┐╨╛ ╤Б╨┐╨╡╨║╤Г -->
+  <div class="chart-block">
+    <div class="chart-title">╨в╨╛╨┐-50 ╤Б╨╡╤А╨▓╨╡╤А╤Г ╨┐╨╛ ╤Б╨┐╨╡╨║╤Г</div>
+    <div class="chart-desc">╨Ъ╤Ц╨╗╤М╨║╤Ц╤Б╤В╤М ╨│╤А╨░╨▓╤Ж╤Ц╨▓ ╨│╤Ц╨╗╤М╨┤╤Ц╤Ч ╨▓ ╤В╨╛╨┐-50 ╤Б╨╡╤А╨▓╨╡╤А╤Г ╨┤╨╗╤П ╨║╨╛╨╢╨╜╨╛╤Ч ╤Б╨┐╨╡╤Ж╤Ц╨░╨╗╤Ц╨╖╨░╤Ж╤Ц╤Ч.</div>
+    <div class="chart-container" style="height:320px">
+      <canvas id="chartTop50"></canvas>
+    </div>
+  </div>
+
+  <!-- 2. ╨Я╨╛╨┐╤Г╨╗╤П╤А╨╜╤Ц╤Б╤В╤М ╤Б╨┐╨╡╨║╤Ц╨▓ -->
+  <div class="chart-block">
+    <div class="chart-title">╨Я╨╛╨┐╤Г╨╗╤П╤А╨╜╤Ц╤Б╤В╤М ╤Б╨┐╨╡╨║╤Ц╨▓</div>
+    <div class="chart-desc">╨б╨║╤Ц╨╗╤М╨║╨╕ ╨░╨║╤В╨╕╨▓╨╜╨╕╤Е ╨│╤А╨░╨▓╤Ж╤Ц╨▓ ╤Ф ╨┐╨╛ ╨║╨╛╨╢╨╜╤Ц╨╣ ╤Б╨┐╨╡╤Ж╤Ц╨░╨╗╤Ц╨╖╨░╤Ж╤Ц╤Ч.</div>
+    <div class="chart-container" style="height:320px">
+      <canvas id="chartSpecPop"></canvas>
+    </div>
+  </div>
+
+  <!-- 3. ╨б╨╡╤А╨╡╨┤╨╜╤Ц╨╣ Score ╨┐╨╛ ╨║╨╗╨░╤Б╤Г -->
+  <div class="chart-block">
+    <div class="chart-title">╨б╨╡╤А╨╡╨┤╨╜╤Ц╨╣ Score ╨┐╨╛ ╨║╨╗╨░╤Б╤Г</div>
+    <div class="chart-desc">╨п╨║╨╕╨╣ ╨║╨╗╨░╤Б ╨▓ ╤Б╨╡╤А╨╡╨┤╨╜╤М╨╛╨╝╤Г ╨┐╨╛╨║╨░╨╖╤Г╤Ф ╨║╤А╨░╤Й╨╕╨╣ ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В (Score) ╨▓ ╤А╨╡╨╣╨┤╨░╤Е.</div>
+    <div class="chart-container" style="height:320px">
+      <canvas id="chartAvgScore"></canvas>
+    </div>
+  </div>
+
+  <!-- 4. ╨У╤Ц╨╗╤М╨┤╤Ц╤П ╨┐╤А╨╛╤В╨╕ ╤Б╨╡╤А╨▓╨╡╤А╤Г -->
+  <div class="chart-block">
+    <div class="chart-title">╨У╤Ц╨╗╤М╨┤╤Ц╤П ╨┐╤А╨╛╤В╨╕ ╤Б╨╡╤А╨▓╨╡╤А╤Г</div>
+    <div class="chart-desc">╨б╨║╤Ц╨╗╤М╨║╨╕ ╨│╤А╨░╨▓╤Ж╤Ц╨▓ ╨│╤Ц╨╗╤М╨┤╤Ц╤Ч ╨┐╨╛╤В╤А╨░╨┐╨╗╤П╤О╤В╤М ╨▓ ╤В╨╛╨┐-50/100/200/500 ╤Б╨╡╤А╨▓╨╡╤А╤Г (╨╖╨░ ╨╜╨░╨╣╨║╤А╨░╤Й╨╕╨╝ ╤Б╨┐╨╡╨║╨╛╨╝ ╨║╨╛╨╢╨╜╨╛╨│╨╛ ╨│╤А╨░╨▓╤Ж╤П).</div>
+    <div class="chart-container" style="height:300px">
+      <canvas id="chartVsServer"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<footer>┬й ╨У╤Ц╨╗╤М╨┤╤Ц╤П ┬лDeus Vult┬╗, ╤Б╨╡╤А╨▓╨╡╤А <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
+
+<script>
+const DATA_URL = '../data/guild-data.json';
+
+const CLASS_COLORS = {
+  'Death Knight': '#c41e3a',
+  'Druid':        '#ff7c0a',
+  'Hunter':       '#aad372',
+  'Mage':         '#3fc7eb',
+  'Paladin':      '#f48cba',
+  'Priest':       '#e0e0e0',
+  'Rogue':        '#fff468',
+  'Shaman':       '#0070dd',
+  'Warlock':      '#8788ee',
+  'Warrior':      '#c69b3a',
+};
+
+const SPEC_CLASS = {};
+
+Chart.defaults.color = '#6b7080';
+Chart.defaults.borderColor = '#2a2d35';
+Chart.defaults.font.family = 'Inter';
+
+function makeChart(id, config) {
+  const ctx = document.getElementById(id).getContext('2d');
+  return new Chart(ctx, config);
+}
+
+async function loadAndRender() {
+  const res  = await fetch(DATA_URL);
+  const data = await res.json();
+  const rows = data.rows || [];
+
+  // ╨С╤Г╨┤╤Г╤Ф╨╝╨╛ map ╨║╨╗╨░╤БтЖТ╤Б╨┐╨╡╨║
+  rows.forEach(r => { SPEC_CLASS[r.spec] = r.class; });
+
+  // ╨С╨╡╤А╨╡╨╝╨╛ ╨╜╨░╨╣╨║╤А╨░╤Й╨╕╨╣ ╤Б╨┐╨╡╨║ ╨║╨╛╨╢╨╜╨╛╨│╨╛ ╨│╤А╨░╨▓╤Ж╤П (╨┐╨╛ overallScore)
+  const bestByPlayer = {};
+  rows.forEach(r => {
+    if (!bestByPlayer[r.name] || r.overallScore > bestByPlayer[r.name].overallScore) {
+      bestByPlayer[r.name] = r;
+    }
+  });
+  const bestRows = Object.values(bestByPlayer);
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('chartsWrap').style.display = '';
+
+  renderTop50(rows);
+  renderSpecPop(rows);
+  renderAvgScore(rows);
+  renderVsServer(bestRows);
+  renderTop3(rows);
+}
+
+// тФАтФА 1. ╨в╨╛╨┐-50 ╨┐╨╛ ╤Б╨┐╨╡╨║╤Г тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+function renderTop50(rows) {
+  const specCount = {};
+  rows.forEach(r => {
+    if (r.overallRank <= 50) {
+      specCount[r.spec] = (specCount[r.spec] || 0) + 1;
+    }
+  });
+
+  const sorted = Object.entries(specCount).sort((a,b) => b[1]-a[1]);
+  const labels = sorted.map(([s]) => s);
+  const values = sorted.map(([,v]) => v);
+  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#888');
+
+  makeChart('chartTop50', {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: colors.map(c => c + 'bb'),
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+      }
+    }
+  });
+}
+
+// тФАтФА 2. ╨Я╨╛╨┐╤Г╨╗╤П╤А╨╜╤Ц╤Б╤В╤М ╤Б╨┐╨╡╨║╤Ц╨▓ тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+function renderSpecPop(rows) {
+  const specCount = {};
+  rows.forEach(r => { specCount[r.spec] = (specCount[r.spec] || 0) + 1; });
+
+  const sorted = Object.entries(specCount).sort((a,b) => b[1]-a[1]);
+  const labels = sorted.map(([s]) => s);
+  const values = sorted.map(([,v]) => v);
+  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#888');
+
+  makeChart('chartSpecPop', {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: colors.map(c => c + 'bb'),
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+      }
+    }
+  });
+}
+
+// тФАтФА 3. ╨б╨╡╤А╨╡╨┤╨╜╤Ц╨╣ Score ╨┐╨╛ ╨║╨╗╨░╤Б╤Г тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+function renderAvgScore(rows) {
+  const classData = {};
+  rows.forEach(r => {
+    if (!classData[r.class]) classData[r.class] = [];
+    classData[r.class].push(r.overallScore || 0);
+  });
+
+  const sorted = Object.entries(classData)
+    .map(([cls, scores]) => ({ cls, avg: scores.reduce((a,b)=>a+b,0)/scores.length }))
+    .sort((a,b) => b.avg - a.avg);
+
+  const labels = sorted.map(d => d.cls);
+  const values = sorted.map(d => +d.avg.toFixed(2));
+  const colors = labels.map(c => CLASS_COLORS[c] || '#888');
+
+  makeChart('chartAvgScore', {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: colors.map(c => c + 'bb'),
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' Score: ' + ctx.raw } }
+      },
+      scales: {
+        y: { min: 0, max: 100, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+}
+
+// тФАтФА 4. ╨У╤Ц╨╗╤М╨┤╤Ц╤П ╨┐╤А╨╛╤В╨╕ ╤Б╨╡╤А╨▓╨╡╤А╤Г тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+function renderVsServer(bestRows) {
+  const thresholds = [50, 100, 200, 500];
+  const counts = thresholds.map(t => bestRows.filter(r => r.overallRank <= t).length);
+
+  makeChart('chartVsServer', {
+    type: 'bar',
+    data: {
+      labels: thresholds.map(t => '╨в╨╛╨┐-' + t),
+      datasets: [{
+        label: '╨У╤А╨░╨▓╤Ж╤Ц╨▓ ╨│╤Ц╨╗╤М╨┤╤Ц╤Ч',
+        data: counts,
+        backgroundColor: ['#ffd700bb','#c9a84cbb','#0070ddbb','#2a2d35bb'],
+        borderColor:     ['#ffd700',  '#c9a84c',  '#0070dd',  '#4a5060'],
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' ╨│╤А╨░╨▓╤Ж╤Ц╨▓' } }
+      },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+}
+
+// тФАтФА 5. ╨в╨╛╨┐-3 ╨┐╨╛ ╤Б╨┐╨╡╨║╤Г тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+function renderTop3(rows) {
+  const bySpec = {};
+  rows.forEach(r => {
+    if (!bySpec[r.spec]) bySpec[r.spec] = [];
+    bySpec[r.spec].push(r);
+  });
+
+  const specs = Object.entries(bySpec)
+    .map(([spec, players]) => {
+      const top3 = players.sort((a,b) => b.overallScore - a.overallScore).slice(0, 3);
+      return { spec, top3 };
+    })
+    .sort((a,b) => (b.top3[0]?.overallScore||0) - (a.top3[0]?.overallScore||0));
+
+  const labels = [], values = [], bgColors = [], bdColors = [];
+  const medals = ['ЁЯеЗ', 'ЁЯеИ', 'ЁЯеЙ'];
+
+  specs.forEach(({ spec, top3 }) => {
+    const color = CLASS_COLORS[SPEC_CLASS[spec]] || '#888';
+    for (let i = 0; i < 3; i++) {
+      const p = top3[i];
+      labels.push(p ? `${p.name} тАв ${spec} ${medals[i]}` : `тАФ тАв ${spec} ${medals[i]}`);
+      values.push(p ? p.overallScore || 0 : 0);
+      const op = i === 0 ? 'dd' : i === 1 ? 'aa' : '66';
+      bgColors.push(p ? color + op : '#2a2d3544');
+      bdColors.push(p ? color : '#2a2d35');
+    }
+  });
+
+  const height = Math.max(500, labels.length * 26);
+  document.getElementById('chartTop3').parentElement.style.height = height + 'px';
+
+  makeChart('chartTop3', {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: bgColors, borderColor: bdColors, borderWidth:1, borderRadius:3 }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ctx.raw > 0 ? ` Score: ${ctx.raw.toFixed(2)}` : ' тАФ' } }
+      },
+      scales: {
+        x: { min: 0, max: 100, grid: { color: '#2a2d35' } },
+        y: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#d4d8e0' } }
+      }
+    }
+  });
+}
+
+loadAndRender().catch(e => {
+  document.getElementById('loading').innerHTML = '<p style="color:#e05555">╨Я╨╛╨╝╨╕╨╗╨║╨░ ╨╖╨░╨▓╨░╨╜╤В╨░╨╢╨╡╨╜╨╜╤П</p>';
+  console.error(e);
+});
+</script>
+</body>
+</html>

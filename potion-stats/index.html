@@ -3,58 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Статистика Потів — Deus Vult</title>
+<title>Статистика Зіль — Deus Vult</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
   :root {
-    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
-    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
-    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
-    --green:#4caf7d;
+    --bg:#070a0f; --bg2:#0d121b; --bg3:#141b26;
+    --border:#1e2836; --border2:#283447;
+    --accent:#8fc1e3; --accent-dim:#4a6f8a;
+    --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
+    --danger:#e06a6a;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+  body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px;
+    background-image:radial-gradient(900px 500px at 80% -10%, rgba(143,193,227,.06), transparent 60%); }
 
-  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
-  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
-  .nav-links { display:flex; gap:4px; }
-  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  nav { background:rgba(13,18,27,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+    padding:0 24px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Exo 2',sans-serif; font-weight:800; font-size:16px; color:var(--accent);
+    letter-spacing:.08em; margin-right:36px; text-decoration:none; display:flex; align-items:center; gap:8px; }
+  .nav-logo span { width:8px; height:8px; background:var(--accent); border-radius:2px; transform:rotate(45deg); box-shadow:0 0 12px var(--accent); }
+  .nav-links { display:flex; gap:2px; flex-wrap:wrap; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:7px 14px; border-radius:7px; font-size:13px; font-weight:600; transition:.15s; }
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
-  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+  .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
 
-  .page-header { padding:32px 24px 20px; max-width:1400px; margin:0 auto; border-bottom:1px solid var(--border); }
-  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
-  .updated-at { font-size:11px; color:var(--text-muted); margin-top:4px; }
+  .page-header { padding:40px 24px 18px; max-width:1400px; margin:0 auto; }
+  .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:10px; }
+  .page-header h1 { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; color:var(--text); margin-bottom:8px; }
+  .page-header h1 b { color:var(--accent); }
+  .updated-at { font-size:12px; color:var(--text-faint); margin-top:6px; }
 
-  .table-wrap { max-width:1400px; margin:0 auto; padding:24px; overflow-x:auto; }
+  .stats-bar { max-width:1400px; margin:0 auto; padding:14px 24px; display:flex; gap:32px; }
+  .stat { font-size:12px; color:var(--text-muted); }
+  .stat strong { color:var(--accent); font-size:16px; font-family:'Exo 2',sans-serif; }
 
+  .table-wrap { max-width:1400px; margin:0 auto; padding:14px 24px 48px; overflow-x:auto; }
   table { width:100%; border-collapse:collapse; font-size:13px; }
-  thead th {
-    text-align:left; padding:8px 10px;
-    font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.08em;
-    color:var(--text-muted); border-bottom:1px solid var(--border); white-space:nowrap;
-    cursor:pointer; user-select:none;
-  }
+  thead th { text-align:left; padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--text-muted); border-bottom:1px solid var(--border2); white-space:nowrap;
+    cursor:pointer; user-select:none; transition:color .12s; }
   thead th:hover { color:var(--text); }
-  thead th.sorted { color:var(--gold); }
+  thead th.sorted { color:var(--accent); }
   thead th.num { text-align:center; }
 
-  tbody tr { border-bottom:1px solid rgba(42,45,53,.6); transition:background .1s; }
+  tbody tr { border-bottom:1px solid rgba(30,40,54,.6); transition:background .1s; }
   tbody tr:hover { background:var(--bg2); }
   td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
-  td:first-child { text-align:center; color:var(--text-muted); font-size:11px; width:36px; }
+  td:first-child { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
   td.num { text-align:center; font-variant-numeric:tabular-nums; }
 
-  .player-name { font-weight:600; }
-  .val-high { color:#ffd700; font-weight:600; }
-  .val-mid  { color:var(--gold); }
-  .val-low  { color:var(--text-muted); }
-  .val-zero { color:var(--border); }
-
+  .player-name { font-weight:700; }
+  .val-zero { color:var(--border2); }
   .avg-badge { font-weight:700; font-variant-numeric:tabular-nums; }
 
-  /* WoW class colors */
   .cls-Death-Knight { color:#c41e3a; }
   .cls-Druid        { color:#ff7c0a; }
   .cls-Hunter       { color:#aad372; }
@@ -66,33 +68,31 @@
   .cls-Warlock      { color:#8788ee; }
   .cls-Warrior      { color:#c69b3a; }
 
-  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
-  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  .loading { text-align:center; padding:80px 24px; color:var(--text-muted); }
+  .loading-spinner { width:34px; height:34px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 18px; }
   @keyframes spin { to { transform:rotate(360deg); } }
 
-  .stats-bar { max-width:1400px; margin:0 auto; padding:16px 24px; display:flex; gap:32px; border-bottom:1px solid var(--border); }
-  .stat { font-size:12px; color:var(--text-muted); }
-  .stat strong { color:var(--text); font-size:14px; }
-
-  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); margin-top:24px; }
-  footer a { color:var(--ice); text-decoration:none; }
+  footer { text-align:center; padding:32px 24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
+  footer a { color:var(--accent); text-decoration:none; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="../">✠ DEUS VULT</a>
+  <a class="nav-logo" href="../"><span></span>DEUS VULT</a>
   <div class="nav-links">
     <a href="../">Головна</a>
     <a href="../guild-ranking/">Рейтинг DPS</a>
     <a href="../heal-ranking/">Рейтинг Heal</a>
-    <a href="../potion-stats/" class="active">Статистика Потів</a>
+    <a href="./" class="active">Статистика Зіль</a>
     <a href="../analytics/">Аналітика</a>
   </div>
 </nav>
 
 <div class="page-header">
-  <h1>преПОТНІ Шейхи</h1>
+  <div class="eyebrow">Витрата ресурсів</div>
+  <h1>Статистика <b>Зіль</b> Деуса</h1>
   <div class="updated-at" id="updatedAt"></div>
 </div>
 
@@ -102,7 +102,7 @@
 </div>
 
 <div class="table-wrap">
-  <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження...</div></div>
+  <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
   <table id="rankTable" style="display:none">
     <thead>
       <tr>
@@ -141,18 +141,18 @@ const CLASS_COLORS = {
   'Warrior':      'cls-Warrior',
 };
 
-const playerClass = {}; // name → class
+const playerClass = {};
 
 let allRows = [];
 let sortCol = 'avgPerRaid';
 let sortAsc = false;
 
 function avgColor(v) {
-  if (v >= 8) return '#ffd700';
-  if (v >= 5) return 'var(--gold)';
-  if (v >= 2) return '#7ecfef';
+  if (v >= 8) return '#ffd96b';
+  if (v >= 5) return 'var(--accent)';
+  if (v >= 2) return '#5ad17a';
   if (v > 0)  return 'var(--text-muted)';
-  return 'var(--border)';
+  return 'var(--border2)';
 }
 
 function numCell(v) {
@@ -165,7 +165,6 @@ async function loadData() {
     const [res, guildRes] = await Promise.all([fetch(DATA_URL), fetch(GUILD_DATA_URL)]);
     const data = await res.json();
     const guildData = await guildRes.json();
-    // Будуємо map ім'я → клас
     (guildData.rows || []).forEach(r => {
       if (!playerClass[r.name]) playerClass[r.name] = r.class;
     });
@@ -185,7 +184,7 @@ async function loadData() {
 
     render();
   } catch(e) {
-    document.getElementById('loading').innerHTML = '<p style="color:#e05555">Помилка завантаження</p>';
+    document.getElementById('loading').innerHTML = '<p style="color:var(--danger)">Помилка завантаження даних</p>';
   }
 }
 
@@ -220,7 +219,6 @@ function render() {
   });
 }
 
-// Сортування по кліку на заголовок
 document.querySelectorAll('thead th[data-col]').forEach(th => {
   th.addEventListener('click', () => {
     const col = th.dataset.col;

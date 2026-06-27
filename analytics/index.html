@@ -6,107 +6,142 @@
 <title>Аналітика — Deus Vult</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
   :root {
-    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
-    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
-    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
+    --bg:#070a0f; --bg2:#0d121b; --bg3:#141b26;
+    --border:#1e2836; --border2:#283447;
+    --accent:#8fc1e3; --accent-dim:#4a6f8a;
+    --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
+    --danger:#e06a6a;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px; line-height:1.5;
+    background-image:radial-gradient(900px 500px at 80% -10%, rgba(143,193,227,.06), transparent 60%); }
 
-  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
-  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
-  .nav-links { display:flex; gap:4px; }
-  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  /* ── NAV ───────────────────────────────────────── */
+  nav { background:rgba(13,18,27,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+    padding:0 24px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Exo 2',sans-serif; font-weight:800; font-size:16px; color:var(--accent);
+    letter-spacing:.08em; margin-right:36px; text-decoration:none; display:flex; align-items:center; gap:8px; }
+  .nav-logo span { width:8px; height:8px; background:var(--accent); border-radius:2px; transform:rotate(45deg);
+    box-shadow:0 0 12px var(--accent); }
+  .nav-links { display:flex; gap:2px; flex-wrap:wrap; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:7px 14px; border-radius:7px;
+    font-size:13px; font-weight:600; transition:.15s; }
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
-  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+  .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
 
-  .page-header { padding:32px 24px 20px; max-width:1200px; margin:0 auto; border-bottom:1px solid var(--border); }
-  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
-  .page-header p { color:var(--text-muted); font-size:13px; }
-  .page-header p a { color:var(--ice); text-decoration:none; }
+  /* ── HEADER ────────────────────────────────────── */
+  .page-header { padding:40px 24px 24px; max-width:1180px; margin:0 auto; }
+  .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--accent-dim); margin-bottom:10px; }
+  .page-header h1 { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; color:var(--text);
+    letter-spacing:.01em; margin-bottom:8px; }
+  .page-header h1 b { color:var(--accent); font-weight:800; }
+  .page-header p { color:var(--text-muted); font-size:13.5px; max-width:640px; }
+  .page-header p a { color:var(--accent); text-decoration:none; }
+  .updated { font-size:12px; color:var(--text-faint); margin-top:12px; }
 
-  .charts-wrap { max-width:1200px; margin:0 auto; padding:24px; display:flex; flex-direction:column; gap:32px; }
+  /* ── JUMP NAV ──────────────────────────────────── */
+  .jump { max-width:1180px; margin:0 auto; padding:0 24px 8px; display:flex; gap:8px; flex-wrap:wrap; }
+  .jump a { font-size:12px; font-weight:600; color:var(--text-muted); text-decoration:none;
+    padding:6px 12px; border:1px solid var(--border); border-radius:20px; transition:.15s; }
+  .jump a:hover { color:var(--accent); border-color:var(--accent-dim); background:rgba(143,193,227,.06); }
 
-  .chart-block { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:24px; }
-  .chart-title { font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--gold); margin-bottom:4px; }
-  .chart-desc { font-size:12px; color:var(--text-muted); margin-bottom:20px; }
+  /* ── CHARTS ────────────────────────────────────── */
+  .charts-wrap { max-width:1180px; margin:0 auto; padding:24px; display:flex; flex-direction:column; gap:20px; }
+
+  .chart-block { background:linear-gradient(180deg, var(--bg2), rgba(13,18,27,.4));
+    border:1px solid var(--border); border-radius:14px; padding:24px 24px 26px;
+    position:relative; overflow:hidden; }
+  .chart-block::before { content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--accent-dim), transparent); opacity:.4; }
+  .chart-head { display:flex; align-items:baseline; gap:10px; margin-bottom:4px; }
+  .chart-num { font-family:'Exo 2',sans-serif; font-size:12px; font-weight:700; color:var(--accent-dim);
+    letter-spacing:.1em; }
+  .chart-title { font-family:'Exo 2',sans-serif; font-size:16px; font-weight:700; color:var(--text); }
+  .chart-desc { font-size:12.5px; color:var(--text-muted); margin-bottom:22px; max-width:680px; }
   .chart-container { position:relative; }
 
-  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
-  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  /* ── LOADING ───────────────────────────────────── */
+  .loading { text-align:center; padding:80px 24px; color:var(--text-muted); }
+  .loading-spinner { width:34px; height:34px; border:2px solid var(--border2);
+    border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 18px; }
   @keyframes spin { to { transform:rotate(360deg); } }
 
-  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); margin-top:24px; }
-  footer a { color:var(--ice); text-decoration:none; }
+  footer { text-align:center; padding:32px 24px; color:var(--text-faint); font-size:12px;
+    border-top:1px solid var(--border); margin-top:16px; }
+  footer a { color:var(--accent); text-decoration:none; }
+
+  @media (max-width:640px) {
+    .page-header h1 { font-size:26px; }
+    .chart-block { padding:20px 16px 22px; }
+  }
+  @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } html { scroll-behavior:auto; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="../">✠ DEUS VULT</a>
+  <a class="nav-logo" href="../"><span></span>DEUS VULT</a>
   <div class="nav-links">
     <a href="../">Головна</a>
     <a href="../guild-ranking/">Рейтинг DPS</a>
     <a href="../heal-ranking/">Рейтинг Heal</a>
-    <a href="../potion-stats/">Статистика Потів</a>
+    <a href="../potion-stats/">Статистика Зіль</a>
     <a href="./" class="active">Аналітика</a>
   </div>
 </nav>
 
 <div class="page-header">
-  <h1>Аналітика Deus Vult</h1>
+  <div class="eyebrow">Гільдійська аналітика</div>
+  <h1>Аналітика <b>Deus Vult</b></h1>
+  <p>Розклад складу гільдії за спеками, класами та позиціями в рейтингу сервера. Дані оновлюються з рейтингів DPS.</p>
+  <div class="updated" id="updated"></div>
 </div>
 
-<div id="loading" class="loading"><div class="loading-spinner"></div><div>Завантаження...</div></div>
+<div class="jump">
+  <a href="#top3">Топ-3 по спеку</a>
+  <a href="#top50">Топ-50 сервера</a>
+  <a href="#specpop">Популярність спеків</a>
+  <a href="#avgscore">Середній Score</a>
+  <a href="#vsserver">Гільдія vs сервер</a>
+</div>
+
+<div id="loading" class="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
 
 <div class="charts-wrap" id="chartsWrap" style="display:none">
 
-  <!-- 5. Топ-3 по спеку -->
-  <div class="chart-block">
-    <div class="chart-title">Топ-3 по спеку</div>
-    <div class="chart-desc">3 найкращих гравця кожної спеки за Score.</div>
-    <div class="chart-container" style="height:500px">
-      <canvas id="chartTop3"></canvas>
-    </div>
+  <div class="chart-block" id="top3">
+    <div class="chart-head"><span class="chart-num">01</span><span class="chart-title">Топ-3 по спеку</span></div>
+    <div class="chart-desc">3 найкращих гравці кожної спеки за Score.</div>
+    <div class="chart-container" style="height:500px"><canvas id="chartTop3"></canvas></div>
   </div>
 
-  <!-- 1. Топ-50 по спеку -->
-  <div class="chart-block">
-    <div class="chart-title">Топ-50 серверу по спеку</div>
-    <div class="chart-desc">Кількість гравців гільдії в топ-50 серверу для кожної спеціалізації.</div>
-    <div class="chart-container" style="height:320px">
-      <canvas id="chartTop50"></canvas>
-    </div>
+  <div class="chart-block" id="top50">
+    <div class="chart-head"><span class="chart-num">02</span><span class="chart-title">Топ-50 сервера по спеку</span></div>
+    <div class="chart-desc">Кількість гравців гільдії в топ-50 сервера для кожної спеціалізації.</div>
+    <div class="chart-container" style="height:320px"><canvas id="chartTop50"></canvas></div>
   </div>
 
-  <!-- 2. Популярність спеків -->
-  <div class="chart-block">
-    <div class="chart-title">Популярність спеків</div>
+  <div class="chart-block" id="specpop">
+    <div class="chart-head"><span class="chart-num">03</span><span class="chart-title">Популярність спеків</span></div>
     <div class="chart-desc">Скільки активних гравців є по кожній спеціалізації.</div>
-    <div class="chart-container" style="height:320px">
-      <canvas id="chartSpecPop"></canvas>
-    </div>
+    <div class="chart-container" style="height:320px"><canvas id="chartSpecPop"></canvas></div>
   </div>
 
-  <!-- 3. Середній Score по класу -->
-  <div class="chart-block">
-    <div class="chart-title">Середній Score по класу</div>
-    <div class="chart-desc">Який клас в середньому показує кращий результат (Score) в рейдах.</div>
-    <div class="chart-container" style="height:320px">
-      <canvas id="chartAvgScore"></canvas>
-    </div>
+  <div class="chart-block" id="avgscore">
+    <div class="chart-head"><span class="chart-num">04</span><span class="chart-title">Середній Score по класу</span></div>
+    <div class="chart-desc">Який клас у середньому показує кращий результат (Score) в рейдах.</div>
+    <div class="chart-container" style="height:320px"><canvas id="chartAvgScore"></canvas></div>
   </div>
 
-  <!-- 4. Гільдія проти серверу -->
-  <div class="chart-block">
-    <div class="chart-title">Гільдія проти серверу</div>
-    <div class="chart-desc">Скільки гравців гільдії потрапляють в топ-50/100/200/500 серверу (за найкращим спеком кожного гравця).</div>
-    <div class="chart-container" style="height:300px">
-      <canvas id="chartVsServer"></canvas>
-    </div>
+  <div class="chart-block" id="vsserver">
+    <div class="chart-head"><span class="chart-num">05</span><span class="chart-title">Гільдія проти сервера</span></div>
+    <div class="chart-desc">Скільки гравців гільдії потрапляють у топ-50/100/200/500 сервера (за найкращим спеком кожного гравця).</div>
+    <div class="chart-container" style="height:300px"><canvas id="chartVsServer"></canvas></div>
   </div>
 
 </div>
@@ -131,9 +166,12 @@ const CLASS_COLORS = {
 
 const SPEC_CLASS = {};
 
-Chart.defaults.color = '#6b7080';
-Chart.defaults.borderColor = '#2a2d35';
-Chart.defaults.font.family = 'Inter';
+// Тема графіків під темно-синій фон
+const GRID = 'rgba(40,52,71,.6)';
+const TICK = '#7c8aa0';
+Chart.defaults.color = TICK;
+Chart.defaults.borderColor = GRID;
+Chart.defaults.font.family = 'Manrope';
 
 function makeChart(id, config) {
   const ctx = document.getElementById(id).getContext('2d');
@@ -145,10 +183,9 @@ async function loadAndRender() {
   const data = await res.json();
   const rows = data.rows || [];
 
-  // Будуємо map клас→спек
   rows.forEach(r => { SPEC_CLASS[r.spec] = r.class; });
 
-  // Беремо найкращий спек кожного гравця (по overallScore)
+  // Найкращий спек кожного гравця (по overallScore)
   const bestByPlayer = {};
   rows.forEach(r => {
     if (!bestByPlayer[r.name] || r.overallScore > bestByPlayer[r.name].overallScore) {
@@ -157,54 +194,51 @@ async function loadAndRender() {
   });
   const bestRows = Object.values(bestByPlayer);
 
+  if (data.lastUpdated) {
+    document.getElementById('updated').textContent = 'Оновлено: ' + data.lastUpdated;
+  }
+
   document.getElementById('loading').style.display = 'none';
   document.getElementById('chartsWrap').style.display = '';
 
+  renderTop3(rows);
   renderTop50(rows);
   renderSpecPop(rows);
   renderAvgScore(rows);
   renderVsServer(bestRows);
-  renderTop3(rows);
 }
 
-// ── 1. Топ-50 по спеку ──────────────────────────────────────────────────────
+// ── 1. Топ-50 по спеку ───────────────────────────────────
 function renderTop50(rows) {
   const specCount = {};
   rows.forEach(r => {
-    if (r.overallRank <= 50) {
-      specCount[r.spec] = (specCount[r.spec] || 0) + 1;
-    }
+    if (r.overallRank <= 50) specCount[r.spec] = (specCount[r.spec] || 0) + 1;
   });
 
   const sorted = Object.entries(specCount).sort((a,b) => b[1]-a[1]);
   const labels = sorted.map(([s]) => s);
   const values = sorted.map(([,v]) => v);
-  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#888');
+  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#8fc1e3');
 
   makeChart('chartTop50', {
     type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        data: values,
-        backgroundColor: colors.map(c => c + 'bb'),
-        borderColor: colors,
-        borderWidth: 1,
-        borderRadius: 4,
-      }]
-    },
+    data: { labels, datasets: [{
+      data: values,
+      backgroundColor: colors.map(c => c + 'bb'),
+      borderColor: colors, borderWidth: 1, borderRadius: 4,
+    }]},
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: GRID } },
         x: { grid: { display: false }, ticks: { maxRotation: 45 } }
       }
     }
   });
 }
 
-// ── 2. Популярність спеків ───────────────────────────────────────────────────
+// ── 2. Популярність спеків ───────────────────────────────
 function renderSpecPop(rows) {
   const specCount = {};
   rows.forEach(r => { specCount[r.spec] = (specCount[r.spec] || 0) + 1; });
@@ -212,32 +246,27 @@ function renderSpecPop(rows) {
   const sorted = Object.entries(specCount).sort((a,b) => b[1]-a[1]);
   const labels = sorted.map(([s]) => s);
   const values = sorted.map(([,v]) => v);
-  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#888');
+  const colors = labels.map(s => CLASS_COLORS[SPEC_CLASS[s]] || '#8fc1e3');
 
   makeChart('chartSpecPop', {
     type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        data: values,
-        backgroundColor: colors.map(c => c + 'bb'),
-        borderColor: colors,
-        borderWidth: 1,
-        borderRadius: 4,
-      }]
-    },
+    data: { labels, datasets: [{
+      data: values,
+      backgroundColor: colors.map(c => c + 'bb'),
+      borderColor: colors, borderWidth: 1, borderRadius: 4,
+    }]},
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: GRID } },
         x: { grid: { display: false }, ticks: { maxRotation: 45 } }
       }
     }
   });
 }
 
-// ── 3. Середній Score по класу ───────────────────────────────────────────────
+// ── 3. Середній Score по класу ───────────────────────────
 function renderAvgScore(rows) {
   const classData = {};
   rows.forEach(r => {
@@ -251,34 +280,28 @@ function renderAvgScore(rows) {
 
   const labels = sorted.map(d => d.cls);
   const values = sorted.map(d => +d.avg.toFixed(2));
-  const colors = labels.map(c => CLASS_COLORS[c] || '#888');
+  const colors = labels.map(c => CLASS_COLORS[c] || '#8fc1e3');
 
   makeChart('chartAvgScore', {
     type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        data: values,
-        backgroundColor: colors.map(c => c + 'bb'),
-        borderColor: colors,
-        borderWidth: 1,
-        borderRadius: 4,
-      }]
-    },
+    data: { labels, datasets: [{
+      data: values,
+      backgroundColor: colors.map(c => c + 'bb'),
+      borderColor: colors, borderWidth: 1, borderRadius: 4,
+    }]},
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ' Score: ' + ctx.raw } }
-      },
+        tooltip: { callbacks: { label: ctx => ' Score: ' + ctx.raw } } },
       scales: {
-        y: { min: 0, max: 100, grid: { color: '#2a2d35' } },
+        y: { min: 0, max: 100, grid: { color: GRID } },
         x: { grid: { display: false } }
       }
     }
   });
 }
 
-// ── 4. Гільдія проти серверу ─────────────────────────────────────────────────
+// ── 4. Гільдія проти сервера ─────────────────────────────
 function renderVsServer(bestRows) {
   const thresholds = [50, 100, 200, 500];
   const counts = thresholds.map(t => bestRows.filter(r => r.overallRank <= t).length);
@@ -290,26 +313,24 @@ function renderVsServer(bestRows) {
       datasets: [{
         label: 'Гравців гільдії',
         data: counts,
-        backgroundColor: ['#ffd700bb','#c9a84cbb','#0070ddbb','#2a2d35bb'],
-        borderColor:     ['#ffd700',  '#c9a84c',  '#0070dd',  '#4a5060'],
-        borderWidth: 1,
-        borderRadius: 4,
+        backgroundColor: ['#8fc1e3cc','#5e9bc4bb','#0070ddaa','#283447bb'],
+        borderColor:     ['#8fc1e3',  '#5e9bc4',  '#0070dd',  '#3a4a60'],
+        borderWidth: 1, borderRadius: 4,
       }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' гравців' } }
-      },
+        tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' гравців' } } },
       scales: {
-        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#2a2d35' } },
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: GRID } },
         x: { grid: { display: false } }
       }
     }
   });
 }
 
-// ── 5. Топ-3 по спеку ───────────────────────────────────────────────────────
+// ── 5. Топ-3 по спеку ────────────────────────────────────
 function renderTop3(rows) {
   const bySpec = {};
   rows.forEach(r => {
@@ -328,14 +349,14 @@ function renderTop3(rows) {
   const medals = ['🥇', '🥈', '🥉'];
 
   specs.forEach(({ spec, top3 }) => {
-    const color = CLASS_COLORS[SPEC_CLASS[spec]] || '#888';
+    const color = CLASS_COLORS[SPEC_CLASS[spec]] || '#8fc1e3';
     for (let i = 0; i < 3; i++) {
       const p = top3[i];
       labels.push(p ? `${p.name} • ${spec} ${medals[i]}` : `— • ${spec} ${medals[i]}`);
       values.push(p ? p.overallScore || 0 : 0);
       const op = i === 0 ? 'dd' : i === 1 ? 'aa' : '66';
-      bgColors.push(p ? color + op : '#2a2d3544');
-      bdColors.push(p ? color : '#2a2d35');
+      bgColors.push(p ? color + op : '#28344744');
+      bdColors.push(p ? color : '#283447');
     }
   });
 
@@ -344,10 +365,7 @@ function renderTop3(rows) {
 
   makeChart('chartTop3', {
     type: 'bar',
-    data: {
-      labels,
-      datasets: [{ data: values, backgroundColor: bgColors, borderColor: bdColors, borderWidth:1, borderRadius:3 }]
-    },
+    data: { labels, datasets: [{ data: values, backgroundColor: bgColors, borderColor: bdColors, borderWidth:1, borderRadius:3 }] },
     options: {
       indexAxis: 'y',
       responsive: true, maintainAspectRatio: false,
@@ -356,15 +374,15 @@ function renderTop3(rows) {
         tooltip: { callbacks: { label: ctx => ctx.raw > 0 ? ` Score: ${ctx.raw.toFixed(2)}` : ' —' } }
       },
       scales: {
-        x: { min: 0, max: 100, grid: { color: '#2a2d35' } },
-        y: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#d4d8e0' } }
+        x: { min: 0, max: 100, grid: { color: GRID } },
+        y: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#dce4ee' } }
       }
     }
   });
 }
 
 loadAndRender().catch(e => {
-  document.getElementById('loading').innerHTML = '<p style="color:#e05555">Помилка завантаження</p>';
+  document.getElementById('loading').innerHTML = '<p style="color:#e06a6a">Помилка завантаження даних</p>';
   console.error(e);
 });
 </script>

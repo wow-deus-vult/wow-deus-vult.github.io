@@ -5,444 +5,158 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deus Vult — Freedom WoW</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap');
 
   :root {
-    --bg: #0a0c10;
-    --bg2: #111318;
-    --bg3: #1a1d24;
-    --border: #2a2d35;
-    --gold: #c9a84c;
-    --gold-glow: rgba(201,168,76,.15);
-    --ice: #7ecfef;
-    --ice-dim: #2a4a5a;
-    --text: #d4d8e0;
-    --text-muted: #6b7080;
+    --bg:#070a0f; --bg2:#0d121b; --bg3:#141b26;
+    --border:#1e2836; --border2:#283447;
+    --accent:#8fc1e3; --accent-dim:#4a6f8a;
+    --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
   }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px; min-height:100vh; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    min-height: 100vh;
-  }
-
-  /* ── NAV ── */
-  nav {
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    height: 52px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .nav-logo {
-    font-family: 'Cinzel', serif;
-    font-weight: 900;
-    font-size: 16px;
-    color: var(--gold);
-    letter-spacing: .05em;
-    margin-right: 32px;
-    text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 4px; }
-  .nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    transition: color .15s, background .15s;
-  }
-  .nav-links a:hover { color: var(--text); background: var(--bg3); }
-  .nav-links a.active { color: var(--gold); background: rgba(201,168,76,.1); }
+  nav { background:rgba(13,18,27,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+    padding:0 24px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Exo 2',sans-serif; font-weight:800; font-size:16px; color:var(--accent);
+    letter-spacing:.08em; margin-right:36px; text-decoration:none; display:flex; align-items:center; gap:8px; }
+  .nav-logo span { width:8px; height:8px; background:var(--accent); border-radius:2px; transform:rotate(45deg); box-shadow:0 0 12px var(--accent); }
+  .nav-links { display:flex; gap:2px; flex-wrap:wrap; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:7px 14px; border-radius:7px; font-size:13px; font-weight:600; transition:.15s; }
+  .nav-links a:hover { color:var(--text); background:var(--bg3); }
+  .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
 
   /* ── HERO ── */
-  .hero {
-    position: relative;
-    min-height: 420px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    padding: 80px 24px;
-  }
-
-  /* Анімований фон — льодяні промені */
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+  .hero { position:relative; min-height:440px; display:flex; align-items:center; justify-content:center;
+    text-align:center; overflow:hidden; padding:90px 24px; }
+  .hero::before { content:''; position:absolute; inset:0;
     background:
-      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(126,207,239,.08) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 20% 100%, rgba(201,168,76,.05) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 80% 100%, rgba(201,168,76,.05) 0%, transparent 60%);
-    animation: pulse 8s ease-in-out infinite alternate;
-  }
-  @keyframes pulse {
-    from { opacity: .6; }
-    to   { opacity: 1; }
-  }
+      radial-gradient(ellipse 60% 55% at 50% 0%, rgba(143,193,227,.12) 0%, transparent 68%),
+      radial-gradient(ellipse 40% 60% at 18% 100%, rgba(74,111,138,.10) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 82% 100%, rgba(74,111,138,.10) 0%, transparent 60%);
+    animation:pulse 8s ease-in-out infinite alternate; }
+  @keyframes pulse { from { opacity:.55; } to { opacity:1; } }
+  .hero::after { content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--accent), transparent); opacity:.5; }
 
-  /* Льодяні лінії зверху */
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--ice), transparent);
-    opacity: .4;
-  }
+  /* блок ромбів — підпис бренду */
+  .hero-content { position:relative; z-index:1; }
+  .hero-mark { display:flex; gap:10px; justify-content:center; margin-bottom:22px; }
+  .hero-mark i { width:9px; height:9px; background:var(--accent-dim); border-radius:2px; transform:rotate(45deg); }
+  .hero-mark i:nth-child(2) { background:var(--accent); box-shadow:0 0 14px var(--accent); }
 
-  .hero-content { position: relative; z-index: 1; }
-
-  .hero-cross {
-    font-size: 28px;
-    color: var(--gold);
-    opacity: .6;
-    display: block;
-    margin-bottom: 16px;
-    letter-spacing: .3em;
-  }
-
-  .hero h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(36px, 6vw, 64px);
-    font-weight: 900;
-    color: var(--gold);
-    letter-spacing: .06em;
-    line-height: 1;
-    margin-bottom: 8px;
-    text-shadow: 0 0 60px rgba(201,168,76,.3);
-  }
-
-  .hero-subtitle {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(12px, 2vw, 15px);
-    color: var(--text-muted);
-    letter-spacing: .25em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-  }
-
-  .hero-divider {
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto 32px;
-    opacity: .4;
-  }
-
-  .hero-desc {
-    max-width: 480px;
-    margin: 0 auto 40px;
-    color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 24px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all .2s;
-    letter-spacing: .02em;
-  }
-  .btn-primary {
-    background: var(--gold);
-    color: #0a0c10;
-  }
-  .btn-primary:hover {
-    background: #dbb85a;
-    box-shadow: 0 0 24px rgba(201,168,76,.35);
-    transform: translateY(-1px);
-  }
-  .btn-secondary {
-    background: transparent;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-  }
-  .btn-secondary:hover {
-    color: var(--text);
-    border-color: var(--text-muted);
-    transform: translateY(-1px);
-  }
+  .hero h1 { font-family:'Exo 2',sans-serif; font-size:clamp(40px,7vw,72px); font-weight:900; color:var(--text);
+    letter-spacing:.08em; line-height:1; margin-bottom:12px; text-shadow:0 0 50px rgba(143,193,227,.25); }
+  .hero h1 b { color:var(--accent); font-weight:900; }
+  .hero-subtitle { font-family:'Exo 2',sans-serif; font-size:clamp(12px,2vw,15px); color:var(--text-muted);
+    letter-spacing:.28em; text-transform:uppercase; margin-bottom:26px; }
+  .hero-divider { width:120px; height:1px; background:linear-gradient(90deg, transparent, var(--accent), transparent); margin:0 auto 28px; opacity:.5; }
+  .hero-desc { max-width:500px; margin:0 auto; color:var(--text-muted); font-size:14px; line-height:1.7; }
 
   /* ── STATS BAR ── */
-  .stats-bar {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--bg2);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .stat-item {
-    padding: 20px 40px;
-    text-align: center;
-    border-right: 1px solid var(--border);
-  }
-  .stat-item:last-child { border-right: none; }
-
-  .stat-value {
-    font-family: 'Cinzel', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--gold);
-    display: block;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .stat-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: var(--text-muted);
-  }
+  .stats-bar { border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--bg2);
+    display:flex; justify-content:center; flex-wrap:wrap; }
+  .stat-item { padding:22px 44px; text-align:center; border-right:1px solid var(--border); }
+  .stat-item:last-child { border-right:none; }
+  .stat-value { font-family:'Exo 2',sans-serif; font-size:26px; font-weight:800; color:var(--accent); display:block; line-height:1; margin-bottom:5px; }
+  .stat-label { font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); }
 
   /* ── CARDS ── */
-  .section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 24px;
-  }
+  .section { max-width:1100px; margin:0 auto; padding:64px 24px; }
+  .section-title { font-family:'Exo 2',sans-serif; font-size:12px; font-weight:700; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--accent-dim); margin-bottom:26px; display:flex; align-items:center; gap:14px; }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
 
-  .section-title {
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:16px; }
+  .card { background:linear-gradient(180deg, var(--bg2), rgba(13,18,27,.4)); border:1px solid var(--border);
+    border-radius:14px; padding:28px; text-decoration:none; color:var(--text); display:flex; flex-direction:column; gap:12px;
+    transition:border-color .2s, transform .2s, box-shadow .2s; position:relative; overflow:hidden; }
+  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--accent-dim), transparent); opacity:0; transition:opacity .2s; }
+  .card:hover { border-color:var(--accent-dim); transform:translateY(-3px); box-shadow:0 10px 34px rgba(0,0,0,.35); }
+  .card:hover::before { opacity:.6; }
+  .card-icon { font-size:24px; line-height:1; }
+  .card-title { font-family:'Exo 2',sans-serif; font-size:16px; font-weight:700; color:var(--accent); letter-spacing:.02em; }
+  .card-desc { font-size:13px; color:var(--text-muted); line-height:1.6; flex:1; }
+  .card-link { font-size:12px; color:var(--text); font-weight:600; display:flex; align-items:center; gap:5px; }
+  .card-link::after { content:'→'; transition:transform .2s; }
+  .card:hover .card-link::after { transform:translateX(4px); }
 
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px;
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color .2s, transform .2s, box-shadow .2s;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .card:hover {
-    border-color: var(--gold-dim, #7a6030);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0,0,0,.3);
-  }
-
-  .card-icon {
-    font-size: 24px;
-    line-height: 1;
-  }
-
-  .card-title {
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: .03em;
-  }
-
-  .card-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    flex: 1;
-  }
-
-  .card-link {
-    font-size: 12px;
-    color: var(--ice);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .card-link::after { content: '→'; transition: transform .2s; }
-  .card:hover .card-link::after { transform: translateX(4px); }
-
-  /* ── PROGRESSION ── */
-  .progress-section {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .progress-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 24px;
-  }
-
-  .raids {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .raid-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px 20px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-  }
-
-  .raid-name {
-    font-weight: 600;
-    font-size: 13px;
-    min-width: 200px;
-  }
-
-  .raid-mode {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    color: var(--text-muted);
-    min-width: 60px;
-  }
-
-  .bosses-track {
-    display: flex;
-    gap: 6px;
-    flex: 1;
-  }
-
-  .boss-pip {
-    width: 28px;
-    height: 28px;
-    border-radius: 4px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    color: var(--text-muted);
-    position: relative;
-    cursor: default;
-  }
-  .boss-pip.killed {
-    background: rgba(201,168,76,.15);
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-  .boss-pip.killed::after {
-    content: '✓';
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  .raid-progress-text {
-    font-family: 'Cinzel', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--gold);
-    min-width: 60px;
-    text-align: right;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 32px 24px;
-    color: var(--text-muted);
-    font-size: 12px;
-    border-top: 1px solid var(--border);
-  }
-  footer a { color: var(--ice); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
+  footer { text-align:center; padding:36px 24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
+  footer a { color:var(--accent); text-decoration:none; }
+  footer a:hover { text-decoration:underline; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="./">✠ DEUS VULT</a>
+  <a class="nav-logo" href="./"><span></span>DEUS VULT</a>
   <div class="nav-links">
     <a href="./" class="active">Головна</a>
     <a href="./guild-ranking/">Рейтинг DPS</a>
     <a href="./heal-ranking/">Рейтинг Heal</a>
-    <a href="./potion-stats/">Статистика Потів</a>
+    <a href="./potion-stats/">Статистика Зіль</a>
     <a href="./analytics/">Аналітика</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <span class="hero-cross">✠ · ✠ · ✠</span>
-    <h1>DEUS VULT</h1>
+    <div class="hero-mark"><i></i><i></i><i></i></div>
+    <h1>DEUS <b>VULT</b></h1>
     <p class="hero-subtitle">Freedom WoW</p>
     <div class="hero-divider"></div>
-
-
+    <p class="hero-desc">Рейтинги DPS та Heal, статистика зіль і аналітика складу гільдії. Дані оновлюються з рейдів ICC та Ruby Sanctum.</p>
   </div>
 </section>
 
-<!-- STATS BAR -->
 <div class="stats-bar" id="statsBar">
   <div class="stat-item">
     <span class="stat-value" id="statPlayers">—</span>
     <span class="stat-label">Гравців</span>
   </div>
-
   <div class="stat-item">
     <span class="stat-value" id="statUpdated">—</span>
     <span class="stat-label">Оновлено</span>
   </div>
 </div>
 
-
-
+<section class="section">
+  <div class="section-title">Розділи</div>
+  <div class="cards">
+    <a class="card" href="./guild-ranking/">
+      <span class="card-icon">⚔️</span>
+      <span class="card-title">Рейтинг DPS</span>
+      <span class="card-desc">Урон по босах ICC та Ruby Sanctum, ранги гільдії й сервера, фільтри по класах і спеках.</span>
+      <span class="card-link">Відкрити</span>
+    </a>
+    <a class="card" href="./heal-ranking/">
+      <span class="card-icon">✨</span>
+      <span class="card-title">Рейтинг Heal</span>
+      <span class="card-desc">HPS лікарів, перцентилі та позиції в рейтингу сервера за спеціалізаціями.</span>
+      <span class="card-link">Відкрити</span>
+    </a>
+    <a class="card" href="./potion-stats/">
+      <span class="card-icon">🧪</span>
+      <span class="card-title">Статистика Зіль</span>
+      <span class="card-desc">Хто скільки зіль випиває за рейд: Speed, Wild Magic, Insane Strength та інші.</span>
+      <span class="card-link">Відкрити</span>
+    </a>
+    <a class="card" href="./analytics/">
+      <span class="card-icon">📊</span>
+      <span class="card-title">Аналітика</span>
+      <span class="card-desc">Графіки складу гільдії: топ по спеках, популярність класів, гільдія проти сервера.</span>
+      <span class="card-link">Відкрити</span>
+    </a>
+  </div>
+</section>
 
 <footer>
   © Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a>
 </footer>
 
 <script>
-// Підтягуємо лічильник гравців з guild-data.json
 fetch('./data/guild-data.json')
   .then(r => r.json())
   .then(data => {

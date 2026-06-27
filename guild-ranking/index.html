@@ -5,102 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Рейтинг DPS — Deus Vult</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
   :root {
-    --bg:#0a0c10; --bg2:#111318; --bg3:#1a1d24;
-    --border:#2a2d35; --gold:#c9a84c; --gold-dim:#7a6030;
-    --ice:#7ecfef; --text:#d4d8e0; --text-muted:#6b7080;
-    --icc:#1a2535; --icc-border:#2a4060;
-    --rs:#1a251a;  --rs-border:#2a5030;
+    --bg:#070a0f; --bg2:#0d121b; --bg3:#141b26;
+    --border:#1e2836; --border2:#283447;
+    --accent:#8fc1e3; --accent-dim:#4a6f8a;
+    --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
+    --icc:#102234; --icc-border:#1f4060;
+    --rs:#10241a;  --rs-border:#1f5030;
+    --danger:#e06a6a;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; }
+  body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px;
+    background-image:radial-gradient(900px 500px at 80% -10%, rgba(143,193,227,.06), transparent 60%); }
 
-  nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; display:flex; align-items:center; height:52px; position:sticky; top:0; z-index:100; }
-  .nav-logo { font-family:'Cinzel',serif; font-weight:900; font-size:16px; color:var(--gold); letter-spacing:.05em; margin-right:32px; text-decoration:none; }
-  .nav-links { display:flex; gap:4px; }
-  .nav-links a { color:var(--text-muted); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:.15s; }
+  nav { background:rgba(13,18,27,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+    padding:0 24px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Exo 2',sans-serif; font-weight:800; font-size:16px; color:var(--accent);
+    letter-spacing:.08em; margin-right:36px; text-decoration:none; display:flex; align-items:center; gap:8px; }
+  .nav-logo span { width:8px; height:8px; background:var(--accent); border-radius:2px; transform:rotate(45deg); box-shadow:0 0 12px var(--accent); }
+  .nav-links { display:flex; gap:2px; flex-wrap:wrap; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:7px 14px; border-radius:7px; font-size:13px; font-weight:600; transition:.15s; }
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
-  .nav-links a.active { color:var(--gold); background:rgba(201,168,76,.1); }
+  .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
 
-  .page-header { padding:32px 24px 20px; max-width:1600px; margin:0 auto; border-bottom:1px solid var(--border); }
-  .page-header h1 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); margin-bottom:6px; }
-  .page-header p { color:var(--text-muted); font-size:13px; }
-  .page-header p a { color:var(--ice); text-decoration:none; }
-  .updated-at { font-size:11px; color:var(--text-muted); margin-top:4px; }
+  .page-header { padding:40px 24px 20px; max-width:1600px; margin:0 auto; }
+  .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:10px; }
+  .page-header h1 { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; color:var(--text); margin-bottom:8px; }
+  .page-header h1 b { color:var(--accent); }
+  .updated-at { font-size:12px; color:var(--text-faint); margin-top:6px; }
 
-  .controls { max-width:1600px; margin:0 auto; padding:16px 24px; display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; }
-  .control-group { display:flex; flex-direction:column; gap:4px; }
-  .control-group label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); }
-  select { background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:6px; font-size:13px; font-family:'Inter',sans-serif; cursor:pointer; outline:none; min-width:160px; }
-  select:hover,select:focus { border-color:var(--gold-dim); }
-  .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); }
-  .results-info strong { color:var(--text); }
+  .controls { max-width:1600px; margin:0 auto; padding:8px 24px 20px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
+  .control-group { display:flex; flex-direction:column; gap:6px; }
+  .control-group label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
+  select { background:var(--bg2); border:1px solid var(--border2); color:var(--text); padding:9px 13px; border-radius:8px;
+    font-size:13px; font-family:'Manrope',sans-serif; cursor:pointer; outline:none; min-width:170px; transition:.15s; }
+  select:hover,select:focus { border-color:var(--accent-dim); }
+  .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); align-self:center; }
+  .results-info strong { color:var(--accent); font-size:14px; }
 
   .table-wrap { max-width:1600px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; }
-
   table { width:100%; border-collapse:collapse; font-size:13px; }
 
-  /* ── Заголовки ── */
-  thead th {
-    text-align:left; padding:8px 10px;
-    font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.08em;
-    color:var(--text-muted); border-bottom:1px solid var(--border); white-space:nowrap;
-  }
+  thead th { text-align:left; padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--text-muted); border-bottom:1px solid var(--border2); white-space:nowrap; }
 
-  /* Рядок групових заголовків */
   thead tr.group-row th { border-bottom:none; padding:6px 4px 4px; }
-  thead tr.group-row th.g-icc {
-    text-align:center; font-size:10px; font-weight:700; letter-spacing:.12em;
-    color:#7ecfef; background:var(--icc); border:1px solid var(--icc-border);
-    border-bottom:none; border-radius:4px 4px 0 0; padding:5px 8px;
-  }
-  thead tr.group-row th.g-rs {
-    text-align:center; font-size:10px; font-weight:700; letter-spacing:.12em;
-    color:#7ecf8a; background:var(--rs); border:1px solid var(--rs-border);
-    border-bottom:none; border-radius:4px 4px 0 0; padding:5px 8px;
-  }
+  thead tr.group-row th.g-icc { text-align:center; font-family:'Exo 2',sans-serif; font-size:10px; font-weight:700;
+    letter-spacing:.14em; color:var(--accent); background:var(--icc); border:1px solid var(--icc-border);
+    border-bottom:none; border-radius:6px 6px 0 0; padding:6px 8px; }
+  thead tr.group-row th.g-rs { text-align:center; font-family:'Exo 2',sans-serif; font-size:10px; font-weight:700;
+    letter-spacing:.14em; color:#7fd4a0; background:var(--rs); border:1px solid var(--rs-border);
+    border-bottom:none; border-radius:6px 6px 0 0; padding:6px 8px; }
 
-  /* Рядок назв колонок */
-  thead tr.col-row th { border-bottom:1px solid var(--border); }
-  thead tr.col-row th.boss-icc {
-    text-align:center; font-size:10px; font-weight:400; letter-spacing:0;
-    background:var(--icc); border-left:1px solid var(--icc-border); border-right:1px solid var(--icc-border);
-    color:#7ecfef; padding:6px 6px;
-  }
-  thead tr.col-row th.boss-icc:first-of-type { border-left:1px solid var(--icc-border); }
-  thead tr.col-row th.boss-rs {
-    text-align:center; font-size:10px; font-weight:400; letter-spacing:0;
-    background:var(--rs); border-left:1px solid var(--rs-border); border-right:1px solid var(--rs-border);
-    color:#7ecf8a; padding:6px 6px;
-  }
+  thead tr.col-row th { border-bottom:1px solid var(--border2); }
+  thead tr.col-row th.boss-icc { text-align:center; font-size:10px; font-weight:500; letter-spacing:0;
+    background:var(--icc); border-left:1px solid var(--icc-border); border-right:1px solid var(--icc-border); color:var(--accent); padding:6px; }
+  thead tr.col-row th.boss-rs { text-align:center; font-size:10px; font-weight:500; letter-spacing:0;
+    background:var(--rs); border-left:1px solid var(--rs-border); border-right:1px solid var(--rs-border); color:#7fd4a0; padding:6px; }
 
-  tbody tr { border-bottom:1px solid rgba(42,45,53,.6); transition:background .1s; }
+  tbody tr { border-bottom:1px solid rgba(30,40,54,.6); transition:background .1s; }
   tbody tr:hover { background:var(--bg2); }
   td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
-  td:first-child { text-align:center; color:var(--text-muted); font-size:11px; width:36px; }
+  td:first-child { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
 
-  /* Boss DPS cells */
-  td.boss-icc { text-align:center; font-size:12px; font-variant-numeric:tabular-nums; background:rgba(26,37,53,.3); border-left:1px solid rgba(42,64,96,.2); border-right:1px solid rgba(42,64,96,.2); }
-  td.boss-rs  { text-align:center; font-size:12px; font-variant-numeric:tabular-nums; background:rgba(26,37,26,.3); border-left:1px solid rgba(42,80,48,.2); border-right:1px solid rgba(42,80,48,.2); }
-  td.boss-zero { color:var(--border); }
+  td.boss-icc { text-align:center; font-size:12px; font-variant-numeric:tabular-nums; background:rgba(16,34,52,.4); border-left:1px solid rgba(31,64,96,.25); border-right:1px solid rgba(31,64,96,.25); }
+  td.boss-rs  { text-align:center; font-size:12px; font-variant-numeric:tabular-nums; background:rgba(16,36,26,.4); border-left:1px solid rgba(31,80,48,.25); border-right:1px solid rgba(31,80,48,.25); }
+  td.boss-zero { color:var(--border2); }
 
-  .player-name { font-weight:600; }
-  .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border); padding:2px 7px; border-radius:4px; font-size:11px; color:var(--text-muted); }
-
-  .score-bar { display:flex; align-items:center; gap:8px; }
-  .score-val { font-weight:600; font-variant-numeric:tabular-nums; min-width:38px; text-align:right; }
-  .bar-track { width:50px; height:3px; background:var(--bg3); border-radius:2px; overflow:hidden; }
-  .bar-fill { height:100%; border-radius:2px; }
-
-  .rank-badge { font-size:12px; font-variant-numeric:tabular-nums; font-weight:600; }
+  .player-name { font-weight:700; }
+  .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border2); padding:2px 8px; border-radius:5px; font-size:11px; color:var(--text-muted); }
+  .score-val { font-weight:700; font-variant-numeric:tabular-nums; min-width:38px; text-align:right; }
+  .rank-badge { font-size:12px; font-variant-numeric:tabular-nums; font-weight:700; }
   .rank-guild  { color:var(--text-muted); }
-  .rank-top10  { color:#ffd700; }
-  .rank-top50  { color:var(--gold); }
+  .rank-top10  { color:#ffd96b; }
+  .rank-top50  { color:var(--accent); }
   .rank-other  { color:var(--text-muted); }
 
-  /* WoW class colors */
   .cls-Death-Knight { color:#c41e3a; }
   .cls-Druid        { color:#ff7c0a; }
   .cls-Hunter       { color:#aad372; }
@@ -113,29 +95,31 @@
   .cls-Warrior      { color:#c69b3a; }
   .cls-Feral-Combat { color:#ff7c0a; }
 
-  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
-  .loading-spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  .loading { text-align:center; padding:80px 24px; color:var(--text-muted); }
+  .loading-spinner { width:34px; height:34px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 18px; }
   @keyframes spin { to { transform:rotate(360deg); } }
 
-  footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; border-top:1px solid var(--border); }
-  footer a { color:var(--ice); text-decoration:none; }
+  footer { text-align:center; padding:32px 24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
+  footer a { color:var(--accent); text-decoration:none; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="../">✠ DEUS VULT</a>
+  <a class="nav-logo" href="../"><span></span>DEUS VULT</a>
   <div class="nav-links">
     <a href="../">Головна</a>
     <a href="./" class="active">Рейтинг DPS</a>
     <a href="../heal-ranking/">Рейтинг Heal</a>
-    <a href="../potion-stats/">Статистика Потів</a>
+    <a href="../potion-stats/">Статистика Зіль</a>
     <a href="../analytics/">Аналітика</a>
   </div>
 </nav>
 
 <div class="page-header">
-  <h1>Рейтинг DPS Deus Vult</h1>
+  <div class="eyebrow">Рейтинг урону</div>
+  <h1>Рейтинг <b>DPS</b> Deus Vult</h1>
   <div class="updated-at" id="updatedAt"></div>
 </div>
 
@@ -152,7 +136,7 @@
 </div>
 
 <div class="table-wrap">
-  <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження...</div></div>
+  <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
   <table id="rankTable" style="display:none">
     <thead id="tableHead"></thead>
     <tbody id="tableBody"></tbody>
@@ -183,19 +167,17 @@ const BOSS_LABELS = {
   'General Zarithrian':'Zarithrian','Baltharus the Warborn':'Baltharus',
 };
 
-const ALL_BOSSES = [...ICC_BOSSES, ...RS_BOSSES];
-
 let allRows = [], classes = [], specsByClass = {};
 
 const classSelect = document.getElementById('classSelect');
 const specSelect  = document.getElementById('specSelect');
 
 function scoreColor(s) {
-  if (s >= 95) return '#ffd700';
-  if (s >= 75) return '#a335ee';
-  if (s >= 50) return '#0070dd';
-  if (s >= 25) return '#1eff00';
-  return '#9d9d9d';
+  if (s >= 95) return '#ffd96b';
+  if (s >= 75) return '#c08bf0';
+  if (s >= 50) return '#5a9bd4';
+  if (s >= 25) return '#5ad17a';
+  return '#7c8aa0';
 }
 
 async function loadData() {
@@ -223,7 +205,7 @@ async function loadData() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('rankTable').style.display = '';
   } catch(e) {
-    document.getElementById('loading').innerHTML = '<p style="color:#e05555">Помилка завантаження</p>';
+    document.getElementById('loading').innerHTML = '<p style="color:var(--danger)">Помилка завантаження даних</p>';
   }
 }
 
@@ -244,14 +226,9 @@ specSelect.addEventListener('change', render);
 function buildHeader() {
   const thead = document.getElementById('tableHead');
 
-  // Рядок 1 — групові заголовки
   const tr1 = document.createElement('tr');
   tr1.className = 'group-row';
-
-  // Порожні клітинки для фіксованих колонок: #, Гравець, Клас/Спек, Guild Rank, Server Rank, Score
-  for (let i = 0; i < 6; i++) {
-    tr1.appendChild(document.createElement('th'));
-  }
+  for (let i = 0; i < 6; i++) tr1.appendChild(document.createElement('th'));
 
   const thIcc = document.createElement('th');
   thIcc.colSpan = ICC_BOSSES.length;
@@ -267,11 +244,9 @@ function buildHeader() {
 
   thead.appendChild(tr1);
 
-  // Рядок 2 — назви колонок
   const tr2 = document.createElement('tr');
   tr2.className = 'col-row';
 
-  // Фіксовані колонки — Guild Rank перед Server Rank
   ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Score'].forEach(t => {
     const th = document.createElement('th');
     th.textContent = t;
@@ -284,7 +259,6 @@ function buildHeader() {
     th.textContent = BOSS_LABELS[boss] || boss;
     tr2.appendChild(th);
   });
-
   RS_BOSSES.forEach(boss => {
     const th = document.createElement('th');
     th.className = 'boss-rs';
@@ -316,29 +290,19 @@ function render() {
     const serverRank = row.overallRank || 9999;
     const tr = document.createElement('tr');
 
-    // #
-    addTd(tr, guildRank, 'text-align:center;color:var(--text-muted);font-size:11px');
+    addTd(tr, guildRank, 'text-align:center;color:var(--text-faint);font-size:11px');
 
-    // Name
     const clsKey = row.class.replace(/ /g, '-');
     addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
-
-    // Class / Spec
-    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:600">${row.class}</span> <span class="spec-badge">${row.spec}</span>`);
-
-    // Guild Rank (перша!)
+    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class}</span> <span class="spec-badge">${row.spec}</span>`);
     addTd(tr, `<span class="rank-badge rank-guild">#${guildRank}</span>`);
 
-    // Server Rank (друга)
     const srCls = serverRank <= 10 ? 'rank-top10' : serverRank <= 50 ? 'rank-top50' : 'rank-other';
     addTd(tr, `<span class="rank-badge ${srCls}">#${serverRank}</span>`);
 
-    // Score — тільки число, без полоски
     const sc  = row.overallScore || 0;
-    const col = scoreColor(sc);
-    addTd(tr, `<span class="score-val" style="color:${col};font-weight:600">${sc.toFixed(2)}</span>`);
+    addTd(tr, `<span class="score-val" style="color:${scoreColor(sc)};font-weight:700">${sc.toFixed(2)}</span>`);
 
-    // ICC bosses
     ICC_BOSSES.forEach(boss => {
       const val = row.bosses?.[boss] || 0;
       const td  = document.createElement('td');
@@ -346,8 +310,6 @@ function render() {
       td.textContent = val > 0 ? Math.round(val).toLocaleString('uk-UA') : '—';
       tr.appendChild(td);
     });
-
-    // RS bosses
     RS_BOSSES.forEach(boss => {
       const val = row.bosses?.[boss] || 0;
       const td  = document.createElement('td');
