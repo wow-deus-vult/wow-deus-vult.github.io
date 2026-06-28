@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-06-27T07:15:15.010603+00:00",
+  "lastUpdated": "2026-06-28T11:24:52.130184+00:00",
   "boss": "Valithria Dreamwalker",
   "mode": "25H",
-  "totalHealers": 69,
+  "totalHealers": 82,
   "rows": [
     {
       "name": "Лісовиця",
@@ -22,7 +22,7 @@
       "hps": 44116.0,
       "server_rank": 20,
       "overall_rank": 37,
-      "overall_score": 86.68,
+      "overall_score": 86.7,
       "server_percentile": 99.09,
       "guild_rank": 2
     },
@@ -32,9 +32,9 @@
       "spec": "Holy",
       "hps": 41201.7,
       "server_rank": 48,
-      "overall_rank": 60,
-      "overall_score": 77.45,
-      "server_percentile": 97.76,
+      "overall_rank": 61,
+      "overall_score": 77.46,
+      "server_percentile": 97.77,
       "guild_rank": 3
     },
     {
@@ -45,7 +45,7 @@
       "server_rank": 72,
       "overall_rank": 48,
       "overall_score": 82.89,
-      "server_percentile": 96.62,
+      "server_percentile": 96.63,
       "guild_rank": 4
     },
     {
@@ -56,7 +56,7 @@
       "server_rank": 113,
       "overall_rank": 77,
       "overall_score": 70.6,
-      "server_percentile": 94.67,
+      "server_percentile": 94.69,
       "guild_rank": 5
     },
     {
@@ -66,8 +66,8 @@
       "hps": 38226.2,
       "server_rank": 126,
       "overall_rank": 44,
-      "overall_score": 84.71,
-      "server_percentile": 94.06,
+      "overall_score": 84.7,
+      "server_percentile": 94.07,
       "guild_rank": 6
     },
     {
@@ -77,8 +77,8 @@
       "hps": 37613.3,
       "server_rank": 156,
       "overall_rank": 90,
-      "overall_score": 66.29,
-      "server_percentile": 92.63,
+      "overall_score": 66.31,
+      "server_percentile": 92.65,
       "guild_rank": 7
     },
     {
@@ -88,7 +88,7 @@
       "hps": 34873.7,
       "server_rank": 4,
       "overall_rank": 100,
-      "overall_score": 40.85,
+      "overall_score": 40.94,
       "server_percentile": 99.86,
       "guild_rank": 8
     },
@@ -97,10 +97,10 @@
       "class": "Paladin",
       "spec": "Holy",
       "hps": 32706.7,
-      "server_rank": 517,
+      "server_rank": 518,
       "overall_rank": 106,
-      "overall_score": 63.18,
-      "server_percentile": 75.48,
+      "overall_score": 63.19,
+      "server_percentile": 75.49,
       "guild_rank": 9
     },
     {
@@ -108,11 +108,22 @@
       "class": "Paladin",
       "spec": "Holy",
       "hps": 32397.7,
-      "server_rank": 547,
+      "server_rank": 548,
       "overall_rank": 108,
       "overall_score": 62.86,
-      "server_percentile": 74.06,
+      "server_percentile": 74.07,
       "guild_rank": 10
+    },
+    {
+      "name": "Тайтус",
+      "class": "Shaman",
+      "spec": "Restoration",
+      "hps": 32174.7,
+      "server_rank": 8,
+      "overall_rank": 78,
+      "overall_score": 46.85,
+      "server_percentile": 99.68,
+      "guild_rank": 11
     },
     {
       "name": "Імбонутий",
@@ -120,21 +131,21 @@
       "spec": "Restoration",
       "hps": 30775.6,
       "server_rank": 18,
-      "overall_rank": 98,
-      "overall_score": 41.68,
+      "overall_rank": 97,
+      "overall_score": 41.75,
       "server_percentile": 99.23,
-      "guild_rank": 11
+      "guild_rank": 12
     },
     {
       "name": "Facelesspal",
       "class": "Paladin",
       "spec": "Holy",
       "hps": 30327.9,
-      "server_rank": 762,
-      "overall_rank": 276,
+      "server_rank": 764,
+      "overall_rank": 277,
       "overall_score": 0.0,
-      "server_percentile": 63.84,
-      "guild_rank": 12
+      "server_percentile": 63.83,
+      "guild_rank": 13
     },
     {
       "name": "Поетеса",
@@ -143,31 +154,42 @@
       "hps": 30231.5,
       "server_rank": 31,
       "overall_rank": 28,
-      "overall_score": 79.44,
+      "overall_score": 79.48,
       "server_percentile": 98.65,
-      "guild_rank": 13
+      "guild_rank": 14
     },
     {
       "name": "Чудоо",
       "class": "Paladin",
       "spec": "Holy",
       "hps": 30095.7,
-      "server_rank": 794,
-      "overall_rank": 97,
-      "overall_score": 65.03,
+      "server_rank": 796,
+      "overall_rank": 98,
+      "overall_score": 65.05,
       "server_percentile": 62.32,
-      "guild_rank": 14
+      "guild_rank": 15
     },
     {
       "name": "Sandora",
       "class": "Paladin",
       "spec": "Holy",
       "hps": 30045.7,
-      "server_rank": 799,
-      "overall_rank": 228,
-      "overall_score": 16.48,
-      "server_percentile": 62.09,
-      "guild_rank": 15
+      "server_rank": 801,
+      "overall_rank": 229,
+      "overall_score": 16.51,
+      "server_percentile": 62.08,
+      "guild_rank": 16
+    },
+    {
+      "name": "Fistahska",
+      "class": "Paladin",
+      "spec": "Holy",
+      "hps": 29692.7,
+      "server_rank": 838,
+      "overall_rank": 185,
+      "overall_score": 36.92,
+      "server_percentile": 60.33,
+      "guild_rank": 17
     },
     {
       "name": "Електричка",
@@ -176,9 +198,9 @@
       "hps": 29592.0,
       "server_rank": 46,
       "overall_rank": 74,
-      "overall_score": 48.96,
+      "overall_score": 48.97,
       "server_percentile": 97.98,
-      "guild_rank": 16
+      "guild_rank": 18
     },
     {
       "name": "Speedy",
@@ -187,64 +209,86 @@
       "hps": 29212.1,
       "server_rank": 57,
       "overall_rank": 7,
-      "overall_score": 92.67,
-      "server_percentile": 97.48,
-      "guild_rank": 17
+      "overall_score": 92.68,
+      "server_percentile": 97.49,
+      "guild_rank": 19
+    },
+    {
+      "name": "Protkleef",
+      "class": "Paladin",
+      "spec": "Holy",
+      "hps": 26131.7,
+      "server_rank": 1227,
+      "overall_rank": 158,
+      "overall_score": 44.57,
+      "server_percentile": 41.89,
+      "guild_rank": 20
     },
     {
       "name": "Старийшам",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 25812.6,
-      "server_rank": 297,
+      "server_rank": 298,
       "overall_rank": 85,
-      "overall_score": 43.71,
-      "server_percentile": 86.73,
-      "guild_rank": 18
+      "overall_score": 43.79,
+      "server_percentile": 86.71,
+      "guild_rank": 21
     },
     {
       "name": "Possibility",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 25700.8,
-      "server_rank": 308,
-      "overall_rank": 234,
+      "server_rank": 309,
+      "overall_rank": 235,
       "overall_score": 11.13,
-      "server_percentile": 86.23,
-      "guild_rank": 19
+      "server_percentile": 86.22,
+      "guild_rank": 22
     },
     {
       "name": "Цейроз",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 24639.6,
-      "server_rank": 451,
+      "server_rank": 452,
       "overall_rank": 139,
-      "overall_score": 31.63,
-      "server_percentile": 79.82,
-      "guild_rank": 20
+      "overall_score": 31.61,
+      "server_percentile": 79.83,
+      "guild_rank": 23
+    },
+    {
+      "name": "Deliell",
+      "class": "Paladin",
+      "spec": "Holy",
+      "hps": 24354.5,
+      "server_rank": 1382,
+      "overall_rank": 187,
+      "overall_score": 36.07,
+      "server_percentile": 34.54,
+      "guild_rank": 24
     },
     {
       "name": "Shampatine",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 24101.8,
-      "server_rank": 534,
+      "server_rank": 535,
       "overall_rank": 133,
-      "overall_score": 32.46,
-      "server_percentile": 76.1,
-      "guild_rank": 21
+      "overall_score": 32.56,
+      "server_percentile": 76.11,
+      "guild_rank": 25
     },
     {
       "name": "Говерла",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 23656.8,
-      "server_rank": 608,
+      "server_rank": 609,
       "overall_rank": 143,
       "overall_score": 30.9,
-      "server_percentile": 72.79,
-      "guild_rank": 22
+      "server_percentile": 72.8,
+      "guild_rank": 26
     },
     {
       "name": "Badabu",
@@ -253,20 +297,20 @@
       "hps": 22860.9,
       "server_rank": 56,
       "overall_rank": 25,
-      "overall_score": 60.54,
+      "overall_score": 60.36,
       "server_percentile": 97.46,
-      "guild_rank": 23
+      "guild_rank": 27
     },
     {
       "name": "Метро",
       "class": "Paladin",
       "spec": "Holy",
       "hps": 22846.8,
-      "server_rank": 1498,
-      "overall_rank": 272,
+      "server_rank": 1502,
+      "overall_rank": 273,
       "overall_score": 1.42,
-      "server_percentile": 28.88,
-      "guild_rank": 24
+      "server_percentile": 28.86,
+      "guild_rank": 28
     },
     {
       "name": "Калабаня",
@@ -274,43 +318,54 @@
       "spec": "Restoration",
       "hps": 21993.7,
       "server_rank": 75,
-      "overall_rank": 63,
-      "overall_score": 45.11,
+      "overall_rank": 64,
+      "overall_score": 45.16,
       "server_percentile": 96.58,
-      "guild_rank": 25
+      "guild_rank": 29
     },
     {
       "name": "Memory",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 21710.2,
-      "server_rank": 979,
-      "overall_rank": 186,
-      "overall_score": 20.76,
-      "server_percentile": 56.16,
-      "guild_rank": 26
+      "server_rank": 980,
+      "overall_rank": 188,
+      "overall_score": 20.74,
+      "server_percentile": 56.21,
+      "guild_rank": 30
     },
     {
       "name": "Debit",
       "class": "Paladin",
       "spec": "Holy",
       "hps": 21195.8,
-      "server_rank": 1643,
+      "server_rank": 1647,
       "overall_rank": 167,
-      "overall_score": 42.58,
+      "overall_score": 42.6,
       "server_percentile": 21.99,
-      "guild_rank": 27
+      "guild_rank": 31
+    },
+    {
+      "name": "Darsi",
+      "class": "Shaman",
+      "spec": "Restoration",
+      "hps": 20813.7,
+      "server_rank": 1146,
+      "overall_rank": 105,
+      "overall_score": 39.19,
+      "server_percentile": 48.79,
+      "guild_rank": 32
     },
     {
       "name": "Naturalist",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 20187.2,
-      "server_rank": 1243,
-      "overall_rank": 226,
-      "overall_score": 12.41,
-      "server_percentile": 44.32,
-      "guild_rank": 28
+      "server_rank": 1245,
+      "overall_rank": 227,
+      "overall_score": 12.42,
+      "server_percentile": 44.36,
+      "guild_rank": 33
     },
     {
       "name": "Kredit",
@@ -318,10 +373,10 @@
       "spec": "Restoration",
       "hps": 19872.0,
       "server_rank": 175,
-      "overall_rank": 53,
-      "overall_score": 48.12,
-      "server_percentile": 91.96,
-      "guild_rank": 29
+      "overall_rank": 54,
+      "overall_score": 48.07,
+      "server_percentile": 91.98,
+      "guild_rank": 34
     },
     {
       "name": "Ельгато",
@@ -330,9 +385,9 @@
       "hps": 19253.1,
       "server_rank": 209,
       "overall_rank": 15,
-      "overall_score": 68.62,
-      "server_percentile": 90.39,
-      "guild_rank": 30
+      "overall_score": 68.56,
+      "server_percentile": 90.41,
+      "guild_rank": 35
     },
     {
       "name": "Шатайтус",
@@ -341,42 +396,53 @@
       "hps": 18927.2,
       "server_rank": 236,
       "overall_rank": 123,
-      "overall_score": 28.15,
-      "server_percentile": 89.15,
-      "guild_rank": 31
+      "overall_score": 28.22,
+      "server_percentile": 89.17,
+      "guild_rank": 36
     },
     {
       "name": "Некрасуньчик",
       "class": "Paladin",
       "spec": "Holy",
       "hps": 18469.5,
-      "server_rank": 1797,
+      "server_rank": 1802,
       "overall_rank": 195,
-      "overall_score": 32.71,
-      "server_percentile": 14.67,
-      "guild_rank": 32
+      "overall_score": 32.72,
+      "server_percentile": 14.64,
+      "guild_rank": 37
+    },
+    {
+      "name": "Spirits",
+      "class": "Druid",
+      "spec": "Restoration",
+      "hps": 18193.1,
+      "server_rank": 299,
+      "overall_rank": 47,
+      "overall_score": 52.4,
+      "server_percentile": 86.26,
+      "guild_rank": 38
     },
     {
       "name": "Нойд",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 18080.3,
-      "server_rank": 1584,
-      "overall_rank": 247,
+      "server_rank": 1586,
+      "overall_rank": 248,
       "overall_score": 9.2,
-      "server_percentile": 29.04,
-      "guild_rank": 33
+      "server_percentile": 29.11,
+      "guild_rank": 39
     },
     {
       "name": "Бондик",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 17811.3,
-      "server_rank": 1621,
+      "server_rank": 1623,
       "overall_rank": 63,
       "overall_score": 57.34,
-      "server_percentile": 27.38,
-      "guild_rank": 34
+      "server_percentile": 27.45,
+      "guild_rank": 40
     },
     {
       "name": "Dombro",
@@ -385,20 +451,20 @@
       "hps": 17657.2,
       "server_rank": 370,
       "overall_rank": 139,
-      "overall_score": 25.34,
-      "server_percentile": 82.96,
-      "guild_rank": 35
+      "overall_score": 25.42,
+      "server_percentile": 82.99,
+      "guild_rank": 41
     },
     {
       "name": "Sonicx",
       "class": "Shaman",
       "spec": "Restoration",
       "hps": 17565.3,
-      "server_rank": 1665,
-      "overall_rank": 162,
-      "overall_score": 26.76,
-      "server_percentile": 25.41,
-      "guild_rank": 36
+      "server_rank": 1667,
+      "overall_rank": 151,
+      "overall_score": 29.52,
+      "server_percentile": 25.49,
+      "guild_rank": 42
     },
     {
       "name": "Zmeelove",
@@ -408,8 +474,8 @@
       "server_rank": 44,
       "overall_rank": 6,
       "overall_score": 71.4,
-      "server_percentile": 80.97,
-      "guild_rank": 37
+      "server_percentile": 81.05,
+      "guild_rank": 43
     },
     {
       "name": "Одинак",
@@ -418,9 +484,9 @@
       "hps": 16791.2,
       "server_rank": 479,
       "overall_rank": 153,
-      "overall_score": 22.78,
-      "server_percentile": 77.93,
-      "guild_rank": 38
+      "overall_score": 22.9,
+      "server_percentile": 77.97,
+      "guild_rank": 44
     },
     {
       "name": "Byronkamymy",
@@ -428,10 +494,10 @@
       "spec": "Restoration",
       "hps": 16586.4,
       "server_rank": 508,
-      "overall_rank": 67,
-      "overall_score": 43.95,
-      "server_percentile": 76.59,
-      "guild_rank": 39
+      "overall_rank": 68,
+      "overall_score": 43.93,
+      "server_percentile": 76.63,
+      "guild_rank": 45
     },
     {
       "name": "Facelessdru",
@@ -440,9 +506,20 @@
       "hps": 16320.2,
       "server_rank": 541,
       "overall_rank": 7,
-      "overall_score": 82.15,
-      "server_percentile": 75.06,
-      "guild_rank": 40
+      "overall_score": 82.11,
+      "server_percentile": 75.11,
+      "guild_rank": 46
+    },
+    {
+      "name": "Тетерок",
+      "class": "Druid",
+      "spec": "Restoration",
+      "hps": 15824.9,
+      "server_rank": 617,
+      "overall_rank": 77,
+      "overall_score": 40.97,
+      "server_percentile": 71.61,
+      "guild_rank": 47
     },
     {
       "name": "Чудачка",
@@ -451,9 +528,9 @@
       "hps": 15284.4,
       "server_rank": 665,
       "overall_rank": 8,
-      "overall_score": 78.72,
-      "server_percentile": 69.34,
-      "guild_rank": 41
+      "overall_score": 78.75,
+      "server_percentile": 69.4,
+      "guild_rank": 48
     },
     {
       "name": "Kebabmaster",
@@ -461,10 +538,10 @@
       "spec": "Restoration",
       "hps": 15138.9,
       "server_rank": 687,
-      "overall_rank": 253,
+      "overall_rank": 254,
       "overall_score": 0.0,
-      "server_percentile": 68.32,
-      "guild_rank": 42
+      "server_percentile": 68.38,
+      "guild_rank": 49
     },
     {
       "name": "Дупокусь",
@@ -474,8 +551,19 @@
       "server_rank": 698,
       "overall_rank": 75,
       "overall_score": 41.13,
-      "server_percentile": 67.82,
-      "guild_rank": 43
+      "server_percentile": 67.88,
+      "guild_rank": 50
+    },
+    {
+      "name": "Amaterasuqb",
+      "class": "Druid",
+      "spec": "Restoration",
+      "hps": 14984.7,
+      "server_rank": 704,
+      "overall_rank": 30,
+      "overall_score": 58.04,
+      "server_percentile": 67.6,
+      "guild_rank": 51
     },
     {
       "name": "Desti",
@@ -483,10 +571,10 @@
       "spec": "Restoration",
       "hps": 14023.5,
       "server_rank": 828,
-      "overall_rank": 84,
-      "overall_score": 36.67,
-      "server_percentile": 61.81,
-      "guild_rank": 44
+      "overall_rank": 85,
+      "overall_score": 36.68,
+      "server_percentile": 61.88,
+      "guild_rank": 52
     },
     {
       "name": "Домовик",
@@ -494,10 +582,10 @@
       "spec": "Restoration",
       "hps": 13891.5,
       "server_rank": 843,
-      "overall_rank": 45,
-      "overall_score": 52.67,
-      "server_percentile": 61.12,
-      "guild_rank": 45
+      "overall_rank": 46,
+      "overall_score": 52.65,
+      "server_percentile": 61.19,
+      "guild_rank": 53
     },
     {
       "name": "Полінце",
@@ -505,10 +593,10 @@
       "spec": "Restoration",
       "hps": 13778.8,
       "server_rank": 863,
-      "overall_rank": 74,
-      "overall_score": 41.16,
-      "server_percentile": 60.2,
-      "guild_rank": 46
+      "overall_rank": 76,
+      "overall_score": 41.06,
+      "server_percentile": 60.27,
+      "guild_rank": 54
     },
     {
       "name": "Powwder",
@@ -518,63 +606,63 @@
       "server_rank": 117,
       "overall_rank": 23,
       "overall_score": 27.98,
-      "server_percentile": 48.67,
-      "guild_rank": 47
+      "server_percentile": 48.89,
+      "guild_rank": 55
     },
     {
       "name": "Taknada",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 12447.9,
-      "server_rank": 1015,
-      "overall_rank": 253,
+      "server_rank": 1016,
+      "overall_rank": 254,
       "overall_score": 0.0,
-      "server_percentile": 53.18,
-      "guild_rank": 48
+      "server_percentile": 53.22,
+      "guild_rank": 56
     },
     {
       "name": "Takenada",
       "class": "Paladin",
       "spec": "Holy",
       "hps": 12446.0,
-      "server_rank": 2012,
-      "overall_rank": 276,
+      "server_rank": 2017,
+      "overall_rank": 277,
       "overall_score": 0.0,
-      "server_percentile": 4.46,
-      "guild_rank": 49
+      "server_percentile": 4.45,
+      "guild_rank": 57
     },
     {
       "name": "Missdru",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 11668.5,
-      "server_rank": 1088,
+      "server_rank": 1089,
       "overall_rank": 166,
       "overall_score": 18.53,
-      "server_percentile": 49.81,
-      "guild_rank": 50
+      "server_percentile": 49.86,
+      "guild_rank": 58
     },
     {
       "name": "Moonskye",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 11508.3,
-      "server_rank": 1100,
-      "overall_rank": 253,
+      "server_rank": 1101,
+      "overall_rank": 254,
       "overall_score": 0.0,
-      "server_percentile": 49.26,
-      "guild_rank": 51
+      "server_percentile": 49.3,
+      "guild_rank": 59
     },
     {
       "name": "Birmingham",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 10955.5,
-      "server_rank": 1146,
-      "overall_rank": 253,
+      "server_rank": 1147,
+      "overall_rank": 254,
       "overall_score": 0.0,
-      "server_percentile": 47.13,
-      "guild_rank": 52
+      "server_percentile": 47.18,
+      "guild_rank": 60
     },
     {
       "name": "Engeltje",
@@ -585,29 +673,40 @@
       "overall_rank": 75,
       "overall_score": 58.01,
       "server_percentile": 99.13,
-      "guild_rank": 53
+      "guild_rank": 61
     },
     {
       "name": "Vidis",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 2489.6,
-      "server_rank": 1633,
+      "server_rank": 1635,
       "overall_rank": 138,
-      "overall_score": 25.46,
-      "server_percentile": 24.65,
-      "guild_rank": 54
+      "overall_score": 25.53,
+      "server_percentile": 24.7,
+      "guild_rank": 62
+    },
+    {
+      "name": "Закарпайтус",
+      "class": "Priest",
+      "spec": "Discipline",
+      "hps": 1707.9,
+      "server_rank": 112,
+      "overall_rank": 30,
+      "overall_score": 81.72,
+      "server_percentile": 91.24,
+      "guild_rank": 63
     },
     {
       "name": "Бастурма",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 1214.9,
-      "server_rank": 1843,
+      "server_rank": 1845,
       "overall_rank": 109,
-      "overall_score": 32.22,
-      "server_percentile": 14.95,
-      "guild_rank": 55
+      "overall_score": 32.21,
+      "server_percentile": 15.02,
+      "guild_rank": 64
     },
     {
       "name": "Likeaboss",
@@ -616,9 +715,20 @@
       "hps": 1201.3,
       "server_rank": 150,
       "overall_rank": 49,
-      "overall_score": 72.48,
-      "server_percentile": 88.22,
-      "guild_rank": 56
+      "overall_score": 72.47,
+      "server_percentile": 88.24,
+      "guild_rank": 65
+    },
+    {
+      "name": "Делиель",
+      "class": "Druid",
+      "spec": "Restoration",
+      "hps": 1183.2,
+      "server_rank": 1855,
+      "overall_rank": 184,
+      "overall_score": 12.23,
+      "server_percentile": 14.56,
+      "guild_rank": 66
     },
     {
       "name": "Сількамяна",
@@ -627,9 +737,20 @@
       "hps": 713.3,
       "server_rank": 246,
       "overall_rank": 21,
-      "overall_score": 84.99,
-      "server_percentile": 80.63,
-      "guild_rank": 57
+      "overall_score": 85.01,
+      "server_percentile": 80.67,
+      "guild_rank": 67
+    },
+    {
+      "name": "Devos",
+      "class": "Priest",
+      "spec": "Discipline",
+      "hps": 645.9,
+      "server_rank": 274,
+      "overall_rank": 48,
+      "overall_score": 73.06,
+      "server_percentile": 78.47,
+      "guild_rank": 68
     },
     {
       "name": "Мегатайтус",
@@ -639,8 +760,30 @@
       "server_rank": 285,
       "overall_rank": 80,
       "overall_score": 55.44,
-      "server_percentile": 77.54,
-      "guild_rank": 58
+      "server_percentile": 77.6,
+      "guild_rank": 69
+    },
+    {
+      "name": "Делайна",
+      "class": "Priest",
+      "spec": "Discipline",
+      "hps": 511.2,
+      "server_rank": 343,
+      "overall_rank": 99,
+      "overall_score": 48.52,
+      "server_percentile": 73.02,
+      "guild_rank": 70
+    },
+    {
+      "name": "Missprist",
+      "class": "Priest",
+      "spec": "Discipline",
+      "hps": 431.4,
+      "server_rank": 445,
+      "overall_rank": 126,
+      "overall_score": 40.38,
+      "server_percentile": 64.98,
+      "guild_rank": 71
     },
     {
       "name": "Вісімрук",
@@ -649,108 +792,108 @@
       "hps": 395.0,
       "server_rank": 510,
       "overall_rank": 32,
-      "overall_score": 80.65,
-      "server_percentile": 59.76,
-      "guild_rank": 59
+      "overall_score": 80.66,
+      "server_percentile": 59.85,
+      "guild_rank": 72
     },
     {
       "name": "Flame",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 390.7,
-      "server_rank": 2115,
-      "overall_rank": 253,
+      "server_rank": 2119,
+      "overall_rank": 254,
       "overall_score": 0.0,
-      "server_percentile": 2.4,
-      "guild_rank": 60
+      "server_percentile": 2.39,
+      "guild_rank": 73
     },
     {
       "name": "Sadpriest",
       "class": "Priest",
       "spec": "Discipline",
       "hps": 317.1,
-      "server_rank": 633,
-      "overall_rank": 142,
+      "server_rank": 634,
+      "overall_rank": 143,
       "overall_score": 35.66,
-      "server_percentile": 50.03,
-      "guild_rank": 61
+      "server_percentile": 50.07,
+      "guild_rank": 74
     },
     {
       "name": "Aspin",
       "class": "Priest",
       "spec": "Discipline",
       "hps": 276.0,
-      "server_rank": 719,
+      "server_rank": 720,
       "overall_rank": 187,
-      "overall_score": 14.24,
-      "server_percentile": 43.24,
-      "guild_rank": 62
+      "overall_score": 14.21,
+      "server_percentile": 43.29,
+      "guild_rank": 75
     },
     {
       "name": "Мотиватор",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 267.8,
-      "server_rank": 2144,
-      "overall_rank": 253,
+      "server_rank": 2148,
+      "overall_rank": 254,
       "overall_score": 0.0,
-      "server_percentile": 1.06,
-      "guild_rank": 63
+      "server_percentile": 1.05,
+      "guild_rank": 76
     },
     {
       "name": "Popkorn",
       "class": "Druid",
       "spec": "Restoration",
       "hps": 253.4,
-      "server_rank": 2147,
-      "overall_rank": 253,
+      "server_rank": 2151,
+      "overall_rank": 254,
       "overall_score": 0.0,
       "server_percentile": 0.92,
-      "guild_rank": 64
+      "guild_rank": 77
     },
     {
       "name": "Дівія",
       "class": "Priest",
       "spec": "Discipline",
       "hps": 202.1,
-      "server_rank": 936,
+      "server_rank": 938,
       "overall_rank": 195,
       "overall_score": 11.06,
-      "server_percentile": 26.08,
-      "guild_rank": 65
+      "server_percentile": 26.1,
+      "guild_rank": 78
     },
     {
       "name": "Taknado",
       "class": "Priest",
       "spec": "Discipline",
       "hps": 149.6,
-      "server_rank": 1101,
+      "server_rank": 1103,
       "overall_rank": 184,
-      "overall_score": 14.85,
-      "server_percentile": 13.04,
-      "guild_rank": 66
+      "overall_score": 14.86,
+      "server_percentile": 13.09,
+      "guild_rank": 79
     },
     {
       "name": "Facelesprist",
       "class": "Priest",
       "spec": "Discipline",
       "hps": 142.1,
-      "server_rank": 1122,
+      "server_rank": 1124,
       "overall_rank": 85,
       "overall_score": 54.12,
-      "server_percentile": 11.38,
-      "guild_rank": 67
+      "server_percentile": 11.43,
+      "guild_rank": 80
     },
     {
       "name": "Bart",
       "class": "Priest",
       "spec": "Discipline",
       "hps": 141.7,
-      "server_rank": 1125,
-      "overall_rank": 164,
-      "overall_score": 25.41,
-      "server_percentile": 11.14,
-      "guild_rank": 68
+      "server_rank": 1127,
+      "overall_rank": 165,
+      "overall_score": 25.43,
+      "server_percentile": 11.19,
+      "guild_rank": 81
     },
     {
       "name": "Oppenheimer",
@@ -760,7 +903,7 @@
       "server_rank": null,
       "overall_rank": 217,
       "overall_score": 7.97,
-      "guild_rank": 69
+      "guild_rank": 82
     }
   ]
 }
