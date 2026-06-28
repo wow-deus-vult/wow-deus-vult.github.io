@@ -1,21 +1,22 @@
 """
 fetch_guild_stats.py — Deus Vult / FreedomUA
-Збирає статистику рейдів гільдії:
-- Кількість рейдів ЦЛК 25хм (12+ наших гравців)
-- Кількість рейдів РС 25хм (12+ наших гравців)
-- Кількість вбивств Ліча по гравцях
+Збирає статистику рейдів гільдії.
 Результат: data/guild-stats.json
+
+Черга незавантажених логів: data/pending_logs.json
 """
 
 import json, re, time, requests
 from datetime import datetime, timezone
 from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
+from log_queue import LogQueue
 
 BASE_URL = "https://uwu-logs.xyz"
 SERVER   = "FreedomUA"
 OUTPUT   = "data/guild-stats.json"
 HEADERS  = {"User-Agent": "Mozilla/5.0"}
+DELAY    = 4.0
 
 GUILD_UPLOADERS = [
     "Denmark", "Bonem", "Sweden", "Norway", "Калабаня", "Лісовиця",
@@ -136,19 +137,14 @@ ICC_BOSSES = {
     "blood-queen-lanathel", "sindragosa", "the-lich-king", "valithria-dreamwalker",
     "gunship-battle",
 }
-
 RS_BOSSES = {
     "halion", "saviana-ragefire", "general-zarithrian", "baltharus-the-warborn",
 }
-
 LICH_KING_BOSS = "the-lich-king"
 MIN_GUILD_PLAYERS = 12
 
 
-DELAY = 4.0
-
 def safe_get(url):
-    """GET з автоматичним retry при 429."""
     time.sleep(DELAY)
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
@@ -165,7 +161,7 @@ def safe_get(url):
         return None
 
 
-def get_guild_logs():
+def get_all_log_ids():
     print("Збираємо список логів FreedomUA...")
     r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=15)
     soup = BeautifulSoup(r.text, "html.parser")
@@ -175,13 +171,11 @@ def get_guild_logs():
             log_id = a["href"].strip("/").replace("reports/", "")
             if log_id and any(u in log_id for u in GUILD_UPLOADERS):
                 log_ids.append(log_id)
-
     for log_id in EXTRA_LOGS:
         if log_id not in log_ids:
             log_ids.append(log_id)
-
     log_ids.sort(reverse=True)
-    print(f"Логів для обробки: {len(log_ids)}")
+    print(f"  Знайдено: {len(log_ids)} логів")
     return log_ids
 
 
@@ -191,7 +185,6 @@ def parse_log(log_id, members):
     if not r:
         return None
     soup = BeautifulSoup(r.text, "html.parser")
-
     guild_players = set()
     for a in soup.find_all("a", href=True):
         href = a["href"]
@@ -201,10 +194,8 @@ def parse_log(log_id, members):
                 name = parts[-1]
                 if name in members:
                     guild_players.add(name)
-
     icc_kills, rs_kills = [], []
     has_lich_king_kill = False
-
     for a in soup.find_all("a", class_="kill-link"):
         href = a.get("href", "")
         boss_match = re.search(r"boss=([^&]+)", href)
@@ -223,7 +214,6 @@ def parse_log(log_id, members):
         elif boss in RS_BOSSES:
             if boss not in rs_kills:
                 rs_kills.append(boss)
-
     return {
         "guild_players": list(guild_players),
         "icc_kills": icc_kills,
@@ -232,24 +222,61 @@ def parse_log(log_id, members):
     }
 
 
+def load_stats_cache():
+    cache = OUTPUT.replace(".json", "_cache.json")
+    if not os.path.exists(cache):
+        return {"icc_raids": 0, "rs_raids": 0, "lich_kills_per_player": {}}
+    with open(cache, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_stats_cache(stats):
+    import os
+    cache = OUTPUT.replace(".json", "_cache.json")
+    os.makedirs(os.path.dirname(cache), exist_ok=True)
+    with open(cache, "w", encoding="utf-8") as f:
+        json.dump(stats, f, ensure_ascii=False)
+
+
+def save_output(stats):
+    import os
+    data = {
+        "icc_raids": stats["icc_raids"],
+        "rs_raids": stats["rs_raids"],
+        "lich_king_kills": len(stats["lich_kills_per_player"]),
+        "lich_kills_per_player": stats["lich_kills_per_player"],
+        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+    }
+    os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
+    with open(OUTPUT, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
 if __name__ == "__main__":
+    import os
     print("=== Збирач статистики рейдів Deus Vult ===\n")
-
     members = parse_epgp_members()
-    log_ids = get_guild_logs()
 
-    print(f"\nОбробляємо {len(log_ids)} логів...\n")
+    queue = LogQueue()
+    all_ids = get_all_log_ids()
+    queue.add_logs(all_ids)
 
-    icc_raids = 0
-    rs_raids = 0
-    lich_kills_per_player = {}
+    stats = load_stats_cache()
+    print(f"  Кеш: ЦЛК={stats['icc_raids']} РС={stats['rs_raids']} Ліч={len(stats['lich_kills_per_player'])}")
 
-    for i, log_id in enumerate(log_ids):
-        print(f"[{i+1}/{len(log_ids)}] {log_id}...", end=" ", flush=True)
+    pending = queue.iter_pending()
+    total_pending = len(pending)
+    print(f"\nОбробляємо {total_pending} логів з черги...\n")
+
+    processed = 0
+    skipped = 0
+
+    for i, log_id in enumerate(pending):
+        print(f"[{i+1}/{total_pending}] {log_id}...", end=" ", flush=True)
         result = parse_log(log_id, members)
-
         if not result:
-            print("пропущено")
+            print("пропущено (лишається в черзі)")
+            skipped += 1
             continue
 
         guild_count = len(result["guild_players"])
@@ -257,29 +284,26 @@ if __name__ == "__main__":
 
         if guild_count >= MIN_GUILD_PLAYERS:
             if result["icc_kills"]:
-                icc_raids += 1
+                stats["icc_raids"] += 1
             if result["rs_kills"]:
-                rs_raids += 1
+                stats["rs_raids"] += 1
             if result["has_lich_king_kill"]:
                 for name in result["guild_players"]:
-                    lich_kills_per_player[name] = lich_kills_per_player.get(name, 0) + 1
+                    stats["lich_kills_per_player"][name] = \
+                        stats["lich_kills_per_player"].get(name, 0) + 1
 
-    stats = {
-        "icc_raids": icc_raids,
-        "rs_raids": rs_raids,
-        "lich_king_kills": len(lich_kills_per_player),
-        "lich_kills_per_player": lich_kills_per_player,
-        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-    }
-
-    with open(OUTPUT, "w", encoding="utf-8") as f:
-        json.dump(stats, f, ensure_ascii=False, indent=2)
+        queue.mark_done(log_id)
+        save_stats_cache(stats)
+        save_output(stats)
+        processed += 1
 
     print(f"\n=== Результат ===")
-    print(f"Рейдів ЦЛК 25хм: {icc_raids}")
-    print(f"Рейдів РС 25хм: {rs_raids}")
-    print(f"Гравців з вбивствами Ліча: {len(lich_kills_per_player)}")
-    if lich_kills_per_player:
-        top = sorted(lich_kills_per_player.items(), key=lambda x: x[1], reverse=True)[:5]
-        print(f"Топ-5 по вбивствах Ліча: {top}")
-    print(f"Збережено: {OUTPUT}")
+    print(f"  Оброблено цього разу: {processed}")
+    print(f"  Залишилось в черзі:   {queue.pending_count}")
+    print(f"  Рейдів ЦЛК 25хм:     {stats['icc_raids']}")
+    print(f"  Рейдів РС 25хм:      {stats['rs_raids']}")
+    print(f"  Гравців з Лічем:     {len(stats['lich_kills_per_player'])}")
+    if stats["lich_kills_per_player"]:
+        top = sorted(stats["lich_kills_per_player"].items(), key=lambda x: x[1], reverse=True)[:5]
+        print(f"  Топ-5 по Лічу: {top}")
+    print(f"\n✓ Збережено: {OUTPUT}")

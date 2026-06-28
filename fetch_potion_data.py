@@ -2,17 +2,21 @@
 fetch_potion_data.py — Deus Vult / FreedomUA
 Збирає статистику потів з /consumables/ сторінок uwu-logs
 Результат: data/potion-stats.json
+
+Черга незавантажених логів: data/pending_logs.json
 """
 
 import json, re, time, requests
 from datetime import datetime, timezone
 from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
+from log_queue import LogQueue
 
 BASE_URL = "https://uwu-logs.xyz"
 SERVER   = "FreedomUA"
 OUTPUT   = "data/potion-stats.json"
 HEADERS  = {"User-Agent": "Mozilla/5.0", "Origin": BASE_URL}
+DELAY    = 4.0
 
 GUILD_UPLOADERS = [
     "Denmark", "Bonem", "Sweden", "Norway", "Калабаня", "Лісовиця",
@@ -136,10 +140,7 @@ POTION_COLUMNS = {
 }
 
 
-DELAY = 4.0
-
 def safe_get(url):
-    """GET з автоматичним retry при 429."""
     time.sleep(DELAY)
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
@@ -156,7 +157,7 @@ def safe_get(url):
         return None
 
 
-def get_guild_logs():
+def get_all_log_ids():
     print("Збираємо список логів FreedomUA...")
     r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=15)
     soup = BeautifulSoup(r.text, "html.parser")
@@ -166,13 +167,11 @@ def get_guild_logs():
             log_id = a["href"].strip("/").replace("reports/", "")
             if log_id and any(u in log_id for u in GUILD_UPLOADERS):
                 log_ids.append(log_id)
-
     for log_id in EXTRA_LOGS:
         if log_id not in log_ids:
             log_ids.append(log_id)
-
     log_ids.sort(reverse=True)
-    print(f"Логів для обробки: {len(log_ids)}")
+    print(f"  Знайдено: {len(log_ids)} логів")
     return log_ids
 
 
@@ -182,18 +181,15 @@ def parse_consumables(log_id, members):
     if not r:
         return None
     soup = BeautifulSoup(r.text, "html.parser")
-
     tbody = soup.find("tbody", id="potions-table-body")
     thead = soup.find("thead")
     if not tbody or not thead:
         return None
-
     col_indices = {}
     for i, th in enumerate(thead.find_all("th")):
         title = th.get("title", "")
         if title in POTION_COLUMNS:
             col_indices[title] = i
-
     players = []
     for tr in tbody.find_all("tr"):
         tds = tr.find_all("td")
@@ -218,15 +214,12 @@ def parse_consumables(log_id, members):
             except Exception:
                 row[key] = 0
         players.append(row)
-
     if not players:
         return None
-
     parts = log_id.split("--")
     date_parts = parts[0].split("-")
     date_str = f"20{date_parts[0]}-{date_parts[1]}-{date_parts[2]}"
     uploader = parts[-2] if len(parts) >= 2 else ""
-
     return {
         "raidUrl": f"{BASE_URL}/reports/{log_id}/",
         "consumablesUrl": url,
@@ -234,6 +227,22 @@ def parse_consumables(log_id, members):
         "uploader": uploader,
         "players": sorted(players, key=lambda p: p["total"], reverse=True),
     }
+
+
+def load_raids_cache():
+    cache = OUTPUT.replace(".json", "_cache.json")
+    if not os.path.exists(cache):
+        return []
+    with open(cache, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_raids_cache(raids):
+    import os
+    cache = OUTPUT.replace(".json", "_cache.json")
+    os.makedirs(os.path.dirname(cache), exist_ok=True)
+    with open(cache, "w", encoding="utf-8") as f:
+        json.dump(raids, f, ensure_ascii=False)
 
 
 def build_honor_board(raids):
@@ -250,7 +259,6 @@ def build_honor_board(raids):
             player_stats[name]["totalPotions"] += p["total"]
             for key in POTION_COLUMNS.values():
                 player_stats[name][key] += p.get(key, 0)
-
     board = list(player_stats.values())
     for p in board:
         p["avgPerRaid"] = round(p["totalPotions"] / p["raids"], 2) if p["raids"] > 0 else 0
@@ -258,7 +266,8 @@ def build_honor_board(raids):
     return board
 
 
-def save(raids):
+def save_output(raids):
+    import os
     honor_board = build_honor_board(raids)
     data = {
         "generated": datetime.now(timezone.utc).isoformat(),
@@ -266,30 +275,48 @@ def save(raids):
         "raids": raids,
         "honorBoard": honor_board,
     }
+    os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":
+    import os
     print("=== Збирач статистики потів Deus Vult ===\n")
     members = parse_epgp_members()
-    log_ids = get_guild_logs()
 
-    raids = []
-    total = len(log_ids)
-    for i, log_id in enumerate(log_ids):
-        print(f"[{i+1}/{total}] {log_id}...", end=" ", flush=True)
+    queue = LogQueue()
+    all_ids = get_all_log_ids()
+    queue.add_logs(all_ids)
+
+    raids = load_raids_cache()
+    print(f"  Рейдів у кеші: {len(raids)}")
+
+    pending = queue.iter_pending()
+    total_pending = len(pending)
+    print(f"\nОбробляємо {total_pending} логів з черги...\n")
+
+    processed = 0
+    skipped = 0
+
+    for i, log_id in enumerate(pending):
+        print(f"[{i+1}/{total_pending}] {log_id}...", end=" ", flush=True)
         result = parse_consumables(log_id, members)
         if result:
             raids.append(result)
+            queue.mark_done(log_id)
+            save_raids_cache(raids)
+            save_output(raids)
+            processed += 1
             print(f"✓ {len(result['players'])} гравців")
         else:
-            print("пропущено")
+            print("пропущено (лишається в черзі)")
+            skipped += 1
 
-        if (i + 1) % 10 == 0:
-            save(raids)
-
-    save(raids)
-    print(f"\n✓ Готово! {OUTPUT}")
-    print(f"  Рейдів: {len(raids)}")
-    print(f"  Гравців в дошці: {len(build_honor_board(raids))}")
+    save_output(raids)
+    print(f"\n=== Результат ===")
+    print(f"  Оброблено цього разу: {processed}")
+    print(f"  Залишилось в черзі:   {queue.pending_count}")
+    print(f"  Всього рейдів:        {len(raids)}")
+    print(f"  Гравців в дошці:      {len(build_honor_board(raids))}")
+    print(f"\n✓ Збережено: {OUTPUT}")

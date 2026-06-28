@@ -2,18 +2,23 @@
 fetch_total_damage.py — Deus Vult / FreedomUA
 Total Damage кожного гравця, розбитий ПО СЕЗОНАХ.
 Результат: data/total-damage.json
+
+Черга незавантажених логів: data/pending_logs.json
+При кожному запуску підхоплює з того місця де зупинився.
 """
 
 import json, os, re, time, requests
 from datetime import datetime, timezone, date
 from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
+from log_queue import LogQueue
 
 BASE_URL     = "https://uwu-logs.xyz"
 SERVER       = "FreedomUA"
 OUTPUT       = "data/total-damage.json"
 SEASONS_FILE = "seasons.json"
 HEADERS      = {"User-Agent": "Mozilla/5.0", "Origin": BASE_URL}
+DELAY        = 4.0
 
 GUILD_UPLOADERS = [
     "Denmark", "Bonem", "Sweden", "Norway", "Калабаня", "Лісовиця",
@@ -135,11 +140,8 @@ CLASS_CSS_TO_NAME = {
     "shaman": "Shaman", "warlock": "Warlock", "warrior": "Warrior",
 }
 
-DELAY = 4.0  # пауза між запитами (секунди)
-
 
 def safe_get(url):
-    """GET з автоматичним retry при 429."""
     time.sleep(DELAY)
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
@@ -166,7 +168,6 @@ def load_seasons():
     today = date.today()
     s = {"id": "s1", "name": "Season 1",
          "start": today.replace(day=1).isoformat(), "end": "2099-12-31"}
-    print("  ⚠ seasons.json не знайдено — створюю дефолтний Season 1")
     with open(SEASONS_FILE, "w", encoding="utf-8") as f:
         json.dump({"seasons": [s]}, f, ensure_ascii=False, indent=2)
     return [s]
@@ -178,7 +179,8 @@ def log_id_to_date(log_id):
     return date(int("20" + yy), int(mm), int(dd))
 
 
-def get_guild_logs():
+def get_all_log_ids():
+    """Збирає логи з /logs_list (наших uploaders) + EXTRA_LOGS."""
     print("Збираємо список логів FreedomUA...")
     r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=15)
     soup = BeautifulSoup(r.text, "html.parser")
@@ -188,13 +190,11 @@ def get_guild_logs():
             log_id = a["href"].strip("/").replace("reports/", "")
             if log_id and any(u in log_id for u in GUILD_UPLOADERS):
                 log_ids.append(log_id)
-
     for log_id in EXTRA_LOGS:
         if log_id not in log_ids:
             log_ids.append(log_id)
-
     log_ids.sort(reverse=True)
-    print(f"Логів для обробки: {len(log_ids)} (наших uploaders + {len(EXTRA_LOGS)} extra)")
+    print(f"  Знайдено: {len(log_ids)} логів")
     return log_ids
 
 
@@ -204,7 +204,6 @@ def parse_report_damage(log_id, members):
     if not r:
         return None
     soup = BeautifulSoup(r.text, "html.parser")
-
     per_player = {}
     for tr in soup.find_all("tr"):
         pc = tr.find("td", class_="player-cell")
@@ -216,26 +215,54 @@ def parse_report_damage(log_id, members):
         name = a.get_text(strip=True)
         if name == "Total" or name not in members:
             continue
-
         a_cls = " ".join(a.get("class", [])).strip()
         cls_name = CLASS_CSS_TO_NAME.get(a_cls, a_cls)
         spec = pc.get("title", "")
-
         dmg_cell = tr.find("td", class_=lambda c: c and "damage" in c and "total-cell" in c)
         if not dmg_cell:
             continue
         num = int(re.sub(r"[^\d]", "", dmg_cell.get_text(strip=True)) or 0)
         if not num:
             continue
-
         slot = per_player.setdefault(name, {"dmg": 0, "class": cls_name, "spec": spec, "_best": 0})
         slot["dmg"] += num
         if num > slot["_best"]:
             slot["_best"] = num
             slot["class"] = cls_name
             slot["spec"] = spec
-
     return per_player or None
+
+
+def load_existing_raids():
+    """Завантажує вже зібрані рейди з JSON."""
+    if not os.path.exists(OUTPUT):
+        return []
+    with open(OUTPUT, encoding="utf-8") as f:
+        data = json.load(f)
+    # Відновлюємо список рейдів з allTime rows — але нам потрібні сирі дані.
+    # Зберігаємо їх окремо у _raids_cache.json
+    cache = OUTPUT.replace(".json", "_cache.json")
+    if os.path.exists(cache):
+        with open(cache, encoding="utf-8") as f:
+            return json.load(f)
+    return []
+
+
+def save_raids_cache(raids):
+    cache = OUTPUT.replace(".json", "_cache.json")
+    with open(cache, "w", encoding="utf-8") as f:
+        # date не серіалізується — конвертуємо в str
+        serializable = [{"date": str(r["date"]), "per_player": r["per_player"]} for r in raids]
+        json.dump(serializable, f, ensure_ascii=False)
+
+
+def load_raids_cache():
+    cache = OUTPUT.replace(".json", "_cache.json")
+    if not os.path.exists(cache):
+        return []
+    with open(cache, encoding="utf-8") as f:
+        raw = json.load(f)
+    return [{"date": date.fromisoformat(r["date"]), "per_player": r["per_player"]} for r in raw]
 
 
 def aggregate(per_report_list):
@@ -255,26 +282,10 @@ def aggregate(per_report_list):
     return rows
 
 
-def build(members, log_ids, seasons):
-    raids = []
-    total = len(log_ids)
-    for i, log_id in enumerate(log_ids):
-        print(f"[{i+1}/{total}] {log_id}...", end=" ", flush=True)
-        try:
-            rdate = log_id_to_date(log_id)
-        except Exception:
-            print("дата?"); continue
-        per = parse_report_damage(log_id, members)
-        if not per:
-            print("пропущено")
-            continue
-        raids.append({"date": rdate, "per_player": per})
-        print(f"✓ {len(per)} гравців ({rdate})")
-
+def save_output(raids, seasons):
     season_out = []
     today = date.today()
     current_id = None
-
     for s in seasons:
         s_start = date.fromisoformat(s["start"])
         s_end = date.fromisoformat(s["end"])
@@ -285,35 +296,71 @@ def build(members, log_ids, seasons):
                            "raidsCount": len(in_season), "rows": rows})
         if s_start <= today <= s_end:
             current_id = s["id"]
-
     if current_id is None and season_out:
         current_id = max(seasons, key=lambda s: s["end"])["id"]
-
     all_rows = aggregate([r["per_player"] for r in raids])
-    return {
+    data = {
         "lastUpdated": datetime.now(timezone.utc).isoformat(),
         "currentSeasonId": current_id,
         "seasons": season_out,
         "allTime": {"raidsCount": len(raids), "rows": all_rows},
     }
-
-
-def save(data):
     os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    return data
 
 
 if __name__ == "__main__":
     print("=== Збирач Total Damage Deus Vult (сезони) ===\n")
     members = parse_epgp_members()
     seasons = load_seasons()
-    log_ids = get_guild_logs()
-    data = build(members, log_ids, seasons)
-    save(data)
+
+    # Черга
+    queue = LogQueue()
+    all_ids = get_all_log_ids()
+    queue.add_logs(all_ids)
+
+    # Завантажуємо вже зібрані рейди з кешу
+    raids = load_raids_cache()
+    print(f"  Рейдів у кеші: {len(raids)}")
+
+    pending = queue.iter_pending()
+    total_pending = len(pending)
+    print(f"\nОбробляємо {total_pending} логів з черги...\n")
+
+    processed = 0
+    skipped = 0
+
+    for i, log_id in enumerate(pending):
+        print(f"[{i+1}/{total_pending}] {log_id}...", end=" ", flush=True)
+        try:
+            rdate = log_id_to_date(log_id)
+        except Exception:
+            print("дата?")
+            queue.mark_done(log_id)  # некоректний ID — прибираємо
+            continue
+
+        per = parse_report_damage(log_id, members)
+        if not per:
+            print("пропущено (лишається в черзі)")
+            skipped += 1
+            continue
+
+        raids.append({"date": rdate, "per_player": per})
+        queue.mark_done(log_id)
+        save_raids_cache(raids)
+        processed += 1
+        print(f"✓ {len(per)} гравців ({rdate})")
+
+    # Зберігаємо фінальний результат
+    data = save_output(raids, seasons)
 
     cur = next((s for s in data["seasons"] if s["id"] == data["currentSeasonId"]), None)
-    print(f"\n✓ Готово! {OUTPUT}")
+    print(f"\n=== Результат ===")
+    print(f"  Оброблено цього разу: {processed}")
+    print(f"  Залишилось в черзі:   {queue.pending_count}")
+    print(f"  Всього рейдів:        {len(raids)}")
     print(f"  Поточний сезон: {data['currentSeasonId']}")
     if cur and cur["rows"]:
         print(f"  Топ-3 сезону ({cur['name']}):")
@@ -323,3 +370,4 @@ if __name__ == "__main__":
         print(f"  Топ-3 All Time:")
         for r in data["allTime"]["rows"][:3]:
             print(f"    {r['name']:20} {r['totalDamage']:>16,}".replace(",", " "))
+    print(f"\n✓ Збережено: {OUTPUT}")
