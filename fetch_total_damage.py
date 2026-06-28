@@ -317,7 +317,7 @@ if __name__ == "__main__":
     seasons = load_seasons()
 
     # Черга
-    queue = LogQueue()
+    queue = LogQueue("data/pending_total_damage.json")
     all_ids = get_all_log_ids()
     queue.add_logs(all_ids)
 

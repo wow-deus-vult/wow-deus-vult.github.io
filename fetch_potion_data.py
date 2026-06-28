@@ -285,7 +285,7 @@ if __name__ == "__main__":
     print("=== Збирач статистики потів Deus Vult ===\n")
     members = parse_epgp_members()
 
-    queue = LogQueue()
+    queue = LogQueue("data/pending_potion.json")
     all_ids = get_all_log_ids()
     queue.add_logs(all_ids)
 

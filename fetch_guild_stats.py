@@ -257,7 +257,7 @@ if __name__ == "__main__":
     print("=== Збирач статистики рейдів Deus Vult ===\n")
     members = parse_epgp_members()
 
-    queue = LogQueue()
+    queue = LogQueue("data/pending_guild_stats.json")
     all_ids = get_all_log_ids()
     queue.add_logs(all_ids)
 
