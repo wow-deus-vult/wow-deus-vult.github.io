@@ -6,7 +6,6 @@
 <title>Deus Vult — Freedom WoW</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap');
-
   :root {
     --bg:#070a0f; --bg2:#0d121b; --bg3:#141b26;
     --border:#1e2836; --border2:#283447;
@@ -25,70 +24,106 @@
   .nav-links a { color:var(--text-muted); text-decoration:none; padding:7px 14px; border-radius:7px; font-size:13px; font-weight:600; transition:.15s; }
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
   .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
+  .nav-toggle { display:none; background:none; border:1px solid var(--border2); border-radius:8px;
+    color:var(--text); width:38px; height:38px; cursor:pointer; margin-left:auto; align-items:center;
+    justify-content:center; font-size:18px; line-height:1; }
+  .nav-toggle:hover { border-color:var(--accent-dim); color:var(--accent); }
 
   /* ── HERO ── */
-  .hero { position:relative; min-height:440px; display:flex; align-items:center; justify-content:center;
-    text-align:center; overflow:hidden; padding:90px 24px; }
+  .hero { position:relative; min-height:480px; display:flex; align-items:center; justify-content:center;
+    text-align:center; overflow:hidden; }
   .hero::before { content:''; position:absolute; inset:0;
     background:
       radial-gradient(ellipse 60% 55% at 50% 0%, rgba(143,193,227,.12) 0%, transparent 68%),
       radial-gradient(ellipse 40% 60% at 18% 100%, rgba(74,111,138,.10) 0%, transparent 60%),
       radial-gradient(ellipse 40% 60% at 82% 100%, rgba(74,111,138,.10) 0%, transparent 60%);
     animation:pulse 8s ease-in-out infinite alternate; }
-  @keyframes pulse { from { opacity:.55; } to { opacity:1; } }
+  @keyframes pulse { from{opacity:.55} to{opacity:1} }
   .hero::after { content:''; position:absolute; top:0; left:0; right:0; height:1px;
     background:linear-gradient(90deg, transparent, var(--accent), transparent); opacity:.5; }
 
-  .hero-content { position:relative; z-index:1; }
-  .hero-logo { width:280px; height:auto; margin-bottom:24px; filter:drop-shadow(0 0 24px rgba(143,193,227,.35)); }
+  .hero-content { position:relative; z-index:1; padding:40px 0; }
+  .hero-logo { width:200px; height:auto; margin-bottom:18px; filter:drop-shadow(0 0 24px rgba(143,193,227,.35)); }
+  .hero h1 { font-family:'Exo 2',sans-serif; font-size:clamp(36px,5vw,64px); font-weight:900; color:var(--text);
+    letter-spacing:.08em; line-height:1; margin-bottom:8px; text-shadow:0 0 50px rgba(143,193,227,.25); }
+  .hero h1 b { color:var(--accent); }
+  .hero-subtitle { font-family:'Exo 2',sans-serif; font-size:12px; color:var(--text-muted);
+    letter-spacing:.28em; text-transform:uppercase; }
+  .hero-divider { width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    margin:12px auto 0; opacity:.5; }
 
-  .hero h1 { font-family:'Exo 2',sans-serif; font-size:clamp(40px,7vw,72px); font-weight:900; color:var(--text);
-    letter-spacing:.08em; line-height:1; margin-bottom:12px; text-shadow:0 0 50px rgba(143,193,227,.25); }
-  .hero h1 b { color:var(--accent); font-weight:900; }
-  .hero-subtitle { font-family:'Exo 2',sans-serif; font-size:clamp(12px,2vw,15px); color:var(--text-muted);
-    letter-spacing:.28em; text-transform:uppercase; margin-bottom:26px; }
-  .hero-divider { width:120px; height:1px; background:linear-gradient(90deg, transparent, var(--accent), transparent); margin:0 auto 28px; opacity:.5; }
+  /* ── STAT КОЛОНКИ (absolute) ── */
+  .stat-col { position:absolute; top:0; display:flex; flex-direction:column; z-index:2; }
+  .stat-col-left  { left:0; align-items:flex-start; }
+  .stat-col-right { right:0; align-items:flex-end; }
 
-  /* ── STATS BAR ── */
-  .stats-bar { border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--bg2);
-    display:flex; justify-content:center; flex-wrap:wrap; }
-  .stat-item { padding:22px 44px; text-align:center; border-right:1px solid var(--border); }
-  .stat-item:last-child { border-right:none; }
-  .stat-value { font-family:'Exo 2',sans-serif; font-size:26px; font-weight:800; color:var(--accent); display:block; line-height:1; margin-bottom:5px; }
-  .stat-label { font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); }
+  /* Середня ліва колонка — на рівні ICC (другий рядок) */
+  .stat-col-mid { position:absolute; top:0; left:160px; display:flex; flex-direction:column; z-index:2; }
+
+  /* Нижній лівий рядок */
+  .stat-row-bottom { position:absolute; bottom:0; left:0; display:flex; z-index:2; }
+
+  .sc { width:160px; background:var(--bg2); border:1px solid var(--border);
+    padding:14px 16px; text-align:center; margin-bottom:-1px; }
+  .sc-value { font-family:'Exo 2',sans-serif; font-size:20px; font-weight:800;
+    color:var(--accent); display:block; line-height:1; margin-bottom:4px; }
+  .sc-label { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
+  .sc-sub { font-size:10px; color:var(--text-faint); margin-top:2px; display:block; }
+
+  /* ── HALL OF FAME ── */
+  .hof-section { border-top:1px solid var(--border); padding:48px 24px 56px; }
+  .hof-title { font-family:'Exo 2',sans-serif; font-size:clamp(22px,3vw,32px); font-weight:900;
+    text-align:center; letter-spacing:.1em; color:var(--text); margin-bottom:32px; }
+  .hof-table { width:100%; max-width:860px; margin:0 auto; border-collapse:collapse; }
+  .hof-table th { font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-faint);
+    padding:8px 14px; border-bottom:1px solid var(--border); text-align:left; font-weight:600; }
+  .hof-table th.num { text-align:center; width:40px; }
+  .hof-table th.right { text-align:right; }
+  .hof-table td { padding:11px 14px; border-bottom:1px solid var(--border); font-size:13px; color:var(--text); }
+  .hof-table td.num { text-align:center; color:var(--text-faint); font-size:12px; }
+  .hof-table td.right { text-align:right; color:var(--text-muted); }
+  .hof-table tr:last-child td { border-bottom:none; }
+  .hof-table tr:hover td { background:rgba(143,193,227,.03); }
+  .score-val { font-family:'Exo 2',sans-serif; font-weight:700; font-size:14px; color:var(--text); }
 
   footer { text-align:center; padding:36px 24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
   footer a { color:var(--accent); text-decoration:none; }
   footer a:hover { text-decoration:underline; }
-  @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
+  @media (prefers-reduced-motion:reduce) { *{ animation:none !important; transition:none !important; } }
 
-  /* ── Гамбургер ── */
-  .nav-toggle { display:none; background:none; border:1px solid var(--border2); border-radius:8px;
-    color:var(--text); width:38px; height:38px; cursor:pointer; margin-left:auto; align-items:center;
-    justify-content:center; font-size:18px; line-height:1; }
-  .nav-toggle:hover { border-color:var(--accent-dim); color:var(--accent); }
-
-  /* ── МОБІЛЬНА ВЕРСІЯ ── */
-  @media (max-width:640px) {
+  /* ── MOBILE ── */
+  @media (max-width:768px) {
+    .stat-col, .stat-col-mid, .stat-row-bottom { display:none; }
+    .hero { min-height:auto; padding:60px 18px 48px; }
+    .mobile-bar { border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      background:var(--bg2); display:flex; justify-content:center; flex-wrap:wrap; }
+    .mobile-bar2 { border-bottom:1px solid var(--border); background:var(--bg);
+      display:flex; justify-content:center; flex-wrap:wrap; }
+    .m-stat { padding:16px 20px; text-align:center; border-right:1px solid var(--border); }
+    .m-stat:last-child { border-right:none; }
+    .m-stat-value { font-family:'Exo 2',sans-serif; font-size:20px; font-weight:800;
+      color:var(--accent); display:block; line-height:1; margin-bottom:4px; }
+    .m-stat-label { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
+    .m-stat-sub { font-size:10px; color:var(--text-faint); margin-top:2px; display:block; }
     nav { padding:0 16px; height:52px; flex-wrap:wrap; }
     .nav-logo { margin-right:0; font-size:15px; }
     .nav-toggle { display:flex; }
     nav { z-index:200; }
     .nav-links { display:none; flex-direction:column; gap:2px; width:100%;
-      padding:10px 16px 16px; order:3;
-      position:absolute; top:52px; left:0; right:0;
+      padding:10px 16px 16px; order:3; position:absolute; top:52px; left:0; right:0;
       background:#0b1019; border-bottom:1px solid var(--border);
       box-shadow:0 18px 40px rgba(0,0,0,.55); z-index:210; }
     .nav-links.open { display:flex; }
-    .nav-links a { padding:13px 14px; font-size:15px; border-radius:8px; position:relative; z-index:1; }
+    .nav-links a { padding:13px 14px; font-size:15px; border-radius:8px; }
     .nav-overlay { position:fixed; inset:52px 0 0 0; z-index:150;
-      background:rgba(4,7,12,.55); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+      background:rgba(4,7,12,.55); backdrop-filter:blur(5px);
       opacity:0; pointer-events:none; transition:opacity .18s; }
     .nav-overlay.show { opacity:1; pointer-events:auto; }
-    .hero { min-height:auto !important; padding:64px 18px 48px !important; }
-    .hero-logo { width:200px !important; }
-    .hero h1 { letter-spacing:.05em !important; }
-    .stat-item { padding:16px 22px; }
+    .hof-section { padding:32px 16px 40px; }
+    .hof-table th, .hof-table td { padding:8px 10px; }
+  }
+  @media (min-width:769px) {
+    .mobile-bar, .mobile-bar2 { display:none; }
   }
 </style>
 </head>
@@ -108,6 +143,61 @@
 </nav>
 
 <section class="hero">
+
+  <!-- Ліва колонка: ICC, Max DPS, Avg DPS, Lich -->
+  <div class="stat-col stat-col-left">
+    <div class="sc">
+      <span class="sc-value" id="statIcc">—</span>
+      <span class="sc-label">Icecrown Citadel Raids</span>
+    </div>
+    <div class="sc">
+      <span class="sc-value" id="statMaxDps">—</span>
+      <span class="sc-label">Max Saurfang DPS</span>
+    </div>
+    <div class="sc">
+      <span class="sc-value" id="statAvgDps">—</span>
+      <span class="sc-label">Avg Saurfang DPS · S1</span>
+    </div>
+    <div class="sc">
+      <span class="sc-value" id="statLich">—</span>
+      <span class="sc-label">Lich King Kills</span>
+      <span class="sc-sub" id="statLichPct"></span>
+    </div>
+  </div>
+
+  <!-- Друга колонка: RS -->
+  <div class="stat-col-mid">
+    <div class="sc">
+      <span class="sc-value" id="statRs">—</span>
+      <span class="sc-label">Ruby Sanctum Raids</span>
+    </div>
+  </div>
+
+  <!-- Права колонка: Гравців, Оновлено -->
+  <div class="stat-col stat-col-right">
+    <div class="sc">
+      <span class="sc-value" id="statPlayers">—</span>
+      <span class="sc-label">Гравців</span>
+    </div>
+    <div class="sc">
+      <span class="sc-value" id="statUpdated">—</span>
+      <span class="sc-label">Оновлено</span>
+    </div>
+  </div>
+
+  <!-- Нижній лівий рядок: Логів, Годин -->
+  <div class="stat-row-bottom">
+    <div class="sc">
+      <span class="sc-value" id="statLogs">—</span>
+      <span class="sc-label">Опрацьовано логів</span>
+    </div>
+    <div class="sc">
+      <span class="sc-value" id="statTime">—</span>
+      <span class="sc-label">Годин в рейді</span>
+      <span class="sc-sub" id="statDays"></span>
+    </div>
+  </div>
+
   <div class="hero-content">
     <img class="hero-logo" src="./logo.png" alt="Deus Vult">
     <h1><b>DEUS VULT</b></h1>
@@ -116,27 +206,39 @@
   </div>
 </section>
 
-<div class="stats-bar" id="statsBar">
-  <div class="stat-item">
-    <span class="stat-value" id="statPlayers">—</span>
-    <span class="stat-label">Гравців</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-value" id="statIcc">—</span>
-    <span class="stat-label">Icecrown Citadel Raids</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-value" id="statRs">—</span>
-    <span class="stat-label">Ruby Sanctum Raids</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-value" id="statLich">—</span>
-    <span class="stat-label">Lich King Kills</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-value" id="statUpdated">—</span>
-    <span class="stat-label">Оновлено</span>
-  </div>
+<!-- MOBILE -->
+<div class="mobile-bar">
+  <div class="m-stat"><span class="m-stat-value" id="mStatPlayers">—</span><span class="m-stat-label">Гравців</span></div>
+  <div class="m-stat"><span class="m-stat-value" id="mStatIcc">—</span><span class="m-stat-label">ICC Raids</span></div>
+  <div class="m-stat"><span class="m-stat-value" id="mStatRs">—</span><span class="m-stat-label">RS Raids</span></div>
+  <div class="m-stat"><span class="m-stat-value" id="mStatLich">—</span><span class="m-stat-label">Lich King Kills</span></div>
+  <div class="m-stat"><span class="m-stat-value" id="mStatUpdated">—</span><span class="m-stat-label">Оновлено</span></div>
+</div>
+<div class="mobile-bar2">
+  <div class="m-stat"><span class="m-stat-value" id="mStatLogs">—</span><span class="m-stat-label">Логів</span></div>
+  <div class="m-stat"><span class="m-stat-value" id="mStatTime">—</span><span class="m-stat-label">Годин в рейді</span><span class="m-stat-sub" id="mStatDays"></span></div>
+  <div class="m-stat"><span class="m-stat-value" id="mStatMaxDps">—</span><span class="m-stat-label">Max Saurfang DPS</span></div>
+  <div class="m-stat"><span class="m-stat-value" id="mStatAvgDps">—</span><span class="m-stat-label">Avg Saurfang S1</span></div>
+</div>
+
+<!-- HALL OF FAME -->
+<div class="hof-section">
+  <h2 class="hof-title">Hall of Fame</h2>
+  <table class="hof-table">
+    <thead>
+      <tr>
+        <th class="num">#</th>
+        <th>Гравець</th>
+        <th>Клас / Спек</th>
+        <th class="right">Guild Rank</th>
+        <th class="right">Server Rank</th>
+        <th class="right">Score</th>
+      </tr>
+    </thead>
+    <tbody id="hofBody">
+      <tr><td colspan="6" style="text-align:center;color:var(--text-faint);padding:24px">Завантаження...</td></tr>
+    </tbody>
+  </table>
 </div>
 
 <footer>
@@ -144,58 +246,53 @@
 </footer>
 
 <script>
-fetch('./data/guild-data.json')
-  .then(r => r.json())
-  .then(data => {
-    const players = new Set(data.rows.map(r => r.name)).size;
-    document.getElementById('statPlayers').textContent = players;
+function fmt(n){ return Math.round(n).toLocaleString('uk-UA'); }
+function set2(a,b,v){ var ea=document.getElementById(a),eb=document.getElementById(b); if(ea)ea.textContent=v; if(eb)eb.textContent=v; }
 
-    if (data.lastUpdated) {
-      const d = new Date(data.lastUpdated);
-      const today = new Date();
-      const diff  = Math.floor((today - d) / 86400000);
-      document.getElementById('statUpdated').textContent =
-        diff === 0 ? 'Сьогодні'
-        : diff === 1 ? 'Вчора'
-        : diff + ' дн. тому';
-    }
-  })
-  .catch(() => {
-    document.getElementById('statPlayers').textContent = '—';
+fetch('./data/guild-data.json').then(r=>r.json()).then(data=>{
+  var players = new Set(data.rows.map(r=>r.name)).size;
+  var diff = data.lastUpdated ? Math.floor((new Date()-new Date(data.lastUpdated))/86400000) : -1;
+  var upd = diff===0?'Сьогодні':diff===1?'Вчора':diff>1?diff+' дн. тому':'—';
+  set2('statPlayers','mStatPlayers', players);
+  set2('statUpdated','mStatUpdated', upd);
+  var tbody=document.getElementById('hofBody'); tbody.innerHTML='';
+  data.rows.slice(0,10).forEach(function(row,i){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td class="num">'+(i+1)+'</td><td>'+row.name+'</td><td style="color:var(--text-muted)">'+row.class+' · '+row.spec+'</td><td class="right">#'+(row.overallRank||'—')+'</td><td class="right">—</td><td class="right"><span class="score-val">'+(row.overallScore||'—')+'</span></td>';
+    tbody.appendChild(tr);
   });
+}).catch(()=>{});
 
-fetch('./data/guild-stats.json')
-  .then(r => r.json())
-  .then(data => {
-    document.getElementById('statIcc').textContent  = data.icc_raids  ?? '—';
-    document.getElementById('statRs').textContent   = data.rs_raids   ?? '—';
-    document.getElementById('statLich').textContent = data.lich_king_kills ?? '—';
-  })
-  .catch(() => {
-    document.getElementById('statIcc').textContent  = '—';
-    document.getElementById('statRs').textContent   = '—';
-    document.getElementById('statLich').textContent = '—';
-  });
+fetch('./data/guild-stats.json').then(r=>r.json()).then(data=>{
+  var icc=data.icc_raids||0, rs=data.rs_raids||0, lich=data.lich_king_kills||0;
+  set2('statIcc','mStatIcc', icc||'—');
+  set2('statRs','mStatRs', rs||'—');
+  set2('statLich','mStatLich', lich||'—');
+  var pctEl=document.getElementById('statLichPct');
+  if(pctEl) pctEl.textContent=icc>0?'Killcount '+Math.round(lich/icc*100)+'%':'';
+}).catch(()=>{});
+
+fetch('./data/raid-stats.json').then(r=>r.json()).then(data=>{
+  var logs=data.totalRaids||'—', hours=data.totalTimeHours||0, days=data.totalTimeDays||0;
+  var maxDps=data.maxSaurfangDps||0, avgDps=data.avgSaurfangDpsCurrentSeason||0;
+  set2('statLogs','mStatLogs', logs);
+  set2('statTime','mStatTime', hours?hours.toLocaleString('uk-UA'):'—');
+  set2('statDays','mStatDays', days?'~'+days+' днів':'');
+  set2('statMaxDps','mStatMaxDps', maxDps?fmt(maxDps):'—');
+  set2('statAvgDps','mStatAvgDps', avgDps?fmt(avgDps):'—');
+}).catch(()=>{});
 </script>
 
 <script>
 (function(){
-  var t = document.querySelector('.nav-toggle');
-  var l = document.querySelector('.nav-links');
-  if (!t || !l) return;
-  var ov = document.createElement('div');
-  ov.className = 'nav-overlay';
-  document.body.appendChild(ov);
-  function close(){ l.classList.remove('open'); ov.classList.remove('show'); }
-  function toggle(){
-    var open = l.classList.toggle('open');
-    ov.classList.toggle('show', open);
-  }
-  t.addEventListener('click', toggle);
-  ov.addEventListener('click', close);
-  l.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  var t=document.querySelector('.nav-toggle'),l=document.querySelector('.nav-links');
+  if(!t||!l)return;
+  var ov=document.createElement('div'); ov.className='nav-overlay'; document.body.appendChild(ov);
+  function close(){l.classList.remove('open');ov.classList.remove('show');}
+  function toggle(){var open=l.classList.toggle('open');ov.classList.toggle('show',open);}
+  t.addEventListener('click',toggle); ov.addEventListener('click',close);
+  l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
 })();
 </script>
-
 </body>
 </html>
