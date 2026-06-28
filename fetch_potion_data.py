@@ -147,13 +147,17 @@ def safe_get(url):
         if r.status_code == 200:
             return r
         if r.status_code == 429:
-            print("  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
+            print(f"  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
             time.sleep(10)
             r2 = requests.get(url, headers=HEADERS, timeout=15)
             if r2.status_code == 200:
                 return r2
+            print(f"  ✗ retry={r2.status_code}", end=" ", flush=True)
+        else:
+            print(f"  ✗ {r.status_code}", end=" ", flush=True)
         return None
-    except Exception:
+    except Exception as e:
+        print(f"  ✗ exception={e}", end=" ", flush=True)
         return None
 
 
