@@ -33,7 +33,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git status
+          git stash --include-untracked
           git pull --rebase origin master
+          git stash pop
           git add data/guild-data.json data/guild-heal.json data/potion-stats.json data/total-damage.json
           git diff --staged --quiet || git commit -m "Auto-update guild data $(date -u '+%Y-%m-%d')"
           git push origin master
