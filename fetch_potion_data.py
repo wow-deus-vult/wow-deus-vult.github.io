@@ -129,6 +129,39 @@ EXTRA_LOGS = [
     "26-06-22--20-29--Bonem--FreedomUA",
     "26-06-22--23-10--Калабаня--FreedomUA",
     "26-06-23--21-41--Sweden--FreedomUA",
+    # Січень-березень 2026
+    "26-01-04--19-15--Norway--FreedomUA",
+    "26-01-05--19-07--Norway--FreedomUA",
+    "26-01-05--19-53--Denmark--FreedomUA",
+    "26-01-05--20-26--Bonem--FreedomUA",
+    "26-01-06--19-22--Denmark--FreedomUA",
+    "26-01-07--19-12--Bonem--FreedomUA",
+    "26-01-07--20-28--Bonem--FreedomUA",
+    "26-01-11--19-12--Bonem--FreedomUA",
+    "26-01-12--19-13--Norway--FreedomUA",
+    "26-01-12--20-03--Bonem--FreedomUA",
+    "26-01-25--19-13--Тайтус--FreedomUA",
+    "26-01-26--19-09--Шатайтус--FreedomUA",
+    "26-01-26--20-13--Шатайтус--FreedomUA",
+    "26-01-28--19-44--Тайтус--FreedomUA",
+    "26-02-01--19-37--Тайтус--FreedomUA",
+    "26-02-02--19-09--Шатайтус--FreedomUA",
+    "26-02-03--19-22--Закарпайтус--FreedomUA",
+    "26-02-03--22-58--Шатайтус--FreedomUA",
+    "26-02-19--19-32--Тайтус--FreedomUA",
+    "26-02-23--19-16--Содахарчова--FreedomUA",
+    "26-02-23--22-08--Калабаня--FreedomUA",
+    "26-02-24--19-24--Капуста--FreedomUA",
+    "26-02-25--19-32--Сількамяна--FreedomUA",
+    "26-03-01--19-31--Bonem--FreedomUA",
+    "26-03-02--19-35--Сількамяна--FreedomUA",
+    "26-03-04--19-15--Norway--FreedomUA",
+    "26-03-04--20-23--Norway--FreedomUA",
+    "26-03-09--19-31--Norway--FreedomUA",
+    "26-03-10--19-25--Denmark--FreedomUA",
+    "26-03-11--19-11--Denmark--FreedomUA",
+    "26-03-11--19-51--Bonem--FreedomUA",
+    "26-03-11--20-40--Bonem--FreedomUA",
 ]
 
 POTION_COLUMNS = {
@@ -206,17 +239,15 @@ def parse_consumables(log_id, members):
         name = a.get_text(strip=True)
         if name not in members:
             continue
-        try:
-            total = int(tds[1].get_text(strip=True)) if len(tds) > 1 else 0
-        except Exception:
-            total = 0
-        row = {"name": name, "total": total}
+        row = {"name": name, "total": 0}
         for potion_name, key in POTION_COLUMNS.items():
             idx = col_indices.get(potion_name)
             try:
                 row[key] = int(tds[idx].get_text(strip=True)) if idx is not None and idx < len(tds) else 0
             except Exception:
                 row[key] = 0
+        # Рахуємо total самостійно як суму наших потів
+        row["total"] = sum(row[key] for key in POTION_COLUMNS.values())
         players.append(row)
     if not players:
         return None
