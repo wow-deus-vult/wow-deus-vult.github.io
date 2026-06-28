@@ -225,7 +225,7 @@ def parse_log(log_id, members):
 def load_stats_cache():
     cache = OUTPUT.replace(".json", "_cache.json")
     if not os.path.exists(cache):
-        return {"icc_raids": 0, "rs_raids": 0, "lich_kills_per_player": {}}
+        return {"icc_raids": 0, "rs_raids": 0, "lich_king_kills": 0, "lich_kills_per_player": {}}
     with open(cache, encoding="utf-8") as f:
         return json.load(f)
 
@@ -243,7 +243,7 @@ def save_output(stats):
     data = {
         "icc_raids": stats["icc_raids"],
         "rs_raids": stats["rs_raids"],
-        "lich_king_kills": len(stats["lich_kills_per_player"]),
+        "lich_king_kills": stats.get("lich_king_kills", 0),
         "lich_kills_per_player": stats["lich_kills_per_player"],
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
     }
@@ -288,6 +288,7 @@ if __name__ == "__main__":
             if result["rs_kills"]:
                 stats["rs_raids"] += 1
             if result["has_lich_king_kill"]:
+                stats["lich_king_kills"] = stats.get("lich_king_kills", 0) + 1
                 for name in result["guild_players"]:
                     stats["lich_kills_per_player"][name] = \
                         stats["lich_kills_per_player"].get(name, 0) + 1
