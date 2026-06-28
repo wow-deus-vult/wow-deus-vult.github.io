@@ -33,37 +33,22 @@ CLASS_CSS_TO_NAME = {
     "shaman": "Shaman", "warlock": "Warlock", "warrior": "Warrior",
 }
 
-
-def check_connection():
-    """Перевіряє доступність сайту. Повертає True якщо ок."""
-    try:
-        r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=10)
-        return r.status_code == 200
-    except Exception:
-        return False
-
-
-def wait_for_connection():
-    """Чекає поки сайт не стане доступним (2 спроби)."""
-    if check_connection():
-        return True
-    print("  ⚠ Сайт недоступний, чекаємо 2с...")
-    time.sleep(2)
-    if check_connection():
-        return True
-    print("  ✗ Сайт так і не відповів, пропускаємо")
-    return False
+DELAY = 4.0  # пауза між запитами (секунди)
 
 
 def safe_get(url):
-    """GET з перевіркою конекту. Повертає response або None."""
-    if not wait_for_connection():
-        return None
-    time.sleep(4)
+    """GET з автоматичним retry при 429."""
+    time.sleep(DELAY)
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
         if r.status_code == 200:
             return r
+        if r.status_code == 429:
+            print("  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
+            time.sleep(10)
+            r2 = requests.get(url, headers=HEADERS, timeout=15)
+            if r2.status_code == 200:
+                return r2
         return None
     except Exception:
         return None
@@ -92,7 +77,6 @@ def log_id_to_date(log_id):
 
 
 def get_guild_logs():
-    """Збирає тільки логи наших uploaders + EXTRA_LOGS."""
     print("Збираємо список логів FreedomUA...")
     r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=15)
     soup = BeautifulSoup(r.text, "html.parser")
