@@ -1,21 +1,66 @@
 {
-  "lastUpdated": "2026-06-21T19:00:00+00:00",
+  "lastUpdated": "2026-06-28T05:51:55.981902+00:00",
   "currentSeasonId": "s1",
-  "_note": "ТИМЧАСОВА заглушка. Достеменно відомий лише Мараксус = 10 986 683 (тестовий звіт 26-06-21). Перезапишеться реальним запуском fetch_total_damage.py.",
   "seasons": [
     {
-      "id": "s1", "name": "Season 1",
-      "start": "2026-04-01", "end": "2026-06-30",
-      "raidsCount": 1,
-      "rows": [
-        { "name": "Мараксус", "server": "FreedomUA", "class": "Warrior", "spec": "Fury Warrior", "totalDamage": 10986683 }
-      ]
+      "id": "s1",
+      "name": "Season 1",
+      "start": "2026-06-26",
+      "end": "2026-10-01",
+      "raidsCount": 0,
+      "rows": []
+    },
+    {
+      "id": "s2",
+      "name": "Season 2",
+      "start": "2026-10-02",
+      "end": "2026-12-31",
+      "raidsCount": 0,
+      "rows": []
+    },
+    {
+      "id": "s3",
+      "name": "Season 3",
+      "start": "2027-01-01",
+      "end": "2027-03-30",
+      "raidsCount": 0,
+      "rows": []
+    },
+    {
+      "id": "s4",
+      "name": "Season 4",
+      "start": "2027-04-01",
+      "end": "2027-06-30",
+      "raidsCount": 0,
+      "rows": []
+    },
+    {
+      "id": "s5",
+      "name": "Season 5",
+      "start": "2027-07-01",
+      "end": "2027-09-30",
+      "raidsCount": 0,
+      "rows": []
+    },
+    {
+      "id": "s6",
+      "name": "Season 6",
+      "start": "2027-10-01",
+      "end": "2027-12-31",
+      "raidsCount": 0,
+      "rows": []
+    },
+    {
+      "id": "s7",
+      "name": "Season 7",
+      "start": "2028-01-01",
+      "end": "2028-03-30",
+      "raidsCount": 0,
+      "rows": []
     }
   ],
   "allTime": {
-    "raidsCount": 1,
-    "rows": [
-      { "name": "Мараксус", "server": "FreedomUA", "class": "Warrior", "spec": "Fury Warrior", "totalDamage": 10986683 }
-    ]
+    "raidsCount": 0,
+    "rows": []
   }
 }
