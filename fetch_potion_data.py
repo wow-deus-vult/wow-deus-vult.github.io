@@ -1,19 +1,29 @@
 """
 fetch_potion_data.py — Deus Vult / FreedomUA
 Збирає статистику потів з /consumables/ сторінок uwu-logs
-Запуск: python fetch_potion_data.py
 Результат: data/potion-stats.json
 """
 
 import json, re, time, requests
 from datetime import datetime, timezone
 from bs4 import BeautifulSoup
-from epgp_parser import parse_epgp_members  # спільний парсер EPGP
+from epgp_parser import parse_epgp_members
 
 BASE_URL = "https://uwu-logs.xyz"
 SERVER   = "FreedomUA"
 OUTPUT   = "data/potion-stats.json"
 HEADERS  = {"User-Agent": "Mozilla/5.0", "Origin": BASE_URL}
+
+GUILD_UPLOADERS = [
+    "Denmark", "Bonem", "Sweden", "Norway", "Калабаня", "Лісовиця",
+    "Пірофобія", "Содахарчова", "Чіпічапа", "Капуста", "Зорекрила",
+    "Сількамяна", "Тайтус", "Закарпайтус", "Шатайтус",
+]
+
+EXTRA_LOGS = [
+    "26-03-23--19-25--Bonem--FreedomUA",
+    "26-04-05--19-36--Bonem--FreedomUA",
+]
 
 POTION_COLUMNS = {
     "Potion of Speed":        "potionOfSpeed",
@@ -24,42 +34,23 @@ POTION_COLUMNS = {
 }
 
 
-
-
-def get_all_freedom_logs():
+def get_guild_logs():
     print("Збираємо список логів FreedomUA...")
+    r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=15)
+    soup = BeautifulSoup(r.text, "html.parser")
     log_ids = []
-    visited = set()
-    empty_months = 0
-    url = f"{BASE_URL}/logs_list"
+    for a in soup.find_all("a", href=True):
+        if SERVER in a.get_text() and "/reports/" in a["href"]:
+            log_id = a["href"].strip("/").replace("reports/", "")
+            if log_id and any(u in log_id for u in GUILD_UPLOADERS):
+                log_ids.append(log_id)
 
-    while empty_months < 3:
-        if url in visited:
-            break
-        visited.add(url)
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=15)
-            soup = BeautifulSoup(r.text, 'html.parser')
-            found = 0
-            for a in soup.find_all("a", href=True):
-                if SERVER in a.get_text() and "/reports/" in a["href"]:
-                    log_id = a["href"].strip("/").replace("reports/", "")
-                    if log_id and log_id not in log_ids:
-                        log_ids.append(log_id)
-                        found += 1
-            empty_months = 0 if found else empty_months + 1
-            print(f"  {url} | +{found} | всього: {len(log_ids)}")
-            prev = soup.find("a", string=re.compile(r"<<"))
-            if not prev or not prev.get("href"):
-                break
-            href = prev["href"]
-            url = BASE_URL + href if href.startswith("/") else BASE_URL + "/" + href
-            time.sleep(0.3)
-        except Exception as e:
-            print(f"  Помилка: {e}")
-            break
+    for log_id in EXTRA_LOGS:
+        if log_id not in log_ids:
+            log_ids.append(log_id)
 
-    print(f"Всього логів: {len(log_ids)}")
+    log_ids.sort(reverse=True)
+    print(f"Логів для обробки: {len(log_ids)}")
     return log_ids
 
 
@@ -69,28 +60,28 @@ def parse_consumables(log_id, members):
         r = requests.get(url, headers=HEADERS, timeout=15)
         if r.status_code != 200:
             return None
-        soup = BeautifulSoup(r.text, 'html.parser')
-    except Exception as e:
+        soup = BeautifulSoup(r.text, "html.parser")
+    except Exception:
         return None
 
-    tbody = soup.find('tbody', id='potions-table-body')
-    thead = soup.find('thead')
+    tbody = soup.find("tbody", id="potions-table-body")
+    thead = soup.find("thead")
     if not tbody or not thead:
         return None
 
     col_indices = {}
-    for i, th in enumerate(thead.find_all('th')):
-        title = th.get('title', '')
+    for i, th in enumerate(thead.find_all("th")):
+        title = th.get("title", "")
         if title in POTION_COLUMNS:
             col_indices[title] = i
 
     players = []
-    for tr in tbody.find_all('tr'):
-        tds = tr.find_all('td')
-        player_cell = tr.find('td', class_='player-cell')
-        if not player_cell:
+    for tr in tbody.find_all("tr"):
+        tds = tr.find_all("td")
+        pc = tr.find("td", class_="player-cell")
+        if not pc:
             continue
-        a = player_cell.find('a')
+        a = pc.find("a")
         if not a:
             continue
         name = a.get_text(strip=True)
@@ -98,14 +89,14 @@ def parse_consumables(log_id, members):
             continue
         try:
             total = int(tds[1].get_text(strip=True)) if len(tds) > 1 else 0
-        except:
+        except Exception:
             total = 0
-        row = {'name': name, 'total': total}
+        row = {"name": name, "total": total}
         for potion_name, key in POTION_COLUMNS.items():
             idx = col_indices.get(potion_name)
             try:
-                row[key] = int(tds[idx].get_text(strip=True)) if idx and idx < len(tds) else 0
-            except:
+                row[key] = int(tds[idx].get_text(strip=True)) if idx is not None and idx < len(tds) else 0
+            except Exception:
                 row[key] = 0
         players.append(row)
 
@@ -163,7 +154,7 @@ def save(raids):
 if __name__ == "__main__":
     print("=== Збирач статистики потів Deus Vult ===\n")
     members = parse_epgp_members()
-    log_ids = get_all_freedom_logs()
+    log_ids = get_guild_logs()
 
     raids = []
     total = len(log_ids)
@@ -175,7 +166,7 @@ if __name__ == "__main__":
             print(f"✓ {len(result['players'])} гравців")
         else:
             print("пропущено")
-        time.sleep(0.3)
+        time.sleep(2.0)
 
         if (i + 1) % 10 == 0:
             save(raids)
