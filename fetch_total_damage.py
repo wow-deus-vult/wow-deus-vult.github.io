@@ -15,14 +15,12 @@ OUTPUT       = "data/total-damage.json"
 SEASONS_FILE = "seasons.json"
 HEADERS      = {"User-Agent": "Mozilla/5.0", "Origin": BASE_URL}
 
-# Хто заливає наші рейди
 GUILD_UPLOADERS = [
     "Denmark", "Bonem", "Sweden", "Norway", "Калабаня", "Лісовиця",
     "Пірофобія", "Содахарчова", "Чіпічапа", "Капуста", "Зорекрила",
     "Сількамяна", "Тайтус", "Закарпайтус", "Шатайтус",
 ]
 
-# Старі логи яких немає в /logs_list — додавати вручну
 EXTRA_LOGS = [
     "26-03-23--19-25--Bonem--FreedomUA",
     "26-04-05--19-36--Bonem--FreedomUA",
@@ -34,6 +32,41 @@ CLASS_CSS_TO_NAME = {
     "paladin": "Paladin", "priest": "Priest", "rogue": "Rogue",
     "shaman": "Shaman", "warlock": "Warlock", "warrior": "Warrior",
 }
+
+
+def check_connection():
+    """Перевіряє доступність сайту. Повертає True якщо ок."""
+    try:
+        r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=10)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def wait_for_connection():
+    """Чекає поки сайт не стане доступним (2 спроби)."""
+    if check_connection():
+        return True
+    print("  ⚠ Сайт недоступний, чекаємо 2с...")
+    time.sleep(2)
+    if check_connection():
+        return True
+    print("  ✗ Сайт так і не відповів, пропускаємо")
+    return False
+
+
+def safe_get(url):
+    """GET з перевіркою конекту. Повертає response або None."""
+    if not wait_for_connection():
+        return None
+    time.sleep(4)
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=15)
+        if r.status_code == 200:
+            return r
+        return None
+    except Exception:
+        return None
 
 
 def load_seasons():
@@ -70,7 +103,6 @@ def get_guild_logs():
             if log_id and any(u in log_id for u in GUILD_UPLOADERS):
                 log_ids.append(log_id)
 
-    # Додаємо старі логи яких немає в списку
     for log_id in EXTRA_LOGS:
         if log_id not in log_ids:
             log_ids.append(log_id)
@@ -82,13 +114,10 @@ def get_guild_logs():
 
 def parse_report_damage(log_id, members):
     url = f"{BASE_URL}/reports/{log_id}/"
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
-        if r.status_code != 200:
-            return None
-        soup = BeautifulSoup(r.text, "html.parser")
-    except Exception:
+    r = safe_get(url)
+    if not r:
         return None
+    soup = BeautifulSoup(r.text, "html.parser")
 
     per_player = {}
     for tr in soup.find_all("tr"):
@@ -152,11 +181,9 @@ def build(members, log_ids, seasons):
         per = parse_report_damage(log_id, members)
         if not per:
             print("пропущено")
-            time.sleep(2.0)
             continue
         raids.append({"date": rdate, "per_player": per})
         print(f"✓ {len(per)} гравців ({rdate})")
-        time.sleep(2.0)
 
     season_out = []
     today = date.today()

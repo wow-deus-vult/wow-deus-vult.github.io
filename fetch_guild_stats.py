@@ -43,6 +43,38 @@ LICH_KING_BOSS = "the-lich-king"
 MIN_GUILD_PLAYERS = 12
 
 
+def check_connection():
+    try:
+        r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=10)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def wait_for_connection():
+    if check_connection():
+        return True
+    print("  ⚠ Сайт недоступний, чекаємо 2с...")
+    time.sleep(2)
+    if check_connection():
+        return True
+    print("  ✗ Сайт так і не відповів, пропускаємо")
+    return False
+
+
+def safe_get(url):
+    if not wait_for_connection():
+        return None
+    time.sleep(4)
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=15)
+        if r.status_code == 200:
+            return r
+        return None
+    except Exception:
+        return None
+
+
 def get_guild_logs():
     print("Збираємо список логів FreedomUA...")
     r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=15)
@@ -65,13 +97,10 @@ def get_guild_logs():
 
 def parse_log(log_id, members):
     url = f"{BASE_URL}/reports/{log_id}/"
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
-        if r.status_code != 200:
-            return None
-        soup = BeautifulSoup(r.text, "html.parser")
-    except Exception:
+    r = safe_get(url)
+    if not r:
         return None
+    soup = BeautifulSoup(r.text, "html.parser")
 
     guild_players = set()
     for a in soup.find_all("a", href=True):
@@ -144,8 +173,6 @@ if __name__ == "__main__":
             if result["has_lich_king_kill"]:
                 for name in result["guild_players"]:
                     lich_kills_per_player[name] = lich_kills_per_player.get(name, 0) + 1
-
-        time.sleep(2.0)
 
     stats = {
         "icc_raids": icc_raids,

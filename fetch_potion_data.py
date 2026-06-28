@@ -34,6 +34,38 @@ POTION_COLUMNS = {
 }
 
 
+def check_connection():
+    try:
+        r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=10)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def wait_for_connection():
+    if check_connection():
+        return True
+    print("  ⚠ Сайт недоступний, чекаємо 2с...")
+    time.sleep(2)
+    if check_connection():
+        return True
+    print("  ✗ Сайт так і не відповів, пропускаємо")
+    return False
+
+
+def safe_get(url):
+    if not wait_for_connection():
+        return None
+    time.sleep(4)
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=15)
+        if r.status_code == 200:
+            return r
+        return None
+    except Exception:
+        return None
+
+
 def get_guild_logs():
     print("Збираємо список логів FreedomUA...")
     r = requests.get(f"{BASE_URL}/logs_list", headers=HEADERS, timeout=15)
@@ -56,13 +88,10 @@ def get_guild_logs():
 
 def parse_consumables(log_id, members):
     url = f"{BASE_URL}/reports/{log_id}/consumables/"
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
-        if r.status_code != 200:
-            return None
-        soup = BeautifulSoup(r.text, "html.parser")
-    except Exception:
+    r = safe_get(url)
+    if not r:
         return None
+    soup = BeautifulSoup(r.text, "html.parser")
 
     tbody = soup.find("tbody", id="potions-table-body")
     thead = soup.find("thead")
@@ -166,7 +195,6 @@ if __name__ == "__main__":
             print(f"✓ {len(result['players'])} гравців")
         else:
             print("пропущено")
-        time.sleep(2.0)
 
         if (i + 1) % 10 == 0:
             save(raids)
