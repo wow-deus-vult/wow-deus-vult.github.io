@@ -262,7 +262,7 @@ fetch('./data/guild-data.json').then(r=>r.json()).then(data=>{
   var tbody=document.getElementById('hofBody'); tbody.innerHTML='';
   data.rows.slice(0,10).forEach(function(row,i){
     var tr=document.createElement('tr');
-    tr.innerHTML=var sr=row.overallRank||9999; var srCls=sr<=10?'rank-top10':sr<=50?'rank-top50':'rank-other'; '<td class="num">'+(i+1)+'</td><td>'+row.name+'</td><td style="color:var(--text-muted)">'+row.class+' · '+row.spec+'</td><td class="right"><span class="rank-guild">#'+(i+1)+'</span></td><td class="right"><span class="'+srCls+'">#'+sr+'</span></td><td class="right"><span class="score-val">'+(row.overallScore||'—')+'</span></td>';
+    tr.innerHTML='<td class="num">'+(i+1)+'</td><td>'+row.name+'</td><td style="color:var(--text-muted)">'+row.class+' · '+row.spec+'</td><td class="right"><span class="rank-guild">#'+(i+1)+'</span></td><td class="right"><span class="'+(row.overallRank<=10?'rank-top10':row.overallRank<=50?'rank-top50':'rank-other')+'">#'+(row.overallRank||'—')+'</span></td><td class="right"><span class="score-val">'+(row.overallScore||'—')+'</span></td>';
     tbody.appendChild(tr);
   });
 }).catch(()=>{});
