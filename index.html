@@ -85,6 +85,10 @@
   .hof-table tr:last-child td { border-bottom:none; }
   .hof-table tr:hover td { background:rgba(143,193,227,.03); }
   .score-val { font-family:'Exo 2',sans-serif; font-weight:700; font-size:14px; color:var(--text); }
+  .rank-guild { color:var(--text-muted); font-weight:700; font-family:'Exo 2',sans-serif; font-size:13px; }
+  .rank-top10 { color:#ffd96b; font-weight:700; font-family:'Exo 2',sans-serif; font-size:13px; }
+  .rank-top50 { color:var(--accent); font-weight:700; font-family:'Exo 2',sans-serif; font-size:13px; }
+  .rank-other { color:var(--text-muted); font-weight:700; font-family:'Exo 2',sans-serif; font-size:13px; }
 
   footer { text-align:center; padding:36px 24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
   footer a { color:var(--accent); text-decoration:none; }
@@ -258,7 +262,7 @@ fetch('./data/guild-data.json').then(r=>r.json()).then(data=>{
   var tbody=document.getElementById('hofBody'); tbody.innerHTML='';
   data.rows.slice(0,10).forEach(function(row,i){
     var tr=document.createElement('tr');
-    tr.innerHTML='<td class="num">'+(i+1)+'</td><td>'+row.name+'</td><td style="color:var(--text-muted)">'+row.class+' · '+row.spec+'</td><td class="right">#'+(row.overallRank||'—')+'</td><td class="right">—</td><td class="right"><span class="score-val">'+(row.overallScore||'—')+'</span></td>';
+    tr.innerHTML=var sr=row.overallRank||9999; var srCls=sr<=10?'rank-top10':sr<=50?'rank-top50':'rank-other'; '<td class="num">'+(i+1)+'</td><td>'+row.name+'</td><td style="color:var(--text-muted)">'+row.class+' · '+row.spec+'</td><td class="right"><span class="rank-guild">#'+(i+1)+'</span></td><td class="right"><span class="'+srCls+'">#'+sr+'</span></td><td class="right"><span class="score-val">'+(row.overallScore||'—')+'</span></td>';
     tbody.appendChild(tr);
   });
 }).catch(()=>{});
