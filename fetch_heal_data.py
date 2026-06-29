@@ -365,16 +365,19 @@ def build_output(cache):
     for name, bosses in player_bosses.items():
         boss_values = [v for v in bosses.values() if v > 0]
         avg_hps = round(sum(boss_values) / len(boss_values), 1) if boss_values else 0
+        boss_count = len(boss_values)
         rows.append({
-            "name":    name,
-            "server":  SERVER,
-            "class":   player_class.get(name, ""),
-            "spec":    player_spec.get(name, ""),
-            "avgHps":  avg_hps,
-            "bosses":  {b: round(player_bosses[name].get(b, 0), 1) for b in BOSS_ORDER},
+            "name":       name,
+            "server":     SERVER,
+            "class":      player_class.get(name, ""),
+            "spec":       player_spec.get(name, ""),
+            "avgHps":     avg_hps,
+            "bossCount":  boss_count,
+            "bosses":     {b: round(player_bosses[name].get(b, 0), 1) for b in BOSS_ORDER},
         })
 
-    rows.sort(key=lambda r: r["avgHps"], reverse=True)
+    # Сортування: спочатку по кількості босів, потім по AVG HPS
+    rows.sort(key=lambda r: (-r["bossCount"], -r["avgHps"]))
     for i, row in enumerate(rows):
         row["guildRank"] = i + 1
 

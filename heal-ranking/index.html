@@ -27,13 +27,13 @@
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
   .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
 
-  .page-header { padding:40px 24px 20px; }
+  .page-header { padding:40px 24px 20px; max-width:1200px; margin:0 auto; }
   .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:10px; }
   .page-header h1 { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; color:var(--text); margin-bottom:8px; }
   .page-header h1 b { color:var(--accent); }
   .updated-at { font-size:12px; color:var(--text-faint); margin-top:6px; }
 
-  .controls { padding:8px 24px 20px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
+  .controls { max-width:1200px; margin:0 auto; padding:8px 24px 20px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
   .control-group { display:flex; flex-direction:column; gap:6px; }
   .control-group label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
   select { background:var(--bg2); border:1px solid var(--border2); color:var(--text); padding:9px 13px; border-radius:8px;
@@ -42,7 +42,7 @@
   .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); align-self:center; }
   .results-info strong { color:var(--accent); font-size:14px; }
 
-  .table-wrap { padding:0 24px 48px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .table-wrap { max-width:1200px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   table { width:100%; border-collapse:collapse; font-size:13px; }
 
   thead tr.group-row th { padding:6px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
@@ -240,10 +240,11 @@ function buildHeader() {
 
   const tr2 = document.createElement('tr');
   tr2.className = 'col-row';
-  ['#','Гравець','Клас / Спек','AVG Heal'].forEach(t => {
+  ['#','Гравець','Клас / Спек','Guild Rank','Bosses','AVG Heal'].forEach(t => {
     const th = document.createElement('th');
     th.textContent = t;
-    if (t === 'AVG Heal') th.style.textAlign = 'right';
+    if (t === 'AVG Heal' || t === 'Bosses') th.style.textAlign = 'right';
+    if (t === 'Guild Rank') th.style.textAlign = 'right';
     tr2.appendChild(th);
   });
   ICC_BOSSES.forEach(b => {
@@ -283,6 +284,8 @@ function render() {
     addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
     addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class||''}</span>`
             + (row.spec ? ` <span class="spec-badge">${row.spec}</span>` : ''));
+    addTd(tr, `<span class="rank-badge rank-guild">#${row.guildRank||idx+1}</span>`, 'text-align:right');
+    addTd(tr, row.bossCount||0, 'text-align:right;color:var(--text-muted);font-variant-numeric:tabular-nums');
 
     const avg = row.avgHps || 0;
     const td = document.createElement('td');
