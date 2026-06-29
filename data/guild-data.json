@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-06-29T06:00:15.638764+00:00",
-  "totalPlayersInSource": 255,
-  "totalRows": 331,
+  "lastUpdated": "2026-06-29T13:02:55.197494+00:00",
+  "totalPlayersInSource": 257,
+  "totalRows": 333,
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -5961,6 +5961,32 @@
       }
     },
     {
+      "name": "Тремчу",
+      "server": "FreedomUA",
+      "class": "Warrior",
+      "spec": "Fury",
+      "specIndex": 2,
+      "overallRank": 220,
+      "overallScore": 45.38,
+      "bosses": {
+        "Lord Marrowgar": 14118.6,
+        "Lady Deathwhisper": 13159.4,
+        "Deathbringer Saurfang": 13966.2,
+        "Festergut": 12736.0,
+        "Rotface": 12773.0,
+        "Professor Putricide": 8718.5,
+        "Blood Prince Council": 7994.9,
+        "Blood-Queen Lana'thel": 11003.4,
+        "Sindragosa": 6343.6,
+        "The Lich King": 8248.8,
+        "Halion": 9954.6,
+        "Saviana Ragefire": 7984.3,
+        "General Zarithrian": 10328.8,
+        "Baltharus the Warborn": 7774.7,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
       "name": "Limechrono",
       "server": "FreedomUA",
       "class": "Warrior",
@@ -6295,6 +6321,32 @@
         "Saviana Ragefire": 0,
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Takinada",
+      "server": "FreedomUA",
+      "class": "Warrior",
+      "spec": "Fury",
+      "specIndex": 2,
+      "overallRank": 227,
+      "overallScore": 43.2,
+      "bosses": {
+        "Lord Marrowgar": 14452.3,
+        "Lady Deathwhisper": 12637.9,
+        "Deathbringer Saurfang": 14018.7,
+        "Festergut": 13052.1,
+        "Rotface": 13322.9,
+        "Professor Putricide": 8725.9,
+        "Blood Prince Council": 10205.7,
+        "Blood-Queen Lana'thel": 11414.2,
+        "Sindragosa": 8141.5,
+        "The Lich King": 0,
+        "Halion": 4696.8,
+        "Saviana Ragefire": 9232.5,
+        "General Zarithrian": 10417.6,
+        "Baltharus the Warborn": 8108.5,
         "Valithria Dreamwalker": 0
       }
     },

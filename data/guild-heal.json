@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T12:09:13.001541+00:00",
+  "lastUpdated": "2026-06-29T13:10:38.580749+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -336,13 +336,13 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 9289.2,
+      "avgHps": 9297.0,
       "bossCount": 15,
       "bosses": {
         "Lord Marrowgar": 12555.7,
         "Lady Deathwhisper": 9901.9,
         "Deathbringer Saurfang": 5065.1,
-        "Festergut": 11958.7,
+        "Festergut": 12075.6,
         "Rotface": 11100.1,
         "Professor Putricide": 13912.1,
         "Blood Prince Council": 8062.5,
@@ -648,7 +648,7 @@
       "server": "FreedomUA",
       "class": "Druid",
       "spec": "Restoration",
-      "avgHps": 6915.8,
+      "avgHps": 6956.5,
       "bossCount": 15,
       "bosses": {
         "Lord Marrowgar": 7748.8,
@@ -659,7 +659,7 @@
         "Professor Putricide": 10902.0,
         "Blood Prince Council": 4801.4,
         "Blood-Queen Lana'thel": 10681.9,
-        "Sindragosa": 5646.4,
+        "Sindragosa": 6257.2,
         "The Lich King": 6156.7,
         "Valithria Dreamwalker": 23259.5,
         "Halion": 5933.9,
@@ -956,6 +956,32 @@
       "guildRank": 36
     },
     {
+      "name": "Darsi",
+      "server": "FreedomUA",
+      "class": "Shaman",
+      "spec": "Restoration",
+      "avgHps": 8976.5,
+      "bossCount": 11,
+      "bosses": {
+        "Lord Marrowgar": 5765.8,
+        "Lady Deathwhisper": 8120.6,
+        "Deathbringer Saurfang": 6791.8,
+        "Festergut": 8759.6,
+        "Rotface": 6794.3,
+        "Professor Putricide": 12438.1,
+        "Blood Prince Council": 6174.8,
+        "Blood-Queen Lana'thel": 14766.9,
+        "Sindragosa": 9181.4,
+        "The Lich King": 1408.9,
+        "Valithria Dreamwalker": 18539.6,
+        "Halion": 0,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0
+      },
+      "guildRank": 37
+    },
+    {
       "name": "Byronkamymy",
       "server": "FreedomUA",
       "class": "Druid",
@@ -979,7 +1005,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 37
+      "guildRank": 38
     },
     {
       "name": "Полінце",
@@ -1005,7 +1031,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 38
+      "guildRank": 39
     },
     {
       "name": "Sandora",
@@ -1031,7 +1057,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 39
+      "guildRank": 40
     },
     {
       "name": "Missdru",
@@ -1057,7 +1083,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 40
+      "guildRank": 41
     },
     {
       "name": "Sonicx",
@@ -1083,7 +1109,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 41
+      "guildRank": 42
     },
     {
       "name": "Antes",
@@ -1109,7 +1135,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 42
+      "guildRank": 43
     },
     {
       "name": "Naturalist",
@@ -1130,32 +1156,6 @@
         "Sindragosa": 10274.9,
         "The Lich King": 0,
         "Valithria Dreamwalker": 20772.5,
-        "Halion": 0,
-        "Saviana Ragefire": 0,
-        "General Zarithrian": 0,
-        "Baltharus the Warborn": 0
-      },
-      "guildRank": 43
-    },
-    {
-      "name": "Darsi",
-      "server": "FreedomUA",
-      "class": "Shaman",
-      "spec": "Restoration",
-      "avgHps": 9433.0,
-      "bossCount": 10,
-      "bosses": {
-        "Lord Marrowgar": 5765.8,
-        "Lady Deathwhisper": 8120.6,
-        "Deathbringer Saurfang": 6635.0,
-        "Festergut": 8759.6,
-        "Rotface": 6794.3,
-        "Professor Putricide": 12438.1,
-        "Blood Prince Council": 6174.8,
-        "Blood-Queen Lana'thel": 14766.9,
-        "Sindragosa": 7638.9,
-        "The Lich King": 0,
-        "Valithria Dreamwalker": 17236.2,
         "Halion": 0,
         "Saviana Ragefire": 0,
         "General Zarithrian": 0,
