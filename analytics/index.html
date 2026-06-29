@@ -235,11 +235,22 @@ async function loadAndRender() {
   const data = await res.json();
   const rows = data.rows || [];
 
-  rows.forEach(r => { SPEC_CLASS[r.spec] = r.class; });
+  // Фільтруємо хіл і танк спеки — в аналітиці тільки DPS
+  const HEAL_SPECS = new Set(['Holy', 'Discipline', 'Restoration']);
+  const TANK_SPECS = new Set(['Blood', 'Protection', 'Feral Combat']);
+  const TANK_CLASSES = new Set(['Death Knight', 'Paladin', 'Warrior', 'Druid']);
+  function isDpsRow(r) {
+    if (HEAL_SPECS.has(r.spec)) return false;
+    if (TANK_SPECS.has(r.spec) && TANK_CLASSES.has(r.class)) return false;
+    return true;
+  }
+  const dpsRows = rows.filter(isDpsRow);
+
+  dpsRows.forEach(r => { SPEC_CLASS[r.spec] = r.class; });
 
   // Найкращий спек кожного гравця (по overallScore)
   const bestByPlayer = {};
-  rows.forEach(r => {
+  dpsRows.forEach(r => {
     if (!bestByPlayer[r.name] || r.overallScore > bestByPlayer[r.name].overallScore) {
       bestByPlayer[r.name] = r;
     }
@@ -255,10 +266,10 @@ async function loadAndRender() {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('chartsWrap').style.display = '';
 
-  renderTop3(rows);
-  renderTop50(rows);
-  renderSpecPop(rows);
-  renderAvgScore(rows);
+  renderTop3(dpsRows);
+  renderTop50(dpsRows);
+  renderSpecPop(dpsRows);
+  renderAvgScore(dpsRows);
   renderVsServer(bestRows);
 }
 
