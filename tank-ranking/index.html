@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Рейтинг Heal — Deus Vult</title>
+<title>Рейтинг Tank — Deus Vult</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
   :root {
@@ -11,11 +11,11 @@
     --border:#1e2836; --border2:#283447;
     --accent:#8fc1e3; --accent-dim:#4a6f8a;
     --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
-    --heal:#7fd4a0; --danger:#e06a6a;
+    --tank:#e8a85f; --danger:#e06a6a;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px;
-    background-image:radial-gradient(900px 500px at 80% -10%, rgba(127,212,160,.04), transparent 60%); }
+    background-image:radial-gradient(900px 500px at 80% -10%, rgba(232,168,95,.04), transparent 60%); }
 
   nav { background:rgba(13,18,27,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
     padding:0 24px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:100; }
@@ -43,35 +43,27 @@
   .results-info strong { color:var(--accent); font-size:14px; }
 
   .table-wrap { padding:0 24px 48px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  table { width:100%; border-collapse:collapse; font-size:13px; }
-
-  thead tr.group-row th { padding:6px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
-    letter-spacing:.08em; border-bottom:1px solid var(--border2); }
-  thead tr.col-row th { padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
-    letter-spacing:.08em; color:var(--text-muted); border-bottom:1px solid var(--border2); white-space:nowrap; }
-
-  .g-icc { background:rgba(143,193,227,.06); color:var(--accent); text-align:center; }
-  .g-rs  { background:rgba(127,212,160,.06); color:var(--heal); text-align:center; }
-  .boss-icc { background:rgba(143,193,227,.04); color:var(--accent); text-align:right; }
-  .boss-rs  { background:rgba(127,212,160,.04); color:var(--heal); text-align:right; }
-  .boss-zero { color:var(--text-faint) !important; }
+  table { width:100%; border-collapse:collapse; font-size:13px; min-width:600px; }
+  thead th { padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--text-muted); border-bottom:1px solid var(--border2); white-space:nowrap; text-align:right; }
+  thead th:nth-child(1),thead th:nth-child(2),thead th:nth-child(3) { text-align:left; }
+  thead th:nth-child(1) { text-align:center; width:36px; }
 
   tbody tr { border-bottom:1px solid rgba(30,40,54,.6); transition:background .1s; }
   tbody tr:hover { background:var(--bg2); }
-  td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
-  td:first-child { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
-  td.avg-cell { text-align:right; font-weight:700; color:var(--heal); font-variant-numeric:tabular-nums; }
+  td { padding:9px 10px; white-space:nowrap; vertical-align:middle; text-align:right; }
+  td:nth-child(1) { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
+  td:nth-child(2),td:nth-child(3) { text-align:left; }
+  td.tank-cell { font-weight:700; color:var(--tank); font-variant-numeric:tabular-nums; }
+  td.special-cell { color:var(--text-muted); font-variant-numeric:tabular-nums; }
 
   .player-name { font-weight:700; }
   .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border2); padding:2px 8px; border-radius:5px; font-size:11px; color:var(--text-muted); }
-  .rank-badge { font-size:12px; font-variant-numeric:tabular-nums; font-weight:700; }
-  .rank-guild { color:var(--text-muted); }
 
   .cls-Death-Knight { color:#c41e3a; }
-  .cls-Druid        { color:#ff7c0a; }
   .cls-Paladin      { color:#f48cba; }
-  .cls-Priest       { color:#e0e0e0; }
-  .cls-Shaman       { color:#0070dd; }
+  .cls-Warrior      { color:#c69b3a; }
+  .cls-Druid        { color:#ff7c0a; }
 
   .loading { text-align:center; padding:80px 24px; color:var(--text-muted); }
   .loading-spinner { width:34px; height:34px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 18px; }
@@ -104,7 +96,6 @@
     .page-header { padding:24px 16px 12px; }
     .page-header h1 { font-size:23px; }
     .controls, .table-wrap { padding-left:16px; padding-right:16px; }
-    table { min-width:700px; }
   }
 </style>
 </head>
@@ -114,7 +105,8 @@
   <div class="nav-links">
     <a href="../">Головна</a>
     <a href="../guild-ranking/">Рейтинг DPS</a>
-    <a href="./" class="active">Рейтинг Heal</a>
+    <a href="../heal-ranking/">Рейтинг Heal</a>
+    <a href="../tank-ranking/" class="active">Рейтинг Tank</a>
     <a href="../potion-stats/">Статистика Зіль</a>
     <a href="../total-damage/">Total Damage</a>
     <a href="../analytics/">Аналітика</a>
@@ -123,8 +115,8 @@
 </nav>
 
 <div class="page-header">
-  <div class="eyebrow">Рейтинг лікування</div>
-  <h1>Рейтинг Heal <b>Deus Vult</b></h1>
+  <div class="eyebrow">Рейтинг танків</div>
+  <h1>Рейтинг Tank <b>Deus Vult</b></h1>
   <div class="updated-at" id="updatedAt"></div>
 </div>
 
@@ -133,17 +125,22 @@
     <label>Клас</label>
     <select id="classSelect"><option value="">Всі класи</option></select>
   </div>
-  <div class="control-group">
-    <label>Спеціалізація</label>
-    <select id="specSelect"><option value="">Всі спеки</option></select>
-  </div>
   <div class="results-info" id="resultsInfo"></div>
 </div>
 
 <div class="table-wrap">
   <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
   <table id="rankTable" style="display:none">
-    <thead id="tableHead"></thead>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Гравець</th>
+        <th>Клас / Спек</th>
+        <th>Total Damage Taken</th>
+        <th>Lich King Taken</th>
+        <th>Halion Taken</th>
+      </tr>
+    </thead>
     <tbody id="tableBody"></tbody>
   </table>
 </div>
@@ -151,30 +148,10 @@
 <footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
 
 <script>
-const DATA_URL = '../data/guild-heal.json';
-
-const ICC_BOSSES = [
-  'Lord Marrowgar','Lady Deathwhisper','Deathbringer Saurfang',
-  'Festergut','Rotface','Professor Putricide','Blood Prince Council',
-  "Blood-Queen Lana'thel",'Sindragosa','The Lich King','Valithria Dreamwalker'
-];
-const RS_BOSSES = ['Halion','Saviana Ragefire','General Zarithrian','Baltharus the Warborn'];
-
-const BOSS_LABELS = {
-  'Lord Marrowgar':'Marrowgar','Lady Deathwhisper':'Deathwhisper',
-  'Deathbringer Saurfang':'Saurfang','Festergut':'Festergut',
-  'Rotface':'Rotface','Professor Putricide':'Putricide',
-  'Blood Prince Council':'BPC',"Blood-Queen Lana'thel":"Lana'thel",
-  'Sindragosa':'Sindragosa','The Lich King':'Lich King',
-  'Valithria Dreamwalker':'Valithria',
-  'Halion':'Halion','Saviana Ragefire':'Saviana',
-  'General Zarithrian':'Zarithrian','Baltharus the Warborn':'Baltharus'
-};
-
+const DATA_URL = '../data/guild-tank.json';
 let allRows = [];
-let classesMap = {};
+let classesSet = new Set();
 const classSelect = document.getElementById('classSelect');
-const specSelect  = document.getElementById('specSelect');
 
 async function loadData() {
   try {
@@ -186,16 +163,12 @@ async function loadData() {
       document.getElementById('updatedAt').textContent =
         'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
     }
-    allRows.forEach(r => {
-      if (!classesMap[r.class]) classesMap[r.class] = new Set();
-      classesMap[r.class].add(r.spec || '');
-    });
-    Object.keys(classesMap).sort().forEach(cls => {
+    allRows.forEach(r => classesSet.add(r.class));
+    [...classesSet].sort().forEach(cls => {
       const o = document.createElement('option');
       o.value = cls; o.textContent = cls;
       classSelect.appendChild(o);
     });
-    buildHeader();
     render();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('rankTable').style.display = '';
@@ -204,71 +177,14 @@ async function loadData() {
   }
 }
 
-classSelect.addEventListener('change', () => {
-  const cls = classSelect.value;
-  specSelect.innerHTML = '<option value="">Всі спеки</option>';
-  if (cls && classesMap[cls]) {
-    [...classesMap[cls]].sort().forEach(sp => {
-      const o = document.createElement('option');
-      o.value = sp; o.textContent = sp;
-      specSelect.appendChild(o);
-    });
-  }
-  render();
-});
-specSelect.addEventListener('change', render);
+classSelect.addEventListener('change', render);
 
-function buildHeader() {
-  const thead = document.getElementById('tableHead');
-
-  const tr1 = document.createElement('tr');
-  tr1.className = 'group-row';
-  for (let i = 0; i < 4; i++) tr1.appendChild(document.createElement('th'));
-
-  const thIcc = document.createElement('th');
-  thIcc.colSpan = ICC_BOSSES.length;
-  thIcc.className = 'g-icc';
-  thIcc.textContent = 'ICECROWN CITADEL';
-  tr1.appendChild(thIcc);
-
-  const thRs = document.createElement('th');
-  thRs.colSpan = RS_BOSSES.length;
-  thRs.className = 'g-rs';
-  thRs.textContent = 'RUBY SANCTUM';
-  tr1.appendChild(thRs);
-  thead.appendChild(tr1);
-
-  const tr2 = document.createElement('tr');
-  tr2.className = 'col-row';
-  ['#','Гравець','Клас / Спек','AVG Heal'].forEach(t => {
-    const th = document.createElement('th');
-    th.textContent = t;
-    if (t === 'AVG Heal') th.style.textAlign = 'right';
-    tr2.appendChild(th);
-  });
-  ICC_BOSSES.forEach(b => {
-    const th = document.createElement('th');
-    th.className = 'boss-icc';
-    th.textContent = BOSS_LABELS[b] || b;
-    tr2.appendChild(th);
-  });
-  RS_BOSSES.forEach(b => {
-    const th = document.createElement('th');
-    th.className = 'boss-rs';
-    th.textContent = BOSS_LABELS[b] || b;
-    tr2.appendChild(th);
-  });
-  thead.appendChild(tr2);
-}
+function fmt(n) { return n > 0 ? Math.round(n).toLocaleString('uk-UA') : '—'; }
 
 function render() {
-  const cls  = classSelect.value;
-  const spec = specSelect.value;
-  let rows = allRows.filter(r => {
-    if (cls  && r.class !== cls)  return false;
-    if (spec && r.spec  !== spec) return false;
-    return true;
-  }).sort((a,b) => (b.avgHps||0) - (a.avgHps||0));
+  const cls = classSelect.value;
+  let rows = allRows.filter(r => !cls || r.class === cls)
+    .sort((a,b) => (b.totalTaken||0) - (a.totalTaken||0));
 
   document.getElementById('resultsInfo').innerHTML = `Знайдено: <strong>${rows.length}</strong>`;
 
@@ -284,20 +200,20 @@ function render() {
     addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class||''}</span>`
             + (row.spec ? ` <span class="spec-badge">${row.spec}</span>` : ''));
 
-    const avg = row.avgHps || 0;
-    const td = document.createElement('td');
-    td.className = 'avg-cell';
-    td.textContent = avg > 0 ? Math.round(avg).toLocaleString('uk-UA') : '—';
-    tr.appendChild(td);
+    const t1 = document.createElement('td');
+    t1.className = 'tank-cell';
+    t1.textContent = fmt(row.totalTaken);
+    tr.appendChild(t1);
 
-    const allBosses = [...ICC_BOSSES, ...RS_BOSSES];
-    allBosses.forEach((boss, i) => {
-      const val = row.bosses?.[boss] || 0;
-      const bTd = document.createElement('td');
-      bTd.className = (i < ICC_BOSSES.length ? 'boss-icc' : 'boss-rs') + (val > 0 ? '' : ' boss-zero');
-      bTd.textContent = val > 0 ? Math.round(val).toLocaleString('uk-UA') : '—';
-      tr.appendChild(bTd);
-    });
+    const t2 = document.createElement('td');
+    t2.className = 'special-cell';
+    t2.textContent = fmt(row.lichTaken);
+    tr.appendChild(t2);
+
+    const t3 = document.createElement('td');
+    t3.className = 'special-cell';
+    t3.textContent = fmt(row.halionTaken);
+    tr.appendChild(t3);
 
     tbody.appendChild(tr);
   });
