@@ -32,6 +32,9 @@ jobs:
       - name: Run Guild Stats collector
         continue-on-error: true
         run: python fetch_guild_stats.py
+      - name: Run Raid Stats collector
+        continue-on-error: true
+        run: python fetch_raid_stats.py
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
@@ -39,6 +42,6 @@ jobs:
           git stash --include-untracked
           git pull --rebase origin master
           git stash pop
-          git add data/guild-data.json data/guild-heal.json data/potion-stats.json data/total-damage.json data/guild-stats.json data/pending_total_damage.json data/pending_potion.json data/pending_guild_stats.json data/potion-stats_cache.json data/total-damage_cache.json data/guild-stats_cache.json
+          git add data/guild-data.json data/guild-heal.json data/potion-stats.json data/total-damage.json data/guild-stats.json data/raid-stats.json data/pending_total_damage.json data/pending_potion.json data/pending_guild_stats.json data/pending_raid_stats.json data/potion-stats_cache.json data/total-damage_cache.json data/guild-stats_cache.json data/raid-stats_cache.json
           git diff --staged --quiet || git commit -m "Auto-update guild data $(date -u '+%Y-%m-%d')"
           git push origin master
