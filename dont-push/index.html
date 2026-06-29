@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dont Push — Deus Vult</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap');
+  :root {
+    --bg:#070a0f; --bg2:#0d121b; --bg3:#141b26;
+    --border:#1e2836; --border2:#283447;
+    --accent:#8fc1e3; --accent-dim:#4a6f8a;
+    --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; min-height:100vh;
+    display:flex; flex-direction:column; }
+
+  nav { background:rgba(13,18,27,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+    padding:0 24px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:100; }
+  .nav-logo { font-family:'Exo 2',sans-serif; font-weight:800; font-size:16px; color:var(--accent);
+    letter-spacing:.08em; margin-right:36px; text-decoration:none; display:flex; align-items:center; gap:8px; }
+  .nav-logo span { width:8px; height:8px; background:var(--accent); border-radius:2px; transform:rotate(45deg); box-shadow:0 0 12px var(--accent); }
+  .nav-links { display:flex; gap:2px; flex-wrap:wrap; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; padding:7px 14px; border-radius:7px; font-size:13px; font-weight:600; transition:.15s; }
+  .nav-links a:hover { color:var(--text); background:var(--bg3); }
+  .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
+  .nav-toggle { display:none; background:none; border:1px solid var(--border2); border-radius:8px;
+    color:var(--text); width:38px; height:38px; cursor:pointer; margin-left:auto; align-items:center;
+    justify-content:center; font-size:18px; line-height:1; }
+
+  .content { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:40px 24px; position:relative; overflow:hidden; }
+  .content::before { content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 60% 55% at 50% 50%, rgba(143,193,227,.08) 0%, transparent 70%);
+    animation:pulse 6s ease-in-out infinite alternate; }
+  @keyframes pulse { from{opacity:.4} to{opacity:1} }
+
+  .main-text { font-family:'Exo 2',sans-serif; font-size:clamp(32px,6vw,72px); font-weight:900;
+    color:var(--text); letter-spacing:.06em; line-height:1.1; margin-bottom:24px;
+    text-shadow:0 0 60px rgba(143,193,227,.3); position:relative; z-index:1; }
+  .main-text span { color:var(--accent); }
+
+  .gp { font-family:'Exo 2',sans-serif; font-size:clamp(48px,8vw,96px); font-weight:900;
+    color:#ffd96b; letter-spacing:.04em; text-shadow:0 0 40px rgba(255,217,107,.4);
+    margin-bottom:20px; position:relative; z-index:1; }
+
+  .thanks { font-family:'Exo 2',sans-serif; font-size:clamp(20px,3vw,36px); font-weight:700;
+    color:var(--text-muted); letter-spacing:.1em; margin-bottom:12px; position:relative; z-index:1; }
+  .check-priority { font-family:'Exo 2',sans-serif; font-size:clamp(12px,1.5vw,18px); font-weight:600;
+    color:var(--text-faint); letter-spacing:.15em; margin-bottom:40px; position:relative; z-index:1; }
+
+  .divider { width:200px; height:1px; background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    margin:0 auto 32px; opacity:.4; position:relative; z-index:1; }
+
+  .small-text { font-size:13px; color:var(--text-faint); position:relative; z-index:1;
+    max-width:400px; line-height:1.6; }
+
+  footer { text-align:center; padding:24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
+  footer a { color:var(--accent); text-decoration:none; }
+
+  @media (max-width:640px) {
+    nav { padding:0 16px; height:52px; flex-wrap:wrap; }
+    .nav-logo { margin-right:0; font-size:15px; }
+    .nav-toggle { display:flex; }
+    nav { z-index:200; }
+    .nav-links { display:none; flex-direction:column; gap:2px; width:100%;
+      padding:10px 16px 16px; order:3; position:absolute; top:52px; left:0; right:0;
+      background:#0b1019; border-bottom:1px solid var(--border);
+      box-shadow:0 18px 40px rgba(0,0,0,.55); z-index:210; }
+    .nav-links.open { display:flex; }
+    .nav-links a { padding:13px 14px; font-size:15px; border-radius:8px; }
+    .nav-overlay { position:fixed; inset:52px 0 0 0; z-index:150;
+      background:rgba(4,7,12,.55); backdrop-filter:blur(5px);
+      opacity:0; pointer-events:none; transition:opacity .18s; }
+    .nav-overlay.show { opacity:1; pointer-events:auto; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../"><span></span>DEUS VULT</a>
+  <div class="nav-links">
+    <a href="../">Головна</a>
+    <a href="../guild-ranking/">Рейтинг DPS</a>
+    <a href="../heal-ranking/">Рейтинг Heal</a>
+    <a href="../tank-ranking/">Рейтинг Tank</a>
+    <a href="../potion-stats/">Статистика Зіль</a>
+    <a href="../total-damage/">Total Damage</a>
+    <a href="../analytics/">Аналітика</a>
+    <a href="../dont-push/" class="active">Dont Push</a>
+  </div>
+  <button class="nav-toggle" aria-label="Меню">☰</button>
+</nav>
+
+<div class="content">
+  <div class="main-text">PROJECT MAYHEM<br><span>IS ACTIVATED</span></div>
+  <div class="gp">+1000 GP</div>
+  <div class="check-priority">Check your in-game priority</div>
+  <div class="thanks">Thanks for Push</div>
+  <div class="divider"></div>
+  <div class="small-text">Куплю Алі Рубіни, відправляти на пошту Bonem</div>
+</div>
+
+<footer>
+  © Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a>
+</footer>
+
+<script>
+(function(){
+  var t=document.querySelector('.nav-toggle'),l=document.querySelector('.nav-links');
+  if(!t||!l)return;
+  var ov=document.createElement('div');ov.className='nav-overlay';document.body.appendChild(ov);
+  function close(){l.classList.remove('open');ov.classList.remove('show');}
+  function toggle(){var open=l.classList.toggle('open');ov.classList.toggle('show',open);}
+  t.addEventListener('click',toggle);ov.addEventListener('click',close);
+  l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
+</body>
+</html>
