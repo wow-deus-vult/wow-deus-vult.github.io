@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-29T15:57:46.687774+00:00",
-  "totalRaids": 180,
+  "generated": "2026-06-29T16:25:42.975576+00:00",
+  "totalRaids": 184,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/26-06-23--21-41--Sweden--FreedomUA/",
@@ -39574,6 +39574,74 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-06-15--20-55--Зорекрила--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-06-15--20-55--Зорекрила--FreedomUA/consumables/",
+      "date": "2026-06-15",
+      "uploader": "Зорекрила",
+      "players": [
+        {
+          "name": "Зорекрила",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-06-03--18-11--Зорекрила--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-06-03--18-11--Зорекрила--FreedomUA/consumables/",
+      "date": "2026-06-03",
+      "uploader": "Зорекрила",
+      "players": [
+        {
+          "name": "Зорекрила",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-06-02--01-34--Капуста--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-06-02--01-34--Капуста--FreedomUA/consumables/",
+      "date": "2026-06-02",
+      "uploader": "Капуста",
+      "players": [
+        {
+          "name": "Капуста",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-05-25--16-24--Капуста--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-05-25--16-24--Капуста--FreedomUA/consumables/",
+      "date": "2026-05-25",
+      "uploader": "Капуста",
+      "players": [
+        {
+          "name": "Капуста",
+          "total": 3,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 1,
+          "indestructiblePotion": 2
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -41613,6 +41681,17 @@
       "avgPerRaid": 1.5
     },
     {
+      "name": "Капуста",
+      "raids": 2,
+      "totalPotions": 3,
+      "potionOfSpeed": 0,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 1,
+      "indestructiblePotion": 2,
+      "avgPerRaid": 1.5
+    },
+    {
       "name": "Auferstanden",
       "raids": 18,
       "totalPotions": 25,
@@ -42352,6 +42431,17 @@
     {
       "name": "Possibly",
       "raids": 1,
+      "totalPotions": 0,
+      "potionOfSpeed": 0,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 0,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 0.0
+    },
+    {
+      "name": "Зорекрила",
+      "raids": 2,
       "totalPotions": 0,
       "potionOfSpeed": 0,
       "potionOfWildMagic": 0,

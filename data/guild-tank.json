@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-06-29T16:04:41.256186+00:00",
-  "totalTanks": 31,
+  "lastUpdated": "2026-06-29T16:32:51.987282+00:00",
+  "totalTanks": 32,
   "rows": [
     {
       "name": "Йдунави",
@@ -267,6 +267,17 @@
       "guildRank": 24
     },
     {
+      "name": "Palpatine",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 6000297,
+      "lichTaken": 0,
+      "halionTaken": 0,
+      "raidCount": 1,
+      "guildRank": 25
+    },
+    {
       "name": "Palm",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -275,7 +286,7 @@
       "lichTaken": 0,
       "halionTaken": 2172075,
       "raidCount": 7,
-      "guildRank": 25
+      "guildRank": 26
     },
     {
       "name": "Puzzle",
@@ -286,7 +297,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 26
+      "guildRank": 27
     },
     {
       "name": "Ш'кереберть",
@@ -297,7 +308,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 27
+      "guildRank": 28
     },
     {
       "name": "Sanya",
@@ -308,7 +319,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 28
+      "guildRank": 29
     },
     {
       "name": "Pedrofil",
@@ -319,7 +330,7 @@
       "lichTaken": 0,
       "halionTaken": 304474,
       "raidCount": 1,
-      "guildRank": 29
+      "guildRank": 30
     },
     {
       "name": "Sweden",
@@ -330,7 +341,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 30
+      "guildRank": 31
     },
     {
       "name": "Могильник",
@@ -341,7 +352,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 31
+      "guildRank": 32
     }
   ]
 }

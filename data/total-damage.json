@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T15:58:08.881012+00:00",
+  "lastUpdated": "2026-06-29T16:26:05.285380+00:00",
   "currentSeasonId": "s1",
   "seasons": [
     {
@@ -7,7 +7,7 @@
       "name": "Season 1",
       "start": "2026-04-01",
       "end": "2026-10-01",
-      "raidsCount": 238,
+      "raidsCount": 242,
       "rows": [
         {
           "name": "Мараксус",
@@ -1242,6 +1242,13 @@
           "totalDamage": 11284478
         },
         {
+          "name": "Капуста",
+          "server": "FreedomUA",
+          "class": "Warrior",
+          "spec": "Fury Warrior",
+          "totalDamage": 8764328
+        },
+        {
           "name": "Імператордк",
           "server": "FreedomUA",
           "class": "Death Knight",
@@ -1345,6 +1352,13 @@
           "class": "Death Knight",
           "spec": "Frost Death Knight",
           "totalDamage": 2297039
+        },
+        {
+          "name": "Зорекрила",
+          "server": "FreedomUA",
+          "class": "Druid",
+          "spec": "Balance Druid",
+          "totalDamage": 2258075
         },
         {
           "name": "Nesquik",
@@ -1510,7 +1524,7 @@
     }
   ],
   "allTime": {
-    "raidsCount": 356,
+    "raidsCount": 360,
     "rows": [
       {
         "name": "Zmeelow",
@@ -2983,6 +2997,13 @@
         "totalDamage": 9577674
       },
       {
+        "name": "Капуста",
+        "server": "FreedomUA",
+        "class": "Warrior",
+        "spec": "Fury Warrior",
+        "totalDamage": 8764328
+      },
+      {
         "name": "Імператордк",
         "server": "FreedomUA",
         "class": "Death Knight",
@@ -3093,6 +3114,13 @@
         "class": "Death Knight",
         "spec": "Frost Death Knight",
         "totalDamage": 2297039
+      },
+      {
+        "name": "Зорекрила",
+        "server": "FreedomUA",
+        "class": "Druid",
+        "spec": "Balance Druid",
+        "totalDamage": 2258075
       },
       {
         "name": "Тайтус",
