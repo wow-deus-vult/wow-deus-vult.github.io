@@ -42,10 +42,14 @@ OUR_GUILD_NAMES = {"Deus Vult", "Deus VuIt"}
 # Гравці яких немає в EPGP але вони рейдять з нами (тріали, гості тощо).
 # Додавай вручну: "Ім'яГравця",
 EXTRA_MEMBERS = {
-    # "Пак'тайтус",
-    # "Sanya",
-    # "Palpatine"
-    # "Slicendice"
+     "Пак'тайтус",
+     "Sanya",
+     "Palpatine",
+     "Slicendice",
+     "Rambo",
+     "Ramboss",
+     "Капуста",
+     "Зорекрила",
 }
 
 
