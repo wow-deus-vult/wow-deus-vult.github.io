@@ -1,9 +1,9 @@
 """
-fetch_heal_data.py — Deus Vult / FreedomUA
-Рейтинг хілів по всіх босах ЦЛК + РС.
-Для кожного гравця — MAX HPS на кожному босі з усіх логів.
-Guild Rank = AVG по всіх босах де гравець хілив.
-Результат: data/guild-heal.json
+fetch_tank_data.py — Deus Vult / FreedomUA
+Рейтинг танків по Damage Taken з усіх логів.
+- Total Damage Taken за всі логи
+- Окремо: Damage Taken від The Lich King і Halion
+Результат: data/guild-tank.json
 """
 
 import json, os, re, time, requests
@@ -14,7 +14,7 @@ from log_queue import LogQueue
 
 BASE_URL = "https://uwu-logs.xyz"
 SERVER   = "FreedomUA"
-OUTPUT   = "data/guild-heal.json"
+OUTPUT   = "data/guild-tank.json"
 HEADERS  = {"User-Agent": "Mozilla/5.0", "Origin": BASE_URL}
 DELAY    = 4.0
 
@@ -163,16 +163,16 @@ EXTRA_LOGS = [
     "26-06-23--21-41--Sweden--FreedomUA",
 ]
 
-# Боси для рейтингу
-BOSS_ORDER = [
-    "Lord Marrowgar", "Lady Deathwhisper", "Deathbringer Saurfang",
-    "Festergut", "Rotface", "Professor Putricide", "Blood Prince Council",
-    "Blood-Queen Lana'thel", "Sindragosa", "The Lich King",
-    "Valithria Dreamwalker",
-    "Halion", "Saviana Ragefire", "General Zarithrian", "Baltharus the Warborn",
-]
+# Танкові title з player-cell (точне визначення спеку)
+TANK_TITLES = {
+    "Blood Death Knight":   ("Death Knight", "Blood"),
+    "Protection Paladin":   ("Paladin",       "Protection"),
+    "Protection Warrior":   ("Warrior",       "Protection"),
+}
 
-# CSS клас боса → назва
+# Боси де рахуємо taken окремо
+SPECIAL_BOSSES = {"The Lich King", "Halion"}
+
 BOSS_CSS = {
     "lord-marrowgar":        "Lord Marrowgar",
     "lady-deathwhisper":     "Lady Deathwhisper",
@@ -189,15 +189,6 @@ BOSS_CSS = {
     "saviana-ragefire":      "Saviana Ragefire",
     "general-zarithrian":    "General Zarithrian",
     "baltharus-the-warborn": "Baltharus the Warborn",
-}
-
-# Хілські title з player-cell (точне визначення спеку)
-HEAL_TITLES = {
-    "Holy Paladin":        ("Paladin", "Holy"),
-    "Discipline Priest":   ("Priest",  "Discipline"),
-    "Holy Priest":         ("Priest",  "Holy"),
-    "Restoration Druid":   ("Druid",   "Restoration"),
-    "Restoration Shaman":  ("Shaman",  "Restoration"),
 }
 
 
@@ -240,8 +231,8 @@ def get_all_log_ids():
     return log_ids
 
 
-def parse_boss_heals(log_id, boss_href, members):
-    """Парсить сторінку боса і повертає {name: hps} для хілів."""
+def parse_boss_taken(log_id, boss_href, members):
+    """Парсить сторінку боса і повертає {name: taken} для танків."""
     url = f"{BASE_URL}/reports/{log_id}/{boss_href}"
     r = safe_get(url)
     if not r:
@@ -258,39 +249,33 @@ def parse_boss_heals(log_id, boss_href, members):
         name = a.get_text(strip=True)
         if name == "Total" or name not in members:
             continue
-        # Перевіряємо чи це хіл по title спеку
         pc_title = pc.get("title", "")
-        if pc_title not in HEAL_TITLES:
+        if pc_title not in TANK_TITLES:
             continue
-        cls_name, spec_name = HEAL_TITLES[pc_title]
-        # Беремо HPS
+        cls_name, spec_name = TANK_TITLES[pc_title]
+        # Беремо taken total-cell
         for td in tr.find_all("td"):
             classes = td.get("class", [])
-            if "heal" in classes and "per-sec-cell" in classes:
-                val = re.sub(r"[^\d.]", "", td.get_text(strip=True))
-                try:
-                    hps = float(val)
-                    if hps > 0:
-                        result[name] = {
-                            "hps":   hps,
-                            "class": cls_name,
-                            "spec":  spec_name,
-                        }
-                except Exception:
-                    pass
+            if "taken" in classes and "total-cell" in classes:
+                val = int(re.sub(r"[^\d]", "", td.get_text(strip=True)) or 0)
+                if val > 0:
+                    result[name] = {
+                        "taken": val,
+                        "class": cls_name,
+                        "spec":  spec_name,
+                    }
                 break
     return result
 
 
 def parse_log(log_id, members):
-    """Парсить головну сторінку логу і збирає heal дані по всіх босах."""
+    """Парсить лог і збирає taken по всіх босах для танків."""
     url = f"{BASE_URL}/reports/{log_id}/"
     r = safe_get(url)
     if not r:
         return None
     soup = BeautifulSoup(r.text, "html.parser")
 
-    # Знаходимо kill-links по босах
     boss_kills = {}
     seen = set()
     for a in soup.find_all("a", class_="kill-link"):
@@ -312,12 +297,11 @@ def parse_log(log_id, members):
     if not boss_kills:
         return None
 
-    # Збираємо heal по кожному босу
     log_data = {}
     for boss_name, href in boss_kills.items():
-        heals = parse_boss_heals(log_id, href, members)
-        if heals:
-            log_data[boss_name] = heals
+        taken = parse_boss_taken(log_id, href, members)
+        if taken:
+            log_data[boss_name] = taken
 
     return log_data or None
 
@@ -339,49 +323,50 @@ def save_cache(cache):
 
 def build_output(cache):
     """
-    cache = {log_id: {boss_name: {player_name: {hps, class}}}}
-    Для кожного гравця беремо MAX HPS на кожному босі.
-    Guild Rank = AVG по всіх босах.
+    Для кожного танка:
+    - totalTaken: сума по всіх босах всіх логів
+    - lichTaken:  сума по The Lich King
+    - halionTaken: сума по Halion
     """
-    # Збираємо MAX HPS по кожному гравцю на кожному босі
-    player_bosses = {}  # name -> {boss -> max_hps}
-    player_class  = {}  # name -> class
-    player_spec   = {}  # name -> spec
+    player_data = {}
 
     for log_id, log_data in cache.items():
-        for boss_name, heals in log_data.items():
-            for name, data in heals.items():
-                hps = data["hps"]
-                cls = data["class"]
-                player_class[name] = cls
-                player_spec[name]  = data.get("spec", "")
-                if name not in player_bosses:
-                    player_bosses[name] = {}
-                if boss_name not in player_bosses[name] or hps > player_bosses[name][boss_name]:
-                    player_bosses[name][boss_name] = hps
+        for boss_name, tanks in log_data.items():
+            for name, data in tanks.items():
+                taken = data["taken"]
+                if name not in player_data:
+                    player_data[name] = {
+                        "class": data["class"],
+                        "spec":  data["spec"],
+                        "totalTaken": 0,
+                        "lichTaken":  0,
+                        "halionTaken": 0,
+                    }
+                player_data[name]["totalTaken"] += taken
+                if boss_name == "The Lich King":
+                    player_data[name]["lichTaken"] += taken
+                if boss_name == "Halion":
+                    player_data[name]["halionTaken"] += taken
 
-    # Рахуємо AVG HPS по всіх босах
     rows = []
-    for name, bosses in player_bosses.items():
-        boss_values = [v for v in bosses.values() if v > 0]
-        avg_hps = round(sum(boss_values) / len(boss_values), 1) if boss_values else 0
+    for name, data in player_data.items():
         rows.append({
-            "name":    name,
-            "server":  SERVER,
-            "class":   player_class.get(name, ""),
-            "spec":    player_spec.get(name, ""),
-            "avgHps":  avg_hps,
-            "bosses":  {b: round(player_bosses[name].get(b, 0), 1) for b in BOSS_ORDER},
+            "name":         name,
+            "server":       SERVER,
+            "class":        data["class"],
+            "spec":         data["spec"],
+            "totalTaken":   data["totalTaken"],
+            "lichTaken":    data["lichTaken"],
+            "halionTaken":  data["halionTaken"],
         })
 
-    rows.sort(key=lambda r: r["avgHps"], reverse=True)
+    rows.sort(key=lambda r: r["totalTaken"], reverse=True)
     for i, row in enumerate(rows):
         row["guildRank"] = i + 1
 
     return {
         "lastUpdated": datetime.now(timezone.utc).isoformat(),
-        "bossOrder":   BOSS_ORDER,
-        "totalHealers": len(rows),
+        "totalTanks":  len(rows),
         "rows":        rows,
     }
 
@@ -393,10 +378,10 @@ def save_output(data):
 
 
 if __name__ == "__main__":
-    print("=== Збирач Heal рейтингу Deus Vult ===\n")
+    print("=== Збирач Tank рейтингу Deus Vult ===\n")
     members = parse_epgp_members()
 
-    queue = LogQueue("data/pending_heal_rating.json")
+    queue = LogQueue("data/pending_tank_rating.json")
     all_ids = get_all_log_ids()
     queue.add_logs(all_ids)
 
@@ -421,9 +406,8 @@ if __name__ == "__main__":
         cache[log_id] = result
         queue.mark_done(log_id)
         save_cache(cache)
-        bosses_found = list(result.keys())
-        healers_found = sum(len(v) for v in result.values())
-        print(f"✓ {len(bosses_found)} босів, {healers_found} хіл-записів")
+        tanks_found = sum(len(v) for v in result.values())
+        print(f"✓ {len(result)} босів, {tanks_found} танк-записів")
         processed += 1
 
     data = build_output(cache)
@@ -431,9 +415,9 @@ if __name__ == "__main__":
 
     print(f"\n=== Результат ===")
     print(f"  Оброблено: {processed} | Пропущено: {skipped} | В черзі: {queue.pending_count}")
-    print(f"  Хілів в рейтингу: {data['totalHealers']}")
+    print(f"  Танків в рейтингу: {data['totalTanks']}")
     if data["rows"]:
         print(f"  Топ-3:")
         for r in data["rows"][:3]:
-            print(f"    {r['name']:20} AVG HPS: {r['avgHps']:>10,}".replace(",", " "))
+            print(f"    {r['name']:20} Total Taken: {r['totalTaken']:>15,}".replace(",", " "))
     print(f"\n✓ Збережено: {OUTPUT}")
