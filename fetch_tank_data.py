@@ -330,6 +330,8 @@ def build_output(cache):
     """
     player_data = {}
 
+    player_raids = {}  # name -> set of log_ids
+
     for log_id, log_data in cache.items():
         for boss_name, tanks in log_data.items():
             for name, data in tanks.items():
@@ -342,7 +344,9 @@ def build_output(cache):
                         "lichTaken":  0,
                         "halionTaken": 0,
                     }
+                    player_raids[name] = set()
                 player_data[name]["totalTaken"] += taken
+                player_raids[name].add(log_id)
                 if boss_name == "The Lich King":
                     player_data[name]["lichTaken"] += taken
                 if boss_name == "Halion":
@@ -358,6 +362,7 @@ def build_output(cache):
             "totalTaken":   data["totalTaken"],
             "lichTaken":    data["lichTaken"],
             "halionTaken":  data["halionTaken"],
+            "raidCount":    len(player_raids.get(name, set())),
         })
 
     rows.sort(key=lambda r: r["totalTaken"], reverse=True)

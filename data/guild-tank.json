@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T09:23:51.088502+00:00",
+  "lastUpdated": "2026-06-29T12:46:05.934370+00:00",
   "totalTanks": 31,
   "rows": [
     {
@@ -7,9 +7,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 277248800,
-      "lichTaken": 101296298,
-      "halionTaken": 35081306,
+      "totalTaken": 293782297,
+      "lichTaken": 106683532,
+      "halionTaken": 37058008,
+      "raidCount": 32,
       "guildRank": 1
     },
     {
@@ -17,9 +18,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 267771297,
-      "lichTaken": 82635574,
-      "halionTaken": 30655698,
+      "totalTaken": 287603438,
+      "lichTaken": 89199695,
+      "halionTaken": 33089987,
+      "raidCount": 32,
       "guildRank": 2
     },
     {
@@ -27,9 +29,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 125711641,
-      "lichTaken": 36993715,
-      "halionTaken": 13962616,
+      "totalTaken": 153126631,
+      "lichTaken": 45910672,
+      "halionTaken": 16871602,
+      "raidCount": 19,
       "guildRank": 3
     },
     {
@@ -37,9 +40,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 110228256,
-      "lichTaken": 33973674,
-      "halionTaken": 23054616,
+      "totalTaken": 143942931,
+      "lichTaken": 43917349,
+      "halionTaken": 27176761,
+      "raidCount": 19,
       "guildRank": 4
     },
     {
@@ -47,9 +51,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 91829706,
-      "lichTaken": 24109239,
-      "halionTaken": 3886598,
+      "totalTaken": 110605375,
+      "lichTaken": 31316587,
+      "halionTaken": 4551141,
+      "raidCount": 27,
       "guildRank": 5
     },
     {
@@ -57,9 +62,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 86176957,
+      "totalTaken": 87119064,
       "lichTaken": 25168946,
-      "halionTaken": 841505,
+      "halionTaken": 1245707,
+      "raidCount": 11,
       "guildRank": 6
     },
     {
@@ -70,6 +76,7 @@
       "totalTaken": 79244038,
       "lichTaken": 21847838,
       "halionTaken": 3154387,
+      "raidCount": 9,
       "guildRank": 7
     },
     {
@@ -77,9 +84,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 64927353,
-      "lichTaken": 16274001,
+      "totalTaken": 67279511,
+      "lichTaken": 18276641,
       "halionTaken": 2642329,
+      "raidCount": 20,
       "guildRank": 8
     },
     {
@@ -90,6 +98,7 @@
       "totalTaken": 52453156,
       "lichTaken": 13678721,
       "halionTaken": 834676,
+      "raidCount": 10,
       "guildRank": 9
     },
     {
@@ -100,6 +109,7 @@
       "totalTaken": 44133274,
       "lichTaken": 10987962,
       "halionTaken": 335741,
+      "raidCount": 6,
       "guildRank": 10
     },
     {
@@ -110,6 +120,7 @@
       "totalTaken": 37706031,
       "lichTaken": 16112885,
       "halionTaken": 1422623,
+      "raidCount": 10,
       "guildRank": 11
     },
     {
@@ -120,6 +131,7 @@
       "totalTaken": 35433347,
       "lichTaken": 7576878,
       "halionTaken": 765802,
+      "raidCount": 7,
       "guildRank": 12
     },
     {
@@ -127,10 +139,22 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 27238571,
-      "lichTaken": 9927004,
-      "halionTaken": 1117240,
+      "totalTaken": 32464372,
+      "lichTaken": 11332619,
+      "halionTaken": 1386607,
+      "raidCount": 11,
       "guildRank": 13
+    },
+    {
+      "name": "Жасмин",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 30639672,
+      "lichTaken": 4854053,
+      "halionTaken": 427031,
+      "raidCount": 6,
+      "guildRank": 14
     },
     {
       "name": "Kalmar",
@@ -140,16 +164,7 @@
       "totalTaken": 26942582,
       "lichTaken": 2401132,
       "halionTaken": 0,
-      "guildRank": 14
-    },
-    {
-      "name": "Жасмин",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "totalTaken": 26445328,
-      "lichTaken": 4854053,
-      "halionTaken": 427031,
+      "raidCount": 3,
       "guildRank": 15
     },
     {
@@ -160,6 +175,7 @@
       "totalTaken": 21576530,
       "lichTaken": 4277489,
       "halionTaken": 827522,
+      "raidCount": 6,
       "guildRank": 16
     },
     {
@@ -170,6 +186,7 @@
       "totalTaken": 20734436,
       "lichTaken": 0,
       "halionTaken": 7736320,
+      "raidCount": 5,
       "guildRank": 17
     },
     {
@@ -180,6 +197,7 @@
       "totalTaken": 18655179,
       "lichTaken": 0,
       "halionTaken": 0,
+      "raidCount": 2,
       "guildRank": 18
     },
     {
@@ -190,6 +208,7 @@
       "totalTaken": 15961262,
       "lichTaken": 9305151,
       "halionTaken": 4578235,
+      "raidCount": 5,
       "guildRank": 19
     },
     {
@@ -200,7 +219,19 @@
       "totalTaken": 15126770,
       "lichTaken": 3842581,
       "halionTaken": 0,
+      "raidCount": 2,
       "guildRank": 20
+    },
+    {
+      "name": "Ramboss",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 13298292,
+      "lichTaken": 1991813,
+      "halionTaken": 309936,
+      "raidCount": 2,
+      "guildRank": 21
     },
     {
       "name": "Metalolom",
@@ -210,16 +241,7 @@
       "totalTaken": 13037100,
       "lichTaken": 4856166,
       "halionTaken": 0,
-      "guildRank": 21
-    },
-    {
-      "name": "Ramboss",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 12988356,
-      "lichTaken": 1991813,
-      "halionTaken": 0,
+      "raidCount": 1,
       "guildRank": 22
     },
     {
@@ -230,6 +252,7 @@
       "totalTaken": 11368019,
       "lichTaken": 1399634,
       "halionTaken": 0,
+      "raidCount": 2,
       "guildRank": 23
     },
     {
@@ -240,6 +263,7 @@
       "totalTaken": 10466315,
       "lichTaken": 0,
       "halionTaken": 623863,
+      "raidCount": 3,
       "guildRank": 24
     },
     {
@@ -250,6 +274,7 @@
       "totalTaken": 4566250,
       "lichTaken": 0,
       "halionTaken": 2172075,
+      "raidCount": 7,
       "guildRank": 25
     },
     {
@@ -260,6 +285,7 @@
       "totalTaken": 3100581,
       "lichTaken": 0,
       "halionTaken": 0,
+      "raidCount": 1,
       "guildRank": 26
     },
     {
@@ -270,6 +296,7 @@
       "totalTaken": 1409278,
       "lichTaken": 0,
       "halionTaken": 0,
+      "raidCount": 1,
       "guildRank": 27
     },
     {
@@ -280,6 +307,7 @@
       "totalTaken": 1194838,
       "lichTaken": 0,
       "halionTaken": 0,
+      "raidCount": 1,
       "guildRank": 28
     },
     {
@@ -290,6 +318,7 @@
       "totalTaken": 566333,
       "lichTaken": 0,
       "halionTaken": 304474,
+      "raidCount": 1,
       "guildRank": 29
     },
     {
@@ -300,6 +329,7 @@
       "totalTaken": 106060,
       "lichTaken": 0,
       "halionTaken": 0,
+      "raidCount": 1,
       "guildRank": 30
     },
     {
@@ -310,6 +340,7 @@
       "totalTaken": 63376,
       "lichTaken": 0,
       "halionTaken": 0,
+      "raidCount": 1,
       "guildRank": 31
     }
   ]
