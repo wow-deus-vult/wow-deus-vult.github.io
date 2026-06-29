@@ -195,7 +195,7 @@ specSelect.addEventListener('change', render);
 function buildHeader() {
   const thead = document.getElementById('tableHead');
   const tr1 = document.createElement('tr'); tr1.className = 'group-row';
-  for (let i=0;i<5;i++) tr1.appendChild(document.createElement('th'));
+  for (let i=0;i<6;i++) tr1.appendChild(document.createElement('th'));
   const thIcc = document.createElement('th'); thIcc.colSpan=ICC_BOSSES.length; thIcc.className='g-icc'; thIcc.textContent='ICECROWN CITADEL'; tr1.appendChild(thIcc);
   const thRs  = document.createElement('th'); thRs.colSpan=RS_BOSSES.length;   thRs.className='g-rs';  thRs.textContent='RUBY SANCTUM';     tr1.appendChild(thRs);
   thead.appendChild(tr1);
