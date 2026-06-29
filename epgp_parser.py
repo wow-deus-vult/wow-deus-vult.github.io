@@ -39,6 +39,15 @@ KNOWN_CLASSES = {
 # Назви профілів НАШОЇ гільдії (обидва написання: l та латинська I).
 OUR_GUILD_NAMES = {"Deus Vult", "Deus VuIt"}
 
+# Гравці яких немає в EPGP але вони рейдять з нами (тріали, гості тощо).
+# Додавай вручну: "Ім'яГравця",
+EXTRA_MEMBERS = {
+    # "Пак'тайтус",
+    # "Sanya",
+    # "Palpatine"
+    # "Slicendice"
+}
+
 
 def parse_epgp_members(path="EPGP.lua", our_guilds=OUR_GUILD_NAMES, verbose=True):
     """
@@ -82,8 +91,12 @@ def parse_epgp_members(path="EPGP.lua", our_guilds=OUR_GUILD_NAMES, verbose=True
             if cls in KNOWN_CLASSES:
                 names.add(pm.group(1))
 
+    # Додаємо ручний список
+    names.update(EXTRA_MEMBERS)
+
     if verbose:
-        print(f"   EPGP: {len(names)} гравців (з {taken_blocks} ростер-блоків нашої гільдії)")
+        extra = len(EXTRA_MEMBERS)
+        print(f"   EPGP: {len(names)} гравців (з {taken_blocks} ростер-блоків нашої гільдії{f' + {extra} вручну' if extra else ''})")
     return names
 
 
