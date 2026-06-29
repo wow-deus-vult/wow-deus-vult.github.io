@@ -11,12 +11,13 @@
     --border:#1e2836; --border2:#283447;
     --accent:#8fc1e3; --accent-dim:#4a6f8a;
     --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
+    --icc:#102234; --icc-border:#1f4060;
+    --rs:#10241a;  --rs-border:#1f5030;
     --heal:#7fd4a0; --danger:#e06a6a;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px;
     background-image:radial-gradient(900px 500px at 80% -10%, rgba(127,212,160,.04), transparent 60%); }
-
   nav { background:rgba(13,18,27,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
     padding:0 24px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:100; }
   .nav-logo { font-family:'Exo 2',sans-serif; font-weight:800; font-size:16px; color:var(--accent);
@@ -26,14 +27,12 @@
   .nav-links a { color:var(--text-muted); text-decoration:none; padding:7px 14px; border-radius:7px; font-size:13px; font-weight:600; transition:.15s; }
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
   .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
-
-  .page-header { padding:40px 24px 20px; max-width:1200px; margin:0 auto; }
+  .page-header { padding:40px 24px 20px; max-width:1600px; margin:0 auto; }
   .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:10px; }
   .page-header h1 { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; color:var(--text); margin-bottom:8px; }
   .page-header h1 b { color:var(--accent); }
   .updated-at { font-size:12px; color:var(--text-faint); margin-top:6px; }
-
-  .controls { max-width:1200px; margin:0 auto; padding:8px 24px 20px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
+  .controls { max-width:1600px; margin:0 auto; padding:8px 24px 20px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
   .control-group { display:flex; flex-direction:column; gap:6px; }
   .control-group label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
   select { background:var(--bg2); border:1px solid var(--border2); color:var(--text); padding:9px 13px; border-radius:8px;
@@ -41,51 +40,47 @@
   select:hover,select:focus { border-color:var(--accent-dim); }
   .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); align-self:center; }
   .results-info strong { color:var(--accent); font-size:14px; }
-
-  .table-wrap { max-width:1200px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .table-wrap { max-width:1600px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; }
   table { width:100%; border-collapse:collapse; font-size:13px; }
-
-  thead tr.group-row th { padding:6px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
-    letter-spacing:.08em; border-bottom:1px solid var(--border2); }
-  thead tr.col-row th { padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
+  thead th { text-align:left; padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
     letter-spacing:.08em; color:var(--text-muted); border-bottom:1px solid var(--border2); white-space:nowrap; }
-
-  .g-icc { background:rgba(143,193,227,.06); color:var(--accent); text-align:center; }
-  .g-rs  { background:rgba(127,212,160,.06); color:var(--heal); text-align:center; }
-  .boss-icc { background:rgba(143,193,227,.04); color:var(--accent); text-align:right; }
-  .boss-rs  { background:rgba(127,212,160,.04); color:var(--heal); text-align:right; }
-  .boss-zero { color:var(--text-faint) !important; }
-
+  thead tr.group-row th { border-bottom:none; padding:6px 4px 4px; }
+  thead tr.group-row th.g-icc { text-align:center; font-family:'Exo 2',sans-serif; font-size:10px; font-weight:700;
+    letter-spacing:.14em; color:var(--accent); background:var(--icc); border:1px solid var(--icc-border);
+    border-bottom:none; border-radius:6px 6px 0 0; padding:6px 8px; }
+  thead tr.group-row th.g-rs { text-align:center; font-family:'Exo 2',sans-serif; font-size:10px; font-weight:700;
+    letter-spacing:.14em; color:#7fd4a0; background:var(--rs); border:1px solid var(--rs-border);
+    border-bottom:none; border-radius:6px 6px 0 0; padding:6px 8px; }
+  thead tr.col-row th { border-bottom:1px solid var(--border2); }
+  thead tr.col-row th.boss-icc { text-align:center; font-size:10px; font-weight:500; letter-spacing:0;
+    background:var(--icc); border-left:1px solid var(--icc-border); border-right:1px solid var(--icc-border); color:var(--accent); padding:6px; }
+  thead tr.col-row th.boss-rs { text-align:center; font-size:10px; font-weight:500; letter-spacing:0;
+    background:var(--rs); border-left:1px solid var(--rs-border); border-right:1px solid var(--rs-border); color:#7fd4a0; padding:6px; }
   tbody tr { border-bottom:1px solid rgba(30,40,54,.6); transition:background .1s; }
   tbody tr:hover { background:var(--bg2); }
   td { padding:9px 10px; white-space:nowrap; vertical-align:middle; }
   td:first-child { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
-  td.avg-cell { text-align:right; font-weight:700; color:var(--heal); font-variant-numeric:tabular-nums; }
-
+  td.boss-icc { text-align:center; font-size:12px; font-variant-numeric:tabular-nums; background:rgba(16,34,52,.4); border-left:1px solid rgba(31,64,96,.25); border-right:1px solid rgba(31,64,96,.25); }
+  td.boss-rs  { text-align:center; font-size:12px; font-variant-numeric:tabular-nums; background:rgba(16,36,26,.4); border-left:1px solid rgba(31,80,48,.25); border-right:1px solid rgba(31,80,48,.25); }
+  td.boss-zero { color:var(--border2); }
+  td.avg-cell { text-align:center; font-weight:700; color:var(--heal); font-variant-numeric:tabular-nums; }
+  td.boss-count { text-align:center; color:var(--text-muted); font-variant-numeric:tabular-nums; }
   .player-name { font-weight:700; }
   .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border2); padding:2px 8px; border-radius:5px; font-size:11px; color:var(--text-muted); }
   .rank-badge { font-size:12px; font-variant-numeric:tabular-nums; font-weight:700; }
   .rank-guild { color:var(--text-muted); }
-
-  .cls-Death-Knight { color:#c41e3a; }
-  .cls-Druid        { color:#ff7c0a; }
-  .cls-Paladin      { color:#f48cba; }
-  .cls-Priest       { color:#e0e0e0; }
-  .cls-Shaman       { color:#0070dd; }
-
+  .cls-Death-Knight { color:#c41e3a; } .cls-Druid { color:#ff7c0a; }
+  .cls-Paladin { color:#f48cba; } .cls-Priest { color:#e0e0e0; } .cls-Shaman { color:#0070dd; }
   .loading { text-align:center; padding:80px 24px; color:var(--text-muted); }
   .loading-spinner { width:34px; height:34px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 18px; }
   @keyframes spin { to { transform:rotate(360deg); } }
-
   footer { text-align:center; padding:32px 24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
   footer a { color:var(--accent); text-decoration:none; }
   @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
-
   .nav-toggle { display:none; background:none; border:1px solid var(--border2); border-radius:8px;
     color:var(--text); width:38px; height:38px; cursor:pointer; margin-left:auto; align-items:center;
     justify-content:center; font-size:18px; line-height:1; }
   .nav-toggle:hover { border-color:var(--accent-dim); color:var(--accent); }
-
   @media (max-width:640px) {
     nav { padding:0 16px; height:52px; flex-wrap:wrap; }
     .nav-logo { margin-right:0; font-size:15px; }
@@ -115,19 +110,18 @@
     <a href="../">Головна</a>
     <a href="../guild-ranking/">Рейтинг DPS</a>
     <a href="./" class="active">Рейтинг Heal</a>
+    <a href="../tank-ranking/">Рейтинг Tank</a>
     <a href="../potion-stats/">Статистика Зіль</a>
     <a href="../total-damage/">Total Damage</a>
     <a href="../analytics/">Аналітика</a>
   </div>
   <button class="nav-toggle" aria-label="Меню">☰</button>
 </nav>
-
 <div class="page-header">
   <div class="eyebrow">Рейтинг лікування</div>
   <h1>Рейтинг Heal <b>Deus Vult</b></h1>
   <div class="updated-at" id="updatedAt"></div>
 </div>
-
 <div class="controls">
   <div class="control-group">
     <label>Клас</label>
@@ -139,7 +133,6 @@
   </div>
   <div class="results-info" id="resultsInfo"></div>
 </div>
-
 <div class="table-wrap">
   <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
   <table id="rankTable" style="display:none">
@@ -147,56 +140,39 @@
     <tbody id="tableBody"></tbody>
   </table>
 </div>
-
 <footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
-
 <script>
 const DATA_URL = '../data/guild-heal.json';
-
-const ICC_BOSSES = [
-  'Lord Marrowgar','Lady Deathwhisper','Deathbringer Saurfang',
-  'Festergut','Rotface','Professor Putricide','Blood Prince Council',
-  "Blood-Queen Lana'thel",'Sindragosa','The Lich King','Valithria Dreamwalker'
-];
+const ICC_BOSSES = ['Lord Marrowgar','Lady Deathwhisper','Deathbringer Saurfang','Festergut','Rotface','Professor Putricide','Blood Prince Council',"Blood-Queen Lana'thel",'Sindragosa','The Lich King','Valithria Dreamwalker'];
 const RS_BOSSES = ['Halion','Saviana Ragefire','General Zarithrian','Baltharus the Warborn'];
-
 const BOSS_LABELS = {
-  'Lord Marrowgar':'Marrowgar','Lady Deathwhisper':'Deathwhisper',
-  'Deathbringer Saurfang':'Saurfang','Festergut':'Festergut',
-  'Rotface':'Rotface','Professor Putricide':'Putricide',
-  'Blood Prince Council':'BPC',"Blood-Queen Lana'thel":"Lana'thel",
-  'Sindragosa':'Sindragosa','The Lich King':'Lich King',
-  'Valithria Dreamwalker':'Valithria',
-  'Halion':'Halion','Saviana Ragefire':'Saviana',
-  'General Zarithrian':'Zarithrian','Baltharus the Warborn':'Baltharus'
+  'Lord Marrowgar':'Marrowgar','Lady Deathwhisper':'Deathwhisper','Deathbringer Saurfang':'Saurfang',
+  'Festergut':'Festergut','Rotface':'Rotface','Professor Putricide':'Putricide',
+  'Blood Prince Council':'BPC',"Blood-Queen Lana'thel":"Lana'thel",'Sindragosa':'Sindragosa',
+  'The Lich King':'Lich King','Valithria Dreamwalker':'Valithria',
+  'Halion':'Halion','Saviana Ragefire':'Saviana','General Zarithrian':'Zarithrian','Baltharus the Warborn':'Baltharus'
 };
-
-let allRows = [];
-let classesMap = {};
+let allRows = [], classesMap = {};
 const classSelect = document.getElementById('classSelect');
 const specSelect  = document.getElementById('specSelect');
 
 async function loadData() {
   try {
-    const res  = await fetch(DATA_URL);
+    const res = await fetch(DATA_URL);
     const data = await res.json();
     allRows = data.rows || [];
     if (data.lastUpdated) {
       const d = new Date(data.lastUpdated);
-      document.getElementById('updatedAt').textContent =
-        'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+      document.getElementById('updatedAt').textContent = 'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
     }
     allRows.forEach(r => {
       if (!classesMap[r.class]) classesMap[r.class] = new Set();
-      classesMap[r.class].add(r.spec || '');
+      classesMap[r.class].add(r.spec||'');
     });
     Object.keys(classesMap).sort().forEach(cls => {
-      const o = document.createElement('option');
-      o.value = cls; o.textContent = cls;
-      classSelect.appendChild(o);
+      const o = document.createElement('option'); o.value=cls; o.textContent=cls; classSelect.appendChild(o);
     });
-    buildHeader();
-    render();
+    buildHeader(); render();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('rankTable').style.display = '';
   } catch(e) {
@@ -209,9 +185,7 @@ classSelect.addEventListener('change', () => {
   specSelect.innerHTML = '<option value="">Всі спеки</option>';
   if (cls && classesMap[cls]) {
     [...classesMap[cls]].sort().forEach(sp => {
-      const o = document.createElement('option');
-      o.value = sp; o.textContent = sp;
-      specSelect.appendChild(o);
+      const o = document.createElement('option'); o.value=sp; o.textContent=sp; specSelect.appendChild(o);
     });
   }
   render();
@@ -220,110 +194,62 @@ specSelect.addEventListener('change', render);
 
 function buildHeader() {
   const thead = document.getElementById('tableHead');
-
-  const tr1 = document.createElement('tr');
-  tr1.className = 'group-row';
-  for (let i = 0; i < 4; i++) tr1.appendChild(document.createElement('th'));
-
-  const thIcc = document.createElement('th');
-  thIcc.colSpan = ICC_BOSSES.length;
-  thIcc.className = 'g-icc';
-  thIcc.textContent = 'ICECROWN CITADEL';
-  tr1.appendChild(thIcc);
-
-  const thRs = document.createElement('th');
-  thRs.colSpan = RS_BOSSES.length;
-  thRs.className = 'g-rs';
-  thRs.textContent = 'RUBY SANCTUM';
-  tr1.appendChild(thRs);
+  const tr1 = document.createElement('tr'); tr1.className = 'group-row';
+  for (let i=0;i<5;i++) tr1.appendChild(document.createElement('th'));
+  const thIcc = document.createElement('th'); thIcc.colSpan=ICC_BOSSES.length; thIcc.className='g-icc'; thIcc.textContent='ICECROWN CITADEL'; tr1.appendChild(thIcc);
+  const thRs  = document.createElement('th'); thRs.colSpan=RS_BOSSES.length;   thRs.className='g-rs';  thRs.textContent='RUBY SANCTUM';     tr1.appendChild(thRs);
   thead.appendChild(tr1);
 
-  const tr2 = document.createElement('tr');
-  tr2.className = 'col-row';
-  ['#','Гравець','Клас / Спек','Guild Rank','Bosses','AVG Heal'].forEach(t => {
-    const th = document.createElement('th');
-    th.textContent = t;
-    if (t === 'AVG Heal' || t === 'Bosses') th.style.textAlign = 'right';
-    if (t === 'Guild Rank') th.style.textAlign = 'right';
-    tr2.appendChild(th);
+  const tr2 = document.createElement('tr'); tr2.className = 'col-row';
+  [['#','center'],['Гравець','left'],['Клас / Спек','left'],['Guild Rank','right'],['Bosses','center'],['AVG Heal','center']].forEach(([t,a]) => {
+    const th = document.createElement('th'); th.textContent=t; th.style.textAlign=a; tr2.appendChild(th);
   });
-  ICC_BOSSES.forEach(b => {
-    const th = document.createElement('th');
-    th.className = 'boss-icc';
-    th.textContent = BOSS_LABELS[b] || b;
-    tr2.appendChild(th);
-  });
-  RS_BOSSES.forEach(b => {
-    const th = document.createElement('th');
-    th.className = 'boss-rs';
-    th.textContent = BOSS_LABELS[b] || b;
-    tr2.appendChild(th);
-  });
+  ICC_BOSSES.forEach(b => { const th=document.createElement('th'); th.className='boss-icc'; th.textContent=BOSS_LABELS[b]||b; tr2.appendChild(th); });
+  RS_BOSSES.forEach(b  => { const th=document.createElement('th'); th.className='boss-rs';  th.textContent=BOSS_LABELS[b]||b; tr2.appendChild(th); });
   thead.appendChild(tr2);
 }
 
 function render() {
-  const cls  = classSelect.value;
-  const spec = specSelect.value;
-  let rows = allRows.filter(r => {
-    if (cls  && r.class !== cls)  return false;
-    if (spec && r.spec  !== spec) return false;
-    return true;
-  }).sort((a,b) => (b.avgHps||0) - (a.avgHps||0));
+  const cls=classSelect.value, spec=specSelect.value;
+  let rows = allRows.filter(r => (!cls||r.class===cls) && (!spec||r.spec===spec))
+    .sort((a,b) => { const bc=(b.bossCount||0)-(a.bossCount||0); return bc!==0?bc:(b.avgHps||0)-(a.avgHps||0); });
 
   document.getElementById('resultsInfo').innerHTML = `Знайдено: <strong>${rows.length}</strong>`;
-
-  const tbody = document.getElementById('tableBody');
-  tbody.innerHTML = '';
+  const tbody = document.getElementById('tableBody'); tbody.innerHTML='';
 
   rows.forEach((row, idx) => {
     const tr = document.createElement('tr');
     const clsKey = (row.class||'').replace(/ /g,'-');
-
     addTd(tr, idx+1, 'text-align:center;color:var(--text-faint);font-size:11px');
     addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
-    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class||''}</span>`
-            + (row.spec ? ` <span class="spec-badge">${row.spec}</span>` : ''));
+    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class||''}</span>`+(row.spec?` <span class="spec-badge">${row.spec}</span>`:''));
     addTd(tr, `<span class="rank-badge rank-guild">#${row.guildRank||idx+1}</span>`, 'text-align:right');
-    addTd(tr, row.bossCount||0, 'text-align:right;color:var(--text-muted);font-variant-numeric:tabular-nums');
 
-    const avg = row.avgHps || 0;
-    const td = document.createElement('td');
-    td.className = 'avg-cell';
-    td.textContent = avg > 0 ? Math.round(avg).toLocaleString('uk-UA') : '—';
-    tr.appendChild(td);
+    const bc=document.createElement('td'); bc.className='boss-count'; bc.textContent=row.bossCount||0; tr.appendChild(bc);
+    const avg=document.createElement('td'); avg.className='avg-cell'; avg.textContent=(row.avgHps||0)>0?Math.round(row.avgHps).toLocaleString('uk-UA'):'—'; tr.appendChild(avg);
 
-    const allBosses = [...ICC_BOSSES, ...RS_BOSSES];
-    allBosses.forEach((boss, i) => {
-      const val = row.bosses?.[boss] || 0;
-      const bTd = document.createElement('td');
-      bTd.className = (i < ICC_BOSSES.length ? 'boss-icc' : 'boss-rs') + (val > 0 ? '' : ' boss-zero');
-      bTd.textContent = val > 0 ? Math.round(val).toLocaleString('uk-UA') : '—';
-      tr.appendChild(bTd);
+    [...ICC_BOSSES,...RS_BOSSES].forEach((boss,i) => {
+      const val=row.bosses?.[boss]||0;
+      const td=document.createElement('td');
+      td.className=(i<ICC_BOSSES.length?'boss-icc':'boss-rs')+(val>0?'':' boss-zero');
+      td.textContent=val>0?Math.round(val).toLocaleString('uk-UA'):'—';
+      tr.appendChild(td);
     });
-
     tbody.appendChild(tr);
   });
 }
 
-function addTd(tr, html, style) {
-  const td = document.createElement('td');
-  if (style) td.style.cssText = style;
-  td.innerHTML = String(html);
-  tr.appendChild(td);
-}
-
+function addTd(tr,html,style){const td=document.createElement('td');if(style)td.style.cssText=style;td.innerHTML=String(html);tr.appendChild(td);}
 loadData();
 </script>
-
 <script>
 (function(){
   var t=document.querySelector('.nav-toggle'),l=document.querySelector('.nav-links');
   if(!t||!l)return;
-  var ov=document.createElement('div'); ov.className='nav-overlay'; document.body.appendChild(ov);
+  var ov=document.createElement('div');ov.className='nav-overlay';document.body.appendChild(ov);
   function close(){l.classList.remove('open');ov.classList.remove('show');}
   function toggle(){var open=l.classList.toggle('open');ov.classList.toggle('show',open);}
-  t.addEventListener('click',toggle); ov.addEventListener('click',close);
+  t.addEventListener('click',toggle);ov.addEventListener('click',close);
   l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
 })();
 </script>

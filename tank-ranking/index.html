@@ -16,7 +16,6 @@
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; font-size:14px;
     background-image:radial-gradient(900px 500px at 80% -10%, rgba(232,168,95,.04), transparent 60%); }
-
   nav { background:rgba(13,18,27,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
     padding:0 24px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:100; }
   .nav-logo { font-family:'Exo 2',sans-serif; font-weight:800; font-size:16px; color:var(--accent);
@@ -26,14 +25,12 @@
   .nav-links a { color:var(--text-muted); text-decoration:none; padding:7px 14px; border-radius:7px; font-size:13px; font-weight:600; transition:.15s; }
   .nav-links a:hover { color:var(--text); background:var(--bg3); }
   .nav-links a.active { color:var(--accent); background:rgba(143,193,227,.1); }
-
-  .page-header { padding:40px 24px 20px; }
+  .page-header { padding:40px 24px 20px; max-width:900px; margin:0 auto; }
   .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:10px; }
   .page-header h1 { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; color:var(--text); margin-bottom:8px; }
   .page-header h1 b { color:var(--accent); }
   .updated-at { font-size:12px; color:var(--text-faint); margin-top:6px; }
-
-  .controls { padding:8px 24px 20px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
+  .controls { max-width:900px; margin:0 auto; padding:8px 24px 20px; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
   .control-group { display:flex; flex-direction:column; gap:6px; }
   .control-group label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); }
   select { background:var(--bg2); border:1px solid var(--border2); color:var(--text); padding:9px 13px; border-radius:8px;
@@ -41,43 +38,33 @@
   select:hover,select:focus { border-color:var(--accent-dim); }
   .results-info { margin-left:auto; font-size:12px; color:var(--text-muted); align-self:center; }
   .results-info strong { color:var(--accent); font-size:14px; }
-
-  .table-wrap { padding:0 24px 48px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  table { width:100%; border-collapse:collapse; font-size:13px; min-width:600px; }
+  .table-wrap { max-width:900px; margin:0 auto; padding:0 24px 48px; overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
   thead th { padding:9px 10px; font-size:10px; font-weight:700; text-transform:uppercase;
     letter-spacing:.08em; color:var(--text-muted); border-bottom:1px solid var(--border2); white-space:nowrap; text-align:right; }
-  thead th:nth-child(1),thead th:nth-child(2),thead th:nth-child(3) { text-align:left; }
   thead th:nth-child(1) { text-align:center; width:36px; }
-
+  thead th:nth-child(2),thead th:nth-child(3) { text-align:left; }
   tbody tr { border-bottom:1px solid rgba(30,40,54,.6); transition:background .1s; }
   tbody tr:hover { background:var(--bg2); }
   td { padding:9px 10px; white-space:nowrap; vertical-align:middle; text-align:right; }
-  td:nth-child(1) { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
+  td:first-child { text-align:center; color:var(--text-faint); font-size:11px; width:36px; }
   td:nth-child(2),td:nth-child(3) { text-align:left; }
   td.tank-cell { font-weight:700; color:var(--tank); font-variant-numeric:tabular-nums; }
   td.special-cell { color:var(--text-muted); font-variant-numeric:tabular-nums; }
-
   .player-name { font-weight:700; }
   .spec-badge { display:inline-flex; background:var(--bg3); border:1px solid var(--border2); padding:2px 8px; border-radius:5px; font-size:11px; color:var(--text-muted); }
-
-  .cls-Death-Knight { color:#c41e3a; }
-  .cls-Paladin      { color:#f48cba; }
-  .cls-Warrior      { color:#c69b3a; }
-  .cls-Druid        { color:#ff7c0a; }
-
+  .cls-Death-Knight { color:#c41e3a; } .cls-Paladin { color:#f48cba; }
+  .cls-Warrior { color:#c69b3a; } .cls-Druid { color:#ff7c0a; }
   .loading { text-align:center; padding:80px 24px; color:var(--text-muted); }
   .loading-spinner { width:34px; height:34px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 18px; }
   @keyframes spin { to { transform:rotate(360deg); } }
-
   footer { text-align:center; padding:32px 24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
   footer a { color:var(--accent); text-decoration:none; }
   @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
-
   .nav-toggle { display:none; background:none; border:1px solid var(--border2); border-radius:8px;
     color:var(--text); width:38px; height:38px; cursor:pointer; margin-left:auto; align-items:center;
     justify-content:center; font-size:18px; line-height:1; }
   .nav-toggle:hover { border-color:var(--accent-dim); color:var(--accent); }
-
   @media (max-width:640px) {
     nav { padding:0 16px; height:52px; flex-wrap:wrap; }
     .nav-logo { margin-right:0; font-size:15px; }
@@ -106,20 +93,18 @@
     <a href="../">Головна</a>
     <a href="../guild-ranking/">Рейтинг DPS</a>
     <a href="../heal-ranking/">Рейтинг Heal</a>
-    <a href="../tank-ranking/" class="active">Рейтинг Tank</a>
+    <a href="./" class="active">Рейтинг Tank</a>
     <a href="../potion-stats/">Статистика Зіль</a>
     <a href="../total-damage/">Total Damage</a>
     <a href="../analytics/">Аналітика</a>
   </div>
   <button class="nav-toggle" aria-label="Меню">☰</button>
 </nav>
-
 <div class="page-header">
   <div class="eyebrow">Рейтинг танків</div>
   <h1>Рейтинг Tank <b>Deus Vult</b></h1>
   <div class="updated-at" id="updatedAt"></div>
 </div>
-
 <div class="controls">
   <div class="control-group">
     <label>Клас</label>
@@ -127,15 +112,14 @@
   </div>
   <div class="results-info" id="resultsInfo"></div>
 </div>
-
 <div class="table-wrap">
   <div class="loading" id="loading"><div class="loading-spinner"></div><div>Завантаження…</div></div>
   <table id="rankTable" style="display:none">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Гравець</th>
-        <th>Клас / Спек</th>
+        <th style="text-align:center">#</th>
+        <th style="text-align:left">Гравець</th>
+        <th style="text-align:left">Клас / Спек</th>
         <th>Total Damage Taken</th>
         <th>Lich King Taken</th>
         <th>Halion Taken</th>
@@ -144,99 +128,56 @@
     <tbody id="tableBody"></tbody>
   </table>
 </div>
-
 <footer>© Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a></footer>
-
 <script>
 const DATA_URL = '../data/guild-tank.json';
-let allRows = [];
-let classesSet = new Set();
+let allRows = [], classesSet = new Set();
 const classSelect = document.getElementById('classSelect');
 
 async function loadData() {
   try {
-    const res  = await fetch(DATA_URL);
-    const data = await res.json();
-    allRows = data.rows || [];
-    if (data.lastUpdated) {
-      const d = new Date(data.lastUpdated);
-      document.getElementById('updatedAt').textContent =
-        'Оновлено: ' + d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
-    }
-    allRows.forEach(r => classesSet.add(r.class));
-    [...classesSet].sort().forEach(cls => {
-      const o = document.createElement('option');
-      o.value = cls; o.textContent = cls;
-      classSelect.appendChild(o);
-    });
+    const res=await fetch(DATA_URL), data=await res.json();
+    allRows=data.rows||[];
+    if(data.lastUpdated){const d=new Date(data.lastUpdated);document.getElementById('updatedAt').textContent='Оновлено: '+d.toLocaleString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});}
+    allRows.forEach(r=>classesSet.add(r.class));
+    [...classesSet].sort().forEach(cls=>{const o=document.createElement('option');o.value=cls;o.textContent=cls;classSelect.appendChild(o);});
     render();
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('rankTable').style.display = '';
-  } catch(e) {
-    document.getElementById('loading').innerHTML = '<p style="color:var(--danger)">Помилка завантаження даних</p>';
-  }
+    document.getElementById('loading').style.display='none';
+    document.getElementById('rankTable').style.display='';
+  } catch(e){document.getElementById('loading').innerHTML='<p style="color:var(--danger)">Помилка завантаження даних</p>';}
 }
 
-classSelect.addEventListener('change', render);
+classSelect.addEventListener('change',render);
+function fmt(n){return n>0?Math.round(n).toLocaleString('uk-UA'):'—';}
 
-function fmt(n) { return n > 0 ? Math.round(n).toLocaleString('uk-UA') : '—'; }
-
-function render() {
-  const cls = classSelect.value;
-  let rows = allRows.filter(r => !cls || r.class === cls)
-    .sort((a,b) => (b.totalTaken||0) - (a.totalTaken||0));
-
-  document.getElementById('resultsInfo').innerHTML = `Знайдено: <strong>${rows.length}</strong>`;
-
-  const tbody = document.getElementById('tableBody');
-  tbody.innerHTML = '';
-
-  rows.forEach((row, idx) => {
-    const tr = document.createElement('tr');
-    const clsKey = (row.class||'').replace(/ /g,'-');
-
-    addTd(tr, idx+1, 'text-align:center;color:var(--text-faint);font-size:11px');
-    addTd(tr, `<span class="player-name cls-${clsKey}">${row.name}</span>`);
-    addTd(tr, `<span class="cls-${clsKey}" style="font-weight:700">${row.class||''}</span>`
-            + (row.spec ? ` <span class="spec-badge">${row.spec}</span>` : ''));
-
-    const t1 = document.createElement('td');
-    t1.className = 'tank-cell';
-    t1.textContent = fmt(row.totalTaken);
-    tr.appendChild(t1);
-
-    const t2 = document.createElement('td');
-    t2.className = 'special-cell';
-    t2.textContent = fmt(row.lichTaken);
-    tr.appendChild(t2);
-
-    const t3 = document.createElement('td');
-    t3.className = 'special-cell';
-    t3.textContent = fmt(row.halionTaken);
-    tr.appendChild(t3);
-
+function render(){
+  const cls=classSelect.value;
+  const rows=[...allRows].filter(r=>!cls||r.class===cls).sort((a,b)=>(b.totalTaken||0)-(a.totalTaken||0));
+  document.getElementById('resultsInfo').innerHTML=`Знайдено: <strong>${rows.length}</strong>`;
+  const tbody=document.getElementById('tableBody');tbody.innerHTML='';
+  rows.forEach((row,idx)=>{
+    const tr=document.createElement('tr');
+    const clsKey=(row.class||'').replace(/ /g,'-');
+    addTd(tr,idx+1,'text-align:center;color:var(--text-faint);font-size:11px');
+    addTd(tr,`<span class="player-name cls-${clsKey}">${row.name}</span>`);
+    addTd(tr,`<span class="cls-${clsKey}" style="font-weight:700">${row.class||''}</span>`+(row.spec?` <span class="spec-badge">${row.spec}</span>`:''));
+    const t1=document.createElement('td');t1.className='tank-cell';t1.textContent=fmt(row.totalTaken);tr.appendChild(t1);
+    const t2=document.createElement('td');t2.className='special-cell';t2.textContent=fmt(row.lichTaken);tr.appendChild(t2);
+    const t3=document.createElement('td');t3.className='special-cell';t3.textContent=fmt(row.halionTaken);tr.appendChild(t3);
     tbody.appendChild(tr);
   });
 }
-
-function addTd(tr, html, style) {
-  const td = document.createElement('td');
-  if (style) td.style.cssText = style;
-  td.innerHTML = String(html);
-  tr.appendChild(td);
-}
-
+function addTd(tr,html,style){const td=document.createElement('td');if(style)td.style.cssText=style;td.innerHTML=String(html);tr.appendChild(td);}
 loadData();
 </script>
-
 <script>
 (function(){
   var t=document.querySelector('.nav-toggle'),l=document.querySelector('.nav-links');
   if(!t||!l)return;
-  var ov=document.createElement('div'); ov.className='nav-overlay'; document.body.appendChild(ov);
+  var ov=document.createElement('div');ov.className='nav-overlay';document.body.appendChild(ov);
   function close(){l.classList.remove('open');ov.classList.remove('show');}
   function toggle(){var open=l.classList.toggle('open');ov.classList.toggle('show',open);}
-  t.addEventListener('click',toggle); ov.addEventListener('click',close);
+  t.addEventListener('click',toggle);ov.addEventListener('click',close);
   l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
 })();
 </script>
