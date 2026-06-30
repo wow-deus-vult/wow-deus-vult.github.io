@@ -285,7 +285,8 @@ def save_raids_cache(raids):
     cache = OUTPUT.replace(".json", "_cache.json")
     with open(cache, "w", encoding="utf-8") as f:
         # date не серіалізується — конвертуємо в str
-        serializable = [{"date": str(r["date"]), "per_player": r["per_player"]} for r in raids]
+        serializable = [{"date": str(r["date"]), "log_id": r.get("log_id", ""),
+                          "per_player": r["per_player"]} for r in raids]
         json.dump(serializable, f, ensure_ascii=False)
 
 
@@ -295,7 +296,8 @@ def load_raids_cache():
         return []
     with open(cache, encoding="utf-8") as f:
         raw = json.load(f)
-    return [{"date": date.fromisoformat(r["date"]), "per_player": r["per_player"]} for r in raw]
+    return [{"date": date.fromisoformat(r["date"]), "log_id": r.get("log_id", ""),
+              "per_player": r["per_player"]} for r in raw]
 
 
 def aggregate(per_report_list):
@@ -322,6 +324,11 @@ def deduplicate_raids(raids):
     (різні люди заливали різні шматки). З групи дублів об'єднуємо
     дані: для кожного гравця беремо МАКСИМУМ серед дублів (не суму),
     щоб не множити total damage.
+
+    Додатково зберігає data/duplicate_logs_map.json — мапу
+    {дублікат_log_id: канонічний_log_id}, яку можуть використовувати
+    інші скрипти (tank, heal, potion, raid_stats) для пропуску дублів
+    без повторного аналізу складу гравців.
     """
     if not raids:
         return raids
@@ -355,21 +362,37 @@ def deduplicate_raids(raids):
 
     deduped = []
     merged_count = 0
+    duplicate_map = {}  # дублікат_log_id -> канонічний_log_id
+
     for group in groups:
         if len(group) == 1:
             deduped.append(raids[group[0]])
             continue
         merged_count += len(group) - 1
         base_date = raids[group[0]]["date"]
+        # Канонічний — лог з найбільшою кількістю гравців
+        canonical_idx = max(group, key=lambda idx: len(raids[idx]["per_player"]))
+        canonical_log_id = raids[canonical_idx].get("log_id", "")
+
         merged_players = {}
         for idx in group:
             for name, slot in raids[idx]["per_player"].items():
                 if name not in merged_players or slot["dmg"] > merged_players[name]["dmg"]:
                     merged_players[name] = slot
-        deduped.append({"date": base_date, "per_player": merged_players})
+            log_id = raids[idx].get("log_id", "")
+            if log_id and idx != canonical_idx:
+                duplicate_map[log_id] = canonical_log_id
+
+        deduped.append({"date": base_date, "log_id": canonical_log_id, "per_player": merged_players})
 
     if merged_count:
         print(f"  \U0001f501 Дедуплікація: об'єднано {merged_count} дублікат(ів) рейдів")
+
+    # Зберігаємо мапу дублікатів для інших скриптів
+    dup_map_path = "data/duplicate_logs_map.json"
+    os.makedirs(os.path.dirname(dup_map_path), exist_ok=True)
+    with open(dup_map_path, "w", encoding="utf-8") as f:
+        json.dump(duplicate_map, f, ensure_ascii=False, indent=2)
 
     return deduped
 
@@ -440,7 +463,7 @@ if __name__ == "__main__":
             skipped += 1
             continue
 
-        raids.append({"date": rdate, "per_player": per})
+        raids.append({"date": rdate, "log_id": log_id, "per_player": per})
         queue.mark_done(log_id)
         save_raids_cache(raids)
         processed += 1

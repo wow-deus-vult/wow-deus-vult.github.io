@@ -11,6 +11,7 @@ from datetime import datetime, timezone, date
 from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
 from log_queue import LogQueue
+from dedup_helper import load_duplicate_map, is_duplicate_log
 
 BASE_URL = "https://uwu-logs.xyz"
 SERVER   = "FreedomUA"
@@ -319,71 +320,6 @@ def save_cache(cache):
     os.makedirs(os.path.dirname(cache_path), exist_ok=True)
     with open(cache_path, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False)
-
-
-def deduplicate_cache(cache):
-    """
-    Прибирає дублі логів: якщо два log_id з тієї ж дати (або +1 день)
-    мають 12+ спільних гравців (по всіх босах разом) — це частини
-    одного реального рейду. З групи дублів лишаємо ОДИН log_id —
-    той з найбільшою кількістю босів.
-    """
-    if not cache:
-        return cache
-
-    def log_id_date(log_id):
-        parts = log_id.split("--")
-        yy, mm, dd = parts[0].split("-")
-        return date(int("20" + yy), int(mm), int(dd))
-
-    def players_of(log_id):
-        s = set()
-        for boss_data in cache[log_id].values():
-            s.update(boss_data.keys())
-        return s
-
-    log_ids = list(cache.keys())
-    sorted_ids = sorted(log_ids, key=log_id_date)
-
-    used = set()
-    groups = []
-
-    for i, lid in enumerate(sorted_ids):
-        if lid in used:
-            continue
-        group = [lid]
-        used.add(lid)
-        players_i = players_of(lid)
-        date_i = log_id_date(lid)
-
-        for j in range(i + 1, len(sorted_ids)):
-            lid2 = sorted_ids[j]
-            if lid2 in used:
-                continue
-            date_j = log_id_date(lid2)
-            if abs((date_j - date_i).days) > 1:
-                break
-            players_j = players_of(lid2)
-            if len(players_i & players_j) >= 12:
-                group.append(lid2)
-                used.add(lid2)
-
-        groups.append(group)
-
-    deduped = {}
-    merged_count = 0
-    for group in groups:
-        if len(group) == 1:
-            deduped[group[0]] = cache[group[0]]
-            continue
-        merged_count += len(group) - 1
-        best = max(group, key=lambda lid: len(cache[lid]))
-        deduped[best] = cache[best]
-
-    if merged_count:
-        print(f"  \U0001f501 Дедуплікація: прибрано {merged_count} дублікат(ів) логів")
-
-    return deduped
 
 
 def build_output(cache):

@@ -11,6 +11,7 @@ from datetime import datetime, timezone, date as date_cls
 from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
 from log_queue import LogQueue
+from dedup_helper import load_duplicate_map, is_duplicate_log
 
 BASE_URL = "https://uwu-logs.xyz"
 SERVER   = "FreedomUA"
@@ -333,8 +334,18 @@ if __name__ == "__main__":
     processed = 0
     skipped = 0
 
+    dup_map = load_duplicate_map()
+    if dup_map:
+        print(f"  Завантажено {len(dup_map)} відомих дублікатів логів (з total_damage)")
+
     for i, log_id in enumerate(pending):
         print(f"[{i+1}/{total_pending}] {log_id}...", end=" ", flush=True)
+
+        if is_duplicate_log(log_id, dup_map):
+            print("дублікат (пропущено)")
+            queue.mark_done(log_id)
+            continue
+
         result = parse_log(log_id, members)
         if not result:
             print("пропущено (лишається в черзі)")
