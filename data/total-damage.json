@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "lastUpdated": "2026-06-29T16:52:46.803555+00:00",
+=======
+  "lastUpdated": "2026-06-30T07:13:46.533176+00:00",
+>>>>>>> Stashed changes
   "currentSeasonId": "s1",
   "seasons": [
     {
@@ -7,21 +11,21 @@
       "name": "Season 1",
       "start": "2026-04-01",
       "end": "2026-10-01",
-      "raidsCount": 242,
+      "raidsCount": 246,
       "rows": [
         {
           "name": "Мараксус",
           "server": "FreedomUA",
           "class": "Druid",
           "spec": "Feral Combat Druid",
-          "totalDamage": 3191211736
+          "totalDamage": 3351548377
         },
         {
           "name": "Zmeelow",
           "server": "FreedomUA",
           "class": "Mage",
           "spec": "Fire Mage",
-          "totalDamage": 2731926932
+          "totalDamage": 2876093317
         },
         {
           "name": "Криголам",
@@ -42,14 +46,28 @@
           "server": "FreedomUA",
           "class": "Mage",
           "spec": "Fire Mage",
-          "totalDamage": 2175349278
+          "totalDamage": 2327444520
         },
         {
           "name": "Ісе",
           "server": "FreedomUA",
           "class": "Rogue",
           "spec": "Combat Rogue",
-          "totalDamage": 2083721984
+          "totalDamage": 2213999803
+        },
+        {
+          "name": "Калабаня",
+          "server": "FreedomUA",
+          "class": "Druid",
+          "spec": "Feral Combat Druid",
+          "totalDamage": 2185946823
+        },
+        {
+          "name": "Euphoric",
+          "server": "FreedomUA",
+          "class": "Mage",
+          "spec": "Fire Mage",
+          "totalDamage": 2137969994
         },
         {
           "name": "Denmark",
@@ -70,21 +88,14 @@
           "server": "FreedomUA",
           "class": "Warrior",
           "spec": "Fury Warrior",
-          "totalDamage": 2051932758
+          "totalDamage": 2064887018
         },
         {
-          "name": "Калабаня",
+          "name": "Bonem",
           "server": "FreedomUA",
-          "class": "Druid",
-          "spec": "Feral Combat Druid",
-          "totalDamage": 2014253340
-        },
-        {
-          "name": "Euphoric",
-          "server": "FreedomUA",
-          "class": "Mage",
-          "spec": "Fire Mage",
-          "totalDamage": 1994561699
+          "class": "Death Knight",
+          "spec": "Unholy Death Knight",
+          "totalDamage": 2014232762
         },
         {
           "name": "Drainzy",
@@ -94,18 +105,18 @@
           "totalDamage": 1923279040
         },
         {
+          "name": "Metalolomius",
+          "server": "FreedomUA",
+          "class": "Shaman",
+          "spec": "Enhancement Shaman",
+          "totalDamage": 1913849465
+        },
+        {
           "name": "Arahiska",
           "server": "FreedomUA",
           "class": "Warrior",
           "spec": "Fury Warrior",
           "totalDamage": 1885880556
-        },
-        {
-          "name": "Bonem",
-          "server": "FreedomUA",
-          "class": "Death Knight",
-          "spec": "Unholy Death Knight",
-          "totalDamage": 1855150246
         },
         {
           "name": "Явсяпалаю",
@@ -122,11 +133,11 @@
           "totalDamage": 1804958229
         },
         {
-          "name": "Metalolomius",
+          "name": "Facelesspal",
           "server": "FreedomUA",
-          "class": "Shaman",
-          "spec": "Enhancement Shaman",
-          "totalDamage": 1789057136
+          "class": "Paladin",
+          "spec": "Retribution Paladin",
+          "totalDamage": 1765581922
         },
         {
           "name": "Muti",
@@ -164,11 +175,18 @@
           "totalDamage": 1654946610
         },
         {
-          "name": "Facelesspal",
+          "name": "Substance",
           "server": "FreedomUA",
-          "class": "Paladin",
-          "spec": "Retribution Paladin",
-          "totalDamage": 1620564105
+          "class": "Death Knight",
+          "spec": "Unholy Death Knight",
+          "totalDamage": 1639947060
+        },
+        {
+          "name": "Імператорс",
+          "server": "FreedomUA",
+          "class": "Priest",
+          "spec": "Shadow Priest",
+          "totalDamage": 1568128747
         },
         {
           "name": "Restofdead",
@@ -206,11 +224,11 @@
           "totalDamage": 1509389245
         },
         {
-          "name": "Substance",
+          "name": "Worlok",
           "server": "FreedomUA",
-          "class": "Death Knight",
-          "spec": "Unholy Death Knight",
-          "totalDamage": 1485052898
+          "class": "Warlock",
+          "spec": "Demonology Warlock",
+          "totalDamage": 1500789646
         },
         {
           "name": "Greeny",
@@ -227,13 +245,6 @@
           "totalDamage": 1452020202
         },
         {
-          "name": "Імператорс",
-          "server": "FreedomUA",
-          "class": "Priest",
-          "spec": "Shadow Priest",
-          "totalDamage": 1447201978
-        },
-        {
           "name": "Спірітусвей",
           "server": "FreedomUA",
           "class": "Shaman",
@@ -248,11 +259,11 @@
           "totalDamage": 1413834640
         },
         {
-          "name": "Worlok",
+          "name": "Piceduke",
           "server": "FreedomUA",
-          "class": "Warlock",
-          "spec": "Demonology Warlock",
-          "totalDamage": 1391489016
+          "class": "Paladin",
+          "spec": "Retribution Paladin",
+          "totalDamage": 1412982224
         },
         {
           "name": "Metalolom",
@@ -274,13 +285,6 @@
           "class": "Priest",
           "spec": "Shadow Priest",
           "totalDamage": 1346462124
-        },
-        {
-          "name": "Piceduke",
-          "server": "FreedomUA",
-          "class": "Paladin",
-          "spec": "Retribution Paladin",
-          "totalDamage": 1341790372
         },
         {
           "name": "Bergamot",
@@ -332,6 +336,13 @@
           "totalDamage": 1101752330
         },
         {
+          "name": "Electric",
+          "server": "FreedomUA",
+          "class": "Mage",
+          "spec": "Fire Mage",
+          "totalDamage": 1097925285
+        },
+        {
           "name": "Glorysnitch",
           "server": "FreedomUA",
           "class": "Mage",
@@ -343,7 +354,7 @@
           "server": "FreedomUA",
           "class": "Priest",
           "spec": "Shadow Priest",
-          "totalDamage": 1063070846
+          "totalDamage": 1072629629
         },
         {
           "name": "Играт",
@@ -360,11 +371,18 @@
           "totalDamage": 1038987344
         },
         {
-          "name": "Electric",
+          "name": "Arrovv",
+          "server": "FreedomUA",
+          "class": "Hunter",
+          "spec": "Marksmanship Hunter",
+          "totalDamage": 1015747253
+        },
+        {
+          "name": "Dombroo",
           "server": "FreedomUA",
           "class": "Mage",
           "spec": "Fire Mage",
-          "totalDamage": 983144278
+          "totalDamage": 992975317
         },
         {
           "name": "Eclipse",
@@ -395,13 +413,6 @@
           "totalDamage": 916352078
         },
         {
-          "name": "Arrovv",
-          "server": "FreedomUA",
-          "class": "Hunter",
-          "spec": "Marksmanship Hunter",
-          "totalDamage": 909388467
-        },
-        {
           "name": "Прикрий",
           "server": "FreedomUA",
           "class": "Mage",
@@ -413,14 +424,7 @@
           "server": "FreedomUA",
           "class": "Death Knight",
           "spec": "Unholy Death Knight",
-          "totalDamage": 874711678
-        },
-        {
-          "name": "Dombroo",
-          "server": "FreedomUA",
-          "class": "Mage",
-          "spec": "Fire Mage",
-          "totalDamage": 867243760
+          "totalDamage": 877280246
         },
         {
           "name": "Біта",
@@ -546,7 +550,7 @@
           "server": "FreedomUA",
           "class": "Death Knight",
           "spec": "Unholy Death Knight",
-          "totalDamage": 594702610
+          "totalDamage": 606757684
         },
         {
           "name": "Хантер",
@@ -554,6 +558,13 @@
           "class": "Hunter",
           "spec": "Hunter",
           "totalDamage": 565598365
+        },
+        {
+          "name": "Теттерок",
+          "server": "FreedomUA",
+          "class": "Rogue",
+          "spec": "Combat Rogue",
+          "totalDamage": 545590191
         },
         {
           "name": "Facelessrog",
@@ -598,11 +609,25 @@
           "totalDamage": 520323002
         },
         {
+          "name": "Ernesto",
+          "server": "FreedomUA",
+          "class": "Warrior",
+          "spec": "Fury Warrior",
+          "totalDamage": 508763324
+        },
+        {
           "name": "Afterlife",
           "server": "FreedomUA",
           "class": "Death Knight",
           "spec": "Unholy Death Knight",
           "totalDamage": 506235608
+        },
+        {
+          "name": "Missdru",
+          "server": "FreedomUA",
+          "class": "Druid",
+          "spec": "Balance Druid",
+          "totalDamage": 506011750
         },
         {
           "name": "Likeaboss",
@@ -619,18 +644,11 @@
           "totalDamage": 469169090
         },
         {
-          "name": "Missdru",
+          "name": "Йдунави",
           "server": "FreedomUA",
-          "class": "Druid",
-          "spec": "Balance Druid",
-          "totalDamage": 468462930
-        },
-        {
-          "name": "Теттерок",
-          "server": "FreedomUA",
-          "class": "Rogue",
-          "spec": "Combat Rogue",
-          "totalDamage": 451223782
+          "class": "Death Knight",
+          "spec": "Blood Death Knight",
+          "totalDamage": 445773878
         },
         {
           "name": "Crempie",
@@ -647,25 +665,11 @@
           "totalDamage": 439042946
         },
         {
-          "name": "Йдунави",
-          "server": "FreedomUA",
-          "class": "Death Knight",
-          "spec": "Blood Death Knight",
-          "totalDamage": 419569346
-        },
-        {
           "name": "Sanya",
           "server": "FreedomUA",
           "class": "Warrior",
           "spec": "Fury Warrior",
           "totalDamage": 416361550
-        },
-        {
-          "name": "Ernesto",
-          "server": "FreedomUA",
-          "class": "Warrior",
-          "spec": "Fury Warrior",
-          "totalDamage": 400461342
         },
         {
           "name": "Kotuhoroshko",
@@ -700,7 +704,7 @@
           "server": "FreedomUA",
           "class": "Paladin",
           "spec": "Retribution Paladin",
-          "totalDamage": 359493730
+          "totalDamage": 361376777
         },
         {
           "name": "Шепіт",
@@ -708,6 +712,13 @@
           "class": "Hunter",
           "spec": "Survival Hunter",
           "totalDamage": 351801896
+        },
+        {
+          "name": "Мегатайтус",
+          "server": "FreedomUA",
+          "class": "Priest",
+          "spec": "Shadow Priest",
+          "totalDamage": 348163655
         },
         {
           "name": "Facelessdk",
@@ -729,13 +740,6 @@
           "class": "Priest",
           "spec": "Shadow Priest",
           "totalDamage": 318313632
-        },
-        {
-          "name": "Мегатайтус",
-          "server": "FreedomUA",
-          "class": "Priest",
-          "spec": "Shadow Priest",
-          "totalDamage": 314145496
         },
         {
           "name": "Могильник",
@@ -983,6 +987,13 @@
           "totalDamage": 106358047
         },
         {
+          "name": "Rambo",
+          "server": "FreedomUA",
+          "class": "Druid",
+          "spec": "Balance Druid",
+          "totalDamage": 105868240
+        },
+        {
           "name": "Facelessprot",
           "server": "FreedomUA",
           "class": "Paladin",
@@ -1141,7 +1152,7 @@
           "server": "FreedomUA",
           "class": "Druid",
           "spec": "Feral Combat Druid",
-          "totalDamage": 44017690
+          "totalDamage": 44573980
         },
         {
           "name": "Осатанілий",
@@ -1176,7 +1187,7 @@
           "server": "FreedomUA",
           "class": "Hunter",
           "spec": "Marksmanship Hunter",
-          "totalDamage": 26141392
+          "totalDamage": 33229753
         },
         {
           "name": "Belbasik",
@@ -1291,6 +1302,13 @@
           "totalDamage": 5858896
         },
         {
+          "name": "Possibility",
+          "server": "FreedomUA",
+          "class": "Shaman",
+          "spec": "Restoration Shaman",
+          "totalDamage": 4694289
+        },
+        {
           "name": "Facelesprist",
           "server": "FreedomUA",
           "class": "Priest",
@@ -1389,13 +1407,6 @@
           "totalDamage": 978870
         },
         {
-          "name": "Possibility",
-          "server": "FreedomUA",
-          "class": "Shaman",
-          "spec": "Restoration Shaman",
-          "totalDamage": 897192
-        },
-        {
           "name": "Колін",
           "server": "FreedomUA",
           "class": "Shaman",
@@ -1436,6 +1447,13 @@
           "class": "Priest",
           "spec": "Discipline Priest",
           "totalDamage": 172004
+        },
+        {
+          "name": "Пак'тайтус",
+          "server": "FreedomUA",
+          "class": "Paladin",
+          "spec": "Holy Paladin",
+          "totalDamage": 153478
         },
         {
           "name": "Цейроз",
@@ -1524,28 +1542,28 @@
     }
   ],
   "allTime": {
-    "raidsCount": 360,
+    "raidsCount": 364,
     "rows": [
       {
         "name": "Zmeelow",
         "server": "FreedomUA",
         "class": "Mage",
         "spec": "Fire Mage",
-        "totalDamage": 4224969602
+        "totalDamage": 4369135987
       },
       {
         "name": "Явсятремчу",
         "server": "FreedomUA",
         "class": "Warrior",
         "spec": "Fury Warrior",
-        "totalDamage": 3904013958
+        "totalDamage": 3916968218
       },
       {
         "name": "Mystiq",
         "server": "FreedomUA",
         "class": "Mage",
         "spec": "Fire Mage",
-        "totalDamage": 3649553804
+        "totalDamage": 3801649046
       },
       {
         "name": "Криголам",
@@ -1553,6 +1571,13 @@
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
         "totalDamage": 3584034782
+      },
+      {
+        "name": "Калабаня",
+        "server": "FreedomUA",
+        "class": "Druid",
+        "spec": "Feral Combat Druid",
+        "totalDamage": 3558046499
       },
       {
         "name": "Denmark",
@@ -1569,25 +1594,18 @@
         "totalDamage": 3506217156
       },
       {
-        "name": "Калабаня",
-        "server": "FreedomUA",
-        "class": "Druid",
-        "spec": "Feral Combat Druid",
-        "totalDamage": 3386353016
-      },
-      {
         "name": "Bonem",
         "server": "FreedomUA",
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
-        "totalDamage": 3320635040
+        "totalDamage": 3479717556
       },
       {
         "name": "Мараксус",
         "server": "FreedomUA",
         "class": "Druid",
         "spec": "Feral Combat Druid",
-        "totalDamage": 3191211736
+        "totalDamage": 3351548377
       },
       {
         "name": "Destiq",
@@ -1601,7 +1619,14 @@
         "server": "FreedomUA",
         "class": "Shaman",
         "spec": "Enhancement Shaman",
-        "totalDamage": 2931698994
+        "totalDamage": 3056491323
+      },
+      {
+        "name": "Ісе",
+        "server": "FreedomUA",
+        "class": "Rogue",
+        "spec": "Combat Rogue",
+        "totalDamage": 3007971253
       },
       {
         "name": "Содахарчова",
@@ -1618,11 +1643,11 @@
         "totalDamage": 2920385366
       },
       {
-        "name": "Ісе",
+        "name": "Substance",
         "server": "FreedomUA",
-        "class": "Rogue",
-        "spec": "Combat Rogue",
-        "totalDamage": 2877693434
+        "class": "Death Knight",
+        "spec": "Unholy Death Knight",
+        "totalDamage": 2882910564
       },
       {
         "name": "Стариймаг",
@@ -1632,18 +1657,18 @@
         "totalDamage": 2844199698
       },
       {
-        "name": "Substance",
-        "server": "FreedomUA",
-        "class": "Death Knight",
-        "spec": "Unholy Death Knight",
-        "totalDamage": 2728016402
-      },
-      {
         "name": "Facelesspal",
         "server": "FreedomUA",
         "class": "Paladin",
         "spec": "Retribution Paladin",
-        "totalDamage": 2695599695
+        "totalDamage": 2840617512
+      },
+      {
+        "name": "Імператорс",
+        "server": "FreedomUA",
+        "class": "Priest",
+        "spec": "Shadow Priest",
+        "totalDamage": 2743065529
       },
       {
         "name": "Домбро",
@@ -1667,13 +1692,6 @@
         "totalDamage": 2642834918
       },
       {
-        "name": "Імператорс",
-        "server": "FreedomUA",
-        "class": "Priest",
-        "spec": "Shadow Priest",
-        "totalDamage": 2622138760
-      },
-      {
         "name": "Татусь",
         "server": "FreedomUA",
         "class": "Hunter",
@@ -1686,6 +1704,13 @@
         "class": "Mage",
         "spec": "Fire Mage",
         "totalDamage": 2609438441
+      },
+      {
+        "name": "Dombroo",
+        "server": "FreedomUA",
+        "class": "Mage",
+        "spec": "Fire Mage",
+        "totalDamage": 2556219811
       },
       {
         "name": "Явсяпалаю",
@@ -1709,18 +1734,18 @@
         "totalDamage": 2461581710
       },
       {
+        "name": "Worlok",
+        "server": "FreedomUA",
+        "class": "Warlock",
+        "spec": "Demonology Warlock",
+        "totalDamage": 2448095816
+      },
+      {
         "name": "Metalolom",
         "server": "FreedomUA",
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
         "totalDamage": 2430628122
-      },
-      {
-        "name": "Dombroo",
-        "server": "FreedomUA",
-        "class": "Mage",
-        "spec": "Fire Mage",
-        "totalDamage": 2430488254
       },
       {
         "name": "Imperators",
@@ -1735,13 +1760,6 @@
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
         "totalDamage": 2407530750
-      },
-      {
-        "name": "Worlok",
-        "server": "FreedomUA",
-        "class": "Warlock",
-        "spec": "Demonology Warlock",
-        "totalDamage": 2338795186
       },
       {
         "name": "Muti",
@@ -1765,6 +1783,27 @@
         "totalDamage": 2174832360
       },
       {
+        "name": "Electric",
+        "server": "FreedomUA",
+        "class": "Mage",
+        "spec": "Fire Mage",
+        "totalDamage": 2142115127
+      },
+      {
+        "name": "Euphoric",
+        "server": "FreedomUA",
+        "class": "Mage",
+        "spec": "Fire Mage",
+        "totalDamage": 2137969994
+      },
+      {
+        "name": "Piceduke",
+        "server": "FreedomUA",
+        "class": "Paladin",
+        "spec": "Retribution Paladin",
+        "totalDamage": 2108830566
+      },
+      {
         "name": "Lovis",
         "server": "FreedomUA",
         "class": "Shaman",
@@ -1772,11 +1811,11 @@
         "totalDamage": 2067426491
       },
       {
-        "name": "Piceduke",
+        "name": "Missprist",
         "server": "FreedomUA",
-        "class": "Paladin",
-        "spec": "Retribution Paladin",
-        "totalDamage": 2037638714
+        "class": "Priest",
+        "spec": "Shadow Priest",
+        "totalDamage": 2038049199
       },
       {
         "name": "Greeny",
@@ -1784,20 +1823,6 @@
         "class": "Druid",
         "spec": "Balance Druid",
         "totalDamage": 2035622386
-      },
-      {
-        "name": "Missprist",
-        "server": "FreedomUA",
-        "class": "Priest",
-        "spec": "Shadow Priest",
-        "totalDamage": 2028490416
-      },
-      {
-        "name": "Electric",
-        "server": "FreedomUA",
-        "class": "Mage",
-        "spec": "Fire Mage",
-        "totalDamage": 2027334120
       },
       {
         "name": "Speedkill",
@@ -1812,13 +1837,6 @@
         "class": "Warrior",
         "spec": "Fury Warrior",
         "totalDamage": 2020146191
-      },
-      {
-        "name": "Euphoric",
-        "server": "FreedomUA",
-        "class": "Mage",
-        "spec": "Fire Mage",
-        "totalDamage": 1994561699
       },
       {
         "name": "Desti",
@@ -1863,6 +1881,13 @@
         "totalDamage": 1662800392
       },
       {
+        "name": "Arrovv",
+        "server": "FreedomUA",
+        "class": "Hunter",
+        "spec": "Marksmanship Hunter",
+        "totalDamage": 1579191137
+      },
+      {
         "name": "Imperatorrog",
         "server": "FreedomUA",
         "class": "Rogue",
@@ -1896,13 +1921,6 @@
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
         "totalDamage": 1512440486
-      },
-      {
-        "name": "Arrovv",
-        "server": "FreedomUA",
-        "class": "Hunter",
-        "spec": "Marksmanship Hunter",
-        "totalDamage": 1472832351
       },
       {
         "name": "Спірітусвей",
@@ -2042,7 +2060,7 @@
         "server": "FreedomUA",
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
-        "totalDamage": 874711678
+        "totalDamage": 877280246
       },
       {
         "name": "Kotuhoroshko",
@@ -2052,18 +2070,18 @@
         "totalDamage": 872699166
       },
       {
+        "name": "Missdru",
+        "server": "FreedomUA",
+        "class": "Druid",
+        "spec": "Balance Druid",
+        "totalDamage": 808342782
+      },
+      {
         "name": "Жасмин",
         "server": "FreedomUA",
         "class": "Paladin",
         "spec": "Retribution Paladin",
         "totalDamage": 789631796
-      },
-      {
-        "name": "Missdru",
-        "server": "FreedomUA",
-        "class": "Druid",
-        "spec": "Balance Druid",
-        "totalDamage": 770793962
       },
       {
         "name": "Purple",
@@ -2105,7 +2123,7 @@
         "server": "FreedomUA",
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
-        "totalDamage": 718579076
+        "totalDamage": 730634150
       },
       {
         "name": "Facelessrog",
@@ -2143,6 +2161,13 @@
         "totalDamage": 674305718
       },
       {
+        "name": "Теттерок",
+        "server": "FreedomUA",
+        "class": "Rogue",
+        "spec": "Combat Rogue",
+        "totalDamage": 638647917
+      },
+      {
         "name": "Misspall",
         "server": "FreedomUA",
         "class": "Paladin",
@@ -2164,18 +2189,18 @@
         "totalDamage": 628401296
       },
       {
+        "name": "Йдунави",
+        "server": "FreedomUA",
+        "class": "Death Knight",
+        "spec": "Blood Death Knight",
+        "totalDamage": 613009746
+      },
+      {
         "name": "Facelessdk",
         "server": "FreedomUA",
         "class": "Death Knight",
         "spec": "Blood Death Knight",
         "totalDamage": 590379404
-      },
-      {
-        "name": "Йдунави",
-        "server": "FreedomUA",
-        "class": "Death Knight",
-        "spec": "Blood Death Knight",
-        "totalDamage": 586805214
       },
       {
         "name": "Afterlife",
@@ -2197,13 +2222,6 @@
         "class": "Druid",
         "spec": "Feral Combat Druid",
         "totalDamage": 562972218
-      },
-      {
-        "name": "Теттерок",
-        "server": "FreedomUA",
-        "class": "Rogue",
-        "spec": "Combat Rogue",
-        "totalDamage": 544281508
       },
       {
         "name": "Genius",
@@ -2241,6 +2259,13 @@
         "totalDamage": 512744468
       },
       {
+        "name": "Ernesto",
+        "server": "FreedomUA",
+        "class": "Warrior",
+        "spec": "Fury Warrior",
+        "totalDamage": 508763324
+      },
+      {
         "name": "Sanya",
         "server": "FreedomUA",
         "class": "Warrior",
@@ -2252,7 +2277,7 @@
         "server": "FreedomUA",
         "class": "Paladin",
         "spec": "Retribution Paladin",
-        "totalDamage": 487084756
+        "totalDamage": 488967803
       },
       {
         "name": "Crempie",
@@ -2281,13 +2306,6 @@
         "class": "Warlock",
         "spec": "Affliction Warlock",
         "totalDamage": 414435058
-      },
-      {
-        "name": "Ernesto",
-        "server": "FreedomUA",
-        "class": "Warrior",
-        "spec": "Fury Warrior",
-        "totalDamage": 400461342
       },
       {
         "name": "Темнийболт",
@@ -2325,6 +2343,13 @@
         "totalDamage": 361745650
       },
       {
+        "name": "Мегатайтус",
+        "server": "FreedomUA",
+        "class": "Priest",
+        "spec": "Shadow Priest",
+        "totalDamage": 348163655
+      },
+      {
         "name": "Нойд",
         "server": "FreedomUA",
         "class": "Shaman",
@@ -2344,13 +2369,6 @@
         "class": "Warrior",
         "spec": "Fury Warrior",
         "totalDamage": 323930641
-      },
-      {
-        "name": "Мегатайтус",
-        "server": "FreedomUA",
-        "class": "Priest",
-        "spec": "Shadow Priest",
-        "totalDamage": 314145496
       },
       {
         "name": "Amaterasuxzc",
@@ -2661,6 +2679,13 @@
         "totalDamage": 106358047
       },
       {
+        "name": "Rambo",
+        "server": "FreedomUA",
+        "class": "Druid",
+        "spec": "Balance Druid",
+        "totalDamage": 105868240
+      },
+      {
         "name": "Puzzle",
         "server": "FreedomUA",
         "class": "Death Knight",
@@ -2742,7 +2767,7 @@
         "server": "FreedomUA",
         "class": "Druid",
         "spec": "Feral Combat Druid",
-        "totalDamage": 72565938
+        "totalDamage": 73122228
       },
       {
         "name": "Engeltje",
@@ -2857,6 +2882,13 @@
         "totalDamage": 33967654
       },
       {
+        "name": "Урук'кайтер",
+        "server": "FreedomUA",
+        "class": "Hunter",
+        "spec": "Marksmanship Hunter",
+        "totalDamage": 33229753
+      },
+      {
         "name": "Старийшам",
         "server": "FreedomUA",
         "class": "Shaman",
@@ -2876,13 +2908,6 @@
         "class": "Warlock",
         "spec": "Demonology Warlock",
         "totalDamage": 26657298
-      },
-      {
-        "name": "Урук'кайтер",
-        "server": "FreedomUA",
-        "class": "Hunter",
-        "spec": "Marksmanship Hunter",
-        "totalDamage": 26141392
       },
       {
         "name": "Flame",
@@ -3074,6 +3099,13 @@
         "totalDamage": 4755810
       },
       {
+        "name": "Possibility",
+        "server": "FreedomUA",
+        "class": "Shaman",
+        "spec": "Restoration Shaman",
+        "totalDamage": 4694289
+      },
+      {
         "name": "Металолом",
         "server": "FreedomUA",
         "class": "Warrior",
@@ -3165,13 +3197,6 @@
         "totalDamage": 932832
       },
       {
-        "name": "Possibility",
-        "server": "FreedomUA",
-        "class": "Shaman",
-        "spec": "Restoration Shaman",
-        "totalDamage": 897192
-      },
-      {
         "name": "Pedrofil",
         "server": "FreedomUA",
         "class": "Death Knight",
@@ -3205,6 +3230,13 @@
         "class": "Priest",
         "spec": "Discipline Priest",
         "totalDamage": 172004
+      },
+      {
+        "name": "Пак'тайтус",
+        "server": "FreedomUA",
+        "class": "Paladin",
+        "spec": "Holy Paladin",
+        "totalDamage": 153478
       },
       {
         "name": "Genzul",
