@@ -315,7 +315,67 @@ def aggregate(per_report_list):
     return rows
 
 
+def deduplicate_raids(raids):
+    """
+    Прибирає дублі рейдів: якщо два логи з тієї ж дати (або +1 день)
+    мають 12+ спільних гравців — це частини одного реального рейду
+    (різні люди заливали різні шматки). З групи дублів об'єднуємо
+    дані: для кожного гравця беремо МАКСИМУМ серед дублів (не суму),
+    щоб не множити total damage.
+    """
+    if not raids:
+        return raids
+
+    sorted_raids = sorted(enumerate(raids), key=lambda x: x[1]["date"])
+
+    used = set()
+    groups = []
+
+    for i, (orig_i, r) in enumerate(sorted_raids):
+        if orig_i in used:
+            continue
+        group = [orig_i]
+        used.add(orig_i)
+        players_i = set(r["per_player"].keys())
+
+        for j in range(i + 1, len(sorted_raids)):
+            orig_j, r2 = sorted_raids[j]
+            if orig_j in used:
+                continue
+            day_diff = abs((r2["date"] - r["date"]).days)
+            if day_diff > 1:
+                break
+            players_j = set(r2["per_player"].keys())
+            overlap = len(players_i & players_j)
+            if overlap >= 12:
+                group.append(orig_j)
+                used.add(orig_j)
+
+        groups.append(group)
+
+    deduped = []
+    merged_count = 0
+    for group in groups:
+        if len(group) == 1:
+            deduped.append(raids[group[0]])
+            continue
+        merged_count += len(group) - 1
+        base_date = raids[group[0]]["date"]
+        merged_players = {}
+        for idx in group:
+            for name, slot in raids[idx]["per_player"].items():
+                if name not in merged_players or slot["dmg"] > merged_players[name]["dmg"]:
+                    merged_players[name] = slot
+        deduped.append({"date": base_date, "per_player": merged_players})
+
+    if merged_count:
+        print(f"  \U0001f501 Дедуплікація: об'єднано {merged_count} дублікат(ів) рейдів")
+
+    return deduped
+
+
 def save_output(raids, seasons):
+    raids = deduplicate_raids(raids)
     season_out = []
     today = date.today()
     current_id = None

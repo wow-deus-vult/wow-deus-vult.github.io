@@ -154,7 +154,68 @@ def log_id_to_date(log_id):
     return date(int("20" + yy), int(mm), int(dd))
 
 
+def deduplicate_cache(cache):
+    """
+    Прибирає дублі логів по тривалості рейду (для total time).
+    Дублі визначаємо по даті ±1 день якщо тривалості майже однакові
+    (різниця < 5%) — це сильна ознака що це один і той же рейд
+    записаний різними людьми.
+    """
+    if not cache:
+        return cache
+
+    def log_id_date(log_id):
+        parts = log_id.split("--")
+        yy, mm, dd = parts[0].split("-")
+        return date(int("20" + yy), int(mm), int(dd))
+
+    log_ids = sorted(cache.keys(), key=log_id_date)
+    used = set()
+    groups = []
+
+    for i, lid in enumerate(log_ids):
+        if lid in used:
+            continue
+        group = [lid]
+        used.add(lid)
+        date_i = log_id_date(lid)
+        dur_i = cache[lid].get("duration_seconds", 0)
+
+        for j in range(i + 1, len(log_ids)):
+            lid2 = log_ids[j]
+            if lid2 in used:
+                continue
+            date_j = log_id_date(lid2)
+            if abs((date_j - date_i).days) > 1:
+                break
+            dur_j = cache[lid2].get("duration_seconds", 0)
+            if dur_i > 0 and dur_j > 0:
+                ratio = abs(dur_i - dur_j) / max(dur_i, dur_j)
+                if ratio < 0.05:
+                    group.append(lid2)
+                    used.add(lid2)
+
+        groups.append(group)
+
+    deduped = {}
+    merged_count = 0
+    for group in groups:
+        if len(group) == 1:
+            deduped[group[0]] = cache[group[0]]
+            continue
+        merged_count += len(group) - 1
+        # Лишаємо лог з найдовшою тривалістю (найповніший запис)
+        best = max(group, key=lambda lid: cache[lid].get("duration_seconds", 0))
+        deduped[best] = cache[best]
+
+    if merged_count:
+        print(f"  \U0001f501 Дедуплікація: прибрано {merged_count} дублікат(ів) логів")
+
+    return deduped
+
+
 def build_output(cache, seasons):
+    cache = deduplicate_cache(cache)
     total_seconds = 0
     saurfang_kills = []
 

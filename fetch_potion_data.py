@@ -280,6 +280,66 @@ def save_raids_cache(raids):
         json.dump(raids, f, ensure_ascii=False)
 
 
+def deduplicate_raids(raids):
+    """
+    Прибирає дублі рейдів: якщо два логи з тієї ж дати (або +1 день)
+    мають 12+ спільних гравців — це частини одного реального рейду.
+    З групи дублів лишаємо ОДИН лог — той з найбільшою кількістю гравців.
+    """
+    if not raids:
+        return raids
+
+    from datetime import date as date_cls
+
+    def to_date(d):
+        return date_cls.fromisoformat(d) if isinstance(d, str) else d
+
+    sorted_raids = sorted(enumerate(raids), key=lambda x: to_date(x[1]["date"]))
+
+    used = set()
+    groups = []
+
+    for i, (orig_i, r) in enumerate(sorted_raids):
+        if orig_i in used:
+            continue
+        group = [orig_i]
+        used.add(orig_i)
+        players_i = {p["name"] for p in r["players"]}
+        date_i = to_date(r["date"])
+
+        for j in range(i + 1, len(sorted_raids)):
+            orig_j, r2 = sorted_raids[j]
+            if orig_j in used:
+                continue
+            date_j = to_date(r2["date"])
+            day_diff = abs((date_j - date_i).days)
+            if day_diff > 1:
+                break
+            players_j = {p["name"] for p in r2["players"]}
+            overlap = len(players_i & players_j)
+            if overlap >= 12:
+                group.append(orig_j)
+                used.add(orig_j)
+
+        groups.append(group)
+
+    deduped = []
+    merged_count = 0
+    for group in groups:
+        if len(group) == 1:
+            deduped.append(raids[group[0]])
+            continue
+        merged_count += len(group) - 1
+        # Лишаємо лог з найбільшою кількістю гравців (найповніший)
+        best_idx = max(group, key=lambda idx: len(raids[idx]["players"]))
+        deduped.append(raids[best_idx])
+
+    if merged_count:
+        print(f"  \U0001f501 Дедуплікація: прибрано {merged_count} дублікат(ів) рейдів")
+
+    return deduped
+
+
 def build_honor_board(raids):
     player_stats = {}
     for raid in raids:
@@ -303,6 +363,7 @@ def build_honor_board(raids):
 
 def save_output(raids):
     import os
+    raids = deduplicate_raids(raids)
     honor_board = build_honor_board(raids)
     data = {
         "generated": datetime.now(timezone.utc).isoformat(),

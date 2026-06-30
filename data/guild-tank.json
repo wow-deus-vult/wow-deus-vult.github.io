@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-30T07:26:39.753843+00:00",
+  "lastUpdated": "2026-06-30T15:33:12.476963+00:00",
   "totalTanks": 32,
   "rows": [
     {
@@ -7,10 +7,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 307572400,
+      "totalTaken": 308614307,
       "lichTaken": 111825969,
       "halionTaken": 37058008,
-      "raidCount": 34,
+      "raidCount": 35,
       "guildRank": 1
     },
     {
@@ -84,10 +84,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 70466923,
+      "totalTaken": 71655764,
       "lichTaken": 19655725,
-      "halionTaken": 2642329,
-      "raidCount": 21,
+      "halionTaken": 3279200,
+      "raidCount": 23,
       "guildRank": 8
     },
     {
@@ -168,6 +168,17 @@
       "guildRank": 15
     },
     {
+      "name": "Dombrodeus",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 24482395,
+      "lichTaken": 0,
+      "halionTaken": 4674290,
+      "raidCount": 4,
+      "guildRank": 16
+    },
+    {
       "name": "Facelessprot",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -176,7 +187,7 @@
       "lichTaken": 4277489,
       "halionTaken": 827522,
       "raidCount": 6,
-      "guildRank": 16
+      "guildRank": 17
     },
     {
       "name": "Sichovyk",
@@ -187,17 +198,6 @@
       "lichTaken": 0,
       "halionTaken": 7736320,
       "raidCount": 5,
-      "guildRank": 17
-    },
-    {
-      "name": "Dombrodeus",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 18655179,
-      "lichTaken": 0,
-      "halionTaken": 0,
-      "raidCount": 2,
       "guildRank": 18
     },
     {

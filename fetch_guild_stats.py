@@ -7,7 +7,7 @@ fetch_guild_stats.py — Deus Vult / FreedomUA
 """
 
 import json, re, time, requests
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date as date_cls
 from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
 from log_queue import LogQueue
@@ -255,12 +255,41 @@ def parse_log(log_id, members):
     }
 
 
+def log_id_to_date_str(log_id):
+    parts = log_id.split("--")
+    yy, mm, dd = parts[0].split("-")
+    return f"20{yy}-{mm}-{dd}"
+
+
+def is_duplicate_raid(log_id, guild_players, counted_raids):
+    """Перевіряє чи цей лог — частина вже врахованого рейду (12+ спільних гравців, дата ±1 день)."""
+    try:
+        d = date_cls.fromisoformat(log_id_to_date_str(log_id))
+    except Exception:
+        return False
+    players_set = set(guild_players)
+    for cr in counted_raids:
+        try:
+            cr_date = date_cls.fromisoformat(cr["date"])
+        except Exception:
+            continue
+        if abs((cr_date - d).days) > 1:
+            continue
+        overlap = len(players_set & set(cr["players"]))
+        if overlap >= 12:
+            return True
+    return False
+
+
 def load_stats_cache():
     cache = OUTPUT.replace(".json", "_cache.json")
     if not os.path.exists(cache):
-        return {"icc_raids": 0, "rs_raids": 0, "lich_king_kills": 0, "lich_kills_per_player": {}}
+        return {"icc_raids": 0, "rs_raids": 0, "lich_king_kills": 0,
+                "lich_kills_per_player": {}, "counted_raids": []}
     with open(cache, encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+        data.setdefault("counted_raids", [])
+        return data
 
 
 def save_stats_cache(stats):
@@ -313,9 +342,13 @@ if __name__ == "__main__":
             continue
 
         guild_count = len(result["guild_players"])
-        print(f"{guild_count} наших | ЦЛК: {len(result['icc_kills'])} | РС: {len(result['rs_kills'])}")
+        is_dup = guild_count >= MIN_GUILD_PLAYERS and \
+                 is_duplicate_raid(log_id, result["guild_players"], stats["counted_raids"])
 
-        if guild_count >= MIN_GUILD_PLAYERS:
+        print(f"{guild_count} наших | ЦЛК: {len(result['icc_kills'])} | РС: {len(result['rs_kills'])}" +
+              (" | ДУБЛЬ" if is_dup else ""))
+
+        if guild_count >= MIN_GUILD_PLAYERS and not is_dup:
             if result["icc_kills"]:
                 stats["icc_raids"] += 1
             if result["rs_kills"]:
@@ -325,6 +358,10 @@ if __name__ == "__main__":
                 for name in result["guild_players"]:
                     stats["lich_kills_per_player"][name] = \
                         stats["lich_kills_per_player"].get(name, 0) + 1
+            stats["counted_raids"].append({
+                "date": log_id_to_date_str(log_id),
+                "players": result["guild_players"],
+            })
 
         queue.mark_done(log_id)
         save_stats_cache(stats)
