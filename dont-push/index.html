@@ -40,21 +40,51 @@
     color:var(--text); letter-spacing:.06em; line-height:1.1; margin-bottom:24px;
     text-shadow:0 0 60px rgba(143,193,227,.3); position:relative; z-index:1; }
   .main-text span { color:var(--accent); }
-
   .gp { font-family:'Exo 2',sans-serif; font-size:clamp(48px,8vw,96px); font-weight:900;
     color:#ffd96b; letter-spacing:.04em; text-shadow:0 0 40px rgba(255,217,107,.4);
-    margin-bottom:20px; position:relative; z-index:1; }
-
-  .thanks { font-family:'Exo 2',sans-serif; font-size:clamp(20px,3vw,36px); font-weight:700;
-    color:var(--text-muted); letter-spacing:.1em; margin-bottom:12px; position:relative; z-index:1; }
+    margin-bottom:8px; position:relative; z-index:1; }
   .check-priority { font-family:'Exo 2',sans-serif; font-size:clamp(12px,1.5vw,18px); font-weight:600;
-    color:var(--text-faint); letter-spacing:.15em; margin-bottom:40px; position:relative; z-index:1; }
-
+    color:var(--text-faint); letter-spacing:.15em; margin-bottom:36px; position:relative; z-index:1; }
+  .thanks { font-family:'Exo 2',sans-serif; font-size:clamp(20px,3vw,36px); font-weight:700;
+    color:var(--text-muted); letter-spacing:.1em; margin-bottom:40px; position:relative; z-index:1; }
   .divider { width:200px; height:1px; background:linear-gradient(90deg,transparent,var(--accent),transparent);
-    margin:0 auto 32px; opacity:.4; position:relative; z-index:1; }
-
+    margin:0 auto 28px; opacity:.4; position:relative; z-index:1; }
   .small-text { font-size:13px; color:var(--text-faint); position:relative; z-index:1;
     max-width:400px; line-height:1.6; }
+
+  /* OVERLAY */
+  .overlay { position:fixed; inset:0; background:rgba(7,10,15,.95); backdrop-filter:blur(20px);
+    display:flex; align-items:center; justify-content:center; z-index:200;
+    transition:opacity .8s ease; }
+  .overlay.hidden { opacity:0; pointer-events:none; }
+  .overlay-box { text-align:center; padding:2rem; max-width:380px; width:100%; }
+
+  .eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--accent-dim); margin-bottom:1rem; }
+  .overlay-title { font-family:'Exo 2',sans-serif; font-size:clamp(22px,4vw,32px); font-weight:800;
+    color:var(--text); margin-bottom:1.5rem; }
+
+  .nick-input { width:100%; padding:13px 16px; border-radius:8px; border:1px solid var(--border2);
+    background:var(--bg2); color:var(--text); font-size:16px; font-family:'Manrope',sans-serif;
+    outline:none; text-align:center; margin-bottom:1rem; transition:.15s; }
+  .nick-input:focus { border-color:var(--accent); }
+  .nick-input.error { border-color:#e06a6a; }
+
+  .btn-gp { width:100%; padding:13px; border-radius:8px; border:none; background:var(--accent);
+    color:#070a0f; font-size:15px; font-weight:700; cursor:pointer; font-family:'Manrope',sans-serif;
+    letter-spacing:.05em; transition:.15s; }
+  .btn-gp:hover { background:#a8d4ef; }
+  .btn-gp:active { transform:scale(.98); }
+
+  /* LOADING */
+  .load-spinner { width:52px; height:52px; border:3px solid var(--border2); border-top-color:var(--accent);
+    border-radius:50%; animation:spin .7s linear infinite; margin:0 auto 1.5rem; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .load-title { font-family:'Exo 2',sans-serif; font-size:18px; font-weight:700; color:var(--text);
+    margin-bottom:.4rem; min-height:28px; }
+  .load-sub { font-size:12px; color:var(--text-faint); margin-bottom:1.5rem; min-height:18px; }
+  .progress-track { background:var(--bg2); border-radius:4px; height:4px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--accent); width:0%; transition:width .4s ease; }
 
   footer { text-align:center; padding:24px; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border); }
   footer a { color:var(--accent); text-decoration:none; }
@@ -63,11 +93,11 @@
     nav { padding:0 16px; height:52px; flex-wrap:wrap; }
     .nav-logo { margin-right:0; font-size:15px; }
     .nav-toggle { display:flex; }
-    nav { z-index:200; }
+    nav { z-index:300; }
     .nav-links { display:none; flex-direction:column; gap:2px; width:100%;
       padding:10px 16px 16px; order:3; position:absolute; top:52px; left:0; right:0;
       background:#0b1019; border-bottom:1px solid var(--border);
-      box-shadow:0 18px 40px rgba(0,0,0,.55); z-index:210; }
+      box-shadow:0 18px 40px rgba(0,0,0,.55); z-index:310; }
     .nav-links.open { display:flex; }
     .nav-links a { padding:13px 14px; font-size:15px; border-radius:8px; }
     .nav-overlay { position:fixed; inset:52px 0 0 0; z-index:150;
@@ -88,11 +118,36 @@
     <a href="../potion-stats/">Статистика Зіль</a>
     <a href="../total-damage/">Total Damage</a>
     <a href="../analytics/">Аналітика</a>
-    <a href="../dont-push/" class="active">Dont Push</a>
+    <a href="./" class="active">Dont Push</a>
   </div>
   <button class="nav-toggle" aria-label="Меню">☰</button>
 </nav>
 
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="overlay-box">
+
+    <!-- Фаза 1: введення ніку -->
+    <div id="phase-input">
+      <div class="eyebrow">Ідентифікація члена гільдії</div>
+      <div class="overlay-title">Введи свій нікнейм</div>
+      <input class="nick-input" type="text" id="nickInput" placeholder="Твій нік у грі..." maxlength="32">
+      <button class="btn-gp" onclick="startLoading()">Отримати GP &rarr;</button>
+    </div>
+
+    <!-- Фаза 2: завантаження -->
+    <div id="phase-loading" style="display:none">
+      <div class="eyebrow">Обробка запиту</div>
+      <div class="load-spinner"></div>
+      <div class="load-title" id="loadTitle">Підключення до сервера...</div>
+      <div class="load-sub" id="loadSub">встановлення з'єднання</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ОСНОВНИЙ КОНТЕНТ -->
 <div class="content">
   <div class="main-text">PROJECT MAYHEM<br><span>IS ACTIVATED</span></div>
   <div class="gp">+1000 GP</div>
@@ -105,6 +160,69 @@
 <footer>
   © Гільдія «Deus Vult», сервер <a href="https://freedom-wow.in.ua" target="_blank">Freedom WoW</a>
 </footer>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQxE16a-LGAgIkTQ4V0E9aIsi6UZFaMmlY0JcVqerz2qf48v2MVhZ0ynpMURE7vcKG/exec';
+
+const steps = [
+  ['Підключення до сервера Deus Vult...', 'встановлення з\'єднання', 10],
+  ['Перевірка персонажа...', 'запит до бази даних', 25],
+  ['Знайдено профіль у гільдії...', 'завантаження EPGP даних', 42],
+  ['Розрахунок GP балансу...', 'синхронізація з аддоном', 58],
+  ['Перевірка Guild Rank...', 'верифікація прав доступу', 72],
+  ['Нарахування +1000 GP...', 'запис у базу даних', 88],
+  ['Завершення операції...', 'майже готово', 96],
+];
+
+function startLoading() {
+  const nick = document.getElementById('nickInput').value.trim();
+  if (!nick) {
+    const inp = document.getElementById('nickInput');
+    inp.classList.add('error');
+    inp.placeholder = 'Введи нік!';
+    setTimeout(() => inp.classList.remove('error'), 1500);
+    return;
+  }
+
+  document.getElementById('phase-input').style.display = 'none';
+  document.getElementById('phase-loading').style.display = 'block';
+
+  // Відправляємо нік в Google Sheets
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({ nick }),
+  }).catch(() => {});
+
+  // Анімація кроків
+  let i = 0;
+  function nextStep() {
+    if (i >= steps.length) {
+      setTimeout(reveal, 700);
+      return;
+    }
+    const [title, sub, pct] = steps[i++];
+    document.getElementById('loadTitle').textContent = title;
+    document.getElementById('loadSub').textContent = sub;
+    document.getElementById('progressFill').style.width = pct + '%';
+    setTimeout(nextStep, 550 + Math.random() * 350);
+  }
+  nextStep();
+}
+
+function reveal() {
+  const overlay = document.getElementById('overlay');
+  overlay.style.transition = 'opacity .8s ease';
+  overlay.style.opacity = '0';
+  setTimeout(() => {
+    overlay.classList.add('hidden');
+  }, 800);
+}
+
+// Enter в інпуті
+document.getElementById('nickInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') startLoading();
+});
+</script>
 
 <script>
 (function(){
