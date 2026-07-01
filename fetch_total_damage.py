@@ -12,6 +12,7 @@ from datetime import datetime, timezone, date
 from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
 from log_queue import LogQueue
+from discord_notify import send_dm
 
 FETCH_FAILED = object()  # sentinel: мережева помилка → лишаємо в черзі
 
@@ -484,6 +485,10 @@ if __name__ == "__main__":
     print(f"  Залишилось в черзі:   {queue.pending_count}")
     print(f"  Всього рейдів:        {len(raids)}")
     print(f"  Поточний сезон: {data['currentSeasonId']}")
+    send_dm(
+        f"**[Total Damage]** Оброблено: {processed} | В черзі: {queue.pending_count}"
+        f"\nВсього рейдів: {len(raids)} | Сезон: {data['currentSeasonId']}"
+    )
     if cur and cur["rows"]:
         print(f"  Топ-3 сезону ({cur['name']}):")
         for r in cur["rows"][:3]:

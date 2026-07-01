@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
 from log_queue import LogQueue
 from dedup_helper import load_duplicate_map, is_duplicate_log
+from discord_notify import send_dm
 
 FETCH_FAILED = object()  # sentinel: мережева помилка → лишаємо в черзі
 
@@ -295,4 +296,8 @@ if __name__ == "__main__":
     print(f"  Залишилось в черзі:   {queue.pending_count}")
     print(f"  Всього рейдів:        {len(raids)}")
     print(f"  Гравців в дошці:      {len(build_honor_board(raids))}")
+    send_dm(
+        f"**[Potion]** Оброблено: {processed} | В черзі: {queue.pending_count}"
+        f"\nВсього рейдів: {len(raids)}"
+    )
     print(f"\nOK Збережено: {OUTPUT}")
