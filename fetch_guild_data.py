@@ -1,5 +1,5 @@
 """
-fetch_guild_data.py — Deus Vult / FreedomUA
+fetch_guild_data.py -- Deus Vult / FreedomUA
 - Основні дані через /character (25H)
 - Міні-боси РС через /top (25N)
 """
@@ -10,7 +10,7 @@ from epgp_parser import parse_epgp_members  # спільний парсер EPGP
 
 SERVER    = "FreedomUA"
 
-# Виключення — (ім'я, клас, спек)
+# Виключення -- (ім'я, клас, спек)
 EXCLUSIONS = {
     ("Oppenheimer", "Priest", "Shadow"),
 }
@@ -71,7 +71,7 @@ def find_guild_members_on_server(members):
     found = {}
     total = len(CLASSES) * 3
     done  = 0
-    print("🔍 Крок 1: шукаємо гравців на сервері...")
+    print("[?] Крок 1: шукаємо гравців на сервері...")
     for cls_name, specs in SPECS_BY_CLASS.items():
         cls_i = CLASS_INDEX[cls_name]
         for spec_name in specs:
@@ -93,7 +93,7 @@ def find_guild_members_on_server(members):
                         found[name] = []
                     found[name].append((cls_name, spec_name, spec_i))
             except Exception as e:
-                print(f"⚠ {e}")
+                print(f"! {e}")
             time.sleep(0.3)
     return found
 
@@ -106,7 +106,7 @@ def fetch_character(name, spec_i):
         r.raise_for_status()
         return r.json()
     except Exception as e:
-        print(f"  ⚠ character {name}/{spec_i}: {e}")
+        print(f"  ! character {name}/{spec_i}: {e}")
         return None
 
 # ─── Крок 3: /top 25N для міні-босів РС ──────────────────────────────────────
@@ -116,12 +116,12 @@ def fetch_rs_mini_bosses(members_specs):
     Для кожного міні-боса РС в 25N збираємо dps_max по гравцях гільдії.
     Повертає dict: {(name, cls, spec): {boss: dps}}
     """
-    rs_data = {}   # (name, cls, spec) → {boss: dps}
+    rs_data = {}   # (name, cls, spec) -> {boss: dps}
 
-    print("\n🏰 Крок 3: збираємо міні-боси РС (25N)...")
+    print("\n[DV] Крок 3: збираємо міні-боси РС (25N)...")
 
     for boss in RS_MINI_BOSSES:
-        print(f"\n  📜 {boss}")
+        print(f"\n  [~] {boss}")
         for cls_name, specs in SPECS_BY_CLASS.items():
             cls_i = CLASS_INDEX[cls_name]
             for spec_name in specs:
@@ -174,7 +174,7 @@ def build_guild_data(members):
     rows = []
     total = sum(len(specs) for specs in members_specs.values())
     done  = 0
-    print("\n📊 Крок 2: отримуємо дані по кожному гравцю...")
+    print("\n[>] Крок 2: отримуємо дані по кожному гравцю...")
 
     for name, specs in members_specs.items():
         for cls_name, spec_name, spec_i in specs:
@@ -232,9 +232,9 @@ def build_guild_data(members):
     }
 
 if __name__ == "__main__":
-    print("🏰 Deus Vult / FreedomUA\n")
+    print("[DV] Deus Vult / FreedomUA\n")
     if not os.path.exists(EPGP_FILE):
-        print(f"❌ {EPGP_FILE} не знайдено!")
+        print(f"[X] {EPGP_FILE} не знайдено!")
         exit(1)
     members = parse_epgp_members(EPGP_FILE)
     print(f"   Шукаємо {len(members)} гравців\n")
@@ -242,5 +242,5 @@ if __name__ == "__main__":
     data = build_guild_data(members)
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f"\n✅ {len(data['rows'])} рядків → {OUTPUT}")
+    print(f"\n[OK] {len(data['rows'])} рядків -> {OUTPUT}")
     print(f"   Унікальних гравців: {data['totalPlayersInSource']}")

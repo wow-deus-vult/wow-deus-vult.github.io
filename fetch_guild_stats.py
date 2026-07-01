@@ -1,5 +1,5 @@
 """
-fetch_guild_stats.py — Deus Vult / FreedomUA
+fetch_guild_stats.py -- Deus Vult / FreedomUA
 Збирає статистику рейдів гільдії.
 Результат: data/guild-stats.json
 
@@ -185,7 +185,7 @@ def safe_get(url):
         if r.status_code == 200:
             return r
         if r.status_code == 429:
-            print("  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
+            print("  ! 429, чекаємо 10с...", end=" ", flush=True)
             time.sleep(10)
             r2 = requests.get(url, headers=HEADERS, timeout=15)
             if r2.status_code == 200:
@@ -263,7 +263,7 @@ def log_id_to_date_str(log_id):
 
 
 def is_duplicate_raid(log_id, guild_players, counted_raids):
-    """Перевіряє чи цей лог — частина вже врахованого рейду (12+ спільних гравців, дата ±1 день)."""
+    """Перевіряє чи цей лог -- частина вже врахованого рейду (12+ спільних гравців, дата ±1 день)."""
     try:
         d = date_cls.fromisoformat(log_id_to_date_str(log_id))
     except Exception:
@@ -388,4 +388,4 @@ if __name__ == "__main__":
     if stats["lich_kills_per_player"]:
         top = sorted(stats["lich_kills_per_player"].items(), key=lambda x: x[1], reverse=True)[:5]
         print(f"  Топ-5 по Лічу: {top}")
-    print(f"\n✓ Збережено: {OUTPUT}")
+    print(f"\nOK Збережено: {OUTPUT}")

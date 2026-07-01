@@ -1,5 +1,5 @@
 """
-fetch_potion_data.py — Deus Vult / FreedomUA
+fetch_potion_data.py -- Deus Vult / FreedomUA
 Збирає статистику потів з /consumables/ сторінок uwu-logs
 Результат: data/potion-stats.json
 
@@ -181,17 +181,17 @@ def safe_get(url):
         if r.status_code == 200:
             return r
         if r.status_code == 429:
-            print(f"  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
+            print(f"  ! 429, чекаємо 10с...", end=" ", flush=True)
             time.sleep(10)
             r2 = requests.get(url, headers=HEADERS, timeout=15)
             if r2.status_code == 200:
                 return r2
-            print(f"  ✗ retry={r2.status_code}", end=" ", flush=True)
+            print(f"  ERR retry={r2.status_code}", end=" ", flush=True)
         else:
-            print(f"  ✗ {r.status_code}", end=" ", flush=True)
+            print(f"  ERR {r.status_code}", end=" ", flush=True)
         return None
     except Exception as e:
-        print(f"  ✗ exception={e}", end=" ", flush=True)
+        print(f"  ERR exception={e}", end=" ", flush=True)
         return None
 
 
@@ -284,8 +284,8 @@ def save_raids_cache(raids):
 def deduplicate_raids(raids):
     """
     Прибирає дублі рейдів: якщо два логи з тієї ж дати (або +1 день)
-    мають 12+ спільних гравців — це частини одного реального рейду.
-    З групи дублів лишаємо ОДИН лог — той з найбільшою кількістю гравців.
+    мають 12+ спільних гравців -- це частини одного реального рейду.
+    З групи дублів лишаємо ОДИН лог -- той з найбільшою кількістю гравців.
     """
     if not raids:
         return raids
@@ -415,7 +415,7 @@ if __name__ == "__main__":
             save_raids_cache(raids)
             save_output(raids)
             processed += 1
-            print(f"✓ {len(result['players'])} гравців")
+            print(f"OK {len(result['players'])} гравців")
         else:
             print("пропущено (лишається в черзі)")
             skipped += 1
@@ -426,4 +426,4 @@ if __name__ == "__main__":
     print(f"  Залишилось в черзі:   {queue.pending_count}")
     print(f"  Всього рейдів:        {len(raids)}")
     print(f"  Гравців в дошці:      {len(build_honor_board(raids))}")
-    print(f"\n✓ Збережено: {OUTPUT}")
+    print(f"\nOK Збережено: {OUTPUT}")

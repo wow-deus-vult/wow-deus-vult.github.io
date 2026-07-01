@@ -1,7 +1,7 @@
 """
-fetch_heal_data.py — Deus Vult / FreedomUA
+fetch_heal_data.py -- Deus Vult / FreedomUA
 Рейтинг хілів по всіх босах ЦЛК + РС.
-Для кожного гравця — MAX HPS на кожному босі з усіх логів.
+Для кожного гравця -- MAX HPS на кожному босі з усіх логів.
 Guild Rank = AVG по всіх босах де гравець хілив.
 Результат: data/guild-heal.json
 """
@@ -172,7 +172,7 @@ BOSS_ORDER = [
     "Halion", "Saviana Ragefire", "General Zarithrian", "Baltharus the Warborn",
 ]
 
-# CSS клас боса → назва
+# CSS клас боса -> назва
 BOSS_CSS = {
     "lord-marrowgar":        "Lord Marrowgar",
     "lady-deathwhisper":     "Lady Deathwhisper",
@@ -208,17 +208,17 @@ def safe_get(url):
         if r.status_code == 200:
             return r
         if r.status_code == 429:
-            print("  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
+            print("  ! 429, чекаємо 10с...", end=" ", flush=True)
             time.sleep(10)
             r2 = requests.get(url, headers=HEADERS, timeout=15)
             if r2.status_code == 200:
                 return r2
-            print(f"  ✗ {r2.status_code}", end=" ", flush=True)
+            print(f"  ERR {r2.status_code}", end=" ", flush=True)
         else:
-            print(f"  ✗ {r.status_code}", end=" ", flush=True)
+            print(f"  ERR {r.status_code}", end=" ", flush=True)
         return None
     except Exception as e:
-        print(f"  ✗ {e}", end=" ", flush=True)
+        print(f"  ERR {e}", end=" ", flush=True)
         return None
 
 
@@ -426,7 +426,7 @@ if __name__ == "__main__":
         save_cache(cache)
         bosses_found = list(result.keys())
         healers_found = sum(len(v) for v in result.values())
-        print(f"✓ {len(bosses_found)} босів, {healers_found} хіл-записів")
+        print(f"OK {len(bosses_found)} босів, {healers_found} хіл-записів")
         processed += 1
 
     data = build_output(cache)
@@ -439,4 +439,4 @@ if __name__ == "__main__":
         print(f"  Топ-3:")
         for r in data["rows"][:3]:
             print(f"    {r['name']:20} AVG HPS: {r['avgHps']:>10,}".replace(",", " "))
-    print(f"\n✓ Збережено: {OUTPUT}")
+    print(f"\nOK Збережено: {OUTPUT}")

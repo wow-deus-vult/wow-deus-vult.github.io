@@ -1,5 +1,5 @@
 """
-fetch_total_damage.py — Deus Vult / FreedomUA
+fetch_total_damage.py -- Deus Vult / FreedomUA
 Total Damage кожного гравця, розбитий ПО СЕЗОНАХ.
 Результат: data/total-damage.json
 
@@ -181,7 +181,7 @@ def safe_get(url):
         if r.status_code == 200:
             return r
         if r.status_code == 429:
-            print("  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
+            print("  ! 429, чекаємо 10с...", end=" ", flush=True)
             time.sleep(10)
             r2 = requests.get(url, headers=HEADERS, timeout=15)
             if r2.status_code == 200:
@@ -272,7 +272,7 @@ def load_existing_raids():
         return []
     with open(OUTPUT, encoding="utf-8") as f:
         data = json.load(f)
-    # Відновлюємо список рейдів з allTime rows — але нам потрібні сирі дані.
+    # Відновлюємо список рейдів з allTime rows -- але нам потрібні сирі дані.
     # Зберігаємо їх окремо у _raids_cache.json
     cache = OUTPUT.replace(".json", "_cache.json")
     if os.path.exists(cache):
@@ -284,7 +284,7 @@ def load_existing_raids():
 def save_raids_cache(raids):
     cache = OUTPUT.replace(".json", "_cache.json")
     with open(cache, "w", encoding="utf-8") as f:
-        # date не серіалізується — конвертуємо в str
+        # date не серіалізується -- конвертуємо в str
         serializable = [{"date": str(r["date"]), "log_id": r.get("log_id", ""),
                           "per_player": r["per_player"]} for r in raids]
         json.dump(serializable, f, ensure_ascii=False)
@@ -320,12 +320,12 @@ def aggregate(per_report_list):
 def deduplicate_raids(raids):
     """
     Прибирає дублі рейдів: якщо два логи з тієї ж дати (або +1 день)
-    мають 12+ спільних гравців — це частини одного реального рейду
+    мають 12+ спільних гравців -- це частини одного реального рейду
     (різні люди заливали різні шматки). З групи дублів об'єднуємо
     дані: для кожного гравця беремо МАКСИМУМ серед дублів (не суму),
     щоб не множити total damage.
 
-    Додатково зберігає data/duplicate_logs_map.json — мапу
+    Додатково зберігає data/duplicate_logs_map.json -- мапу
     {дублікат_log_id: канонічний_log_id}, яку можуть використовувати
     інші скрипти (tank, heal, potion, raid_stats) для пропуску дублів
     без повторного аналізу складу гравців.
@@ -370,7 +370,7 @@ def deduplicate_raids(raids):
             continue
         merged_count += len(group) - 1
         base_date = raids[group[0]]["date"]
-        # Канонічний — лог з найбільшою кількістю гравців
+        # Канонічний -- лог з найбільшою кількістю гравців
         canonical_idx = max(group, key=lambda idx: len(raids[idx]["per_player"]))
         canonical_log_id = raids[canonical_idx].get("log_id", "")
 
@@ -454,7 +454,7 @@ if __name__ == "__main__":
             rdate = log_id_to_date(log_id)
         except Exception:
             print("дата?")
-            queue.mark_done(log_id)  # некоректний ID — прибираємо
+            queue.mark_done(log_id)  # некоректний ID -- прибираємо
             continue
 
         per = parse_report_damage(log_id, members)
@@ -467,7 +467,7 @@ if __name__ == "__main__":
         queue.mark_done(log_id)
         save_raids_cache(raids)
         processed += 1
-        print(f"✓ {len(per)} гравців ({rdate})")
+        print(f"OK {len(per)} гравців ({rdate})")
 
     # Зберігаємо фінальний результат
     data = save_output(raids, seasons)
@@ -486,4 +486,4 @@ if __name__ == "__main__":
         print(f"  Топ-3 All Time:")
         for r in data["allTime"]["rows"][:3]:
             print(f"    {r['name']:20} {r['totalDamage']:>16,}".replace(",", " "))
-    print(f"\n✓ Збережено: {OUTPUT}")
+    print(f"\nOK Збережено: {OUTPUT}")

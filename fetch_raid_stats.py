@@ -1,5 +1,5 @@
 """
-fetch_raid_stats.py — Deus Vult / FreedomUA
+fetch_raid_stats.py -- Deus Vult / FreedomUA
 Збирає додаткову статистику рейдів:
 - Тривалість кожного рейду (Custom Slice)
 - Рейдовий DPS на Deathbringer Saurfang 25H (Total рядок)
@@ -39,17 +39,17 @@ def safe_get(url):
         if r.status_code == 200:
             return r
         if r.status_code == 429:
-            print("  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
+            print("  ! 429, чекаємо 10с...", end=" ", flush=True)
             time.sleep(10)
             r2 = requests.get(url, headers=HEADERS, timeout=15)
             if r2.status_code == 200:
                 return r2
-            print(f"  ✗ retry={r2.status_code}", end=" ", flush=True)
+            print(f"  ERR retry={r2.status_code}", end=" ", flush=True)
         else:
-            print(f"  ✗ {r.status_code}", end=" ", flush=True)
+            print(f"  ERR {r.status_code}", end=" ", flush=True)
         return None
     except Exception as e:
-        print(f"  ✗ {e}", end=" ", flush=True)
+        print(f"  ERR {e}", end=" ", flush=True)
         return None
 
 
@@ -81,7 +81,7 @@ def parse_log(log_id):
 
     soup = BeautifulSoup(r.text, "html.parser")
 
-    # Тривалість — шукаємо "Custom Slice" в заголовках секцій
+    # Тривалість -- шукаємо "Custom Slice" в заголовках секцій
     duration_seconds = 0
     for tag in soup.find_all(["h1", "h2", "h3", "div", "span"]):
         text = tag.get_text(strip=True)
@@ -90,7 +90,7 @@ def parse_log(log_id):
             duration_seconds = parse_duration_seconds(m.group(1))
             break
 
-    # Saurfang DPS — шукаємо kill-link для saurfang 25H
+    # Saurfang DPS -- шукаємо kill-link для saurfang 25H
     saurfang_dps = None
     for a in soup.find_all("a", class_="kill-link"):
         href = a.get("href", "")
@@ -255,7 +255,7 @@ if __name__ == "__main__":
         dps = result.get("saurfang_dps")
         h = int(dur // 3600)
         m = int((dur % 3600) // 60)
-        print(f"✓ {h}г {m}хв | Saurfang DPS: {dps or '—'}")
+        print(f"OK {h}г {m}хв | Saurfang DPS: {dps or '--'}")
 
     # Будуємо фінальний JSON
     data = build_output(cache, seasons)
@@ -270,4 +270,4 @@ if __name__ == "__main__":
     print(f"  Загальний час:        {data['totalTimeHours']} год ({data['totalTimeDays']} днів)")
     print(f"  MAX Saurfang DPS:     {data['maxSaurfangDps']}")
     print(f"  AVG Saurfang DPS S1:  {data['avgSaurfangDpsCurrentSeason']}")
-    print(f"\n✓ Збережено: {OUTPUT}")
+    print(f"\nOK Збережено: {OUTPUT}")

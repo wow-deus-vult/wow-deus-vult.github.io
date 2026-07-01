@@ -1,5 +1,5 @@
 """
-fetch_tank_data.py — Deus Vult / FreedomUA
+fetch_tank_data.py -- Deus Vult / FreedomUA
 Рейтинг танків по Damage Taken з усіх логів.
 - Total Damage Taken за всі логи
 - Окремо: Damage Taken від The Lich King і Halion
@@ -200,17 +200,17 @@ def safe_get(url):
         if r.status_code == 200:
             return r
         if r.status_code == 429:
-            print("  ⚠ 429, чекаємо 10с...", end=" ", flush=True)
+            print("  ! 429, чекаємо 10с...", end=" ", flush=True)
             time.sleep(10)
             r2 = requests.get(url, headers=HEADERS, timeout=15)
             if r2.status_code == 200:
                 return r2
-            print(f"  ✗ {r2.status_code}", end=" ", flush=True)
+            print(f"  ERR {r2.status_code}", end=" ", flush=True)
         else:
-            print(f"  ✗ {r.status_code}", end=" ", flush=True)
+            print(f"  ERR {r.status_code}", end=" ", flush=True)
         return None
     except Exception as e:
-        print(f"  ✗ {e}", end=" ", flush=True)
+        print(f"  ERR {e}", end=" ", flush=True)
         return None
 
 
@@ -413,7 +413,7 @@ if __name__ == "__main__":
         queue.mark_done(log_id)
         save_cache(cache)
         tanks_found = sum(len(v) for v in result.values())
-        print(f"✓ {len(result)} босів, {tanks_found} танк-записів")
+        print(f"OK {len(result)} босів, {tanks_found} танк-записів")
         processed += 1
 
     data = build_output(cache)
@@ -426,4 +426,4 @@ if __name__ == "__main__":
         print(f"  Топ-3:")
         for r in data["rows"][:3]:
             print(f"    {r['name']:20} Total Taken: {r['totalTaken']:>15,}".replace(",", " "))
-    print(f"\n✓ Збережено: {OUTPUT}")
+    print(f"\nOK Збережено: {OUTPUT}")
