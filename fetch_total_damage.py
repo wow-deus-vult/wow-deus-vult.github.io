@@ -13,6 +13,8 @@ from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
 from log_queue import LogQueue
 
+FETCH_FAILED = object()  # sentinel: мережева помилка → лишаємо в черзі
+
 BASE_URL     = "https://uwu-logs.xyz"
 SERVER       = "FreedomUA"
 OUTPUT       = "data/total-damage.json"
@@ -235,7 +237,7 @@ def parse_report_damage(log_id, members):
     url = f"{BASE_URL}/reports/{log_id}/"
     r = safe_get(url)
     if not r:
-        return None
+        return FETCH_FAILED
     soup = BeautifulSoup(r.text, "html.parser")
     per_player = {}
     for tr in soup.find_all("tr"):
@@ -386,7 +388,7 @@ def deduplicate_raids(raids):
         deduped.append({"date": base_date, "log_id": canonical_log_id, "per_player": merged_players})
 
     if merged_count:
-        print(f"  \U0001f501 Дедуплікація: об'єднано {merged_count} дублікат(ів) рейдів")
+        print(f"  [>>] Дедуплікація: об'єднано {merged_count} дублікат(ів) рейдів")
 
     # Зберігаємо мапу дублікатів для інших скриптів
     dup_map_path = "data/duplicate_logs_map.json"
@@ -458,9 +460,13 @@ if __name__ == "__main__":
             continue
 
         per = parse_report_damage(log_id, members)
-        if not per:
-            print("пропущено (лишається в черзі)")
+        if per is FETCH_FAILED:
+            print("мережева помилка, лишається в черзі")
             skipped += 1
+            continue
+        if not per:
+            print("пропущено (не ICC/RS, mark done)")
+            queue.mark_done(log_id)
             continue
 
         raids.append({"date": rdate, "log_id": log_id, "per_player": per})

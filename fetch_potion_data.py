@@ -13,6 +13,8 @@ from epgp_parser import parse_epgp_members
 from log_queue import LogQueue
 from dedup_helper import load_duplicate_map, is_duplicate_log
 
+FETCH_FAILED = object()  # sentinel: мережева помилка → лишаємо в черзі
+
 BASE_URL = "https://uwu-logs.xyz"
 SERVER   = "FreedomUA"
 OUTPUT   = "data/potion-stats.json"
@@ -79,7 +81,7 @@ def parse_consumables(log_id, members):
     url = f"{BASE_URL}/reports/{log_id}/consumables/"
     r = safe_get(url)
     if not r:
-        return None
+        return FETCH_FAILED
     soup = BeautifulSoup(r.text, "html.parser")
     tbody = soup.find("tbody", id="potions-table-body")
     thead = soup.find("thead")
@@ -198,7 +200,7 @@ def deduplicate_raids(raids):
         deduped.append(raids[best_idx])
 
     if merged_count:
-        print(f"  \U0001f501 Дедуплікація: прибрано {merged_count} дублікат(ів) рейдів")
+        print(f"  [>>] Дедуплікація: прибрано {merged_count} дублікат(ів) рейдів")
 
     return deduped
 
@@ -271,16 +273,21 @@ if __name__ == "__main__":
             continue
 
         result = parse_consumables(log_id, members)
-        if result:
-            raids.append(result)
-            queue.mark_done(log_id)
-            save_raids_cache(raids)
-            save_output(raids)
-            processed += 1
-            print(f"OK {len(result['players'])} гравців")
-        else:
-            print("пропущено (лишається в черзі)")
+        if result is FETCH_FAILED:
+            print("мережева помилка, лишається в черзі")
             skipped += 1
+            continue
+        if not result:
+            print("пропущено (не ICC/RS, mark done)")
+            queue.mark_done(log_id)
+            continue
+
+        raids.append(result)
+        queue.mark_done(log_id)
+        save_raids_cache(raids)
+        save_output(raids)
+        processed += 1
+        print(f"OK {len(result['players'])} гравців")
 
     save_output(raids)
     print(f"\n=== Результат ===")

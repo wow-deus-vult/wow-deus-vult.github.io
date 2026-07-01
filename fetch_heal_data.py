@@ -12,6 +12,8 @@ from bs4 import BeautifulSoup
 from epgp_parser import parse_epgp_members
 from log_queue import LogQueue
 
+FETCH_FAILED = object()  # sentinel: мережева помилка → лишаємо в черзі
+
 BASE_URL = "https://uwu-logs.xyz"
 SERVER   = "FreedomUA"
 OUTPUT   = "data/guild-heal.json"
@@ -287,7 +289,7 @@ def parse_log(log_id, members):
     url = f"{BASE_URL}/reports/{log_id}/"
     r = safe_get(url)
     if not r:
-        return None
+        return FETCH_FAILED
     soup = BeautifulSoup(r.text, "html.parser")
 
     # Знаходимо kill-links по босах
@@ -416,9 +418,13 @@ if __name__ == "__main__":
     for i, log_id in enumerate(pending):
         print(f"[{i+1}/{total}] {log_id}...", end=" ", flush=True)
         result = parse_log(log_id, members)
-        if not result:
-            print("пропущено")
+        if result is FETCH_FAILED:
+            print("мережева помилка, лишається в черзі")
             skipped += 1
+            continue
+        if not result:
+            print("пропущено (не ICC/RS, mark done)")
+            queue.mark_done(log_id)
             continue
 
         cache[log_id] = result
