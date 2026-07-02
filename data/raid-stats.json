@@ -1,11 +1,11 @@
 {
-  "updated": "2026-07-01",
-  "totalRaids": 191,
-  "totalTimeSeconds": 1186895,
-  "totalTimeHours": 329.7,
-  "totalTimeDays": 13.7,
+  "updated": "2026-07-02",
+  "totalRaids": 192,
+  "totalTimeSeconds": 1195485,
+  "totalTimeHours": 332.1,
+  "totalTimeDays": 13.8,
   "maxSaurfangDps": 517122.8,
-  "avgSaurfangDpsCurrentSeason": 415675.7,
+  "avgSaurfangDpsCurrentSeason": 415055.4,
   "saurfangKills": [
     {
       "logId": "25-12-03--20-44--Bonem--FreedomUA",
@@ -296,6 +296,11 @@
       "logId": "26-05-28--21-15--Зорекрила--FreedomUA",
       "date": "2026-05-28",
       "dps": 344922.3
+    },
+    {
+      "logId": "26-05-30--20-40--Чіпічапа--FreedomUA",
+      "date": "2026-05-30",
+      "dps": 383417.0
     },
     {
       "logId": "26-05-31--19-23--Bonem--FreedomUA",
