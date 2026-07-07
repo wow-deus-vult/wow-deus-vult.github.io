@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-07-06T16:35:40.271315+00:00",
+  "lastUpdated": "2026-07-07T07:02:53.850369+00:00",
   "totalPlayersInSource": 267,
-  "totalRows": 347,
+  "totalRows": 348,
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -143,7 +143,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 8,
-      "overallScore": 99.38,
+      "overallScore": 99.39,
       "bosses": {
         "Lord Marrowgar": 25295.0,
         "Lady Deathwhisper": 22244.9,
@@ -215,6 +215,32 @@
       }
     },
     {
+      "name": "Содахарчова",
+      "server": "FreedomUA",
+      "class": "Mage",
+      "spec": "Fire",
+      "specIndex": 2,
+      "overallRank": 11,
+      "overallScore": 99.21,
+      "bosses": {
+        "Lord Marrowgar": 25798.6,
+        "Lady Deathwhisper": 23160.2,
+        "Deathbringer Saurfang": 27245.4,
+        "Festergut": 23926.8,
+        "Rotface": 23521.5,
+        "Professor Putricide": 20308.5,
+        "Blood Prince Council": 22430.4,
+        "Blood-Queen Lana'thel": 41095.1,
+        "Sindragosa": 18330.5,
+        "The Lich King": 15324.4,
+        "Halion": 19047.2,
+        "Saviana Ragefire": 14437.4,
+        "General Zarithrian": 20853.6,
+        "Baltharus the Warborn": 17380.4,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
       "name": "Bonem",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -237,32 +263,6 @@
         "Saviana Ragefire": 9992.2,
         "General Zarithrian": 25159.1,
         "Baltharus the Warborn": 18406.3,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
-      "name": "Содахарчова",
-      "server": "FreedomUA",
-      "class": "Mage",
-      "spec": "Fire",
-      "specIndex": 2,
-      "overallRank": 13,
-      "overallScore": 99.12,
-      "bosses": {
-        "Lord Marrowgar": 25798.6,
-        "Lady Deathwhisper": 23160.2,
-        "Deathbringer Saurfang": 27245.4,
-        "Festergut": 23926.8,
-        "Rotface": 23521.5,
-        "Professor Putricide": 19650.1,
-        "Blood Prince Council": 22430.4,
-        "Blood-Queen Lana'thel": 41095.1,
-        "Sindragosa": 18330.5,
-        "The Lich King": 15324.4,
-        "Halion": 19047.2,
-        "Saviana Ragefire": 14437.4,
-        "General Zarithrian": 20853.6,
-        "Baltharus the Warborn": 17380.4,
         "Valithria Dreamwalker": 0
       }
     },
@@ -351,7 +351,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 16,
-      "overallScore": 98.72,
+      "overallScore": 98.71,
       "bosses": {
         "Lord Marrowgar": 24743.3,
         "Lady Deathwhisper": 22217.5,
@@ -377,7 +377,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 10,
-      "overallScore": 98.42,
+      "overallScore": 98.43,
       "bosses": {
         "Lord Marrowgar": 25405.8,
         "Lady Deathwhisper": 23568.7,
@@ -533,7 +533,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 9,
-      "overallScore": 97.78,
+      "overallScore": 97.77,
       "bosses": {
         "Lord Marrowgar": 21050.0,
         "Lady Deathwhisper": 21172.4,
@@ -637,7 +637,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 20,
-      "overallScore": 97.19,
+      "overallScore": 97.18,
       "bosses": {
         "Lord Marrowgar": 23454.3,
         "Lady Deathwhisper": 21680.7,
@@ -663,7 +663,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 12,
-      "overallScore": 97.12,
+      "overallScore": 97.13,
       "bosses": {
         "Lord Marrowgar": 19498.8,
         "Lady Deathwhisper": 19118.0,
@@ -715,7 +715,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 22,
-      "overallScore": 96.99,
+      "overallScore": 97.0,
       "bosses": {
         "Lord Marrowgar": 24206.8,
         "Lady Deathwhisper": 21052.6,
@@ -741,7 +741,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 31,
-      "overallScore": 96.97,
+      "overallScore": 96.96,
       "bosses": {
         "Lord Marrowgar": 25210.6,
         "Lady Deathwhisper": 20682.5,
@@ -767,7 +767,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 17,
-      "overallScore": 96.8,
+      "overallScore": 96.86,
       "bosses": {
         "Lord Marrowgar": 20674.7,
         "Lady Deathwhisper": 20537.8,
@@ -777,7 +777,7 @@
         "Professor Putricide": 15036.0,
         "Blood Prince Council": 17193.4,
         "Blood-Queen Lana'thel": 17609.2,
-        "Sindragosa": 12827.5,
+        "Sindragosa": 13073.5,
         "The Lich King": 12462.7,
         "Halion": 13734.3,
         "Saviana Ragefire": 10225.5,
@@ -819,7 +819,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 36,
-      "overallScore": 96.22,
+      "overallScore": 96.21,
       "bosses": {
         "Lord Marrowgar": 22619.4,
         "Lady Deathwhisper": 20517.8,
@@ -844,8 +844,8 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 33,
-      "overallScore": 95.97,
+      "overallRank": 31,
+      "overallScore": 96.06,
       "bosses": {
         "Lord Marrowgar": 25986.5,
         "Lady Deathwhisper": 22763.5,
@@ -856,7 +856,7 @@
         "Blood Prince Council": 16366.4,
         "Blood-Queen Lana'thel": 32097.4,
         "Sindragosa": 13631.8,
-        "The Lich King": 13917.8,
+        "The Lich King": 14005.0,
         "Halion": 16719.8,
         "Saviana Ragefire": 12553.5,
         "General Zarithrian": 19485.5,
@@ -897,7 +897,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 16,
-      "overallScore": 94.42,
+      "overallScore": 94.43,
       "bosses": {
         "Lord Marrowgar": 23974.3,
         "Lady Deathwhisper": 18726.1,
@@ -923,7 +923,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 24,
-      "overallScore": 93.86,
+      "overallScore": 93.84,
       "bosses": {
         "Lord Marrowgar": 25418.1,
         "Lady Deathwhisper": 19439.2,
@@ -975,7 +975,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 26,
-      "overallScore": 93.21,
+      "overallScore": 93.2,
       "bosses": {
         "Lord Marrowgar": 27267.7,
         "Lady Deathwhisper": 20471.1,
@@ -1001,14 +1001,14 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 33,
-      "overallScore": 93.04,
+      "overallScore": 93.08,
       "bosses": {
         "Lord Marrowgar": 19673.4,
         "Lady Deathwhisper": 18761.7,
         "Deathbringer Saurfang": 19546.9,
         "Festergut": 18090.4,
         "Rotface": 18427.7,
-        "Professor Putricide": 12936.7,
+        "Professor Putricide": 12995.7,
         "Blood Prince Council": 13309.1,
         "Blood-Queen Lana'thel": 19525.5,
         "Sindragosa": 13211.2,
@@ -1053,7 +1053,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 56,
-      "overallScore": 92.64,
+      "overallScore": 92.62,
       "bosses": {
         "Lord Marrowgar": 22255.7,
         "Lady Deathwhisper": 20220.2,
@@ -1079,7 +1079,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 58,
-      "overallScore": 92.41,
+      "overallScore": 92.39,
       "bosses": {
         "Lord Marrowgar": 23339.4,
         "Lady Deathwhisper": 20112.1,
@@ -1105,7 +1105,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 59,
-      "overallScore": 92.3,
+      "overallScore": 92.28,
       "bosses": {
         "Lord Marrowgar": 21446.2,
         "Lady Deathwhisper": 19969.1,
@@ -1157,7 +1157,7 @@
       "spec": "Elemental",
       "specIndex": 1,
       "overallRank": 11,
-      "overallScore": 91.44,
+      "overallScore": 91.45,
       "bosses": {
         "Lord Marrowgar": 17942.6,
         "Lady Deathwhisper": 14044.5,
@@ -1183,7 +1183,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 16,
-      "overallScore": 91.38,
+      "overallScore": 91.39,
       "bosses": {
         "Lord Marrowgar": 17156.4,
         "Lady Deathwhisper": 16422.5,
@@ -1209,7 +1209,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 28,
-      "overallScore": 91.02,
+      "overallScore": 91.01,
       "bosses": {
         "Lord Marrowgar": 20160.2,
         "Lady Deathwhisper": 18629.3,
@@ -1235,7 +1235,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 61,
-      "overallScore": 90.65,
+      "overallScore": 90.64,
       "bosses": {
         "Lord Marrowgar": 23522.4,
         "Lady Deathwhisper": 18152.7,
@@ -1261,7 +1261,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 33,
-      "overallScore": 90.0,
+      "overallScore": 89.98,
       "bosses": {
         "Lord Marrowgar": 18237.7,
         "Lady Deathwhisper": 18848.7,
@@ -1313,7 +1313,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 41,
-      "overallScore": 89.55,
+      "overallScore": 89.56,
       "bosses": {
         "Lord Marrowgar": 17481.4,
         "Lady Deathwhisper": 16108.2,
@@ -1365,7 +1365,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 37,
-      "overallScore": 89.47,
+      "overallScore": 89.44,
       "bosses": {
         "Lord Marrowgar": 23809.8,
         "Lady Deathwhisper": 19776.4,
@@ -1417,7 +1417,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 34,
-      "overallScore": 89.34,
+      "overallScore": 89.3,
       "bosses": {
         "Lord Marrowgar": 20072.1,
         "Lady Deathwhisper": 18298.6,
@@ -1495,7 +1495,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 13,
-      "overallScore": 88.65,
+      "overallScore": 88.66,
       "bosses": {
         "Lord Marrowgar": 5476.9,
         "Lady Deathwhisper": 6058.3,
@@ -1547,7 +1547,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 24,
-      "overallScore": 88.13,
+      "overallScore": 88.14,
       "bosses": {
         "Lord Marrowgar": 4978.5,
         "Lady Deathwhisper": 4270.7,
@@ -1599,7 +1599,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 25,
-      "overallScore": 87.9,
+      "overallScore": 87.91,
       "bosses": {
         "Lord Marrowgar": 3921.3,
         "Lady Deathwhisper": 3671.8,
@@ -1615,6 +1615,32 @@
         "Saviana Ragefire": 2843.4,
         "General Zarithrian": 667.8,
         "Baltharus the Warborn": 2074.3,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Esquiree",
+      "server": "FreedomUA",
+      "class": "Hunter",
+      "spec": "Marksmanship",
+      "specIndex": 2,
+      "overallRank": 35,
+      "overallScore": 87.91,
+      "bosses": {
+        "Lord Marrowgar": 18569.0,
+        "Lady Deathwhisper": 18176.9,
+        "Deathbringer Saurfang": 20997.2,
+        "Festergut": 18613.5,
+        "Rotface": 18168.6,
+        "Professor Putricide": 14052.0,
+        "Blood Prince Council": 8300.1,
+        "Blood-Queen Lana'thel": 35976.8,
+        "Sindragosa": 14698.6,
+        "The Lich King": 11887.0,
+        "Halion": 12907.1,
+        "Saviana Ragefire": 10491.1,
+        "General Zarithrian": 13953.8,
+        "Baltharus the Warborn": 12856.4,
         "Valithria Dreamwalker": 0
       }
     },
@@ -1651,7 +1677,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 51,
-      "overallScore": 87.62,
+      "overallScore": 87.63,
       "bosses": {
         "Lord Marrowgar": 16968.9,
         "Lady Deathwhisper": 16923.4,
@@ -1723,6 +1749,32 @@
       }
     },
     {
+      "name": "Restofdead",
+      "server": "FreedomUA",
+      "class": "Warlock",
+      "spec": "Demonology",
+      "specIndex": 2,
+      "overallRank": 34,
+      "overallScore": 86.76,
+      "bosses": {
+        "Lord Marrowgar": 17427.7,
+        "Lady Deathwhisper": 15675.4,
+        "Deathbringer Saurfang": 17954.1,
+        "Festergut": 15907.1,
+        "Rotface": 17468.4,
+        "Professor Putricide": 13398.7,
+        "Blood Prince Council": 13605.2,
+        "Blood-Queen Lana'thel": 16067.8,
+        "Sindragosa": 11880.0,
+        "The Lich King": 11450.8,
+        "Halion": 12399.2,
+        "Saviana Ragefire": 9710.2,
+        "General Zarithrian": 15102.0,
+        "Baltharus the Warborn": 11885.1,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
       "name": "Facelessprot",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -1754,8 +1806,8 @@
       "class": "Hunter",
       "spec": "Marksmanship",
       "specIndex": 2,
-      "overallRank": 36,
-      "overallScore": 86.54,
+      "overallRank": 37,
+      "overallScore": 86.56,
       "bosses": {
         "Lord Marrowgar": 17459.9,
         "Lady Deathwhisper": 18185.6,
@@ -1806,8 +1858,8 @@
       "class": "Warlock",
       "spec": "Demonology",
       "specIndex": 2,
-      "overallRank": 34,
-      "overallScore": 86.47,
+      "overallRank": 35,
+      "overallScore": 86.46,
       "bosses": {
         "Lord Marrowgar": 17419.5,
         "Lady Deathwhisper": 15865.4,
@@ -1833,7 +1885,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 77,
-      "overallScore": 86.01,
+      "overallScore": 85.99,
       "bosses": {
         "Lord Marrowgar": 23432.3,
         "Lady Deathwhisper": 19259.4,
@@ -1850,32 +1902,6 @@
         "General Zarithrian": 17212.3,
         "Baltharus the Warborn": 15092.3,
         "Valithria Dreamwalker": 24.9
-      }
-    },
-    {
-      "name": "Restofdead",
-      "server": "FreedomUA",
-      "class": "Warlock",
-      "spec": "Demonology",
-      "specIndex": 2,
-      "overallRank": 36,
-      "overallScore": 85.94,
-      "bosses": {
-        "Lord Marrowgar": 17427.7,
-        "Lady Deathwhisper": 15675.4,
-        "Deathbringer Saurfang": 17954.1,
-        "Festergut": 15907.1,
-        "Rotface": 17468.4,
-        "Professor Putricide": 12570.6,
-        "Blood Prince Council": 13605.2,
-        "Blood-Queen Lana'thel": 16067.8,
-        "Sindragosa": 11880.0,
-        "The Lich King": 11450.8,
-        "Halion": 12399.2,
-        "Saviana Ragefire": 9710.2,
-        "General Zarithrian": 15102.0,
-        "Baltharus the Warborn": 11885.1,
-        "Valithria Dreamwalker": 0
       }
     },
     {
@@ -1911,7 +1937,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 83,
-      "overallScore": 85.21,
+      "overallScore": 85.19,
       "bosses": {
         "Lord Marrowgar": 21399.3,
         "Lady Deathwhisper": 20262.8,
@@ -1963,7 +1989,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 41,
-      "overallScore": 84.88,
+      "overallScore": 84.87,
       "bosses": {
         "Lord Marrowgar": 16182.4,
         "Lady Deathwhisper": 14773.8,
@@ -1989,7 +2015,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 44,
-      "overallScore": 84.74,
+      "overallScore": 84.76,
       "bosses": {
         "Lord Marrowgar": 443.3,
         "Lady Deathwhisper": 264.3,
@@ -2014,8 +2040,8 @@
       "class": "Hunter",
       "spec": "Marksmanship",
       "specIndex": 2,
-      "overallRank": 43,
-      "overallScore": 84.55,
+      "overallRank": 44,
+      "overallScore": 84.51,
       "bosses": {
         "Lord Marrowgar": 18044.5,
         "Lady Deathwhisper": 17591.7,
@@ -2041,7 +2067,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 54,
-      "overallScore": 84.48,
+      "overallScore": 84.45,
       "bosses": {
         "Lord Marrowgar": 19316.5,
         "Lady Deathwhisper": 17424.2,
@@ -2061,39 +2087,13 @@
       }
     },
     {
-      "name": "Esquiree",
-      "server": "FreedomUA",
-      "class": "Hunter",
-      "spec": "Marksmanship",
-      "specIndex": 2,
-      "overallRank": 44,
-      "overallScore": 84.04,
-      "bosses": {
-        "Lord Marrowgar": 18569.0,
-        "Lady Deathwhisper": 16785.4,
-        "Deathbringer Saurfang": 20997.2,
-        "Festergut": 18613.5,
-        "Rotface": 18168.6,
-        "Professor Putricide": 13499.9,
-        "Blood Prince Council": 8300.1,
-        "Blood-Queen Lana'thel": 35976.8,
-        "Sindragosa": 14018.9,
-        "The Lich King": 10064.3,
-        "Halion": 12907.1,
-        "Saviana Ragefire": 10491.1,
-        "General Zarithrian": 13953.8,
-        "Baltharus the Warborn": 12856.4,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
       "name": "Facelessdk",
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 37,
-      "overallScore": 83.79,
+      "overallScore": 83.8,
       "bosses": {
         "Lord Marrowgar": 4110.5,
         "Lady Deathwhisper": 3380.3,
@@ -2119,7 +2119,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 58,
-      "overallScore": 83.78,
+      "overallScore": 83.76,
       "bosses": {
         "Lord Marrowgar": 19755.4,
         "Lady Deathwhisper": 15508.8,
@@ -2171,7 +2171,7 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 47,
-      "overallScore": 83.13,
+      "overallScore": 83.14,
       "bosses": {
         "Lord Marrowgar": 16057.5,
         "Lady Deathwhisper": 14723.7,
@@ -2223,7 +2223,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 43,
-      "overallScore": 82.56,
+      "overallScore": 82.57,
       "bosses": {
         "Lord Marrowgar": 18585.6,
         "Lady Deathwhisper": 17417.2,
@@ -2249,7 +2249,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 38,
-      "overallScore": 82.34,
+      "overallScore": 82.36,
       "bosses": {
         "Lord Marrowgar": 3911.7,
         "Lady Deathwhisper": 3660.1,
@@ -2275,7 +2275,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 80,
-      "overallScore": 82.26,
+      "overallScore": 82.24,
       "bosses": {
         "Lord Marrowgar": 18391.0,
         "Lady Deathwhisper": 15173.6,
@@ -2327,7 +2327,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 65,
-      "overallScore": 81.88,
+      "overallScore": 81.89,
       "bosses": {
         "Lord Marrowgar": 17940.7,
         "Lady Deathwhisper": 14949.3,
@@ -2353,7 +2353,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 30,
-      "overallScore": 81.81,
+      "overallScore": 81.79,
       "bosses": {
         "Lord Marrowgar": 531.6,
         "Lady Deathwhisper": 293.9,
@@ -2405,7 +2405,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 25,
-      "overallScore": 80.6,
+      "overallScore": 80.62,
       "bosses": {
         "Lord Marrowgar": 5264.9,
         "Lady Deathwhisper": 5781.7,
@@ -2431,7 +2431,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 28,
-      "overallScore": 80.2,
+      "overallScore": 80.22,
       "bosses": {
         "Lord Marrowgar": 5336.2,
         "Lady Deathwhisper": 6436.8,
@@ -2457,7 +2457,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 66,
-      "overallScore": 80.17,
+      "overallScore": 80.14,
       "bosses": {
         "Lord Marrowgar": 18149.1,
         "Lady Deathwhisper": 15554.8,
@@ -2483,7 +2483,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 108,
-      "overallScore": 80.08,
+      "overallScore": 80.06,
       "bosses": {
         "Lord Marrowgar": 20696.6,
         "Lady Deathwhisper": 19174.9,
@@ -2509,7 +2509,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 45,
-      "overallScore": 79.97,
+      "overallScore": 79.98,
       "bosses": {
         "Lord Marrowgar": 3820.1,
         "Lady Deathwhisper": 3590.0,
@@ -2587,7 +2587,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 30,
-      "overallScore": 79.1,
+      "overallScore": 79.12,
       "bosses": {
         "Lord Marrowgar": 5271.1,
         "Lady Deathwhisper": 4190.1,
@@ -2613,7 +2613,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 105,
-      "overallScore": 79.05,
+      "overallScore": 79.04,
       "bosses": {
         "Lord Marrowgar": 21660.6,
         "Lady Deathwhisper": 17238.4,
@@ -2633,39 +2633,13 @@
       }
     },
     {
-      "name": "Біта",
-      "server": "FreedomUA",
-      "class": "Hunter",
-      "spec": "Marksmanship",
-      "specIndex": 2,
-      "overallRank": 50,
-      "overallScore": 79.03,
-      "bosses": {
-        "Lord Marrowgar": 17993.0,
-        "Lady Deathwhisper": 17150.5,
-        "Deathbringer Saurfang": 19253.8,
-        "Festergut": 17084.6,
-        "Rotface": 17091.4,
-        "Professor Putricide": 13364.4,
-        "Blood Prince Council": 13342.2,
-        "Blood-Queen Lana'thel": 16903.8,
-        "Sindragosa": 15638.2,
-        "The Lich King": 8964.1,
-        "Halion": 11717.3,
-        "Saviana Ragefire": 10212.2,
-        "General Zarithrian": 16132.8,
-        "Baltharus the Warborn": 12337.3,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
       "name": "Taknada",
       "server": "FreedomUA",
       "class": "Druid",
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 54,
-      "overallScore": 79.01,
+      "overallScore": 79.02,
       "bosses": {
         "Lord Marrowgar": 16052.6,
         "Lady Deathwhisper": 13591.3,
@@ -2681,6 +2655,32 @@
         "Saviana Ragefire": 12602.1,
         "General Zarithrian": 10402.3,
         "Baltharus the Warborn": 11594.9,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Біта",
+      "server": "FreedomUA",
+      "class": "Hunter",
+      "spec": "Marksmanship",
+      "specIndex": 2,
+      "overallRank": 50,
+      "overallScore": 79.01,
+      "bosses": {
+        "Lord Marrowgar": 17993.0,
+        "Lady Deathwhisper": 17150.5,
+        "Deathbringer Saurfang": 19253.8,
+        "Festergut": 17084.6,
+        "Rotface": 17091.4,
+        "Professor Putricide": 13364.4,
+        "Blood Prince Council": 13342.2,
+        "Blood-Queen Lana'thel": 16903.8,
+        "Sindragosa": 15638.2,
+        "The Lich King": 8964.1,
+        "Halion": 11717.3,
+        "Saviana Ragefire": 10212.2,
+        "General Zarithrian": 16132.8,
+        "Baltharus the Warborn": 12337.3,
         "Valithria Dreamwalker": 0
       }
     },
@@ -2717,7 +2717,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 93,
-      "overallScore": 78.22,
+      "overallScore": 78.21,
       "bosses": {
         "Lord Marrowgar": 17764.0,
         "Lady Deathwhisper": 14610.4,
@@ -2743,7 +2743,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 69,
-      "overallScore": 78.05,
+      "overallScore": 78.02,
       "bosses": {
         "Lord Marrowgar": 17853.3,
         "Lady Deathwhisper": 15766.2,
@@ -2794,7 +2794,7 @@
       "class": "Paladin",
       "spec": "Holy",
       "specIndex": 1,
-      "overallRank": 61,
+      "overallRank": 62,
       "overallScore": 77.45,
       "bosses": {
         "Lord Marrowgar": 802.2,
@@ -2873,7 +2873,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 99,
-      "overallScore": 77.13,
+      "overallScore": 77.12,
       "bosses": {
         "Lord Marrowgar": 16652.5,
         "Lady Deathwhisper": 16753.0,
@@ -2899,7 +2899,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 63,
-      "overallScore": 76.72,
+      "overallScore": 76.68,
       "bosses": {
         "Lord Marrowgar": 22413.7,
         "Lady Deathwhisper": 17818.9,
@@ -2951,7 +2951,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 60,
-      "overallScore": 75.52,
+      "overallScore": 75.51,
       "bosses": {
         "Lord Marrowgar": 18124.1,
         "Lady Deathwhisper": 15613.5,
@@ -2977,7 +2977,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 116,
-      "overallScore": 75.23,
+      "overallScore": 75.22,
       "bosses": {
         "Lord Marrowgar": 21599.2,
         "Lady Deathwhisper": 16326.3,
@@ -3003,7 +3003,7 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 66,
-      "overallScore": 75.2,
+      "overallScore": 75.21,
       "bosses": {
         "Lord Marrowgar": 16192.2,
         "Lady Deathwhisper": 15694.1,
@@ -3023,39 +3023,13 @@
       }
     },
     {
-      "name": "Terai",
-      "server": "FreedomUA",
-      "class": "Warlock",
-      "spec": "Demonology",
-      "specIndex": 2,
-      "overallRank": 64,
-      "overallScore": 74.81,
-      "bosses": {
-        "Lord Marrowgar": 15008.7,
-        "Lady Deathwhisper": 14136.5,
-        "Deathbringer Saurfang": 17657.4,
-        "Festergut": 16230.7,
-        "Rotface": 15585.7,
-        "Professor Putricide": 11184.1,
-        "Blood Prince Council": 12431.9,
-        "Blood-Queen Lana'thel": 16629.1,
-        "Sindragosa": 10100.0,
-        "The Lich King": 9259.6,
-        "Halion": 10475.8,
-        "Saviana Ragefire": 10431.6,
-        "General Zarithrian": 11271.5,
-        "Baltharus the Warborn": 11532.0,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
       "name": "Arrovv",
       "server": "FreedomUA",
       "class": "Hunter",
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 65,
-      "overallScore": 74.8,
+      "overallScore": 74.78,
       "bosses": {
         "Lord Marrowgar": 18904.5,
         "Lady Deathwhisper": 15341.1,
@@ -3072,6 +3046,32 @@
         "General Zarithrian": 16256.6,
         "Baltharus the Warborn": 11807.3,
         "Valithria Dreamwalker": 65.7
+      }
+    },
+    {
+      "name": "Terai",
+      "server": "FreedomUA",
+      "class": "Warlock",
+      "spec": "Demonology",
+      "specIndex": 2,
+      "overallRank": 64,
+      "overallScore": 74.78,
+      "bosses": {
+        "Lord Marrowgar": 15008.7,
+        "Lady Deathwhisper": 14136.5,
+        "Deathbringer Saurfang": 17657.4,
+        "Festergut": 16230.7,
+        "Rotface": 15585.7,
+        "Professor Putricide": 11184.1,
+        "Blood Prince Council": 12431.9,
+        "Blood-Queen Lana'thel": 16629.1,
+        "Sindragosa": 10100.0,
+        "The Lich King": 9259.6,
+        "Halion": 10475.8,
+        "Saviana Ragefire": 10431.6,
+        "General Zarithrian": 11271.5,
+        "Baltharus the Warborn": 11532.0,
+        "Valithria Dreamwalker": 0
       }
     },
     {
@@ -3107,7 +3107,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 65,
-      "overallScore": 74.41,
+      "overallScore": 74.42,
       "bosses": {
         "Lord Marrowgar": 19922.8,
         "Lady Deathwhisper": 16323.2,
@@ -3127,13 +3127,39 @@
       }
     },
     {
+      "name": "Devos",
+      "server": "FreedomUA",
+      "class": "Priest",
+      "spec": "Discipline",
+      "specIndex": 1,
+      "overallRank": 46,
+      "overallScore": 74.26,
+      "bosses": {
+        "Lord Marrowgar": 284.7,
+        "Lady Deathwhisper": 303.5,
+        "Deathbringer Saurfang": 335.4,
+        "Festergut": 155.4,
+        "Rotface": 405.3,
+        "Professor Putricide": 160.2,
+        "Blood Prince Council": 211.8,
+        "Blood-Queen Lana'thel": 250.7,
+        "Sindragosa": 5.2,
+        "The Lich King": 152.0,
+        "Halion": 121.7,
+        "Saviana Ragefire": 320.1,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0,
+        "Valithria Dreamwalker": 645.9
+      }
+    },
+    {
       "name": "Играт",
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 103,
-      "overallScore": 73.27,
+      "overallScore": 73.28,
       "bosses": {
         "Lord Marrowgar": 14765.0,
         "Lady Deathwhisper": 15013.2,
@@ -3150,32 +3176,6 @@
         "General Zarithrian": 11949.4,
         "Baltharus the Warborn": 11199.2,
         "Valithria Dreamwalker": 328.4
-      }
-    },
-    {
-      "name": "Devos",
-      "server": "FreedomUA",
-      "class": "Priest",
-      "spec": "Discipline",
-      "specIndex": 1,
-      "overallRank": 48,
-      "overallScore": 73.19,
-      "bosses": {
-        "Lord Marrowgar": 284.7,
-        "Lady Deathwhisper": 303.5,
-        "Deathbringer Saurfang": 335.4,
-        "Festergut": 155.4,
-        "Rotface": 340.1,
-        "Professor Putricide": 156.1,
-        "Blood Prince Council": 211.8,
-        "Blood-Queen Lana'thel": 248.5,
-        "Sindragosa": 5.2,
-        "The Lich King": 152.0,
-        "Halion": 121.7,
-        "Saviana Ragefire": 320.1,
-        "General Zarithrian": 0,
-        "Baltharus the Warborn": 0,
-        "Valithria Dreamwalker": 645.9
       }
     },
     {
@@ -3211,7 +3211,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 66,
-      "overallScore": 73.07,
+      "overallScore": 73.08,
       "bosses": {
         "Lord Marrowgar": 4006.1,
         "Lady Deathwhisper": 3730.1,
@@ -3263,7 +3263,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 125,
-      "overallScore": 72.41,
+      "overallScore": 72.4,
       "bosses": {
         "Lord Marrowgar": 18903.5,
         "Lady Deathwhisper": 14711.1,
@@ -3289,7 +3289,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 67,
-      "overallScore": 72.3,
+      "overallScore": 72.31,
       "bosses": {
         "Lord Marrowgar": 4008.6,
         "Lady Deathwhisper": 3463.8,
@@ -3315,7 +3315,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 71,
-      "overallScore": 72.21,
+      "overallScore": 72.22,
       "bosses": {
         "Lord Marrowgar": 17467.5,
         "Lady Deathwhisper": 16180.1,
@@ -3335,13 +3335,39 @@
       }
     },
     {
+      "name": "Misspall",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Retribution",
+      "specIndex": 3,
+      "overallRank": 115,
+      "overallScore": 71.89,
+      "bosses": {
+        "Lord Marrowgar": 15185.1,
+        "Lady Deathwhisper": 16752.3,
+        "Deathbringer Saurfang": 17021.0,
+        "Festergut": 16581.1,
+        "Rotface": 16824.2,
+        "Professor Putricide": 10660.9,
+        "Blood Prince Council": 11129.2,
+        "Blood-Queen Lana'thel": 15720.6,
+        "Sindragosa": 8935.5,
+        "The Lich King": 8385.7,
+        "Halion": 9603.3,
+        "Saviana Ragefire": 9077.3,
+        "General Zarithrian": 12221.6,
+        "Baltharus the Warborn": 5885.8,
+        "Valithria Dreamwalker": 201.6
+      }
+    },
+    {
       "name": "Kotuhoroshko",
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 46,
-      "overallScore": 71.7,
+      "overallScore": 71.72,
       "bosses": {
         "Lord Marrowgar": 5559.8,
         "Lady Deathwhisper": 4863.1,
@@ -3413,6 +3439,84 @@
       }
     },
     {
+      "name": "Бонд",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Balance",
+      "specIndex": 1,
+      "overallRank": 83,
+      "overallScore": 71.54,
+      "bosses": {
+        "Lord Marrowgar": 16538.1,
+        "Lady Deathwhisper": 12747.3,
+        "Deathbringer Saurfang": 18585.5,
+        "Festergut": 16538.5,
+        "Rotface": 15573.4,
+        "Professor Putricide": 9414.9,
+        "Blood Prince Council": 11180.2,
+        "Blood-Queen Lana'thel": 19812.0,
+        "Sindragosa": 8401.5,
+        "The Lich King": 8472.4,
+        "Halion": 10023.2,
+        "Saviana Ragefire": 10278.9,
+        "General Zarithrian": 11890.0,
+        "Baltharus the Warborn": 10675.4,
+        "Valithria Dreamwalker": 2478.4
+      }
+    },
+    {
+      "name": "Speedkill",
+      "server": "FreedomUA",
+      "class": "Warrior",
+      "spec": "Fury",
+      "specIndex": 2,
+      "overallRank": 128,
+      "overallScore": 71.49,
+      "bosses": {
+        "Lord Marrowgar": 21097.4,
+        "Lady Deathwhisper": 17206.4,
+        "Deathbringer Saurfang": 19211.9,
+        "Festergut": 17479.0,
+        "Rotface": 18980.8,
+        "Professor Putricide": 12504.4,
+        "Blood Prince Council": 13907.4,
+        "Blood-Queen Lana'thel": 16525.4,
+        "Sindragosa": 10419.8,
+        "The Lich King": 12975.6,
+        "Halion": 14980.0,
+        "Saviana Ragefire": 10384.9,
+        "General Zarithrian": 13558.1,
+        "Baltharus the Warborn": 10616.2,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Piceduke",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "specIndex": 2,
+      "overallRank": 49,
+      "overallScore": 71.43,
+      "bosses": {
+        "Lord Marrowgar": 5108.6,
+        "Lady Deathwhisper": 4653.4,
+        "Deathbringer Saurfang": 5751.5,
+        "Festergut": 6599.6,
+        "Rotface": 5017.6,
+        "Professor Putricide": 2424.0,
+        "Blood Prince Council": 3519.6,
+        "Blood-Queen Lana'thel": 5096.0,
+        "Sindragosa": 3319.4,
+        "The Lich King": 2374.3,
+        "Halion": 1858.6,
+        "Saviana Ragefire": 3282.8,
+        "General Zarithrian": 170.3,
+        "Baltharus the Warborn": 95.6,
+        "Valithria Dreamwalker": 397.4
+      }
+    },
+    {
       "name": "Шепіт",
       "server": "FreedomUA",
       "class": "Hunter",
@@ -3439,39 +3543,13 @@
       }
     },
     {
-      "name": "Piceduke",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "specIndex": 2,
-      "overallRank": 49,
-      "overallScore": 71.41,
-      "bosses": {
-        "Lord Marrowgar": 5108.6,
-        "Lady Deathwhisper": 4653.4,
-        "Deathbringer Saurfang": 5751.5,
-        "Festergut": 6599.6,
-        "Rotface": 5017.6,
-        "Professor Putricide": 2424.0,
-        "Blood Prince Council": 3519.6,
-        "Blood-Queen Lana'thel": 5096.0,
-        "Sindragosa": 3319.4,
-        "The Lich King": 2374.3,
-        "Halion": 1858.6,
-        "Saviana Ragefire": 3282.8,
-        "General Zarithrian": 170.3,
-        "Baltharus the Warborn": 95.6,
-        "Valithria Dreamwalker": 397.4
-      }
-    },
-    {
       "name": "Antes",
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 79,
-      "overallScore": 71.35,
+      "overallScore": 71.36,
       "bosses": {
         "Lord Marrowgar": 435.9,
         "Lady Deathwhisper": 207.8,
@@ -3522,8 +3600,8 @@
       "class": "Druid",
       "spec": "Balance",
       "specIndex": 1,
-      "overallRank": 86,
-      "overallScore": 70.86,
+      "overallRank": 87,
+      "overallScore": 70.87,
       "bosses": {
         "Lord Marrowgar": 15445.9,
         "Lady Deathwhisper": 12907.8,
@@ -3539,84 +3617,6 @@
         "Saviana Ragefire": 9887.8,
         "General Zarithrian": 10993.4,
         "Baltharus the Warborn": 9334.8,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
-      "name": "Бонд",
-      "server": "FreedomUA",
-      "class": "Druid",
-      "spec": "Balance",
-      "specIndex": 1,
-      "overallRank": 88,
-      "overallScore": 70.47,
-      "bosses": {
-        "Lord Marrowgar": 16538.1,
-        "Lady Deathwhisper": 12747.3,
-        "Deathbringer Saurfang": 18585.5,
-        "Festergut": 16538.5,
-        "Rotface": 13821.9,
-        "Professor Putricide": 9414.9,
-        "Blood Prince Council": 11180.2,
-        "Blood-Queen Lana'thel": 19812.0,
-        "Sindragosa": 8401.5,
-        "The Lich King": 8472.4,
-        "Halion": 10023.2,
-        "Saviana Ragefire": 10278.9,
-        "General Zarithrian": 11890.0,
-        "Baltharus the Warborn": 10675.4,
-        "Valithria Dreamwalker": 2478.4
-      }
-    },
-    {
-      "name": "Roneycoleman",
-      "server": "FreedomUA",
-      "class": "Rogue",
-      "spec": "Combat",
-      "specIndex": 2,
-      "overallRank": 83,
-      "overallScore": 70.38,
-      "bosses": {
-        "Lord Marrowgar": 16106.2,
-        "Lady Deathwhisper": 16693.0,
-        "Deathbringer Saurfang": 17887.4,
-        "Festergut": 15678.2,
-        "Rotface": 16142.9,
-        "Professor Putricide": 11422.1,
-        "Blood Prince Council": 11406.4,
-        "Blood-Queen Lana'thel": 15205.2,
-        "Sindragosa": 10043.8,
-        "The Lich King": 9861.5,
-        "Halion": 11856.2,
-        "Saviana Ragefire": 8519.1,
-        "General Zarithrian": 12328.6,
-        "Baltharus the Warborn": 9802.5,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
-      "name": "Speedkill",
-      "server": "FreedomUA",
-      "class": "Warrior",
-      "spec": "Fury",
-      "specIndex": 2,
-      "overallRank": 132,
-      "overallScore": 70.38,
-      "bosses": {
-        "Lord Marrowgar": 21097.4,
-        "Lady Deathwhisper": 16012.7,
-        "Deathbringer Saurfang": 19211.9,
-        "Festergut": 17479.0,
-        "Rotface": 18980.8,
-        "Professor Putricide": 12504.4,
-        "Blood Prince Council": 13907.4,
-        "Blood-Queen Lana'thel": 16525.4,
-        "Sindragosa": 10419.8,
-        "The Lich King": 12579.8,
-        "Halion": 14980.0,
-        "Saviana Ragefire": 10384.9,
-        "General Zarithrian": 13558.1,
-        "Baltharus the Warborn": 10616.2,
         "Valithria Dreamwalker": 0
       }
     },
@@ -3644,6 +3644,32 @@
         "General Zarithrian": 10905.5,
         "Baltharus the Warborn": 10995.0,
         "Valithria Dreamwalker": 564.0
+      }
+    },
+    {
+      "name": "Roneycoleman",
+      "server": "FreedomUA",
+      "class": "Rogue",
+      "spec": "Combat",
+      "specIndex": 2,
+      "overallRank": 83,
+      "overallScore": 70.36,
+      "bosses": {
+        "Lord Marrowgar": 16106.2,
+        "Lady Deathwhisper": 16693.0,
+        "Deathbringer Saurfang": 17887.4,
+        "Festergut": 15678.2,
+        "Rotface": 16142.9,
+        "Professor Putricide": 11422.1,
+        "Blood Prince Council": 11406.4,
+        "Blood-Queen Lana'thel": 15205.2,
+        "Sindragosa": 10043.8,
+        "The Lich King": 9861.5,
+        "Halion": 11856.2,
+        "Saviana Ragefire": 8519.1,
+        "General Zarithrian": 12328.6,
+        "Baltharus the Warborn": 9802.5,
+        "Valithria Dreamwalker": 0
       }
     },
     {
@@ -3679,7 +3705,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 80,
-      "overallScore": 69.47,
+      "overallScore": 69.46,
       "bosses": {
         "Lord Marrowgar": 18163.1,
         "Lady Deathwhisper": 17553.3,
@@ -3705,7 +3731,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 86,
-      "overallScore": 69.07,
+      "overallScore": 69.05,
       "bosses": {
         "Lord Marrowgar": 15295.6,
         "Lady Deathwhisper": 15402.9,
@@ -3731,7 +3757,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 160,
-      "overallScore": 69.02,
+      "overallScore": 69.0,
       "bosses": {
         "Lord Marrowgar": 15443.4,
         "Lady Deathwhisper": 15895.8,
@@ -3757,7 +3783,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 78,
-      "overallScore": 68.83,
+      "overallScore": 68.82,
       "bosses": {
         "Lord Marrowgar": 15457.4,
         "Lady Deathwhisper": 12819.8,
@@ -3783,7 +3809,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 135,
-      "overallScore": 68.83,
+      "overallScore": 68.82,
       "bosses": {
         "Lord Marrowgar": 17635.8,
         "Lady Deathwhisper": 16361.8,
@@ -3809,7 +3835,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 162,
-      "overallScore": 68.47,
+      "overallScore": 68.46,
       "bosses": {
         "Lord Marrowgar": 19910.0,
         "Lady Deathwhisper": 16112.2,
@@ -3887,7 +3913,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 87,
-      "overallScore": 68.01,
+      "overallScore": 68.0,
       "bosses": {
         "Lord Marrowgar": 16296.9,
         "Lady Deathwhisper": 13557.9,
@@ -3907,39 +3933,13 @@
       }
     },
     {
-      "name": "Misspall",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Retribution",
-      "specIndex": 3,
-      "overallRank": 131,
-      "overallScore": 67.33,
-      "bosses": {
-        "Lord Marrowgar": 14136.8,
-        "Lady Deathwhisper": 13661.6,
-        "Deathbringer Saurfang": 17005.8,
-        "Festergut": 16581.1,
-        "Rotface": 16824.2,
-        "Professor Putricide": 10660.9,
-        "Blood Prince Council": 11129.2,
-        "Blood-Queen Lana'thel": 14193.9,
-        "Sindragosa": 8935.5,
-        "The Lich King": 8385.7,
-        "Halion": 9603.3,
-        "Saviana Ragefire": 9077.3,
-        "General Zarithrian": 12221.6,
-        "Baltharus the Warborn": 5885.8,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
       "name": "Perfection",
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 127,
-      "overallScore": 67.32,
+      "overallScore": 67.33,
       "bosses": {
         "Lord Marrowgar": 15655.8,
         "Lady Deathwhisper": 16076.2,
@@ -3965,7 +3965,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 128,
-      "overallScore": 67.29,
+      "overallScore": 67.3,
       "bosses": {
         "Lord Marrowgar": 15859.5,
         "Lady Deathwhisper": 15006.8,
@@ -4043,7 +4043,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 130,
-      "overallScore": 67.07,
+      "overallScore": 67.08,
       "bosses": {
         "Lord Marrowgar": 14016.0,
         "Lady Deathwhisper": 12977.4,
@@ -4069,7 +4069,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 93,
-      "overallScore": 66.29,
+      "overallScore": 66.3,
       "bosses": {
         "Lord Marrowgar": 430.9,
         "Lady Deathwhisper": 193.9,
@@ -4095,7 +4095,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 135,
-      "overallScore": 65.9,
+      "overallScore": 65.91,
       "bosses": {
         "Lord Marrowgar": 17208.1,
         "Lady Deathwhisper": 12517.5,
@@ -4147,7 +4147,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 101,
-      "overallScore": 65.07,
+      "overallScore": 65.08,
       "bosses": {
         "Lord Marrowgar": 523.6,
         "Lady Deathwhisper": 170.7,
@@ -4173,7 +4173,7 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 109,
-      "overallScore": 64.42,
+      "overallScore": 64.43,
       "bosses": {
         "Lord Marrowgar": 14915.7,
         "Lady Deathwhisper": 13748.4,
@@ -4225,7 +4225,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 85,
-      "overallScore": 64.17,
+      "overallScore": 64.16,
       "bosses": {
         "Lord Marrowgar": 20172.9,
         "Lady Deathwhisper": 16624.6,
@@ -4251,7 +4251,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 181,
-      "overallScore": 64.01,
+      "overallScore": 64.0,
       "bosses": {
         "Lord Marrowgar": 17564.5,
         "Lady Deathwhisper": 16994.5,
@@ -4277,13 +4277,13 @@
       "spec": "Elemental",
       "specIndex": 1,
       "overallRank": 38,
-      "overallScore": 63.58,
+      "overallScore": 63.78,
       "bosses": {
         "Lord Marrowgar": 11695.0,
         "Lady Deathwhisper": 10635.6,
         "Deathbringer Saurfang": 17989.1,
         "Festergut": 15658.6,
-        "Rotface": 14853.3,
+        "Rotface": 15238.2,
         "Professor Putricide": 9558.2,
         "Blood Prince Council": 10109.0,
         "Blood-Queen Lana'thel": 13868.7,
@@ -4433,7 +4433,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 110,
-      "overallScore": 62.82,
+      "overallScore": 62.83,
       "bosses": {
         "Lord Marrowgar": 551.4,
         "Lady Deathwhisper": 209.1,
@@ -4458,8 +4458,8 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 147,
-      "overallScore": 62.32,
+      "overallRank": 148,
+      "overallScore": 62.29,
       "bosses": {
         "Lord Marrowgar": 16786.9,
         "Lady Deathwhisper": 14820.9,
@@ -4485,7 +4485,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 91,
-      "overallScore": 62.07,
+      "overallScore": 62.06,
       "bosses": {
         "Lord Marrowgar": 18288.1,
         "Lady Deathwhisper": 16537.6,
@@ -4511,7 +4511,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 157,
-      "overallScore": 61.49,
+      "overallScore": 61.5,
       "bosses": {
         "Lord Marrowgar": 13963.2,
         "Lady Deathwhisper": 14460.9,
@@ -4537,7 +4537,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 69,
-      "overallScore": 61.25,
+      "overallScore": 61.27,
       "bosses": {
         "Lord Marrowgar": 4694.8,
         "Lady Deathwhisper": 3636.8,
@@ -4563,7 +4563,7 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 126,
-      "overallScore": 61.19,
+      "overallScore": 61.2,
       "bosses": {
         "Lord Marrowgar": 13528.9,
         "Lady Deathwhisper": 11350.8,
@@ -4615,7 +4615,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 27,
-      "overallScore": 59.75,
+      "overallScore": 59.74,
       "bosses": {
         "Lord Marrowgar": 94.2,
         "Lady Deathwhisper": 0,
@@ -4687,13 +4687,39 @@
       }
     },
     {
+      "name": "Limechrono",
+      "server": "FreedomUA",
+      "class": "Warrior",
+      "spec": "Fury",
+      "specIndex": 2,
+      "overallRank": 154,
+      "overallScore": 59.31,
+      "bosses": {
+        "Lord Marrowgar": 16971.3,
+        "Lady Deathwhisper": 15326.1,
+        "Deathbringer Saurfang": 16235.7,
+        "Festergut": 13903.0,
+        "Rotface": 16332.5,
+        "Professor Putricide": 11305.1,
+        "Blood Prince Council": 13416.5,
+        "Blood-Queen Lana'thel": 13798.0,
+        "Sindragosa": 10953.4,
+        "The Lich King": 10178.5,
+        "Halion": 0,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
       "name": "Dombrodeus",
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 92,
-      "overallScore": 59.29,
+      "overallScore": 59.3,
       "bosses": {
         "Lord Marrowgar": 3149.7,
         "Lady Deathwhisper": 3494.4,
@@ -4771,7 +4797,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 205,
-      "overallScore": 58.45,
+      "overallScore": 58.44,
       "bosses": {
         "Lord Marrowgar": 15198.3,
         "Lady Deathwhisper": 15114.1,
@@ -4787,6 +4813,58 @@
         "Saviana Ragefire": 9652.9,
         "General Zarithrian": 17223.3,
         "Baltharus the Warborn": 13219.3,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Dubstep",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "specIndex": 1,
+      "overallRank": 97,
+      "overallScore": 58.06,
+      "bosses": {
+        "Lord Marrowgar": 3692.8,
+        "Lady Deathwhisper": 3458.2,
+        "Deathbringer Saurfang": 3934.7,
+        "Festergut": 5063.8,
+        "Rotface": 3767.5,
+        "Professor Putricide": 3010.6,
+        "Blood Prince Council": 1544.0,
+        "Blood-Queen Lana'thel": 2881.4,
+        "Sindragosa": 2042.3,
+        "The Lich King": 2831.5,
+        "Halion": 2647.7,
+        "Saviana Ragefire": 2237.2,
+        "General Zarithrian": 2814.6,
+        "Baltharus the Warborn": 2385.9,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Viks",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Unholy",
+      "specIndex": 3,
+      "overallRank": 111,
+      "overallScore": 58.03,
+      "bosses": {
+        "Lord Marrowgar": 17191.9,
+        "Lady Deathwhisper": 13638.7,
+        "Deathbringer Saurfang": 17770.0,
+        "Festergut": 15751.4,
+        "Rotface": 15864.5,
+        "Professor Putricide": 10663.9,
+        "Blood Prince Council": 10644.7,
+        "Blood-Queen Lana'thel": 13051.5,
+        "Sindragosa": 10011.6,
+        "The Lich King": 9404.7,
+        "Halion": 12410.2,
+        "Saviana Ragefire": 6712.9,
+        "General Zarithrian": 13645.6,
+        "Baltharus the Warborn": 7300.4,
         "Valithria Dreamwalker": 0
       }
     },
@@ -4813,32 +4891,6 @@
         "Saviana Ragefire": 8704.8,
         "General Zarithrian": 10507.8,
         "Baltharus the Warborn": 11440.8,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
-      "name": "Viks",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Unholy",
-      "specIndex": 3,
-      "overallRank": 111,
-      "overallScore": 58.0,
-      "bosses": {
-        "Lord Marrowgar": 17191.9,
-        "Lady Deathwhisper": 13638.7,
-        "Deathbringer Saurfang": 17770.0,
-        "Festergut": 15751.4,
-        "Rotface": 15864.5,
-        "Professor Putricide": 10663.9,
-        "Blood Prince Council": 10644.7,
-        "Blood-Queen Lana'thel": 13051.5,
-        "Sindragosa": 10011.6,
-        "The Lich King": 9404.7,
-        "Halion": 12410.2,
-        "Saviana Ragefire": 6712.9,
-        "General Zarithrian": 13645.6,
-        "Baltharus the Warborn": 7300.4,
         "Valithria Dreamwalker": 0
       }
     },
@@ -4875,7 +4927,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 31,
-      "overallScore": 57.71,
+      "overallScore": 57.7,
       "bosses": {
         "Lord Marrowgar": 74.8,
         "Lady Deathwhisper": 0,
@@ -4953,7 +5005,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 79,
-      "overallScore": 56.9,
+      "overallScore": 56.88,
       "bosses": {
         "Lord Marrowgar": 236.1,
         "Lady Deathwhisper": 111.4,
@@ -5082,8 +5134,8 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 167,
-      "overallScore": 56.17,
+      "overallRank": 170,
+      "overallScore": 56.11,
       "bosses": {
         "Lord Marrowgar": 15208.9,
         "Lady Deathwhisper": 16263.3,
@@ -5135,7 +5187,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 178,
-      "overallScore": 55.4,
+      "overallScore": 55.41,
       "bosses": {
         "Lord Marrowgar": 12820.6,
         "Lady Deathwhisper": 12470.3,
@@ -5160,8 +5212,8 @@
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
-      "overallRank": 105,
-      "overallScore": 55.31,
+      "overallRank": 106,
+      "overallScore": 55.32,
       "bosses": {
         "Lord Marrowgar": 3792.5,
         "Lady Deathwhisper": 3046.8,
@@ -5213,7 +5265,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 83,
-      "overallScore": 54.4,
+      "overallScore": 54.42,
       "bosses": {
         "Lord Marrowgar": 4554.7,
         "Lady Deathwhisper": 4003.6,
@@ -5239,7 +5291,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 120,
-      "overallScore": 54.36,
+      "overallScore": 54.35,
       "bosses": {
         "Lord Marrowgar": 10721.3,
         "Lady Deathwhisper": 10086.2,
@@ -5265,7 +5317,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 85,
-      "overallScore": 54.33,
+      "overallScore": 54.31,
       "bosses": {
         "Lord Marrowgar": 7.3,
         "Lady Deathwhisper": 210.6,
@@ -5291,7 +5343,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 127,
-      "overallScore": 53.93,
+      "overallScore": 53.91,
       "bosses": {
         "Lord Marrowgar": 14774.6,
         "Lady Deathwhisper": 12390.4,
@@ -5317,7 +5369,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 188,
-      "overallScore": 53.57,
+      "overallScore": 53.56,
       "bosses": {
         "Lord Marrowgar": 14893.2,
         "Lady Deathwhisper": 11521.5,
@@ -5359,32 +5411,6 @@
         "Saviana Ragefire": 10367.4,
         "General Zarithrian": 12163.5,
         "Baltharus the Warborn": 8924.9,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
-      "name": "Dubstep",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "specIndex": 1,
-      "overallRank": 110,
-      "overallScore": 53.38,
-      "bosses": {
-        "Lord Marrowgar": 3692.8,
-        "Lady Deathwhisper": 3070.7,
-        "Deathbringer Saurfang": 3934.7,
-        "Festergut": 4577.2,
-        "Rotface": 3767.5,
-        "Professor Putricide": 3010.6,
-        "Blood Prince Council": 1544.0,
-        "Blood-Queen Lana'thel": 2881.4,
-        "Sindragosa": 1936.4,
-        "The Lich King": 2831.5,
-        "Halion": 2647.7,
-        "Saviana Ragefire": 2237.2,
-        "General Zarithrian": 2814.6,
-        "Baltharus the Warborn": 2385.9,
         "Valithria Dreamwalker": 0
       }
     },
@@ -5525,7 +5551,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 52,
-      "overallScore": 51.6,
+      "overallScore": 51.61,
       "bosses": {
         "Lord Marrowgar": 4.5,
         "Lady Deathwhisper": 0,
@@ -5571,29 +5597,29 @@
       }
     },
     {
-      "name": "Facelesswar",
+      "name": "Axenta",
       "server": "FreedomUA",
-      "class": "Warrior",
-      "spec": "Fury",
-      "specIndex": 2,
-      "overallRank": 191,
-      "overallScore": 51.3,
+      "class": "Priest",
+      "spec": "Shadow",
+      "specIndex": 3,
+      "overallRank": 199,
+      "overallScore": 51.4,
       "bosses": {
-        "Lord Marrowgar": 16194.8,
-        "Lady Deathwhisper": 14967.6,
-        "Deathbringer Saurfang": 15826.1,
-        "Festergut": 14861.9,
-        "Rotface": 15771.8,
-        "Professor Putricide": 12124.6,
-        "Blood Prince Council": 11113.3,
-        "Blood-Queen Lana'thel": 13540.4,
-        "Sindragosa": 9882.0,
-        "The Lich King": 0,
-        "Halion": 12289.9,
-        "Saviana Ragefire": 8617.7,
-        "General Zarithrian": 11235.3,
-        "Baltharus the Warborn": 9245.8,
-        "Valithria Dreamwalker": 0
+        "Lord Marrowgar": 11836.6,
+        "Lady Deathwhisper": 12142.1,
+        "Deathbringer Saurfang": 14207.7,
+        "Festergut": 12623.3,
+        "Rotface": 12530.0,
+        "Professor Putricide": 9119.7,
+        "Blood Prince Council": 8715.4,
+        "Blood-Queen Lana'thel": 12415.5,
+        "Sindragosa": 7039.1,
+        "The Lich King": 7335.9,
+        "Halion": 8145.7,
+        "Saviana Ragefire": 8265.0,
+        "General Zarithrian": 8372.6,
+        "Baltharus the Warborn": 8166.3,
+        "Valithria Dreamwalker": 184.3
       }
     },
     {
@@ -5623,12 +5649,38 @@
       }
     },
     {
-      "name": "Crempie",
+      "name": "Facelesswar",
       "server": "FreedomUA",
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 193,
+      "overallScore": 51.24,
+      "bosses": {
+        "Lord Marrowgar": 16194.8,
+        "Lady Deathwhisper": 14967.6,
+        "Deathbringer Saurfang": 15826.1,
+        "Festergut": 14861.9,
+        "Rotface": 15771.8,
+        "Professor Putricide": 12124.6,
+        "Blood Prince Council": 11113.3,
+        "Blood-Queen Lana'thel": 13540.4,
+        "Sindragosa": 9882.0,
+        "The Lich King": 0,
+        "Halion": 12289.9,
+        "Saviana Ragefire": 8617.7,
+        "General Zarithrian": 11235.3,
+        "Baltharus the Warborn": 9245.8,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Crempie",
+      "server": "FreedomUA",
+      "class": "Warrior",
+      "spec": "Fury",
+      "specIndex": 2,
+      "overallRank": 195,
       "overallScore": 51.07,
       "bosses": {
         "Lord Marrowgar": 16072.1,
@@ -5654,7 +5706,7 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 197,
+      "overallRank": 198,
       "overallScore": 50.53,
       "bosses": {
         "Lord Marrowgar": 13300.0,
@@ -5671,32 +5723,6 @@
         "Saviana Ragefire": 7817.5,
         "General Zarithrian": 11716.3,
         "Baltharus the Warborn": 7323.4,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
-      "name": "Renzar",
-      "server": "FreedomUA",
-      "class": "Warrior",
-      "spec": "Fury",
-      "specIndex": 2,
-      "overallRank": 199,
-      "overallScore": 50.39,
-      "bosses": {
-        "Lord Marrowgar": 17722.4,
-        "Lady Deathwhisper": 12929.5,
-        "Deathbringer Saurfang": 16430.5,
-        "Festergut": 15867.5,
-        "Rotface": 15887.1,
-        "Professor Putricide": 10285.0,
-        "Blood Prince Council": 10453.4,
-        "Blood-Queen Lana'thel": 15145.4,
-        "Sindragosa": 7857.6,
-        "The Lich King": 0,
-        "Halion": 10694.1,
-        "Saviana Ragefire": 10320.6,
-        "General Zarithrian": 10517.2,
-        "Baltharus the Warborn": 8383.1,
         "Valithria Dreamwalker": 0
       }
     },
@@ -5727,6 +5753,32 @@
       }
     },
     {
+      "name": "Renzar",
+      "server": "FreedomUA",
+      "class": "Warrior",
+      "spec": "Fury",
+      "specIndex": 2,
+      "overallRank": 201,
+      "overallScore": 50.36,
+      "bosses": {
+        "Lord Marrowgar": 17722.4,
+        "Lady Deathwhisper": 12929.5,
+        "Deathbringer Saurfang": 16430.5,
+        "Festergut": 15867.5,
+        "Rotface": 15887.1,
+        "Professor Putricide": 10285.0,
+        "Blood Prince Council": 10453.4,
+        "Blood-Queen Lana'thel": 15145.4,
+        "Sindragosa": 7857.6,
+        "The Lich King": 0,
+        "Halion": 10694.1,
+        "Saviana Ragefire": 10320.6,
+        "General Zarithrian": 10517.2,
+        "Baltharus the Warborn": 8383.1,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
       "name": "Kotuhoroshko",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -5750,32 +5802,6 @@
         "General Zarithrian": 9743.1,
         "Baltharus the Warborn": 7494.9,
         "Valithria Dreamwalker": 207.2
-      }
-    },
-    {
-      "name": "Axenta",
-      "server": "FreedomUA",
-      "class": "Priest",
-      "spec": "Shadow",
-      "specIndex": 3,
-      "overallRank": 206,
-      "overallScore": 49.91,
-      "bosses": {
-        "Lord Marrowgar": 11836.6,
-        "Lady Deathwhisper": 12142.1,
-        "Deathbringer Saurfang": 14207.7,
-        "Festergut": 11457.8,
-        "Rotface": 12530.0,
-        "Professor Putricide": 8681.0,
-        "Blood Prince Council": 8715.4,
-        "Blood-Queen Lana'thel": 12349.9,
-        "Sindragosa": 7039.1,
-        "The Lich King": 6306.4,
-        "Halion": 8145.7,
-        "Saviana Ragefire": 8265.0,
-        "General Zarithrian": 8372.6,
-        "Baltharus the Warborn": 8166.3,
-        "Valithria Dreamwalker": 184.3
       }
     },
     {
@@ -5811,7 +5837,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 118,
-      "overallScore": 49.29,
+      "overallScore": 49.28,
       "bosses": {
         "Lord Marrowgar": 15952.5,
         "Lady Deathwhisper": 15296.5,
@@ -5836,8 +5862,8 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 201,
-      "overallScore": 49.28,
+      "overallRank": 203,
+      "overallScore": 49.25,
       "bosses": {
         "Lord Marrowgar": 13206.2,
         "Lady Deathwhisper": 14800.4,
@@ -5941,7 +5967,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 99,
-      "overallScore": 48.77,
+      "overallScore": 48.76,
       "bosses": {
         "Lord Marrowgar": 331.4,
         "Lady Deathwhisper": 237.8,
@@ -5967,7 +5993,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 124,
-      "overallScore": 48.67,
+      "overallScore": 48.68,
       "bosses": {
         "Lord Marrowgar": 3663.8,
         "Lady Deathwhisper": 3835.5,
@@ -6019,7 +6045,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 58,
-      "overallScore": 47.98,
+      "overallScore": 47.99,
       "bosses": {
         "Lord Marrowgar": 93.9,
         "Lady Deathwhisper": 0,
@@ -6045,7 +6071,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 130,
-      "overallScore": 47.58,
+      "overallScore": 47.59,
       "bosses": {
         "Lord Marrowgar": 3315.8,
         "Lady Deathwhisper": 3081.2,
@@ -6071,7 +6097,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 94,
-      "overallScore": 47.36,
+      "overallScore": 47.37,
       "bosses": {
         "Lord Marrowgar": 3963.3,
         "Lady Deathwhisper": 5121.6,
@@ -6149,7 +6175,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 149,
-      "overallScore": 46.0,
+      "overallScore": 45.99,
       "bosses": {
         "Lord Marrowgar": 11668.0,
         "Lady Deathwhisper": 13495.3,
@@ -6175,7 +6201,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 97,
-      "overallScore": 45.94,
+      "overallScore": 45.96,
       "bosses": {
         "Lord Marrowgar": 5371.5,
         "Lady Deathwhisper": 4419.8,
@@ -6226,7 +6252,7 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 220,
+      "overallRank": 221,
       "overallScore": 45.37,
       "bosses": {
         "Lord Marrowgar": 14118.6,
@@ -6299,32 +6325,6 @@
       }
     },
     {
-      "name": "Limechrono",
-      "server": "FreedomUA",
-      "class": "Warrior",
-      "spec": "Fury",
-      "specIndex": 2,
-      "overallRank": 222,
-      "overallScore": 45.04,
-      "bosses": {
-        "Lord Marrowgar": 9572.1,
-        "Lady Deathwhisper": 10130.5,
-        "Deathbringer Saurfang": 14962.6,
-        "Festergut": 13817.9,
-        "Rotface": 16332.5,
-        "Professor Putricide": 9203.7,
-        "Blood Prince Council": 11463.2,
-        "Blood-Queen Lana'thel": 12383.1,
-        "Sindragosa": 10953.4,
-        "The Lich King": 0,
-        "Halion": 0,
-        "Saviana Ragefire": 0,
-        "General Zarithrian": 0,
-        "Baltharus the Warborn": 0,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
       "name": "Квадрокопт",
       "server": "FreedomUA",
       "class": "Warlock",
@@ -6357,7 +6357,7 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 185,
-      "overallScore": 44.95,
+      "overallScore": 44.96,
       "bosses": {
         "Lord Marrowgar": 15859.1,
         "Lady Deathwhisper": 10911.2,
@@ -6429,32 +6429,6 @@
       }
     },
     {
-      "name": "Tatosi",
-      "server": "FreedomUA",
-      "class": "Warlock",
-      "spec": "Demonology",
-      "specIndex": 2,
-      "overallRank": 151,
-      "overallScore": 44.64,
-      "bosses": {
-        "Lord Marrowgar": 10488.5,
-        "Lady Deathwhisper": 11096.9,
-        "Deathbringer Saurfang": 14813.8,
-        "Festergut": 10661.0,
-        "Rotface": 11111.5,
-        "Professor Putricide": 7684.8,
-        "Blood Prince Council": 9303.6,
-        "Blood-Queen Lana'thel": 14372.0,
-        "Sindragosa": 5676.1,
-        "The Lich King": 0,
-        "Halion": 0,
-        "Saviana Ragefire": 0,
-        "General Zarithrian": 0,
-        "Baltharus the Warborn": 0,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
       "name": "Прометейко",
       "server": "FreedomUA",
       "class": "Druid",
@@ -6481,13 +6455,39 @@
       }
     },
     {
+      "name": "Tatosi",
+      "server": "FreedomUA",
+      "class": "Warlock",
+      "spec": "Demonology",
+      "specIndex": 2,
+      "overallRank": 151,
+      "overallScore": 44.63,
+      "bosses": {
+        "Lord Marrowgar": 10488.5,
+        "Lady Deathwhisper": 11096.9,
+        "Deathbringer Saurfang": 14813.8,
+        "Festergut": 10661.0,
+        "Rotface": 11111.5,
+        "Professor Putricide": 7684.8,
+        "Blood Prince Council": 9303.6,
+        "Blood-Queen Lana'thel": 14372.0,
+        "Sindragosa": 5676.1,
+        "The Lich King": 0,
+        "Halion": 0,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
       "name": "Protkleef",
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 159,
-      "overallScore": 44.6,
+      "overallScore": 44.61,
       "bosses": {
         "Lord Marrowgar": 325.1,
         "Lady Deathwhisper": 164.8,
@@ -6539,7 +6539,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 105,
-      "overallScore": 43.93,
+      "overallScore": 43.95,
       "bosses": {
         "Lord Marrowgar": 3726.9,
         "Lady Deathwhisper": 3362.7,
@@ -6585,13 +6585,39 @@
       }
     },
     {
+      "name": "Палельф",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "specIndex": 2,
+      "overallRank": 106,
+      "overallScore": 43.83,
+      "bosses": {
+        "Lord Marrowgar": 4135.8,
+        "Lady Deathwhisper": 4109.0,
+        "Deathbringer Saurfang": 4513.2,
+        "Festergut": 4090.5,
+        "Rotface": 41.5,
+        "Professor Putricide": 4187.9,
+        "Blood Prince Council": 3119.3,
+        "Blood-Queen Lana'thel": 4065.0,
+        "Sindragosa": 2713.9,
+        "The Lich King": 1998.9,
+        "Halion": 1423.4,
+        "Saviana Ragefire": 2808.3,
+        "General Zarithrian": 542.4,
+        "Baltharus the Warborn": 55.7,
+        "Valithria Dreamwalker": 306.1
+      }
+    },
+    {
       "name": "Hunty",
       "server": "FreedomUA",
       "class": "Hunter",
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 173,
-      "overallScore": 43.31,
+      "overallScore": 43.3,
       "bosses": {
         "Lord Marrowgar": 11213.7,
         "Lady Deathwhisper": 11223.3,
@@ -6747,7 +6773,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 168,
-      "overallScore": 42.58,
+      "overallScore": 42.59,
       "bosses": {
         "Lord Marrowgar": 400.7,
         "Lady Deathwhisper": 0,
@@ -6825,7 +6851,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 138,
-      "overallScore": 41.71,
+      "overallScore": 41.73,
       "bosses": {
         "Lord Marrowgar": 3419.4,
         "Lady Deathwhisper": 3005.6,
@@ -6949,13 +6975,39 @@
       }
     },
     {
+      "name": "Johnnysins",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Unholy",
+      "specIndex": 3,
+      "overallRank": 155,
+      "overallScore": 41.03,
+      "bosses": {
+        "Lord Marrowgar": 12934.7,
+        "Lady Deathwhisper": 7276.8,
+        "Deathbringer Saurfang": 12344.5,
+        "Festergut": 11879.0,
+        "Rotface": 12613.8,
+        "Professor Putricide": 7371.2,
+        "Blood Prince Council": 9219.8,
+        "Blood-Queen Lana'thel": 12632.5,
+        "Sindragosa": 2666.3,
+        "The Lich King": 7947.8,
+        "Halion": 5971.4,
+        "Saviana Ragefire": 6922.4,
+        "General Zarithrian": 10314.3,
+        "Baltharus the Warborn": 0,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
       "name": "Колін",
       "server": "FreedomUA",
       "class": "Shaman",
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 102,
-      "overallScore": 40.97,
+      "overallScore": 40.98,
       "bosses": {
         "Lord Marrowgar": 65.1,
         "Lady Deathwhisper": 2.5,
@@ -7001,58 +7053,6 @@
       }
     },
     {
-      "name": "Палельф",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "specIndex": 2,
-      "overallRank": 117,
-      "overallScore": 40.65,
-      "bosses": {
-        "Lord Marrowgar": 4022.8,
-        "Lady Deathwhisper": 3050.1,
-        "Deathbringer Saurfang": 4449.2,
-        "Festergut": 4090.5,
-        "Rotface": 41.5,
-        "Professor Putricide": 4187.9,
-        "Blood Prince Council": 3119.3,
-        "Blood-Queen Lana'thel": 4065.0,
-        "Sindragosa": 2713.9,
-        "The Lich King": 1998.9,
-        "Halion": 1423.4,
-        "Saviana Ragefire": 2808.3,
-        "General Zarithrian": 542.4,
-        "Baltharus the Warborn": 55.7,
-        "Valithria Dreamwalker": 294.1
-      }
-    },
-    {
-      "name": "Missprist",
-      "server": "FreedomUA",
-      "class": "Priest",
-      "spec": "Discipline",
-      "specIndex": 1,
-      "overallRank": 127,
-      "overallScore": 40.59,
-      "bosses": {
-        "Lord Marrowgar": 64.3,
-        "Lady Deathwhisper": 226.8,
-        "Deathbringer Saurfang": 0,
-        "Festergut": 225.4,
-        "Rotface": 0,
-        "Professor Putricide": 139.9,
-        "Blood Prince Council": 0.1,
-        "Blood-Queen Lana'thel": 183.9,
-        "Sindragosa": 13.8,
-        "The Lich King": 0,
-        "Halion": 61.3,
-        "Saviana Ragefire": 425.9,
-        "General Zarithrian": 0,
-        "Baltharus the Warborn": 0,
-        "Valithria Dreamwalker": 431.4
-      }
-    },
-    {
       "name": "Тетерок",
       "server": "FreedomUA",
       "class": "Druid",
@@ -7076,6 +7076,32 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0,
         "Valithria Dreamwalker": 15824.9
+      }
+    },
+    {
+      "name": "Missprist",
+      "server": "FreedomUA",
+      "class": "Priest",
+      "spec": "Discipline",
+      "specIndex": 1,
+      "overallRank": 127,
+      "overallScore": 40.58,
+      "bosses": {
+        "Lord Marrowgar": 64.3,
+        "Lady Deathwhisper": 226.8,
+        "Deathbringer Saurfang": 0,
+        "Festergut": 225.4,
+        "Rotface": 0,
+        "Professor Putricide": 139.9,
+        "Blood Prince Council": 0.1,
+        "Blood-Queen Lana'thel": 183.9,
+        "Sindragosa": 13.8,
+        "The Lich King": 0,
+        "Halion": 61.3,
+        "Saviana Ragefire": 425.9,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0,
+        "Valithria Dreamwalker": 431.4
       }
     },
     {
@@ -7163,7 +7189,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 120,
-      "overallScore": 39.87,
+      "overallScore": 39.88,
       "bosses": {
         "Lord Marrowgar": 4002.0,
         "Lady Deathwhisper": 4096.8,
@@ -7449,7 +7475,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 188,
-      "overallScore": 36.88,
+      "overallScore": 36.9,
       "bosses": {
         "Lord Marrowgar": 267.3,
         "Lady Deathwhisper": 172.9,
@@ -7500,7 +7526,7 @@
       "class": "Death Knight",
       "spec": "Unholy",
       "specIndex": 3,
-      "overallRank": 169,
+      "overallRank": 170,
       "overallScore": 36.11,
       "bosses": {
         "Lord Marrowgar": 9362.2,
@@ -7553,7 +7579,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 190,
-      "overallScore": 36.01,
+      "overallScore": 36.02,
       "bosses": {
         "Lord Marrowgar": 474.1,
         "Lady Deathwhisper": 0,
@@ -7579,7 +7605,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 145,
-      "overallScore": 35.81,
+      "overallScore": 35.8,
       "bosses": {
         "Lord Marrowgar": 203.7,
         "Lady Deathwhisper": 0,
@@ -7761,7 +7787,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 152,
-      "overallScore": 33.93,
+      "overallScore": 33.94,
       "bosses": {
         "Lord Marrowgar": 3436.3,
         "Lady Deathwhisper": 3155.8,
@@ -7787,7 +7813,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 153,
-      "overallScore": 33.76,
+      "overallScore": 33.77,
       "bosses": {
         "Lord Marrowgar": 3346.3,
         "Lady Deathwhisper": 3575.9,
@@ -7917,7 +7943,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 198,
-      "overallScore": 32.69,
+      "overallScore": 32.7,
       "bosses": {
         "Lord Marrowgar": 233.5,
         "Lady Deathwhisper": 172.3,
@@ -7943,7 +7969,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 135,
-      "overallScore": 32.6,
+      "overallScore": 32.61,
       "bosses": {
         "Lord Marrowgar": 85.7,
         "Lady Deathwhisper": 0,
@@ -7995,7 +8021,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 142,
-      "overallScore": 31.64,
+      "overallScore": 31.65,
       "bosses": {
         "Lord Marrowgar": 0,
         "Lady Deathwhisper": 5.7,
@@ -8021,7 +8047,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 146,
-      "overallScore": 30.8,
+      "overallScore": 30.81,
       "bosses": {
         "Lord Marrowgar": 64.5,
         "Lady Deathwhisper": 1.3,
@@ -8150,7 +8176,7 @@
       "class": "Shaman",
       "spec": "Restoration",
       "specIndex": 3,
-      "overallRank": 153,
+      "overallRank": 152,
       "overallScore": 29.63,
       "bosses": {
         "Lord Marrowgar": 26.8,
@@ -8255,15 +8281,15 @@
       "spec": "Frost",
       "specIndex": 2,
       "overallRank": 88,
-      "overallScore": 28.67,
+      "overallScore": 28.68,
       "bosses": {
         "Lord Marrowgar": 14154.7,
         "Lady Deathwhisper": 0,
-        "Deathbringer Saurfang": 14378.2,
-        "Festergut": 14665.9,
+        "Deathbringer Saurfang": 14390.7,
+        "Festergut": 14666.2,
         "Rotface": 13242.6,
         "Professor Putricide": 0,
-        "Blood Prince Council": 6760.5,
+        "Blood Prince Council": 6761.0,
         "Blood-Queen Lana'thel": 10613.0,
         "Sindragosa": 0,
         "The Lich King": 0,
@@ -8359,15 +8385,15 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 247,
-      "overallScore": 26.5,
+      "overallScore": 26.51,
       "bosses": {
         "Lord Marrowgar": 11626.2,
         "Lady Deathwhisper": 0,
-        "Deathbringer Saurfang": 15424.3,
-        "Festergut": 13024.5,
+        "Deathbringer Saurfang": 15437.7,
+        "Festergut": 13024.7,
         "Rotface": 9961.5,
         "Professor Putricide": 0,
-        "Blood Prince Council": 2907.3,
+        "Blood Prince Council": 2907.6,
         "Blood-Queen Lana'thel": 13720.9,
         "Sindragosa": 0,
         "The Lich King": 0,
@@ -8437,7 +8463,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 166,
-      "overallScore": 25.52,
+      "overallScore": 25.51,
       "bosses": {
         "Lord Marrowgar": 95.7,
         "Lady Deathwhisper": 0,
@@ -8540,7 +8566,7 @@
       "class": "Death Knight",
       "spec": "Unholy",
       "specIndex": 3,
-      "overallRank": 193,
+      "overallRank": 194,
       "overallScore": 23.91,
       "bosses": {
         "Lord Marrowgar": 9978.8,
@@ -8670,7 +8696,7 @@
       "class": "Death Knight",
       "spec": "Unholy",
       "specIndex": 3,
-      "overallRank": 200,
+      "overallRank": 201,
       "overallScore": 21.36,
       "bosses": {
         "Lord Marrowgar": 14234.9,
@@ -8749,7 +8775,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 208,
-      "overallScore": 17.21,
+      "overallScore": 17.22,
       "bosses": {
         "Lord Marrowgar": 18.1,
         "Lady Deathwhisper": 0,
@@ -8775,7 +8801,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 234,
-      "overallScore": 16.47,
+      "overallScore": 16.49,
       "bosses": {
         "Lord Marrowgar": 151.9,
         "Lady Deathwhisper": 99.0,
@@ -8853,7 +8879,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 188,
-      "overallScore": 14.38,
+      "overallScore": 14.37,
       "bosses": {
         "Lord Marrowgar": 0,
         "Lady Deathwhisper": 23.2,
