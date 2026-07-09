@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-07-09T07:03:35.128395+00:00",
+  "lastUpdated": "2026-07-09T14:07:01.774964+00:00",
   "totalPlayersInSource": 270,
-  "totalRows": 350,
+  "totalRows": 351,
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -731,6 +731,32 @@
         "Saviana Ragefire": 11393.0,
         "General Zarithrian": 20768.6,
         "Baltharus the Warborn": 14851.8,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Kolin",
+      "server": "FreedomUA",
+      "class": "Mage",
+      "spec": "Fire",
+      "specIndex": 2,
+      "overallRank": 31,
+      "overallScore": 96.97,
+      "bosses": {
+        "Lord Marrowgar": 25210.6,
+        "Lady Deathwhisper": 20682.5,
+        "Deathbringer Saurfang": 26521.8,
+        "Festergut": 23895.0,
+        "Rotface": 22578.3,
+        "Professor Putricide": 17856.1,
+        "Blood Prince Council": 23164.3,
+        "Blood-Queen Lana'thel": 40349.2,
+        "Sindragosa": 17018.0,
+        "The Lich King": 14201.5,
+        "Halion": 20989.0,
+        "Saviana Ragefire": 14724.9,
+        "General Zarithrian": 23889.6,
+        "Baltharus the Warborn": 17044.2,
         "Valithria Dreamwalker": 0
       }
     },
