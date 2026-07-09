@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-08T11:28:21.471984+00:00",
+  "lastUpdated": "2026-07-09T07:03:57.857208+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -1008,6 +1008,32 @@
       "guildRank": 38
     },
     {
+      "name": "Полінце",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Restoration",
+      "avgHps": 8814.3,
+      "bossCount": 12,
+      "bosses": {
+        "Lord Marrowgar": 8407.6,
+        "Lady Deathwhisper": 5594.4,
+        "Deathbringer Saurfang": 4297.6,
+        "Festergut": 8581.6,
+        "Rotface": 7184.8,
+        "Professor Putricide": 11989.8,
+        "Blood Prince Council": 5985.6,
+        "Blood-Queen Lana'thel": 15159.4,
+        "Sindragosa": 10567.9,
+        "The Lich King": 4675.5,
+        "Valithria Dreamwalker": 14588.4,
+        "Halion": 8739.3,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0
+      },
+      "guildRank": 39
+    },
+    {
       "name": "Бастурма",
       "server": "FreedomUA",
       "class": "Druid",
@@ -1031,7 +1057,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 39
+      "guildRank": 40
     },
     {
       "name": "Byronkamymy",
@@ -1052,32 +1078,6 @@
         "Sindragosa": 9628.4,
         "The Lich King": 6426.7,
         "Valithria Dreamwalker": 17433.5,
-        "Halion": 0,
-        "Saviana Ragefire": 0,
-        "General Zarithrian": 0,
-        "Baltharus the Warborn": 0
-      },
-      "guildRank": 40
-    },
-    {
-      "name": "Полінце",
-      "server": "FreedomUA",
-      "class": "Druid",
-      "spec": "Restoration",
-      "avgHps": 8821.1,
-      "bossCount": 11,
-      "bosses": {
-        "Lord Marrowgar": 8407.6,
-        "Lady Deathwhisper": 5594.4,
-        "Deathbringer Saurfang": 4297.6,
-        "Festergut": 8581.6,
-        "Rotface": 7184.8,
-        "Professor Putricide": 11989.8,
-        "Blood Prince Council": 5985.6,
-        "Blood-Queen Lana'thel": 15159.4,
-        "Sindragosa": 10567.9,
-        "The Lich King": 4675.5,
-        "Valithria Dreamwalker": 14588.4,
         "Halion": 0,
         "Saviana Ragefire": 0,
         "General Zarithrian": 0,
@@ -1532,7 +1532,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
