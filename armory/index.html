@@ -95,6 +95,16 @@
   .gq5{border-left-color:#ff8000;} .gq5 .gs-nm{color:#ff8000;}
   .gq6,.gq7{border-left-color:#e6cc80;} .gq6 .gs-nm,.gq7 .gs-nm{color:#e6cc80;}
 
+  /* Enchant label */
+  .gs-ench{font-size:10px;color:#4fc3f7;line-height:1.2;margin-top:1px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:help;}
+  /* Gem row */
+  .gs-gems{display:flex;gap:2px;margin-top:2px;flex-wrap:wrap;}
+  .gm-ico{width:14px;height:14px;border-radius:2px;border:1px solid rgba(255,255,255,.15);
+    display:block;cursor:help;flex-shrink:0;}
+  .gm-empty{width:14px;height:14px;border-radius:2px;border:1px dashed rgba(255,255,255,.15);
+    background:var(--bg3);flex-shrink:0;}
+
   /* SEARCH + TABLE */
   .search-row{display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap;}
   .search-input{flex:1;min-width:160px;background:var(--bg2);border:1px solid var(--border2);
@@ -250,7 +260,7 @@ const LEFT_SLOTS   = [1, 2, 3, 15, 5, 4, 9];       // Head Neck Shoulders Back C
 const RIGHT_SLOTS  = [10, 6, 7, 8, 11, 12, 13, 14]; // Hands Waist Legs Feet Ring1 Ring2 Tri1 Tri2
 const WEAPON_SLOTS = [16, 17, 18];                   // Main Hand Off Hand Ranged
 
-let allChars=[], items={}, filtered=[], activeIdx=-1;
+let allChars=[], items={}, enchants={}, filtered=[], activeIdx=-1;
 
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmtDate(d){if(!d)return'—';const s=String(d);return s.length>=8?s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8):s;}
@@ -310,6 +320,38 @@ function closePanel(){
   document.querySelectorAll('#char-tbody .data-row.active').forEach(tr=>tr.classList.remove('active'));
 }
 
+function enchantHtml(enchantId){
+  if(!enchantId) return '';
+  const en=enchants[String(enchantId)];
+  const name=en&&en.name?en.name:'';
+  const icon=en&&en.icon?en.icon:'';
+  const label=name?`✦ ${esc(name)}`:'✦ Enchant';
+  if(icon){
+    const src=`https://wow.zamimg.com/images/wow/icons/small/${icon}.jpg`;
+    return `<div class="gs-ench" data-wowhead="enchantment=${enchantId}&domain=wotlk">
+      <img style="width:12px;height:12px;border-radius:1px;vertical-align:middle;margin-right:2px" src="${src}" alt="">
+      ${label}</div>`;
+  }
+  return `<div class="gs-ench" data-wowhead="enchantment=${enchantId}&domain=wotlk">${label}</div>`;
+}
+
+function gemsHtml(gems){
+  if(!gems||!gems.length) return '';
+  const dots=gems.map(gid=>{
+    if(!gid) return '';
+    const en=enchants[String(gid)];
+    if(en&&en.icon){
+      const src=`https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg`;
+      return `<img class="gm-ico" src="${src}" alt="" loading="lazy"
+        data-wowhead="enchantment=${gid}&domain=wotlk"
+        onerror="this.style.display='none'">`;
+    }
+    return `<span class="gm-empty" data-wowhead="enchantment=${gid}&domain=wotlk" title="Gem ${gid}"></span>`;
+  }).filter(Boolean).join('');
+  if(!dots) return '';
+  return `<div class="gs-gems">${dots}</div>`;
+}
+
 function slotHtml(slotNum, equip){
   const slotName=SLOT_NAMES[slotNum]||('Slot '+slotNum);
   const e=equip[slotNum];
@@ -335,6 +377,8 @@ function slotHtml(slotNum, equip){
       <div class="gs-slt">${slotName}</div>
       <div class="gs-nm">${esc(item.name)}</div>
       ${item.ilvl?`<div class="gs-ilvl">${item.ilvl}</div>`:''}
+      ${enchantHtml(e.enchantId)}
+      ${gemsHtml(e.gems)}
     </div>
   </a>`;
 }
@@ -392,6 +436,7 @@ async function init(){
     const data=await r.json();
     allChars=data.characters||[];
     items=data.items||{};
+    enchants=data.enchants||{};
     const upd=data.updated||'—';
     document.getElementById('updated-lbl').textContent=upd;
     document.getElementById('page-sub').textContent=
