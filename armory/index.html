@@ -153,12 +153,23 @@
   footer{text-align:center;padding:36px 24px;color:var(--text-faint);font-size:12px;
     border-top:1px solid var(--border);margin-top:24px;}
 
-  /* Enchant/gem details — hidden, revealed on slot hover */
-  .gs-details{display:none;margin-top:3px;}
-  .gs:not(.empty):hover .gs-details{display:block;}
-  /* Gem rows inside slot */
-  .gs-gem-row{display:flex;align-items:center;gap:4px;margin-top:2px;}
-  .gs-gem-nm{font-size:10px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  /* Item tooltip */
+  #item-tip{position:fixed;z-index:9999;pointer-events:none;
+    background:rgba(9,13,21,.98);border:1px solid rgba(80,120,180,.4);
+    border-radius:8px;min-width:210px;max-width:290px;
+    font-size:12px;line-height:1.5;box-shadow:0 8px 32px rgba(0,0,0,.85);
+    display:none;overflow:hidden;}
+  .tip-hdr{display:flex;align-items:center;gap:8px;padding:8px 10px;
+    border-bottom:1px solid rgba(255,255,255,.08);}
+  .tip-ico{width:32px;height:32px;border-radius:4px;flex-shrink:0;}
+  .tip-name{font-size:12px;font-weight:700;font-family:'Exo 2',sans-serif;line-height:1.2;}
+  .tip-meta{font-size:10px;color:var(--text-faint);margin-top:1px;}
+  .tip-body{padding:7px 10px;display:flex;flex-direction:column;gap:4px;}
+  .tip-ench{display:flex;align-items:center;gap:5px;color:#4fc3f7;font-size:11px;font-weight:600;}
+  .tip-ench img{width:13px;height:13px;border-radius:2px;flex-shrink:0;}
+  .tip-gem{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted);}
+  .tip-gem img{width:13px;height:13px;border-radius:2px;flex-shrink:0;}
+  .tip-gem-sq{width:13px;height:13px;border:1px dashed rgba(255,255,255,.25);border-radius:2px;flex-shrink:0;}
 
   @media(max-width:900px){
     .armory-wrap{flex-direction:column-reverse;}
@@ -419,7 +430,6 @@ function slotHtml(slotNum, equip){
       <div class="gs-slt">${slotName}</div>
       <div class="gs-nm">${esc(item.name)}</div>
       ${item.ilvl?`<div class="gs-ilvl">${item.ilvl}</div>`:''}
-      <div class="gs-details">${enchantHtml(e.enchantId)}${gemsHtml(e.gems)}</div>
     </div>
   </a>`;
 }
@@ -517,8 +527,80 @@ async function init(){
 }
 
 init();
+
+// ── Item tooltip (one card: icon + enchant + gems) ────────────────────────────
+(function(){
+  const t=document.createElement('div');
+  t.id='item-tip';
+  document.body.appendChild(t);
+  const QC=['#9d9d9d','var(--text)','#1eff00','#0070dd','#a335ee','#ff8000','#e6cc80'];
+
+  function build(sn){
+    const slot=currentEquip[sn];
+    if(!slot||!slot.itemId) return null;
+    const item=items[String(slot.itemId)];
+    if(!item) return null;
+    const hasEnch=!!slot.enchantId;
+    const hasGems=!!(slot.gems&&slot.gems.filter(Boolean).length);
+    if(!hasEnch&&!hasGems) return null;
+
+    const nc=QC[item.quality]||'var(--text)';
+    const icoSrc=`https://wow.zamimg.com/images/wow/icons/medium/${item.icon}.jpg`;
+    const meta=[SLOT_NAMES[sn],item.subtype,item.ilvl].filter(Boolean).join(' · ');
+
+    let h=`<div class="tip-hdr">
+      <img class="tip-ico" src="${icoSrc}" alt="" onerror="this.style.opacity='.3'">
+      <div>
+        <div class="tip-name" style="color:${nc}">${esc(item.name)}</div>
+        ${meta?`<div class="tip-meta">${meta}</div>`:''}
+      </div>
+    </div><div class="tip-body">`;
+
+    if(hasEnch){
+      const en=enchants[String(slot.enchantId)]||{};
+      const nm=en.name?esc(en.name):`Enchant ${slot.enchantId}`;
+      const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:'' ;
+      h+=`<div class="tip-ench">${ico}✦ ${nm}</div>`;
+    }
+    if(hasGems){
+      slot.gems.forEach(gid=>{
+        if(!gid) return;
+        const en=enchants[String(gid)]||{};
+        const nm=en.name?esc(en.name):`Gem ${gid}`;
+        const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:
+          `<span class="tip-gem-sq"></span>`;
+        h+=`<div class="tip-gem">${ico}${nm}</div>`;
+      });
+    }
+    h+='</div>';
+    return h;
+  }
+
+  const panel=document.getElementById('gear-panel');
+  let _last=-1;
+  panel.addEventListener('mouseover',function(e){
+    const gs=e.target.closest('.gs[data-slot]:not(.empty)');
+    if(!gs){t.style.display='none';_last=-1;return;}
+    const sn=+gs.dataset.slot;
+    if(sn===_last) return;
+    _last=sn;
+    const h=build(sn);
+    if(!h){t.style.display='none';return;}
+    t.innerHTML=h;
+    t.style.display='block';
+    const rect=gs.getBoundingClientRect();
+    const tw=t.offsetWidth,th=t.offsetHeight;
+    const vw=window.innerWidth,vh=window.innerHeight;
+    let x=rect.right+8,y=rect.top;
+    if(x+tw>vw) x=rect.left-tw-8;
+    if(x<4) x=4;
+    if(y+th>vh) y=vh-th-6;
+    if(y<4) y=4;
+    t.style.left=x+'px';
+    t.style.top=y+'px';
+  });
+  panel.addEventListener('mouseleave',function(){t.style.display='none';_last=-1;});
+})();
 </script>
-<script>const whTooltips={colorLinks:false,iconizeLinks:false,renameLinks:false};</script>
-<script src="https://wow.zamimg.com/widgets/power.js"></script>
 </body>
 </html>
