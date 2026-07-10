@@ -153,20 +153,9 @@
   footer{text-align:center;padding:36px 24px;color:var(--text-faint);font-size:12px;
     border-top:1px solid var(--border);margin-top:24px;}
 
-  /* Item hover tooltip */
-  #item-tip{position:fixed;z-index:9999;pointer-events:none;
-    background:rgba(8,12,20,.97);border:1px solid rgba(80,120,180,.4);
-    border-radius:7px;padding:10px 13px;min-width:180px;max-width:300px;
-    font-size:12px;line-height:1.5;box-shadow:0 6px 30px rgba(0,0,0,.8);display:none;}
-  .tip-name{font-size:13px;font-weight:700;font-family:'Exo 2',sans-serif;margin-bottom:2px;}
-  .tip-meta{font-size:10px;color:var(--text-faint);}
-  .tip-sep{border:none;border-top:1px solid rgba(255,255,255,.1);margin:6px 0;}
-  .tip-ench{display:flex;align-items:center;gap:5px;color:#4fc3f7;font-size:11px;font-weight:600;margin-bottom:2px;}
-  .tip-ench img{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
-  .tip-gems{display:flex;flex-direction:column;gap:3px;}
-  .tip-gem{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted);}
-  .tip-gem img{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
-  .tip-gem-sq{width:14px;height:14px;border:1px dashed rgba(255,255,255,.2);border-radius:2px;flex-shrink:0;}
+  /* Gem rows inside slot */
+  .gs-gem-row{display:flex;align-items:center;gap:4px;margin-top:2px;}
+  .gs-gem-nm{font-size:10px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
   @media(max-width:900px){
     .armory-wrap{flex-direction:column-reverse;}
@@ -368,21 +357,26 @@ function enchantHtml(enchantId){
 
 function gemsHtml(gems){
   if(!gems||!gems.length) return '';
-  const dots=gems.map(gid=>{
+  const rows=gems.map(gid=>{
     if(!gid) return '';
     const en=enchants[String(gid)];
-    const name=en&&en.name?en.name:'';
-    const title=name?esc(name):`Gem ${gid}`;
+    const name=en&&en.name?esc(en.name):`Gem ${gid}`;
     if(en&&en.icon){
       const src=`https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg`;
-      return `<img class="gm-ico" src="${src}" alt="${title}" title="${title}" loading="lazy"
-        data-wowhead="enchantment=${gid}&domain=wotlk"
-        onerror="this.classList.add('gm-broken')">`;
+      return `<div class="gs-gem-row">
+        <img class="gm-ico" src="${src}" alt="" loading="lazy"
+          data-wowhead="enchantment=${gid}&domain=wotlk"
+          onerror="this.classList.add('gm-broken')">
+        <span class="gs-gem-nm">${name}</span>
+      </div>`;
     }
-    return `<span class="gm-empty" title="${title}" data-wowhead="enchantment=${gid}&domain=wotlk"></span>`;
+    return `<div class="gs-gem-row">
+      <span class="gm-empty" data-wowhead="enchantment=${gid}&domain=wotlk"></span>
+      <span class="gs-gem-nm" style="opacity:.5">${name}</span>
+    </div>`;
   }).filter(Boolean).join('');
-  if(!dots) return '';
-  return `<div class="gs-gems">${dots}</div>`;
+  if(!rows) return '';
+  return `<div class="gs-gems">${rows}</div>`;
 }
 
 function buildWhAttr(e){
@@ -521,79 +515,6 @@ async function init(){
 }
 
 init();
-
-// ── Item hover tooltip ────────────────────────────────────────────────────────
-(function(){
-  const tip=document.createElement('div');
-  tip.id='item-tip';
-  document.body.appendChild(tip);
-  const QC=['#9d9d9d','var(--text)','#1eff00','#0070dd','#a335ee','#ff8000','#e6cc80'];
-
-  function buildTip(slotNum){
-    const slot=currentEquip[slotNum];
-    if(!slot||!slot.itemId) return null;
-    const item=items[String(slot.itemId)];
-    if(!item) return null;
-    const hasEnch=!!slot.enchantId;
-    const hasGems=!!(slot.gems&&slot.gems.filter(Boolean).length);
-    if(!hasEnch&&!hasGems) return null;
-
-    const nc=QC[item.quality]||'var(--text)';
-    let h=`<div class="tip-name" style="color:${nc}">${esc(item.name)}</div>`;
-    const meta=[SLOT_NAMES[slotNum],item.subtype,item.ilvl?item.ilvl+'  ilvl':null].filter(Boolean).join(' · ');
-    if(meta) h+=`<div class="tip-meta">${meta}</div>`;
-    h+=`<hr class="tip-sep">`;
-
-    if(hasEnch){
-      const en=enchants[String(slot.enchantId)]||{};
-      const nm=en.name?esc(en.name):`Enchant ${slot.enchantId}`;
-      const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:
-        `<span style="width:14px;height:14px;display:inline-block;flex-shrink:0;"></span>`;
-      h+=`<div class="tip-ench">${ico}✦ ${nm}</div>`;
-    }
-
-    if(hasGems){
-      if(hasEnch) h+=`<div style="height:3px"></div>`;
-      h+=`<div class="tip-gems">`;
-      slot.gems.forEach(gid=>{
-        if(!gid) return;
-        const en=enchants[String(gid)]||{};
-        const nm=en.name?esc(en.name):`Gem ${gid}`;
-        const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:
-          `<span class="tip-gem-sq"></span>`;
-        h+=`<div class="tip-gem">${ico}${nm}</div>`;
-      });
-      h+=`</div>`;
-    }
-    return h;
-  }
-
-  const panel=document.getElementById('gear-panel');
-  let _lastSlot=-1;
-  panel.addEventListener('mouseover',function(e){
-    const gs=e.target.closest('.gs[data-slot]');
-    if(!gs||gs.classList.contains('empty')){tip.style.display='none';_lastSlot=-1;return;}
-    const sn=+gs.dataset.slot;
-    if(sn===_lastSlot) return;
-    _lastSlot=sn;
-    const h=buildTip(sn);
-    if(!h){tip.style.display='none';return;}
-    tip.innerHTML=h;
-    tip.style.display='block';
-    const rect=gs.getBoundingClientRect();
-    const tw=tip.offsetWidth, th=tip.offsetHeight;
-    const vw=window.innerWidth, vh=window.innerHeight;
-    // anchor to the slot element: prefer right side, fallback left
-    let x=rect.right+8, y=rect.top;
-    if(x+tw>vw) x=rect.left-tw-8;
-    if(x<4) x=4;
-    if(y+th>vh) y=vh-th-6;
-    if(y<4) y=4;
-    tip.style.left=x+'px';
-    tip.style.top=y+'px';
-  });
-  panel.addEventListener('mouseleave',function(){tip.style.display='none';_lastSlot=-1;});
-})();
 </script>
 <script>const whTooltips={colorLinks:false,iconizeLinks:false,renameLinks:false};</script>
 <script src="https://wow.zamimg.com/widgets/power.js"></script>
