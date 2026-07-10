@@ -107,13 +107,14 @@
   .gm-broken{width:14px;height:14px;border-radius:2px;border:1px dashed rgba(255,255,255,.15);
     background:var(--bg3);flex-shrink:0;}
 
-  /* Stats grid */
-  .gp-statgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px 6px;
-    margin-bottom:10px;padding:8px;background:var(--bg3);border-radius:6px;}
-  .gp-statgrid.wide{grid-template-columns:repeat(4,1fr);}
-  .gp-sb{display:flex;flex-direction:column;align-items:center;gap:1px;}
-  .gp-sv{font-family:'Exo 2',sans-serif;font-size:13px;font-weight:700;line-height:1;}
-  .gp-sl{font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);line-height:1;}
+  /* Stats panel (in-game style rows) */
+  .gp-statcols{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;
+    margin-bottom:10px;padding:9px 11px;background:var(--bg3);border-radius:6px;}
+  .gp-statcol{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .gp-srow{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+  .gp-srl{font-size:11px;color:var(--text-muted);white-space:nowrap;}
+  .gp-srv{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:700;}
+  .gp-statnote{font-size:10px;color:var(--text-faint);margin:-6px 0 10px 2px;}
   .sv-str{color:#e8c96a;} .sv-agi{color:#82e882;} .sv-sta{color:#7ec8ff;}
   .sv-int{color:#c8a0f8;} .sv-spi{color:#f0a0a0;}
   .sv-ap{color:#ff9955;} .sv-sp{color:#80d0ff;}
@@ -423,30 +424,32 @@ function renderPanel(char){
   const guild=(char.guild&&char.guild!=='*')?char.guild:null;
   const icon=CLASS_ICON[char.class]||'warrior';
 
-  const s=char.stats||{};
-  const hasPrimary=s.str||s.agi||s.sta||s.int||s.spi;
-  const hasSecondary=s.ap||s.sp||s.hit||s.crit||s.haste||s.exp||s.arp||s.def||s.dodge||s.parry||s.mp5;
-
-  function sb(val,lbl,cls){
-    if(!val) return '';
-    return `<div class="gp-sb"><span class="gp-sv ${cls}">${val.toLocaleString()}</span><span class="gp-sl">${lbl}</span></div>`;
+  const sf=char.statsFull;
+  let statsHtml='';
+  if(sf){
+    const row=(lbl,val,cls)=>val?`<div class="gp-srow"><span class="gp-srl">${lbl}</span><span class="gp-srv ${cls||''}">${val.toLocaleString()}</span></div>`:'';
+    const left=[
+      row('Сила',sf.str,'sv-str'), row('Інтелект',sf.int,'sv-int'),
+      row('Ловкість',sf.agi,'sv-agi'), row('Витривалість',sf.sta,'sv-sta'),
+      row('Дух',sf.spi,'sv-spi'), row('Броня',sf.armor,'sv-arp'),
+    ].join('');
+    const right=[
+      row('Хіт',sf.hit,'sv-hit'), row('Кріт',sf.crit,'sv-crit'),
+      row('Хаст',sf.haste,'sv-haste'),
+      sf.caster?row('Сила закл.',sf.sp,'sv-sp'):row('Атака',sf.ap,'sv-ap'),
+      sf.caster?row('Мана/5с',sf.mp5,'sv-mp5'):row('Мастері',sf.expPts,'sv-exp'),
+      sf.caster?(sf.spi?'':''):row('Проб. броні',sf.arp,'sv-arp'),
+      (!sf.caster&&sf.sp)?row('Сила закл.',sf.sp,'sv-sp'):'',
+      sf.def?row('Захист',sf.def,'sv-def'):'',
+      sf.dodge?row('Ухилення',sf.dodge,'sv-dodge'):'',
+      sf.parry?row('Парір.',sf.parry,'sv-parry'):'',
+    ].join('');
+    statsHtml=`<div class="gp-statcols">
+      <div class="gp-statcol">${left}</div>
+      <div class="gp-statcol">${right}</div>
+    </div>
+    ${char.hasGems?'':'<div class="gp-statnote">≈ без гемів (потрібен Examiner-скан)</div>'}`;
   }
-
-  const primaryHtml=hasPrimary?`
-    <div class="gp-statgrid">
-      ${sb(s.str,'STR','sv-str')}${sb(s.agi,'AGI','sv-agi')}${sb(s.sta,'STA','sv-sta')}
-      ${sb(s.int,'INT','sv-int')}${sb(s.spi,'SPI','sv-spi')}
-    </div>`:'';
-
-  const secondaryHtml=hasSecondary?`
-    <div class="gp-statgrid wide">
-      ${sb(s.ap,'AP','sv-ap')}${sb(s.sp,'SP','sv-sp')}
-      ${sb(s.hit,'Hit','sv-hit')}${sb(s.crit,'Crit','sv-crit')}
-      ${sb(s.haste,'Haste','sv-haste')}${sb(s.exp,'Exp','sv-exp')}
-      ${sb(s.arp,'ArP','sv-arp')}${sb(s.def,'Def','sv-def')}
-      ${sb(s.dodge,'Dodge','sv-dodge')}${sb(s.parry,'Parry','sv-parry')}
-      ${sb(s.mp5,'MP5','sv-mp5')}
-    </div>`:'';
 
   document.getElementById('gp-top').innerHTML=`
     <div class="gp-hdr">
@@ -469,8 +472,7 @@ function renderPanel(char){
         <span class="gp-lbl">Avg iLevel</span>
       </div>
     </div>
-    ${primaryHtml}
-    ${secondaryHtml}`;
+    ${statsHtml}`;
 
   const equip={};
   (char.equip||[]).forEach(e=>{if(e.itemId)equip[e.slot]=e;});

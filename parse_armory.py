@@ -110,10 +110,10 @@ def parse_lua():
 # ── EXAMINER LUA PARSER ───────────────────────────────────────────────────────
 
 def parse_examiner():
-    """Parse Examiner.lua → {name: {slot_num: {itemId, enchantId, gems: [id,...]}}}"""
+    """Parse Examiner.lua → ({name: {slot_num: {itemId, enchantId, gems}}}, {name: talentPoints})"""
     if not os.path.exists(EXAMINER_LUA):
         print("Examiner.lua not found, skipping.")
-        return {}
+        return {}, {}
 
     with open(EXAMINER_LUA, encoding="utf-8", errors="replace") as f:
         content = f.read()
@@ -124,7 +124,7 @@ def parse_examiner():
     start = content.find(marker)
     if start == -1:
         print("  Examiner_Cache empty or not found.")
-        return {}
+        return {}, {}
 
     pos = start + len(marker)
     depth = 1
@@ -135,6 +135,7 @@ def parse_examiner():
     cache_text = content[start + len(marker) : pos - 1]
 
     result = {}
+    talents = {}
     scan = 0
 
     while scan < len(cache_text):
@@ -185,9 +186,12 @@ def parse_examiner():
 
         if slots:
             result[name] = slots
+            tp_m = re.search(r'\["talentPoints"\]\s*=\s*"([^"]*)"', char_body)
+            if tp_m:
+                talents[name] = tp_m.group(1)
 
     print(f"Examiner: {len(result)} characters with detailed gear")
-    return result
+    return result, talents
 
 
 # ── BEST GS STORE ─────────────────────────────────────────────────────────────
@@ -248,17 +252,55 @@ STAT_PATTERNS = [
     (r'\+(\d+) Dodge Rating',             'dodge'),
     (r'\+(\d+) Parry Rating',             'parry'),
     (r'\+(\d+) Block Rating',             'block'),
+    # green "Equip:" lines (both "Improves X by N" and "Increases X by N")
+    (r'critical strike rating by (\d+)',  'crit'),
+    (r'\bhit rating by (\d+)',            'hit'),
+    (r'haste rating by (\d+)',            'haste'),
+    (r'expertise rating by (\d+)',        'exp'),
+    (r'armor penetration rating by (\d+)','arp'),
+    (r'defense rating by (\d+)',          'def'),
+    (r'dodge rating by (\d+)',            'dodge'),
+    (r'parry rating by (\d+)',            'parry'),
+    (r'resilience rating by (\d+)',       'res'),
+    (r'spell power by (\d+)',             'sp'),
+    (r'attack power by (\d+)',            'ap'),
     (r'Restores (\d+) mana per 5 sec',    'mp5'),
 ]
 
-def extract_stats(tooltip_html):
-    """Parse white stat lines from wowhead tooltip HTML."""
-    text = re.sub(r'<[^>]+>', ' ', tooltip_html)
+def extract_stats(text):
+    """Parse stat lines from tag-stripped tooltip text (permanent stats only)."""
+    # drop proc/temporary sentences: "chance to…", "…for 10 sec", "Use: …"
+    text = re.sub(r'[^.!<]*?(?:chance|when struck|when you|sometimes|for \d+ sec)[^.!]*[.!]',
+                  ' ', text, flags=re.IGNORECASE)
     stats = {}
     for pattern, key in STAT_PATTERNS:
         for m in re.finditer(pattern, text, re.IGNORECASE):
             stats[key] = stats.get(key, 0) + int(m.group(1))
     return stats
+
+
+def parse_gear_details(tooltip_html):
+    """Extract armor, sockets, socket bonus and stats from wowhead tooltip HTML."""
+    text = re.sub(r'<[^>]+>', ' ', tooltip_html)
+    text = re.sub(r'\s+', ' ', text)
+
+    # Socket bonus — cut it out so it doesn't pollute base item stats
+    sb_stats = {}
+    sb_m = re.search(r'Socket Bonus:\s*([^<]{0,80}?)(?:Durability|Requires|Classes|$)', text)
+    if sb_m:
+        sb_stats = extract_stats(sb_m.group(1))
+        text = text[:sb_m.start()] + ' ' + text[sb_m.end(1):]
+
+    armor_m = re.search(r'(\d[\d,]*) Armor(?!\s*Penetration)', text)
+    armor = int(armor_m.group(1).replace(',', '')) if armor_m else 0
+
+    sockets = [c.lower() for c in re.findall(r'(Meta|Red|Yellow|Blue) Socket', text)]
+
+    out = {"stats": extract_stats(text)}
+    if armor:    out["armor"]   = armor
+    if sockets:  out["sockets"] = sockets
+    if sb_stats: out["socketBonus"] = sb_stats
+    return out
 
 
 def fetch_item(item_id):
@@ -276,16 +318,42 @@ def fetch_item(item_id):
             data = r.json()
             tooltip = data.get("tooltip", "")
             ilvl_m = re.search(r"Item Level.*?(\d{2,3})", tooltip)
-            return {
+            out = {
                 "name":    data.get("name", f"Item {item_id}"),
                 "quality": data.get("quality", 1),
                 "icon":    data.get("icon", "inv_misc_questionmark"),
                 "ilvl":    int(ilvl_m.group(1)) if ilvl_m else 0,
-                "stats":   extract_stats(tooltip),
+                "v":       2,   # parser version marker (armor/sockets/equip-line stats)
             }
+            out.update(parse_gear_details(tooltip))
+            return out
         except Exception:
             time.sleep(5 * (attempt + 1))
     return None
+
+
+def update_gear_details(equipped_ids, cache):
+    """Re-fetch equipped items that lack the new detail fields (armor/sockets/fixed stats)."""
+    missing = sorted([iid for iid in equipped_ids
+                      if cache.get(iid, {}).get('v') != 2], key=int)
+    print(f"\nEquipped items needing detail re-fetch: {len(missing)}")
+    if not missing:
+        return cache
+    eta = len(missing) * 1.3 / 60
+    print(f"Fetching {len(missing)} items (~{eta:.0f} min)…\n")
+    for i, iid in enumerate(missing):
+        print(f"  [{i+1}/{len(missing)}] {iid}… ", end="", flush=True)
+        data = fetch_item(iid)
+        if data:
+            cache[iid] = data
+            print(f"{data['name']} armor={data.get('armor',0)} sockets={data.get('sockets',[])}")
+        else:
+            print("FAILED")
+        if (i + 1) % 50 == 0:
+            save_cache(cache)
+        time.sleep(random.uniform(0.9, 1.6))
+    save_cache(cache)
+    return cache
 
 
 def update_item_stats(equipped_ids, cache):
@@ -456,7 +524,9 @@ def sum_char_stats(equip, items_cache):
     return total if total else None
 
 
-def build_json(characters, items_cache, examiner_data, enchants_cache):
+def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_talents=None):
+    from armory_stats import compute_stats
+    examiner_talents = examiner_talents or {}
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     chars_out = []
 
@@ -485,6 +555,12 @@ def build_json(characters, items_cache, examiner_data, enchants_cache):
             })
 
         stats = sum_char_stats(equip, items_cache)
+        stats_full = compute_stats(
+            equip, items_cache, enchants_cache,
+            char.get("Race", ""), char.get("Class", ""),
+            talent_points=examiner_talents.get(name),
+            level=char.get("Level", 80) or 80,
+        )
 
         chars_out.append({
             "name":        name,
@@ -502,6 +578,8 @@ def build_json(characters, items_cache, examiner_data, enchants_cache):
             "equip":       equip,
             "hasGems":     bool(exam_slots),
             "stats":       stats,
+            "statsFull":   stats_full,
+            "talents":     examiner_talents.get(name, ""),
         })
 
     chars_out.sort(key=lambda x: x["gs"], reverse=True)
@@ -536,6 +614,8 @@ def main():
                         help="Rebuild JSON from existing cache, no new fetches")
     parser.add_argument("--update-stats", action="store_true",
                         help="Re-fetch stats for equipped items that are missing them")
+    parser.add_argument("--update-gear", action="store_true",
+                        help="Re-fetch equipped items lacking armor/sockets/equip-line stats (parser v2)")
     args = parser.parse_args()
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -546,7 +626,7 @@ def main():
 
     characters = apply_best_gs(characters)
 
-    examiner_data  = parse_examiner()
+    examiner_data, examiner_talents = parse_examiner()
     items_cache    = load_cache()
     enchants_cache = load_enchants_cache()
 
@@ -556,7 +636,7 @@ def main():
         items_cache    = fetch_items(characters, items_cache)
         enchants_cache = fetch_enchants(characters, examiner_data, enchants_cache)
 
-    if args.update_stats:
+    if args.update_stats or args.update_gear:
         # Collect all equipped item IDs across all characters
         equipped_ids = set()
         for char in characters:
@@ -564,9 +644,12 @@ def main():
                 iid = entry.split(":")[0]
                 if iid and iid != "0":
                     equipped_ids.add(iid)
-        items_cache = update_item_stats(equipped_ids, items_cache)
+        if args.update_gear:
+            items_cache = update_gear_details(equipped_ids, items_cache)
+        if args.update_stats:
+            items_cache = update_item_stats(equipped_ids, items_cache)
 
-    build_json(characters, items_cache, examiner_data, enchants_cache)
+    build_json(characters, items_cache, examiner_data, enchants_cache, examiner_talents)
 
 
 if __name__ == "__main__":
