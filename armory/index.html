@@ -6,16 +6,16 @@
 <title>Armory — Deus Vult</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap');
-  :root {
-    --bg:#070a0f; --bg2:#0d121b; --bg3:#141b26;
-    --border:#1e2836; --border2:#283447;
-    --accent:#8fc1e3; --accent-dim:#4a6f8a;
-    --text:#dce4ee; --text-muted:#7c8aa0; --text-faint:#566275;
+  :root{
+    --bg:#070a0f;--bg2:#0d121b;--bg3:#141b26;
+    --border:#1e2836;--border2:#283447;
+    --accent:#8fc1e3;--accent-dim:#4a6f8a;
+    --text:#dce4ee;--text-muted:#7c8aa0;--text-faint:#566275;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;font-size:14px;min-height:100vh;}
 
-  /* ── NAV ── */
+  /* NAV */
   nav{background:rgba(13,18,27,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
     padding:0 24px;display:flex;align-items:center;height:56px;position:sticky;top:0;z-index:100;}
   .nav-logo{font-family:'Exo 2',sans-serif;font-weight:800;font-size:16px;color:var(--accent);
@@ -29,107 +29,113 @@
     color:var(--text);width:38px;height:38px;cursor:pointer;margin-left:auto;align-items:center;
     justify-content:center;font-size:18px;line-height:1;}
 
-  /* ── LAYOUT ── */
-  .page{max-width:1260px;margin:0 auto;padding:32px 24px 64px;}
-  .page-header{margin-bottom:28px;padding-left:52px;}
-  .list-view{padding-left:52px;}
+  /* PAGE */
+  .page{max-width:1400px;margin:0 auto;padding:28px 24px 64px;}
+  .page-header{margin-bottom:20px;}
   .page-title{font-family:'Exo 2',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:900;
-    letter-spacing:.1em;color:var(--text);margin-bottom:6px;}
+    letter-spacing:.1em;color:var(--text);margin-bottom:5px;}
   .page-sub{color:var(--text-muted);font-size:13px;}
 
-  /* ── SEARCH ROW ── */
-  .search-row{display:flex;gap:10px;margin-bottom:20px;align-items:center;flex-wrap:wrap;}
-  .search-input{flex:1;min-width:180px;background:var(--bg2);border:1px solid var(--border2);
+  /* ARMORY LAYOUT: gear panel LEFT + list RIGHT */
+  .armory-wrap{display:flex;gap:20px;align-items:start;}
+  .list-section{flex:1;min-width:0;}
+
+  /* GEAR PANEL */
+  .gear-panel{
+    display:none;width:460px;min-width:460px;
+    position:sticky;top:68px;
+    max-height:calc(100vh - 80px);overflow-y:auto;
+    background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;
+  }
+  .gear-panel.open{display:block;}
+
+  .gp-hdr{display:flex;align-items:flex-start;gap:10px;padding-bottom:10px;
+    border-bottom:1px solid var(--border);margin-bottom:10px;}
+  .gp-icon{width:48px;height:48px;border-radius:8px;flex-shrink:0;
+    border:1px solid var(--border2);object-fit:cover;}
+  .gp-nameblock{flex:1;min-width:0;}
+  .gp-name{font-family:'Exo 2',sans-serif;font-size:16px;font-weight:800;
+    line-height:1.2;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .gp-meta{font-size:11px;color:var(--text-muted);margin-bottom:1px;}
+  .gp-close{background:none;border:none;color:var(--text-faint);cursor:pointer;
+    font-size:16px;padding:2px 6px;border-radius:4px;flex-shrink:0;line-height:1;}
+  .gp-close:hover{color:var(--text);background:var(--bg3);}
+
+  .gp-stats{display:flex;gap:24px;margin-bottom:12px;}
+  .gp-stat{text-align:center;}
+  .gp-val{font-family:'Exo 2',sans-serif;font-size:22px;font-weight:800;display:block;line-height:1;}
+  .gp-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);}
+
+  /* Two-column doll + weapons row */
+  .gp-cols{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+  .gp-col{display:flex;flex-direction:column;gap:3px;}
+  .gp-weapons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px;}
+
+  /* Compact item slot */
+  .gs{display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:5px;
+    border-left:3px solid transparent;text-decoration:none;color:inherit;min-width:0;transition:.1s;}
+  .gs:not(.empty):hover{background:rgba(255,255,255,.05);cursor:pointer;}
+  .gs.empty{opacity:.38;}
+  .gs-ico{width:28px;height:28px;border-radius:3px;background:var(--bg3);
+    flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .gs-ico img{width:100%;height:100%;display:block;object-fit:cover;}
+  .gs-ico.blank::after{content:'';display:block;width:12px;height:12px;
+    border:1px solid var(--border2);border-radius:2px;}
+  .gs-txt{flex:1;min-width:0;}
+  .gs-slt{font-size:9px;color:var(--text-faint);line-height:1;margin-bottom:1px;}
+  .gs-nm{font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2;}
+  .gs-ilvl{font-size:10px;color:var(--text-muted);line-height:1;}
+
+  /* Item quality */
+  .gq0{border-left-color:#9d9d9d;} .gq0 .gs-nm{color:#9d9d9d;}
+  .gq1 .gs-nm{color:var(--text);}
+  .gq2{border-left-color:#1eff00;} .gq2 .gs-nm{color:#1eff00;}
+  .gq3{border-left-color:#0070dd;} .gq3 .gs-nm{color:#0070dd;}
+  .gq4{border-left-color:#a335ee;} .gq4 .gs-nm{color:#a335ee;}
+  .gq5{border-left-color:#ff8000;} .gq5 .gs-nm{color:#ff8000;}
+  .gq6,.gq7{border-left-color:#e6cc80;} .gq6 .gs-nm,.gq7 .gs-nm{color:#e6cc80;}
+
+  /* SEARCH + TABLE */
+  .search-row{display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap;}
+  .search-input{flex:1;min-width:160px;background:var(--bg2);border:1px solid var(--border2);
     border-radius:8px;color:var(--text);font-family:'Manrope',sans-serif;font-size:14px;
     padding:9px 14px;outline:none;transition:.15s;}
   .search-input:focus{border-color:var(--accent-dim);}
   .search-input::placeholder{color:var(--text-faint);}
-  .sort-select{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
-    color:var(--text);font-size:13px;padding:9px 12px;outline:none;cursor:pointer;}
-  .class-filter{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
+  .sort-select,.class-filter{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
     color:var(--text);font-size:13px;padding:9px 12px;outline:none;cursor:pointer;}
   .result-count{color:var(--text-muted);font-size:13px;white-space:nowrap;}
 
-  /* ── CHARACTER TABLE ── */
   .tbl-wrap{overflow-x:auto;}
   .char-table{width:100%;border-collapse:collapse;}
   .char-table th{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);
-    padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;font-weight:600;
-    cursor:pointer;user-select:none;white-space:nowrap;}
-  .char-table th:hover{color:var(--text-muted);}
-  .char-table th.sorted{color:var(--accent);}
+    padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;font-weight:600;white-space:nowrap;}
   .char-table th.r{text-align:right;}
-  .char-table td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:13px;}
+  .char-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:13px;}
   .char-table tr:last-child td{border-bottom:none;}
-  .char-table tr.data-row:hover td{background:rgba(143,193,227,.04);cursor:pointer;}
+  .char-table tr.data-row{cursor:pointer;}
+  .char-table tr.data-row:hover td{background:rgba(143,193,227,.04);}
+  .char-table tr.data-row.active td{background:rgba(143,193,227,.09);}
   .c-rank{color:var(--text-faint);font-size:11px;font-family:'Exo 2',sans-serif;text-align:right;padding-right:4px;}
   .c-name{font-weight:700;font-family:'Exo 2',sans-serif;font-size:14px;}
   .c-class{font-weight:600;font-size:12px;}
-  .c-race{color:var(--text-muted);font-size:12px;}
-  .c-guild{color:var(--text-muted);font-size:12px;}
+  .c-race,.c-guild{color:var(--text-muted);font-size:12px;}
   .c-gs{font-family:'Exo 2',sans-serif;font-weight:800;font-size:15px;text-align:right;}
   .c-ilvl{font-family:'Exo 2',sans-serif;font-weight:700;color:var(--text-muted);text-align:right;}
   .c-date{color:var(--text-faint);font-size:11px;}
 
-  /* ── PROFILE ── */
-  .profile-view{display:none;}
-  .profile-view.active{display:block;}
-  .list-view.hidden{display:none;}
-
-  .btn-back{background:none;border:1px solid var(--border2);border-radius:8px;color:var(--text-muted);
-    font-size:13px;padding:8px 14px;cursor:pointer;margin-bottom:20px;font-family:'Manrope',sans-serif;
-    transition:.15s;}
-  .btn-back:hover{color:var(--text);border-color:var(--accent-dim);}
-
-  /* Profile body: items LEFT, info RIGHT */
-  .profile-body{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;}
-
-  /* Profile header / info panel */
-  .profile-hdr{background:var(--bg2);border:1px solid var(--border);border-radius:12px;
-    padding:20px 24px;display:flex;flex-direction:column;gap:16px;}
-  .profile-icon{width:60px;height:60px;border-radius:10px;overflow:hidden;flex-shrink:0;
-    border:2px solid var(--border2);}
-  .profile-icon img{width:100%;height:100%;object-fit:cover;display:block;}
-  .profile-name{font-family:'Exo 2',sans-serif;font-size:clamp(18px,3vw,26px);font-weight:900;
-    letter-spacing:.05em;line-height:1.1;margin-bottom:5px;}
-  .profile-meta{color:var(--text-muted);font-size:13px;margin-bottom:3px;}
-  .profile-guild{font-weight:700;color:var(--accent);font-size:13px;}
-  .profile-scan{color:var(--text-faint);font-size:11px;margin-top:5px;}
-  .profile-stats-row{display:flex;gap:20px;text-align:center;}
-  .ps{display:flex;flex-direction:column;align-items:center;}
-  .ps-val{font-family:'Exo 2',sans-serif;font-size:26px;font-weight:900;line-height:1;}
-  .ps-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-top:3px;}
-
-  /* Paper doll — two columns, items LEFT */
-  .doll{display:grid;grid-template-columns:1fr 1fr;gap:6px;min-width:520px;}
-  .doll-col{display:flex;flex-direction:column;gap:5px;}
-
-  .item-slot{display:flex;align-items:center;gap:9px;background:var(--bg2);
-    border:1px solid var(--border);border-left:3px solid transparent;border-radius:8px;
-    padding:7px 10px;transition:.12s;text-decoration:none;color:inherit;}
-  .item-slot:not(.empty):hover{background:var(--bg3);cursor:pointer;}
-  .item-slot.empty{opacity:.45;}
-  .iico{width:36px;height:36px;border-radius:5px;overflow:hidden;flex-shrink:0;
-    background:var(--bg3);display:flex;align-items:center;justify-content:center;}
-  .iico img{width:100%;height:100%;object-fit:cover;display:block;}
-  .iico.no-img::after{content:'?';color:var(--text-faint);font-size:14px;}
-  .iinfo{flex:1;min-width:0;}
-  .slot-lbl{font-size:10px;color:var(--text-faint);letter-spacing:.05em;line-height:1;margin-bottom:2px;}
-  .item-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .item-ilvl{font-size:11px;color:var(--text-muted);}
-
-  /* Quality colors */
-  .q0{border-left-color:#9d9d9d;} .q0 .item-name{color:#9d9d9d;}
-  .q1{border-left-color:#aaa;}    .q1 .item-name{color:#dce4ee;}
-  .q2{border-left-color:#1eff00;} .q2 .item-name{color:#1eff00;}
-  .q3{border-left-color:#0070dd;} .q3 .item-name{color:#0070dd;}
-  .q4{border-left-color:#a335ee;} .q4 .item-name{color:#a335ee;}
-  .q5{border-left-color:#ff8000;} .q5 .item-name{color:#ff8000;}
-  .q6,.q7{border-left-color:#e6cc80;} .q6 .item-name,.q7 .item-name{color:#e6cc80;}
-
   footer{text-align:center;padding:36px 24px;color:var(--text-faint);font-size:12px;
     border-top:1px solid var(--border);margin-top:24px;}
 
+  @media(max-width:900px){
+    .armory-wrap{flex-direction:column-reverse;}
+    .gear-panel{width:100%;min-width:0;position:static;max-height:none;}
+    .gp-cols{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:540px){
+    .gp-cols{grid-template-columns:1fr;}
+    .gp-weapons{grid-template-columns:1fr;}
+  }
   @media(max-width:768px){
     nav{padding:0 14px;}
     .nav-links{display:none;flex-direction:column;gap:2px;width:100%;}
@@ -137,11 +143,6 @@
     .nav-links a{padding:12px 14px;font-size:15px;}
     .nav-toggle{display:flex;}
     .nav-logo{margin-right:0;}
-    .page-header{padding-left:0;}
-    .list-view{padding-left:0;}
-    .doll{grid-template-columns:1fr;min-width:0;}
-    .profile-body{grid-template-columns:1fr;}
-    .profile-stats-row{gap:14px;}
   }
 </style>
 </head>
@@ -165,66 +166,65 @@
 </nav>
 
 <div class="page">
-
   <div class="page-header">
     <h1 class="page-title">ARMORY</h1>
     <p class="page-sub" id="page-sub">Завантаження…</p>
   </div>
 
-  <!-- LIST VIEW -->
-  <div class="list-view" id="list-view">
-    <div class="search-row">
-      <input class="search-input" id="search" type="text"
-        placeholder="Пошук по імені або гільдії…" oninput="filterAndRender()">
-      <select class="class-filter" id="class-filter" onchange="filterAndRender()">
-        <option value="">Всі класи</option>
-        <option value="DK">Death Knight</option>
-        <option value="DR">Druid</option>
-        <option value="HU">Hunter</option>
-        <option value="MA">Mage</option>
-        <option value="PA">Paladin</option>
-        <option value="PR">Priest</option>
-        <option value="RO">Rogue</option>
-        <option value="SH">Shaman</option>
-        <option value="WA">Warrior</option>
-        <option value="WL">Warlock</option>
-      </select>
-      <select class="sort-select" id="sort-sel" onchange="filterAndRender()">
-        <option value="gs">GearScore ↓</option>
-        <option value="ilvl">iLevel ↓</option>
-        <option value="name">Ім'я A–Z</option>
-        <option value="date">Дата сканування ↓</option>
-      </select>
-      <span class="result-count" id="result-count"></span>
-    </div>
-    <div class="tbl-wrap">
-      <table class="char-table">
-        <thead>
-          <tr>
-            <th class="r" style="width:36px">#</th>
-            <th>Ім'я</th>
-            <th>Клас</th>
-            <th>Раса</th>
-            <th>Гільдія</th>
-            <th class="r">GearScore</th>
-            <th class="r">iLevel</th>
-            <th>Скановано</th>
-          </tr>
-        </thead>
-        <tbody id="char-tbody"></tbody>
-      </table>
-    </div>
-  </div>
+  <div class="armory-wrap">
 
-  <!-- PROFILE VIEW -->
-  <div class="profile-view" id="profile-view">
-    <button class="btn-back" onclick="showList()">← Назад до списку</button>
-    <div class="profile-body">
-      <div class="doll" id="profile-doll"></div>
-      <div class="profile-hdr" id="profile-hdr"></div>
+    <!-- GEAR PANEL (LEFT) -->
+    <div class="gear-panel" id="gear-panel">
+      <div id="gp-top"></div>
+      <div id="gp-doll"></div>
     </div>
-  </div>
 
+    <!-- LIST (RIGHT) -->
+    <div class="list-section">
+      <div class="search-row">
+        <input class="search-input" id="search" type="text"
+          placeholder="Пошук по імені або гільдії…" oninput="filterAndRender()">
+        <select class="class-filter" id="class-filter" onchange="filterAndRender()">
+          <option value="">Всі класи</option>
+          <option value="DK">Death Knight</option>
+          <option value="DR">Druid</option>
+          <option value="HU">Hunter</option>
+          <option value="MA">Mage</option>
+          <option value="PA">Paladin</option>
+          <option value="PR">Priest</option>
+          <option value="RO">Rogue</option>
+          <option value="SH">Shaman</option>
+          <option value="WA">Warrior</option>
+          <option value="WL">Warlock</option>
+        </select>
+        <select class="sort-select" id="sort-sel" onchange="filterAndRender()">
+          <option value="gs">GearScore ↓</option>
+          <option value="ilvl">iLevel ↓</option>
+          <option value="name">Ім'я A–Z</option>
+          <option value="date">Дата сканування ↓</option>
+        </select>
+        <span class="result-count" id="result-count"></span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="char-table">
+          <thead>
+            <tr>
+              <th class="r" style="width:36px">#</th>
+              <th>Ім'я</th>
+              <th>Клас</th>
+              <th>Раса</th>
+              <th>Гільдія</th>
+              <th class="r">GearScore</th>
+              <th class="r">iLevel</th>
+              <th>Скановано</th>
+            </tr>
+          </thead>
+          <tbody id="char-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <footer>
@@ -232,194 +232,171 @@
 </footer>
 
 <script>
-const CLASS_NAMES = {
-  DK:'Death Knight',DR:'Druid',HU:'Hunter',MA:'Mage',PA:'Paladin',
-  PR:'Priest',RO:'Rogue',SH:'Shaman',WA:'Warrior',WL:'Warlock'
-};
-const RACE_NAMES = {
-  OR:'Orc',TR:'Troll',TA:'Tauren',UN:'Undead',BE:'Blood Elf',
-  HU:'Human',DW:'Dwarf',NE:'Night Elf',GN:'Gnome',DR:'Draenei',
-  GO:'Goblin',WO:'Worgen'
-};
-const CLASS_COLORS = {
-  DK:'#c41e3a',DR:'#ff7c0a',HU:'#aad372',MA:'#3fc7eb',PA:'#f48cba',
-  PR:'#d4d4d4',RO:'#fff468',SH:'#0070dd',WA:'#c69b3a',WL:'#8788ee'
-};
-const CLASS_ICON = {
-  DK:'deathknight',DR:'druid',HU:'hunter',MA:'mage',PA:'paladin',
-  PR:'priest',RO:'rogue',SH:'shaman',WA:'warrior',WL:'warlock'
-};
-const SLOT_NAMES = [
-  null,'Head','Neck','Shoulders','Shirt','Chest',
+const CLASS_NAMES={DK:'Death Knight',DR:'Druid',HU:'Hunter',MA:'Mage',PA:'Paladin',
+  PR:'Priest',RO:'Rogue',SH:'Shaman',WA:'Warrior',WL:'Warlock'};
+const RACE_NAMES={OR:'Orc',TR:'Troll',TA:'Tauren',UN:'Undead',BE:'Blood Elf',
+  HU:'Human',DW:'Dwarf',NE:'Night Elf',GN:'Gnome',DR:'Draenei',GO:'Goblin',WO:'Worgen'};
+const CLASS_COLORS={DK:'#c41e3a',DR:'#ff7c0a',HU:'#aad372',MA:'#3fc7eb',PA:'#f48cba',
+  PR:'#d4d4d4',RO:'#fff468',SH:'#0070dd',WA:'#c69b3a',WL:'#8788ee'};
+const CLASS_ICON={DK:'deathknight',DR:'druid',HU:'hunter',MA:'mage',PA:'paladin',
+  PR:'priest',RO:'rogue',SH:'shaman',WA:'warrior',WL:'warlock'};
+const SLOT_NAMES=[null,'Head','Neck','Shoulders','Shirt','Chest',
   'Waist','Legs','Feet','Wrist','Hands',
   'Ring 1','Ring 2','Trinket 1','Trinket 2','Back',
-  'Main Hand','Off Hand','Ranged'
-];
-// Paper doll columns: left and right
-const LEFT_SLOTS  = [1,3,5,6,7,8,16,17,4];
-const RIGHT_SLOTS = [2,15,9,10,11,12,13,14,18];
+  'Main Hand','Off Hand','Ranged'];
 
-let allChars = [], items = {}, filtered = [];
+// WoW paper doll slot order
+const LEFT_SLOTS   = [1, 2, 3, 15, 5, 4, 9];       // Head Neck Shoulders Back Chest Shirt Wrist
+const RIGHT_SLOTS  = [10, 6, 7, 8, 11, 12, 13, 14]; // Hands Waist Legs Feet Ring1 Ring2 Tri1 Tri2
+const WEAPON_SLOTS = [16, 17, 18];                   // Main Hand Off Hand Ranged
 
-function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+let allChars=[], items={}, filtered=[], activeIdx=-1;
 
-function fmtDate(d){
-  if(!d) return '—';
-  const s = String(d);
-  return s.length >= 8 ? s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8) : s;
-}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmtDate(d){if(!d)return'—';const s=String(d);return s.length>=8?s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8):s;}
 
 function filterAndRender(){
-  const q = (document.getElementById('search').value||'').trim().toLowerCase();
-  const cls = document.getElementById('class-filter').value;
-  const sort = document.getElementById('sort-sel').value;
-
-  filtered = allChars.filter(c => {
-    if(cls && c.class !== cls) return false;
+  const q=(document.getElementById('search').value||'').trim().toLowerCase();
+  const cls=document.getElementById('class-filter').value;
+  const sort=document.getElementById('sort-sel').value;
+  filtered=allChars.filter(c=>{
+    if(cls&&c.class!==cls)return false;
     if(q){
-      const nameOk = c.name.toLowerCase().includes(q);
-      const guildOk = c.guild && c.guild !== '*' && c.guild.toLowerCase().includes(q);
-      if(!nameOk && !guildOk) return false;
+      const nameOk=c.name.toLowerCase().includes(q);
+      const guildOk=c.guild&&c.guild!=='*'&&c.guild.toLowerCase().includes(q);
+      if(!nameOk&&!guildOk)return false;
     }
     return true;
   });
-
-  if(sort === 'gs')   filtered.sort((a,b)=>(b.gs||0)-(a.gs||0));
-  if(sort === 'ilvl') filtered.sort((a,b)=>(b.ilvl||0)-(a.ilvl||0));
-  if(sort === 'name') filtered.sort((a,b)=>a.name.localeCompare(b.name));
-  if(sort === 'date') filtered.sort((a,b)=>(b.date||0)-(a.date||0));
-
+  if(sort==='gs')   filtered.sort((a,b)=>(b.gs||0)-(a.gs||0));
+  if(sort==='ilvl') filtered.sort((a,b)=>(b.ilvl||0)-(a.ilvl||0));
+  if(sort==='name') filtered.sort((a,b)=>a.name.localeCompare(b.name));
+  if(sort==='date') filtered.sort((a,b)=>(b.date||0)-(a.date||0));
+  activeIdx=-1;
+  closePanel();
   renderTable();
 }
 
 function renderTable(){
-  document.getElementById('result-count').textContent = filtered.length + ' гравців';
-  const rows = filtered.map((c, i) => {
-    const col = CLASS_COLORS[c.class] || '#dce4ee';
-    const guild = (c.guild && c.guild !== '*') ? esc(c.guild) : '—';
+  document.getElementById('result-count').textContent=filtered.length+' гравців';
+  const rows=filtered.map((c,i)=>{
+    const col=CLASS_COLORS[c.class]||'#dce4ee';
+    const guild=(c.guild&&c.guild!=='*')?esc(c.guild):'—';
     return `<tr class="data-row" onclick="showChar(${i})">
       <td class="c-rank">${i+1}</td>
       <td><span class="c-name" style="color:${col}">${esc(c.name)}</span></td>
       <td class="c-class" style="color:${col}">${CLASS_NAMES[c.class]||c.class}</td>
       <td class="c-race">${RACE_NAMES[c.race]||c.race||'—'}</td>
       <td class="c-guild">${guild}</td>
-      <td class="c-gs" style="color:${col}">${c.gs ? c.gs.toLocaleString() : '—'}</td>
+      <td class="c-gs" style="color:${col}">${c.gs?c.gs.toLocaleString():'—'}</td>
       <td class="c-ilvl">${c.ilvl||'—'}</td>
       <td class="c-date">${fmtDate(c.date)}</td>
     </tr>`;
   });
-  document.getElementById('char-tbody').innerHTML = rows.join('');
-}
-
-function showList(){
-  document.getElementById('list-view').classList.remove('hidden');
-  document.getElementById('profile-view').classList.remove('active');
+  document.getElementById('char-tbody').innerHTML=rows.join('');
 }
 
 function showChar(idx){
-  const char = filtered[idx];
-  if(!char) return;
-  document.getElementById('list-view').classList.add('hidden');
-  document.getElementById('profile-view').classList.add('active');
-  renderProfile(char);
-  window.scrollTo(0,0);
+  if(activeIdx===idx){closePanel();return;}
+  activeIdx=idx;
+  document.querySelectorAll('#char-tbody .data-row').forEach((tr,i)=>tr.classList.toggle('active',i===idx));
+  renderPanel(filtered[idx]);
+  document.getElementById('gear-panel').classList.add('open');
 }
 
-function renderProfile(char){
-  const col = CLASS_COLORS[char.class] || '#dce4ee';
-  const cls = CLASS_NAMES[char.class] || char.class;
-  const race = RACE_NAMES[char.race] || char.race || '';
-  const guild = (char.guild && char.guild !== '*') ? char.guild : null;
-  const icon = CLASS_ICON[char.class] || 'warrior';
+function closePanel(){
+  activeIdx=-1;
+  document.getElementById('gear-panel').classList.remove('open');
+  document.querySelectorAll('#char-tbody .data-row.active').forEach(tr=>tr.classList.remove('active'));
+}
 
-  document.getElementById('profile-hdr').innerHTML = `
-    <div style="display:flex;align-items:center;gap:14px">
-      <div class="profile-icon">
-        <img src="https://wow.zamimg.com/images/wow/icons/large/classicon_${icon}.jpg"
-             alt="${cls}" onerror="this.style.opacity='.3'">
-      </div>
-      <div>
-        <div class="profile-name" style="color:${col}">${esc(char.name)}</div>
-        <div class="profile-meta">${cls} · ${race} · Рівень ${char.level||80}</div>
-        ${guild ? `<div class="profile-guild">&lt;${esc(guild)}&gt;</div>` : ''}
-      </div>
+function slotHtml(slotNum, equip){
+  const slotName=SLOT_NAMES[slotNum]||('Slot '+slotNum);
+  const e=equip[slotNum];
+  if(!e||!e.itemId){
+    return `<div class="gs empty">
+      <div class="gs-ico blank"></div>
+      <div class="gs-txt"><div class="gs-slt">${slotName}</div><div class="gs-nm" style="color:var(--text-faint);font-weight:400">—</div></div>
+    </div>`;
+  }
+  const item=items[String(e.itemId)];
+  if(!item){
+    return `<div class="gs gq1">
+      <div class="gs-ico blank"></div>
+      <div class="gs-txt"><div class="gs-slt">${slotName}</div><div class="gs-nm">Item #${e.itemId}</div></div>
+    </div>`;
+  }
+  const q=item.quality||1;
+  const ico=`https://wow.zamimg.com/images/wow/icons/medium/${item.icon}.jpg`;
+  const wh=`https://www.wowhead.com/wotlk/item=${e.itemId}`;
+  return `<a class="gs gq${q}" href="${wh}" target="_blank" rel="noopener">
+    <div class="gs-ico"><img src="${ico}" alt="" loading="lazy" onerror="this.parentNode.classList.add('blank');this.remove()"></div>
+    <div class="gs-txt">
+      <div class="gs-slt">${slotName}</div>
+      <div class="gs-nm">${esc(item.name)}</div>
+      ${item.ilvl?`<div class="gs-ilvl">${item.ilvl}</div>`:''}
     </div>
-    <div class="profile-scan">
-      Відскановано: ${fmtDate(char.date)}${char.scanned ? ` · by ${esc(char.scanned)}` : ''}
-    </div>
-    <div class="profile-stats-row">
-      <div class="ps">
-        <span class="ps-val" style="color:${col}">${char.gs ? char.gs.toLocaleString() : '—'}</span>
-        <span class="ps-lbl">GearScore</span>
+  </a>`;
+}
+
+function renderPanel(char){
+  const col=CLASS_COLORS[char.class]||'#dce4ee';
+  const cls=CLASS_NAMES[char.class]||char.class;
+  const race=RACE_NAMES[char.race]||char.race||'';
+  const guild=(char.guild&&char.guild!=='*')?char.guild:null;
+  const icon=CLASS_ICON[char.class]||'warrior';
+
+  document.getElementById('gp-top').innerHTML=`
+    <div class="gp-hdr">
+      <img class="gp-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_${icon}.jpg"
+           alt="" onerror="this.style.opacity='.3'">
+      <div class="gp-nameblock">
+        <div class="gp-name" style="color:${col}">${esc(char.name)}</div>
+        <div class="gp-meta">${cls} · ${race}${guild?` · <span style="color:var(--accent)">&lt;${esc(guild)}&gt;</span>`:''}</div>
+        <div class="gp-meta" style="color:var(--text-faint)">${fmtDate(char.date)}${char.scanned?` · ${esc(char.scanned)}`:''}</div>
       </div>
-      <div class="ps">
-        <span class="ps-val">${char.ilvl||'—'}</span>
-        <span class="ps-lbl">Avg iLevel</span>
+      <button class="gp-close" onclick="closePanel()">✕</button>
+    </div>
+    <div class="gp-stats">
+      <div class="gp-stat">
+        <span class="gp-val" style="color:${col}">${char.gs?char.gs.toLocaleString():'—'}</span>
+        <span class="gp-lbl">GearScore</span>
+      </div>
+      <div class="gp-stat">
+        <span class="gp-val">${char.ilvl||'—'}</span>
+        <span class="gp-lbl">Avg iLevel</span>
       </div>
     </div>`;
 
-  // Build equip map: slot → item entry
-  const equip = {};
-  (char.equip||[]).forEach(e => { if(e.itemId) equip[e.slot] = e; });
+  const equip={};
+  (char.equip||[]).forEach(e=>{if(e.itemId)equip[e.slot]=e;});
 
-  function slotHtml(slotNum){
-    const slotName = SLOT_NAMES[slotNum] || ('Slot '+slotNum);
-    const e = equip[slotNum];
-    if(!e || !e.itemId){
-      return `<div class="item-slot empty">
-        <div class="iico"></div>
-        <div class="iinfo">
-          <div class="slot-lbl">${slotName}</div>
-          <div class="item-name" style="color:var(--text-faint);font-weight:400">Порожньо</div>
-        </div>
-      </div>`;
-    }
-    const item = items[String(e.itemId)];
-    if(!item){
-      return `<div class="item-slot q1">
-        <div class="iico no-img"></div>
-        <div class="iinfo">
-          <div class="slot-lbl">${slotName}</div>
-          <div class="item-name">Item #${e.itemId}</div>
-        </div>
-      </div>`;
-    }
-    const q = item.quality||1;
-    const icon_url = `https://wow.zamimg.com/images/wow/icons/medium/${item.icon}.jpg`;
-    const wh_url   = `https://www.wowhead.com/wotlk/item=${e.itemId}`;
-    return `<a class="item-slot q${q}" href="${wh_url}" target="_blank" rel="noopener">
-      <div class="iico">
-        <img src="${icon_url}" alt="" loading="lazy"
-             onerror="this.parentNode.classList.add('no-img');this.remove()">
-      </div>
-      <div class="iinfo">
-        <div class="slot-lbl">${slotName}</div>
-        <div class="item-name">${esc(item.name)}</div>
-        ${item.ilvl ? `<div class="item-ilvl">ilvl ${item.ilvl}</div>` : ''}
-      </div>
-    </a>`;
-  }
+  const left=LEFT_SLOTS.map(s=>slotHtml(s,equip)).join('');
+  const right=RIGHT_SLOTS.map(s=>slotHtml(s,equip)).join('');
+  const weapons=WEAPON_SLOTS.map(s=>slotHtml(s,equip)).join('');
 
-  const leftHtml  = LEFT_SLOTS.map(slotHtml).join('');
-  const rightHtml = RIGHT_SLOTS.map(slotHtml).join('');
-  document.getElementById('profile-doll').innerHTML =
-    `<div class="doll-col">${leftHtml}</div><div class="doll-col">${rightHtml}</div>`;
+  document.getElementById('gp-doll').innerHTML=`
+    <div class="gp-cols">
+      <div class="gp-col">${left}</div>
+      <div class="gp-col">${right}</div>
+    </div>
+    <div class="gp-weapons">${weapons}</div>`;
 }
 
 async function init(){
   try{
-    const r = await fetch('./armory_data.json');
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const data = await r.json();
-    allChars = data.characters || [];
-    items    = data.items      || {};
-    const upd = data.updated || '—';
-    document.getElementById('updated-lbl').textContent = upd;
-    document.getElementById('page-sub').textContent =
+    const r=await fetch('./armory_data.json');
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const data=await r.json();
+    allChars=data.characters||[];
+    items=data.items||{};
+    const upd=data.updated||'—';
+    document.getElementById('updated-lbl').textContent=upd;
+    document.getElementById('page-sub').textContent=
       `${allChars.length} гравців · Freedom x5 · Дані від ${upd}`;
     filterAndRender();
-  } catch(e){
-    document.getElementById('page-sub').textContent = 'Помилка завантаження даних: ' + e.message;
+  }catch(e){
+    document.getElementById('page-sub').textContent='Помилка завантаження: '+e.message;
   }
 }
 
