@@ -56,7 +56,7 @@ print(f"SpellItemEnchantment: {len(en_names)} EN, {len(ru_names)} RU names loade
 # ── 2. GemProperties: enchantId → socketColor ────────────────────────────────
 # SocketColor enum (WoW 3.3.5a): 1=Meta, 2=Red, 4=Yellow, 8=Blue
 # 6=Red+Yellow=Orange, 14=Red+Yellow+Blue=Prismatic
-gp_dbc = load_mpq_dbc(r"enus\patch-enus-2.mpq", "DBFilesClient\\GemProperties.dbc")
+gp_dbc = load_mpq_dbc(r"enus\patch-enus.mpq", "DBFilesClient\\GemProperties.dbc")
 
 enchant_to_sc = {}  # SpellItemEnchantment ID → socket color mask
 if gp_dbc:
@@ -66,19 +66,17 @@ if gp_dbc:
             enchant_to_sc[r[1]] = r[4]
     print(f"GemProperties: {len(enchant_to_sc)} mappings")
 
-# WoW 3.3.5a SocketColor: 1=Meta, 2=Red, 4=Yellow, 8=Blue, 16=Purple, 32=Green, 64=Orange
-# Combos: 6=Red+Yellow (orange hybrid), 14=all three (prismatic)
+# WoW 3.3.5a SocketColor bitmask: 1=Meta, 2=Red, 4=Yellow, 8=Blue
+# Hybrids are sums: Orange=6 (R+Y), Purple=10 (R+B), Green=12 (Y+B), Prismatic=14
 SC_ICON = {
-    1:  ("meta",   "inv_misc_gem_diamond_06"),
-    2:  ("red",    "inv_jewelcrafting_gem_37"),
-    4:  ("yellow", "inv_jewelcrafting_gem_38"),
-    8:  ("blue",   "inv_jewelcrafting_gem_39"),
-    16: ("purple", "inv_jewelcrafting_gem_41"),
-    32: ("green",  "inv_misc_gem_peridot_02"),
-    64: ("orange", "inv_jewelcrafting_gem_40"),
-    6:  ("orange", "inv_jewelcrafting_gem_40"),   # Red+Yellow hybrid
-    14: ("orange", "inv_jewelcrafting_gem_40"),   # Red+Yellow+Blue prismatic
-    128: ("cogwheel", "inv_cog_silver"),           # Cata cogwheel (shouldn't appear in WotLK)
+    1:  ("meta",      "inv_misc_gem_diamond_06"),
+    2:  ("red",       "inv_jewelcrafting_gem_37"),
+    4:  ("yellow",    "inv_jewelcrafting_gem_38"),
+    8:  ("blue",      "inv_jewelcrafting_gem_39"),
+    6:  ("orange",    "inv_jewelcrafting_gem_40"),  # Red+Yellow
+    10: ("purple",    "inv_jewelcrafting_gem_41"),  # Red+Blue
+    12: ("green",     "inv_jewelcrafting_gem_42"),  # Yellow+Blue
+    14: ("prismatic", "inv_misc_gem_diamond_02"),   # Red+Yellow+Blue
 }
 
 # Override for known gems where GemProperties might differ from Freedom x5:
@@ -120,6 +118,10 @@ for eid_str, entry in cache.items():
             color_name, icon = SC_ICON[sc]
             entry['icon'] = icon
             entry['gem_color'] = color_name
+        else:
+            # not a gem (or unknown mask) — clear stale values
+            entry['icon'] = ''
+            entry.pop('gem_color', None)
 
 with open(CACHE_OUT, 'w', encoding='utf-8') as f:
     json.dump(cache, f, ensure_ascii=False, separators=(',', ':'))
