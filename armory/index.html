@@ -105,6 +105,20 @@
   .gm-empty{width:14px;height:14px;border-radius:2px;border:1px dashed rgba(255,255,255,.15);
     background:var(--bg3);flex-shrink:0;}
 
+  /* Stats grid */
+  .gp-statgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px 6px;
+    margin-bottom:10px;padding:8px;background:var(--bg3);border-radius:6px;}
+  .gp-statgrid.wide{grid-template-columns:repeat(4,1fr);}
+  .gp-sb{display:flex;flex-direction:column;align-items:center;gap:1px;}
+  .gp-sv{font-family:'Exo 2',sans-serif;font-size:13px;font-weight:700;line-height:1;}
+  .gp-sl{font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);line-height:1;}
+  .sv-str{color:#e8c96a;} .sv-agi{color:#82e882;} .sv-sta{color:#7ec8ff;}
+  .sv-int{color:#c8a0f8;} .sv-spi{color:#f0a0a0;}
+  .sv-ap{color:#ff9955;} .sv-sp{color:#80d0ff;}
+  .sv-hit{color:#aad372;} .sv-crit{color:#ffcc44;} .sv-haste{color:#88ccff;}
+  .sv-exp{color:#e0c080;} .sv-arp{color:#c8c8c8;} .sv-def{color:#8888cc;}
+  .sv-dodge{color:#88eecc;} .sv-parry{color:#eebb88;} .sv-mp5{color:#88aaff;}
+
   /* SEARCH + TABLE */
   .search-row{display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap;}
   .search-input{flex:1;min-width:160px;background:var(--bg2);border:1px solid var(--border2);
@@ -352,6 +366,17 @@ function gemsHtml(gems){
   return `<div class="gs-gems">${dots}</div>`;
 }
 
+function buildWhAttr(e){
+  const p=[`item=${e.itemId}`];
+  if(e.enchantId) p.push(`ench=${e.enchantId}`);
+  if(e.gems&&e.gems.length){
+    const g=[...e.gems,0,0,0,0].slice(0,4);
+    p.push(`gems=${g.join(':')}`);
+  }
+  p.push('domain=wotlk');
+  return p.join('&');
+}
+
 function slotHtml(slotNum, equip){
   const slotName=SLOT_NAMES[slotNum]||('Slot '+slotNum);
   const e=equip[slotNum];
@@ -371,7 +396,8 @@ function slotHtml(slotNum, equip){
   const q=item.quality||1;
   const ico=`https://wow.zamimg.com/images/wow/icons/medium/${item.icon}.jpg`;
   const wh=`https://www.wowhead.com/wotlk/item=${e.itemId}`;
-  return `<a class="gs gq${q}" href="${wh}" target="_blank" rel="noopener" data-wowhead="item=${e.itemId}&domain=wotlk">
+  const whData=buildWhAttr(e);
+  return `<a class="gs gq${q}" href="${wh}" target="_blank" rel="noopener" data-wowhead="${whData}">
     <div class="gs-ico"><img src="${ico}" alt="" loading="lazy" onerror="this.parentNode.classList.add('blank');this.remove()"></div>
     <div class="gs-txt">
       <div class="gs-slt">${slotName}</div>
@@ -389,6 +415,31 @@ function renderPanel(char){
   const race=RACE_NAMES[char.race]||char.race||'';
   const guild=(char.guild&&char.guild!=='*')?char.guild:null;
   const icon=CLASS_ICON[char.class]||'warrior';
+
+  const s=char.stats||{};
+  const hasPrimary=s.str||s.agi||s.sta||s.int||s.spi;
+  const hasSecondary=s.ap||s.sp||s.hit||s.crit||s.haste||s.exp||s.arp||s.def||s.dodge||s.parry||s.mp5;
+
+  function sb(val,lbl,cls){
+    if(!val) return '';
+    return `<div class="gp-sb"><span class="gp-sv ${cls}">${val.toLocaleString()}</span><span class="gp-sl">${lbl}</span></div>`;
+  }
+
+  const primaryHtml=hasPrimary?`
+    <div class="gp-statgrid">
+      ${sb(s.str,'STR','sv-str')}${sb(s.agi,'AGI','sv-agi')}${sb(s.sta,'STA','sv-sta')}
+      ${sb(s.int,'INT','sv-int')}${sb(s.spi,'SPI','sv-spi')}
+    </div>`:'';
+
+  const secondaryHtml=hasSecondary?`
+    <div class="gp-statgrid wide">
+      ${sb(s.ap,'AP','sv-ap')}${sb(s.sp,'SP','sv-sp')}
+      ${sb(s.hit,'Hit','sv-hit')}${sb(s.crit,'Crit','sv-crit')}
+      ${sb(s.haste,'Haste','sv-haste')}${sb(s.exp,'Exp','sv-exp')}
+      ${sb(s.arp,'ArP','sv-arp')}${sb(s.def,'Def','sv-def')}
+      ${sb(s.dodge,'Dodge','sv-dodge')}${sb(s.parry,'Parry','sv-parry')}
+      ${sb(s.mp5,'MP5','sv-mp5')}
+    </div>`:'';
 
   document.getElementById('gp-top').innerHTML=`
     <div class="gp-hdr">
@@ -410,7 +461,9 @@ function renderPanel(char){
         <span class="gp-val">${char.ilvl||'—'}</span>
         <span class="gp-lbl">Avg iLevel</span>
       </div>
-    </div>`;
+    </div>
+    ${primaryHtml}
+    ${secondaryHtml}`;
 
   const equip={};
   (char.equip||[]).forEach(e=>{if(e.itemId)equip[e.slot]=e;});

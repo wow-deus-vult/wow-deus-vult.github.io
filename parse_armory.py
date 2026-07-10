@@ -230,6 +230,37 @@ def save_cache(cache):
         json.dump(cache, f, ensure_ascii=False)
 
 
+STAT_PATTERNS = [
+    (r'\+(\d+) Strength',                 'str'),
+    (r'\+(\d+) Agility',                  'agi'),
+    (r'\+(\d+) Stamina',                  'sta'),
+    (r'\+(\d+) Intellect',                'int'),
+    (r'\+(\d+) Spirit',                   'spi'),
+    (r'\+(\d+) Attack Power',             'ap'),
+    (r'\+(\d+) Spell Power',              'sp'),
+    (r'\+(\d+) Critical Strike Rating',   'crit'),
+    (r'\+(\d+) Hit Rating',               'hit'),
+    (r'\+(\d+) Haste Rating',             'haste'),
+    (r'\+(\d+) Expertise Rating',         'exp'),
+    (r'\+(\d+) Armor Penetration Rating', 'arp'),
+    (r'\+(\d+) Resilience Rating',        'res'),
+    (r'\+(\d+) Defense Rating',           'def'),
+    (r'\+(\d+) Dodge Rating',             'dodge'),
+    (r'\+(\d+) Parry Rating',             'parry'),
+    (r'\+(\d+) Block Rating',             'block'),
+    (r'Restores (\d+) mana per 5 sec',    'mp5'),
+]
+
+def extract_stats(tooltip_html):
+    """Parse white stat lines from wowhead tooltip HTML."""
+    text = re.sub(r'<[^>]+>', ' ', tooltip_html)
+    stats = {}
+    for pattern, key in STAT_PATTERNS:
+        for m in re.finditer(pattern, text, re.IGNORECASE):
+            stats[key] = stats.get(key, 0) + int(m.group(1))
+    return stats
+
+
 def fetch_item(item_id):
     url = f"https://nether.wowhead.com/wotlk/tooltip/item/{item_id}"
     for attempt in range(3):
@@ -250,10 +281,41 @@ def fetch_item(item_id):
                 "quality": data.get("quality", 1),
                 "icon":    data.get("icon", "inv_misc_questionmark"),
                 "ilvl":    int(ilvl_m.group(1)) if ilvl_m else 0,
+                "stats":   extract_stats(tooltip),
             }
         except Exception:
             time.sleep(5 * (attempt + 1))
     return None
+
+
+def update_item_stats(equipped_ids, cache):
+    """Re-fetch stats for equipped items that don't have stats yet."""
+    missing = sorted([iid for iid in equipped_ids
+                      if iid in cache and not cache[iid].get('stats')], key=int)
+    print(f"\nEquipped items without stats: {len(missing)}")
+    if not missing:
+        print("All equipped items have stats!")
+        return cache
+
+    eta = len(missing) * 1.3 / 60
+    print(f"Fetching stats for {len(missing)} items (~{eta:.0f} min)…\n")
+    for i, iid in enumerate(missing):
+        print(f"  [{i+1}/{len(missing)}] {iid}… ", end="", flush=True)
+        data = fetch_item(iid)
+        if data:
+            cache[iid]['stats'] = data.get('stats', {})
+            s = cache[iid]['stats']
+            summary = ' '.join(f"{k}:{v}" for k, v in list(s.items())[:4]) if s else "no stats"
+            print(summary)
+        else:
+            cache[iid]['stats'] = {}
+            print("FAILED")
+        if (i + 1) % 50 == 0:
+            save_cache(cache)
+        time.sleep(random.uniform(0.9, 1.6))
+
+    save_cache(cache)
+    return cache
 
 
 def fetch_items(characters, cache):
@@ -382,6 +444,18 @@ def fetch_enchants(characters, examiner_data, ecache):
 
 # ── OUTPUT ────────────────────────────────────────────────────────────────────
 
+def sum_char_stats(equip, items_cache):
+    """Sum item stats for all equipped slots."""
+    total = {}
+    for slot in equip:
+        if not slot["itemId"]:
+            continue
+        item = items_cache.get(str(slot["itemId"]), {})
+        for stat, val in (item.get("stats") or {}).items():
+            total[stat] = total.get(stat, 0) + val
+    return total if total else None
+
+
 def build_json(characters, items_cache, examiner_data, enchants_cache):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     chars_out = []
@@ -410,6 +484,8 @@ def build_json(characters, items_cache, examiner_data, enchants_cache):
                 "gems":      gems,
             })
 
+        stats = sum_char_stats(equip, items_cache)
+
         chars_out.append({
             "name":        name,
             "gs":          char.get("GearScore", 0),
@@ -425,6 +501,7 @@ def build_json(characters, items_cache, examiner_data, enchants_cache):
             "scanned":     char.get("Scanned", ""),
             "equip":       equip,
             "hasGems":     bool(exam_slots),
+            "stats":       stats,
         })
 
     chars_out.sort(key=lambda x: x["gs"], reverse=True)
@@ -457,6 +534,8 @@ def main():
                         help="Parse Lua only, skip wowhead fetch")
     parser.add_argument("--export", action="store_true",
                         help="Rebuild JSON from existing cache, no new fetches")
+    parser.add_argument("--update-stats", action="store_true",
+                        help="Re-fetch stats for equipped items that are missing them")
     args = parser.parse_args()
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -476,6 +555,16 @@ def main():
     if not args.parse_only and not args.export:
         items_cache    = fetch_items(characters, items_cache)
         enchants_cache = fetch_enchants(characters, examiner_data, enchants_cache)
+
+    if args.update_stats:
+        # Collect all equipped item IDs across all characters
+        equipped_ids = set()
+        for char in characters:
+            for entry in char.get("Equip", []):
+                iid = entry.split(":")[0]
+                if iid and iid != "0":
+                    equipped_ids.add(iid)
+        items_cache = update_item_stats(equipped_ids, items_cache)
 
     build_json(characters, items_cache, examiner_data, enchants_cache)
 
