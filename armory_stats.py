@@ -162,8 +162,9 @@ def dominant_tree(talent_points):
 SHIRT_TABARD_SLOTS = {4, 19}
 
 def compute_stats(equip, items_cache, enchants_cache, race_code, class_code,
-                  talent_points=None, level=80):
-    """Return the character-panel stat dict, or None if base stats unknown."""
+                  talent_points=None, level=80, tree=None):
+    """Return the character-panel stat dict, or None if base stats unknown.
+    tree: 0/1/2 forces a talent tree; None = derive from talent_points."""
     race = RACE_MAP.get(race_code)
     cls  = CLASS_MAP.get(class_code)
     if not race or not cls:
@@ -222,7 +223,8 @@ def compute_stats(equip, items_cache, enchants_cache, race_code, class_code,
                     t[k] += v
 
     # talents
-    tree = dominant_tree(talent_points)
+    if tree is None:
+        tree = dominant_tree(talent_points)
     mods = TALENTS.get((class_code, tree), {}) if tree is not None else {}
     for stat in ("str", "agi", "sta", "int", "spi"):
         if stat in mods:

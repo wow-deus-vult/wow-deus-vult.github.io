@@ -525,7 +525,7 @@ def sum_char_stats(equip, items_cache):
 
 
 def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_talents=None):
-    from armory_stats import compute_stats
+    from armory_stats import compute_stats, dominant_tree
     examiner_talents = examiner_talents or {}
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     chars_out = []
@@ -556,12 +556,14 @@ def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_
             })
 
         stats = sum_char_stats(equip, items_cache)
-        stats_full = compute_stats(
-            equip, items_cache, enchants_cache,
-            char.get("Race", ""), char.get("Class", ""),
-            talent_points=examiner_talents.get(name),
-            level=char.get("Level", 80) or 80,
-        )
+        lvl = char.get("Level", 80) or 80
+        stats_by_spec = [
+            compute_stats(equip, items_cache, enchants_cache,
+                          char.get("Race", ""), char.get("Class", ""),
+                          level=lvl, tree=i)
+            for i in range(3)
+        ]
+        spec_detected = dominant_tree(examiner_talents.get(name))
 
         chars_out.append({
             "name":        name,
@@ -579,7 +581,8 @@ def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_
             "equip":       equip,
             "hasGems":     bool(exam_slots) or any(e["gems"] for e in equip),
             "stats":       stats,
-            "statsFull":   stats_full,
+            "statsBySpec": stats_by_spec,
+            "specTree":    spec_detected,
             "talents":     examiner_talents.get(name, ""),
         })
 

@@ -107,6 +107,14 @@
   .gm-broken{width:14px;height:14px;border-radius:2px;border:1px dashed rgba(255,255,255,.15);
     background:var(--bg3);flex-shrink:0;}
 
+  /* Spec selector */
+  .gp-specs{display:flex;gap:4px;margin-bottom:8px;}
+  .gp-spec{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;
+    color:var(--text-muted);font-family:'Manrope',sans-serif;font-size:11px;font-weight:600;
+    padding:5px 4px;cursor:pointer;transition:.12s;}
+  .gp-spec:hover{color:var(--text);border-color:var(--accent-dim);}
+  .gp-spec.active{color:var(--accent);background:rgba(143,193,227,.1);border-color:var(--accent-dim);}
+
   /* Stats panel (in-game style rows) */
   .gp-statcols{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;
     margin-bottom:10px;padding:9px 11px;background:var(--bg3);border-radius:6px;}
@@ -282,6 +290,21 @@ const RIGHT_SLOTS  = [10, 6, 7, 8, 11, 12, 13, 14]; // Hands Waist Legs Feet Rin
 const WEAPON_SLOTS = [16, 17, 18];                   // Main Hand Off Hand Ranged
 
 let allChars=[], items={}, enchants={}, filtered=[], activeIdx=-1, currentEquip={};
+let panelCharName=null, selectedSpec=0, panelChar=null;
+
+const TREE_NAMES={
+  DK:['Кров','Лід','Анхолі'], WA:['Армс','Фурі','Прот'], PA:['Холі','Прот','Ретрі'],
+  HU:['БМ','ММ','Сурв'],      RO:['Асса','Комбат','Саб'], PR:['Дісці','Холі','Шедоу'],
+  SH:['Елем','Енх','Ресто'],  MA:['Аркан','Фаєр','Фрост'],WK:['Афлі','Демо','Дестро'],
+  DR:['Баланс','Ферал','Ресто'],
+};
+// default displayed tree per class when talents unknown
+const DEFAULT_TREE={DK:2,WA:1,PA:2,HU:1,RO:1,PR:2,SH:0,MA:2,WK:0,DR:1};
+function defaultTree(cls){return DEFAULT_TREE[cls]!=null?DEFAULT_TREE[cls]:0;}
+function selectSpec(i){
+  selectedSpec=i;
+  if(panelChar) renderPanel(panelChar);
+}
 
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmtDate(d){if(!d)return'—';const s=String(d);return s.length>=8?s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8):s;}
@@ -418,13 +441,23 @@ function slotHtml(slotNum, equip){
 }
 
 function renderPanel(char){
+  panelChar=char;
   const col=CLASS_COLORS[char.class]||'#dce4ee';
   const cls=CLASS_NAMES[char.class]||char.class;
   const race=RACE_NAMES[char.race]||char.race||'';
   const guild=(char.guild&&char.guild!=='*')?char.guild:null;
   const icon=CLASS_ICON[char.class]||'warrior';
 
-  const sf=char.statsFull;
+  const specs=char.statsBySpec;
+  if(panelCharName!==char.name){
+    panelCharName=char.name;
+    selectedSpec=(char.specTree!=null)?char.specTree:defaultTree(char.class);
+  }
+  const sf=specs?specs[selectedSpec]:null;
+  const treeNames=TREE_NAMES[char.class]||['1','2','3'];
+  const specBtns=specs?`<div class="gp-specs">${treeNames.map((n,i)=>
+    `<button class="gp-spec${i===selectedSpec?' active':''}" onclick="selectSpec(${i})">${n}</button>`
+  ).join('')}</div>`:'';
   let statsHtml='';
   if(sf){
     const row=(lbl,val,cls)=>val?`<div class="gp-srow"><span class="gp-srl">${lbl}</span><span class="gp-srv ${cls||''}">${val.toLocaleString()}</span></div>`:'';
@@ -444,11 +477,11 @@ function renderPanel(char){
       sf.dodge?row('Ухилення',sf.dodge,'sv-dodge'):'',
       sf.parry?row('Парір.',sf.parry,'sv-parry'):'',
     ].join('');
-    statsHtml=`<div class="gp-statcols">
+    statsHtml=`${specBtns}<div class="gp-statcols">
       <div class="gp-statcol">${left}</div>
       <div class="gp-statcol">${right}</div>
     </div>
-    ${char.hasGems?'':'<div class="gp-statnote">≈ без гемів (потрібен Examiner-скан)</div>'}`;
+    ${char.hasGems?'':'<div class="gp-statnote">≈ без гемів (персонаж ще не відсканований зблизька)</div>'}`;
   }
 
   document.getElementById('gp-top').innerHTML=`
@@ -531,15 +564,20 @@ init();
         .filter(el=>!/Socket Bonus/i.test(el.textContent));
       if(!sockets.length) return;
       const gems=slot.gems;
-      sockets.forEach((sock,i)=>{
-        const gid=gems[i];
-        if(!gid) return;
+      const gemRow=gid=>{
         const en=enchants[String(gid)];
-        if(!en||!en.name) return;
+        if(!en||!en.name) return null;
         const ico=en.icon
           ?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" style="width:15px;height:15px;border-radius:2px;vertical-align:-3px;margin-right:5px">`
           :'';
-        sock.innerHTML=`${ico}<span style="color:#fff">${esc(en.name)}</span>`;
+        return `${ico}<span style="color:#fff">${esc(en.name)}</span>`;
+      };
+      sockets.forEach((sock,i)=>{
+        const gid=gems[i];
+        if(!gid) return;
+        const html=gemRow(gid);
+        if(!html) return;
+        sock.innerHTML=html;
         sock.className='q1';
         sock.style.display='block';
         sock.style.lineHeight='17px';
@@ -548,6 +586,15 @@ init();
         while(nx&&nx.nodeType===3&&!nx.textContent.trim()) nx=nx.nextSibling;
         if(nx&&nx.nodeName==='BR') nx.remove();
       });
+      // belt buckle: extra gems beyond the item's own sockets
+      const lastSock=sockets[sockets.length-1];
+      for(let i=gems.length-1;i>=sockets.length;i--){
+        if(!gems[i]) continue;
+        const html=gemRow(gems[i]);
+        if(!html) continue;
+        lastSock.insertAdjacentHTML('afterend',
+          `<span class="q1" style="display:block;line-height:17px">${html}</span>`);
+      }
     });
   }
 
