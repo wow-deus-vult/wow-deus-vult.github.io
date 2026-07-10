@@ -104,6 +104,8 @@
     display:block;cursor:help;flex-shrink:0;}
   .gm-empty{width:14px;height:14px;border-radius:2px;border:1px dashed rgba(255,255,255,.15);
     background:var(--bg3);flex-shrink:0;}
+  .gm-broken{width:14px;height:14px;border-radius:2px;border:1px dashed rgba(255,255,255,.15);
+    background:var(--bg3);flex-shrink:0;}
 
   /* Stats grid */
   .gp-statgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px 6px;
@@ -354,13 +356,15 @@ function gemsHtml(gems){
   const dots=gems.map(gid=>{
     if(!gid) return '';
     const en=enchants[String(gid)];
+    const name=en&&en.name?en.name:'';
+    const title=name?esc(name):`Gem ${gid}`;
     if(en&&en.icon){
       const src=`https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg`;
-      return `<img class="gm-ico" src="${src}" alt="" loading="lazy"
+      return `<img class="gm-ico" src="${src}" alt="${title}" title="${title}" loading="lazy"
         data-wowhead="enchantment=${gid}&domain=wotlk"
-        onerror="this.style.display='none'">`;
+        onerror="this.classList.add('gm-broken')">`;
     }
-    return `<span class="gm-empty" data-wowhead="enchantment=${gid}&domain=wotlk" title="Gem ${gid}"></span>`;
+    return `<span class="gm-empty" title="${title}" data-wowhead="enchantment=${gid}&domain=wotlk"></span>`;
   }).filter(Boolean).join('');
   if(!dots) return '';
   return `<div class="gs-gems">${dots}</div>`;
