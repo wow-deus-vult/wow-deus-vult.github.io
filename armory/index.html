@@ -382,10 +382,6 @@ function gemsHtml(gems){
 function buildWhAttr(e){
   const p=[`item=${e.itemId}`];
   if(e.enchantId) p.push(`ench=${e.enchantId}`);
-  if(e.gems&&e.gems.length){
-    const g=[...e.gems,0,0,0,0].slice(0,4);
-    p.push(`gems=${g.join(':')}`);
-  }
   p.push('domain=wotlk');
   return p.join('&');
 }
@@ -417,7 +413,6 @@ function slotHtml(slotNum, equip){
       <div class="gs-nm">${esc(item.name)}</div>
       ${item.ilvl?`<div class="gs-ilvl">${item.ilvl}</div>`:''}
       ${enchantHtml(e.enchantId)}
-      ${gemsHtml(e.gems)}
     </div>
   </a>`;
 }
@@ -515,6 +510,44 @@ async function init(){
 }
 
 init();
+
+// ── Inject real gems into wowhead tooltip socket rows ─────────────────────────
+(function(){
+  let hoverSlot=-1;
+  document.addEventListener('mouseover',function(e){
+    const gs=e.target.closest('.gs[data-slot]');
+    if(gs) hoverSlot=+gs.dataset.slot;
+  });
+
+  function injectGems(){
+    if(hoverSlot<0) return;
+    const slot=currentEquip[hoverSlot];
+    if(!slot||!slot.gems||!slot.gems.filter(Boolean).length) return;
+    document.querySelectorAll('.wowhead-tooltip').forEach(tt=>{
+      // socket placeholder rows: links/spans with class socket-*
+      // (after injection className is replaced, so processed rows never match again)
+      const sockets=[...tt.querySelectorAll('[class*="socket-"]')]
+        .filter(el=>!/Socket Bonus/i.test(el.textContent));
+      if(!sockets.length) return;
+      const gems=slot.gems;
+      sockets.forEach((sock,i)=>{
+        const gid=gems[i];
+        if(!gid) return;
+        const en=enchants[String(gid)];
+        if(!en||!en.name) return;
+        const ico=en.icon
+          ?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" style="width:15px;height:15px;border-radius:2px;vertical-align:-3px;margin-right:5px">`
+          :'';
+        sock.innerHTML=`${ico}<span style="color:#fff">${esc(en.name)}</span>`;
+        sock.className='q1';
+        sock.style.display='block';
+        sock.style.marginTop='2px';
+      });
+    });
+  }
+
+  new MutationObserver(injectGems).observe(document.body,{childList:true,subtree:true});
+})();
 </script>
 <script>const whTooltips={colorLinks:false,iconizeLinks:false,renameLinks:false};</script>
 <script src="https://wow.zamimg.com/widgets/power.js"></script>
