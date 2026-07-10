@@ -153,6 +153,9 @@
   footer{text-align:center;padding:36px 24px;color:var(--text-faint);font-size:12px;
     border-top:1px solid var(--border);margin-top:24px;}
 
+  /* Enchant/gem details — hidden, revealed on slot hover */
+  .gs-details{display:none;margin-top:3px;}
+  .gs:not(.empty):hover .gs-details{display:block;}
   /* Gem rows inside slot */
   .gs-gem-row{display:flex;align-items:center;gap:4px;margin-top:2px;}
   .gs-gem-nm{font-size:10px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -416,8 +419,7 @@ function slotHtml(slotNum, equip){
       <div class="gs-slt">${slotName}</div>
       <div class="gs-nm">${esc(item.name)}</div>
       ${item.ilvl?`<div class="gs-ilvl">${item.ilvl}</div>`:''}
-      ${enchantHtml(e.enchantId)}
-      ${gemsHtml(e.gems)}
+      <div class="gs-details">${enchantHtml(e.enchantId)}${gemsHtml(e.gems)}</div>
     </div>
   </a>`;
 }
