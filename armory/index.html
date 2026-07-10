@@ -289,7 +289,7 @@ function renderTable(){
   const rows = filtered.map((c, i) => {
     const col = CLASS_COLORS[c.class] || '#dce4ee';
     const guild = (c.guild && c.guild !== '*') ? esc(c.guild) : '—';
-    return `<tr class="data-row" onclick="showChar(${JSON.stringify(c.name)})">
+    return `<tr class="data-row" onclick="showChar(${i})">
       <td class="c-rank">${i+1}</td>
       <td><span class="c-name" style="color:${col}">${esc(c.name)}</span></td>
       <td class="c-class" style="color:${col}">${CLASS_NAMES[c.class]||c.class}</td>
@@ -308,8 +308,8 @@ function showList(){
   document.getElementById('profile-view').classList.remove('active');
 }
 
-function showChar(name){
-  const char = allChars.find(c => c.name === name);
+function showChar(idx){
+  const char = filtered[idx];
   if(!char) return;
   document.getElementById('list-view').classList.add('hidden');
   document.getElementById('profile-view').classList.add('active');
