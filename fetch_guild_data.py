@@ -69,6 +69,7 @@ SPEC_INDEX  = {
 
 def find_guild_members_on_server(members):
     found = {}
+    player_dates = {}  # name -> most recent log date "YYYY-MM-DD"
     total = len(CLASSES) * 3
     done  = 0
     print("[?] Крок 1: шукаємо гравців на сервері...")
@@ -86,7 +87,21 @@ def find_guild_members_on_server(members):
             try:
                 r = requests.post(TOP_URL, json=payload, headers=HEADERS, timeout=30)
                 r.raise_for_status()
-                guild_found = [e[3] for e in r.json() if e[3] in members]
+                guild_found = []
+                for e in r.json():
+                    name = e[3]
+                    if name not in members:
+                        continue
+                    guild_found.append(name)
+                    # Log ID format: "YY-MM-DD--HH-MM--Server" → extract date
+                    log_id = e[0] if e else ""
+                    if log_id and len(log_id) >= 8:
+                        try:
+                            date_str = "20" + log_id[0:2] + "-" + log_id[3:5] + "-" + log_id[6:8]
+                            if name not in player_dates or date_str > player_dates[name]:
+                                player_dates[name] = date_str
+                        except Exception:
+                            pass
                 print(f"{len(guild_found)}")
                 for name in guild_found:
                     if name not in found:
@@ -95,7 +110,7 @@ def find_guild_members_on_server(members):
             except Exception as e:
                 print(f"! {e}")
             time.sleep(0.3)
-    return found
+    return found, player_dates
 
 # ─── Крок 2: /character для основних даних ───────────────────────────────────
 
@@ -164,7 +179,7 @@ def fetch_rs_mini_bosses(members_specs):
 # ─── Основна логіка ──────────────────────────────────────────────────────────
 
 def build_guild_data(members):
-    members_specs = find_guild_members_on_server(members)
+    members_specs, player_dates = find_guild_members_on_server(members)
     print(f"\n   Знайдено {len(members_specs)} гравців\n")
 
     # Крок 3: міні-боси РС
@@ -179,7 +194,11 @@ def build_guild_data(members):
     for name, specs in members_specs.items():
         for cls_name, spec_name, spec_i in specs:
             done += 1
-            print(f"  [{done}/{total}] {name} / {cls_name} {spec_name}...", end=" ", flush=True)
+            try:
+                print(f"  [{done}/{total}] {name} / {cls_name} {spec_name}...", end=" ", flush=True)
+            except UnicodeEncodeError:
+                safe_name = name.encode("cp1251", errors="replace").decode("cp1251")
+                print(f"  [{done}/{total}] {safe_name} / {cls_name} {spec_name}...", end=" ", flush=True)
 
             # Перевіряємо виключення
             if (name, cls_name, spec_name) in EXCLUSIONS:
@@ -214,6 +233,7 @@ def build_guild_data(members):
                 "specIndex":    int(spec_i),
                 "overallRank":  overall_rank,
                 "overallScore": score,
+                "lastLogDate":  player_dates.get(name, ""),
                 "bosses":       bosses,
             })
             print(f"score={score:.2f} rank=#{overall_rank}")

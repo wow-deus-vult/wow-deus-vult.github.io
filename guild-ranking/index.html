@@ -181,8 +181,10 @@
     <a href="../tank-ranking/">Рейтинг Tank</a>
     <a href="../potion-stats/">Статистика Зіль</a>
     <a href="../total-damage/">Total Damage</a>
+    <a href="../armory/">Armory</a>
     <a href="../analytics/">Аналітика</a>
     <a href="../dont-push/">Dont Push</a>
+    <a href="../invaders/">Invaders Must Die</a>
   </div>
   <button class="nav-toggle" aria-label="Меню">☰</button>
 </nav>
@@ -316,7 +318,7 @@ function buildHeader() {
 
   const tr1 = document.createElement('tr');
   tr1.className = 'group-row';
-  for (let i = 0; i < 6; i++) tr1.appendChild(document.createElement('th'));
+  for (let i = 0; i < 7; i++) tr1.appendChild(document.createElement('th'));
 
   const thIcc = document.createElement('th');
   thIcc.colSpan = ICC_BOSSES.length;
@@ -335,7 +337,7 @@ function buildHeader() {
   const tr2 = document.createElement('tr');
   tr2.className = 'col-row';
 
-  ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Score'].forEach(t => {
+  ['#','Гравець','Клас / Спек','Guild Rank','Server Rank','Score','Last update'].forEach(t => {
     const th = document.createElement('th');
     th.textContent = t;
     tr2.appendChild(th);
@@ -390,6 +392,10 @@ function render() {
 
     const sc  = row.overallScore || 0;
     addTd(tr, `<span class="score-val" style="color:${scoreColor(sc)};font-weight:700">${sc.toFixed(2)}</span>`);
+
+    const d = row.lastLogDate || '';
+    const dateDisp = d ? d.split('-').reverse().join('.') : '—';
+    addTd(tr, `<span style="color:var(--text-muted);font-size:12px;white-space:nowrap">${dateDisp}</span>`);
 
     ICC_BOSSES.forEach(boss => {
       const val = row.bosses?.[boss] || 0;

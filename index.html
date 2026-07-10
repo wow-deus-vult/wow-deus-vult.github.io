@@ -165,6 +165,7 @@
     <a href="./tank-ranking/">Рейтинг Tank</a>
     <a href="./potion-stats/">Статистика Зіль</a>
     <a href="./total-damage/">Total Damage</a>
+    <a href="./armory/">Armory</a>
     <a href="./analytics/">Аналітика</a>
     <a href="./dont-push/">Dont Push</a>
     <a href="./invaders/">Invaders Must Die</a>
@@ -273,10 +274,11 @@
         <th class="right">Guild Rank</th>
         <th class="right">Server Rank</th>
         <th class="right">Score</th>
+        <th class="right">Last update</th>
       </tr>
     </thead>
     <tbody id="hofBody">
-      <tr><td colspan="6" style="text-align:center;color:var(--text-faint);padding:24px">Завантаження...</td></tr>
+      <tr><td colspan="7" style="text-align:center;color:var(--text-faint);padding:24px">Завантаження...</td></tr>
     </tbody>
   </table>
 </div>
@@ -298,7 +300,9 @@ fetch('./data/guild-data.json').then(r=>r.json()).then(data=>{
   var tbody=document.getElementById('hofBody'); tbody.innerHTML='';
   data.rows.slice(0,10).forEach(function(row,i){
     var tr=document.createElement('tr');
-    tr.innerHTML='<td class="num">'+(i+1)+'</td><td>'+row.name+'</td><td style="color:var(--text-muted)">'+row.class+' · '+row.spec+'</td><td class="right"><span class="rank-guild">#'+(i+1)+'</span></td><td class="right"><span class="'+(row.overallRank<=10?'rank-top10':row.overallRank<=50?'rank-top50':'rank-other')+'">#'+(row.overallRank||'—')+'</span></td><td class="right"><span class="score-val">'+(row.overallScore||'—')+'</span></td>';
+    var d=row.lastLogDate||'';
+    var dateStr=d?d.split('-').reverse().join('.'):'—';
+    tr.innerHTML='<td class="num">'+(i+1)+'</td><td>'+row.name+'</td><td style="color:var(--text-muted)">'+row.class+' · '+row.spec+'</td><td class="right"><span class="rank-guild">#'+(i+1)+'</span></td><td class="right"><span class="'+(row.overallRank<=10?'rank-top10':row.overallRank<=50?'rank-top50':'rank-other')+'">#'+(row.overallRank||'—')+'</span></td><td class="right"><span class="score-val">'+(row.overallScore||'—')+'</span></td><td class="right" style="color:var(--text-muted);font-size:12px">'+dateStr+'</td>';
     tbody.appendChild(tr);
   });
 }).catch(()=>{});
