@@ -96,7 +96,7 @@ def parse_lua():
         equip = []
         em = re.search(r'\["Equip"\]\s*=\s*\{([^}]*)\}', body, re.DOTALL)
         if em:
-            for im in re.finditer(r'"(\d+:\d+)"|nil', em.group(1)):
+            for im in re.finditer(r'"([\d:]+)"|nil', em.group(1)):
                 equip.append(im.group(1) if im.group(1) else "0:0")
         char["Equip"] = equip
 
@@ -105,6 +105,83 @@ def parse_lua():
 
     print(f"Parsed {len(players)} characters from GearScore")
     return players
+
+
+def parse_specgear():
+    """Parse GS_SpecGear (patched addon) → {name: {tree0based: snapshot}}.
+    snapshot = {"Equip": [...], "GearScore": n, "Average": n, "Date": str, "Spec": str}"""
+    with open(LUA_PATH, encoding="utf-8", errors="replace") as f:
+        content = f.read()
+    content = re.sub(r"--[^\n]*", "", content)
+
+    marker = "GS_SpecGear = {"
+    start = content.find(marker)
+    if start == -1:
+        return {}
+    pos = start + len(marker)
+    depth = 1
+    while pos < len(content) and depth > 0:
+        if content[pos] == "{": depth += 1
+        elif content[pos] == "}": depth -= 1
+        pos += 1
+    text = content[start + len(marker) : pos - 1]
+
+    def _blocks(src):
+        """Iterate top-level ["key"] = { ... } blocks of src → (key, body)."""
+        scan = 0
+        while scan < len(src):
+            m = re.search(r'\["([^"]+)"\]\s*=\s*\{', src[scan:])
+            if not m:
+                break
+            open_pos = scan + m.end()
+            depth = 1
+            j = open_pos
+            while j < len(src) and depth > 0:
+                if src[j] == "{": depth += 1
+                elif src[j] == "}": depth -= 1
+                j += 1
+            yield m.group(1), src[open_pos : j - 1]
+            scan = j
+
+    result = {}
+    name_bodies = []
+    for _realm, realm_body in _blocks(text):
+        name_bodies.extend(_blocks(realm_body))
+
+    for name, body in name_bodies:
+        trees = {}
+        for tm in re.finditer(r'\[(\d)\]\s*=\s*\{', body):
+            tree = int(tm.group(1)) - 1        # lua 1-based → 0-based
+            t_open = tm.end()
+            d2 = 1
+            k = t_open
+            while k < len(body) and d2 > 0:
+                if body[k] == "{": d2 += 1
+                elif body[k] == "}": d2 -= 1
+                k += 1
+            t_body = body[t_open : k - 1]
+
+            snap = {}
+            for fm in re.finditer(r'\["(\w+)"\]\s*=\s*"([^"]*)"', t_body):
+                snap[fm.group(1)] = fm.group(2)
+            for fm in re.finditer(r'\["(\w+)"\]\s*=\s*(-?\d+)', t_body):
+                if fm.group(1) not in snap:
+                    snap[fm.group(1)] = int(fm.group(2))
+            equip = []
+            em = re.search(r'\["Equip"\]\s*=\s*\{([^}]*)\}', t_body, re.DOTALL)
+            if em:
+                for im in re.finditer(r'"([\d:]+)"|nil', em.group(1)):
+                    equip.append(im.group(1) if im.group(1) else "0:0")
+            snap["Equip"] = equip
+            if equip:
+                trees[tree] = snap
+        if trees:
+            result[name] = trees
+
+    if result:
+        total = sum(len(v) for v in result.values())
+        print(f"SpecGear: {len(result)} characters, {total} spec snapshots")
+    return result
 
 
 # ── EXAMINER LUA PARSER ───────────────────────────────────────────────────────
@@ -524,9 +601,37 @@ def sum_char_stats(equip, items_cache):
     return total if total else None
 
 
-def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_talents=None):
+def build_equip_list(equip_strings, exam_slots=None):
+    """GearScore Equip strings → list of {slot, itemId, enchantId, gems}."""
+    exam_slots = exam_slots or {}
+    equip = []
+    for slot_idx, entry in enumerate(equip_strings, start=1):
+        parts = entry.split(":")
+        item_id    = int(parts[0]) if parts[0] and parts[0].isdigit() else 0
+        enchant_id = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else 0
+        # gems straight from GearScore strings (patched addon keeps fields 3-6)
+        gems       = [int(p) for p in parts[2:6] if p and p.isdigit() and int(p) != 0]
+
+        # Examiner overrides: more precise enchant + adds gems
+        if slot_idx in exam_slots:
+            ex = exam_slots[slot_idx]
+            enchant_id = ex["enchantId"]
+            gems       = ex["gems"] or gems
+
+        equip.append({
+            "slot":      slot_idx,
+            "itemId":    item_id,
+            "enchantId": enchant_id,
+            "gems":      gems,
+        })
+    return equip
+
+
+def build_json(characters, items_cache, examiner_data, enchants_cache,
+               examiner_talents=None, spec_gear=None):
     from armory_stats import compute_stats, dominant_tree
     examiner_talents = examiner_talents or {}
+    spec_gear = spec_gear or {}
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     chars_out = []
 
@@ -534,36 +639,31 @@ def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_
         name = char.get("Name", "")
         exam_slots = examiner_data.get(name, {})
 
-        equip = []
-        for slot_idx, entry in enumerate(char.get("Equip", []), start=1):
-            parts = entry.split(":")
-            item_id    = int(parts[0]) if parts[0] else 0
-            enchant_id = int(parts[1]) if len(parts) > 1 and parts[1] else 0
-            # gems straight from GearScore strings (patched addon keeps fields 3-6)
-            gems       = [int(p) for p in parts[2:6] if p and p.isdigit() and int(p) != 0]
+        equip = build_equip_list(char.get("Equip", []), exam_slots)
 
-            # Examiner overrides: more precise enchant + adds gems
-            if slot_idx in exam_slots:
-                ex = exam_slots[slot_idx]
-                enchant_id = ex["enchantId"]
-                gems       = ex["gems"] or gems
-
-            equip.append({
-                "slot":      slot_idx,
-                "itemId":    item_id,
-                "enchantId": enchant_id,
-                "gems":      gems,
-            })
+        # per-spec gear snapshots from the patched addon
+        gear_by_spec = {}
+        for tree, snap in (spec_gear.get(name) or {}).items():
+            gear_by_spec[tree] = {
+                "equip": build_equip_list(snap.get("Equip", [])),
+                "gs":    snap.get("GearScore", 0),
+                "ilvl":  snap.get("Average", 0),
+                "date":  snap.get("Date", ""),
+                "spec":  snap.get("Spec", ""),
+            }
 
         stats = sum_char_stats(equip, items_cache)
         lvl = char.get("Level", 80) or 80
+        race, cls = char.get("Race", ""), char.get("Class", "")
         stats_by_spec = [
-            compute_stats(equip, items_cache, enchants_cache,
-                          char.get("Race", ""), char.get("Class", ""),
-                          level=lvl, tree=i)
+            compute_stats(
+                (gear_by_spec[i]["equip"] if i in gear_by_spec else equip),
+                items_cache, enchants_cache, race, cls, level=lvl, tree=i)
             for i in range(3)
         ]
         spec_detected = dominant_tree(examiner_talents.get(name))
+        if spec_detected is None and gear_by_spec:
+            spec_detected = max(gear_by_spec, key=lambda t: gear_by_spec[t].get("date", ""))
 
         chars_out.append({
             "name":        name,
@@ -583,6 +683,7 @@ def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_
             "stats":       stats,
             "statsBySpec": stats_by_spec,
             "specTree":    spec_detected,
+            "gearBySpec":  {str(k): v for k, v in gear_by_spec.items()} or None,
             "talents":     examiner_talents.get(name, ""),
         })
 
@@ -631,6 +732,7 @@ def main():
     characters = apply_best_gs(characters)
 
     examiner_data, examiner_talents = parse_examiner()
+    spec_gear      = parse_specgear()
     items_cache    = load_cache()
     enchants_cache = load_enchants_cache()
 
@@ -653,7 +755,8 @@ def main():
         if args.update_stats:
             items_cache = update_item_stats(equipped_ids, items_cache)
 
-    build_json(characters, items_cache, examiner_data, enchants_cache, examiner_talents)
+    build_json(characters, items_cache, examiner_data, enchants_cache,
+               examiner_talents, spec_gear)
 
 
 if __name__ == "__main__":

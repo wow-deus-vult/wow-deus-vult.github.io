@@ -454,10 +454,14 @@ function renderPanel(char){
     selectedSpec=(char.specTree!=null)?char.specTree:defaultTree(char.class);
   }
   const sf=specs?specs[selectedSpec]:null;
+  const specGearTop=char.gearBySpec&&char.gearBySpec[String(selectedSpec)];
+  const sgGs=specGearTop?specGearTop.gs:0, sgIlvl=specGearTop?specGearTop.ilvl:0;
   const treeNames=TREE_NAMES[char.class]||['1','2','3'];
-  const specBtns=specs?`<div class="gp-specs">${treeNames.map((n,i)=>
-    `<button class="gp-spec${i===selectedSpec?' active':''}" onclick="selectSpec(${i})">${n}</button>`
-  ).join('')}</div>`:'';
+  const specBtns=specs?`<div class="gp-specs">${treeNames.map((n,i)=>{
+    const hasSnap=char.gearBySpec&&char.gearBySpec[String(i)];
+    return `<button class="gp-spec${i===selectedSpec?' active':''}" onclick="selectSpec(${i})"
+      title="${hasSnap?'є знімок шмоту в цьому спеку':'стати пораховані по основному шмоту'}">${n}${hasSnap?' •':''}</button>`;
+  }).join('')}</div>`:'';
   let statsHtml='';
   if(sf){
     const row=(lbl,val,cls)=>val?`<div class="gp-srow"><span class="gp-srl">${lbl}</span><span class="gp-srv ${cls||''}">${val.toLocaleString()}</span></div>`:'';
@@ -497,18 +501,20 @@ function renderPanel(char){
     </div>
     <div class="gp-stats">
       <div class="gp-stat">
-        <span class="gp-val" style="color:${col}">${char.gs?char.gs.toLocaleString():'—'}</span>
+        <span class="gp-val" style="color:${col}">${(sgGs||char.gs)?(sgGs||char.gs).toLocaleString():'—'}</span>
         <span class="gp-lbl">GearScore</span>
       </div>
       <div class="gp-stat">
-        <span class="gp-val">${char.ilvl||'—'}</span>
+        <span class="gp-val">${sgIlvl||char.ilvl||'—'}</span>
         <span class="gp-lbl">Avg iLevel</span>
       </div>
     </div>
     ${statsHtml}`;
 
+  // per-spec gear snapshot when the addon has seen this player in that spec
+  const equipSrc=specGearTop?specGearTop.equip:(char.equip||[]);
   const equip={};
-  (char.equip||[]).forEach(e=>{if(e.itemId)equip[e.slot]=e;});
+  equipSrc.forEach(e=>{if(e.itemId)equip[e.slot]=e;});
   currentEquip=equip;
 
   const left=LEFT_SLOTS.map(s=>slotHtml(s,equip)).join('');
