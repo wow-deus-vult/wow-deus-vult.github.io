@@ -18,6 +18,7 @@ LUA_PATH    = r"D:\world of warcraft 3.3.5a hd – 3\WTF\Account\R113\SavedVaria
 OUTPUT_DIR  = "armory"
 ITEMS_CACHE = os.path.join(OUTPUT_DIR, "items_cache.json")
 DATA_FILE   = os.path.join(OUTPUT_DIR, "armory_data.json")
+GS_BEST     = os.path.join(OUTPUT_DIR, "gs_best.json")
 
 SLOT_NAMES = [
     None,
@@ -97,6 +98,37 @@ def parse_lua():
 
     print(f"Parsed {len(players)} characters")
     return players
+
+
+# ── BEST GS STORE ─────────────────────────────────────────────────────────────
+
+def apply_best_gs(characters):
+    """Keep the snapshot with highest GearScore per character across all scans.
+    Guards against transmog making the addon record wrong low-level items."""
+    best = {}
+    if os.path.exists(GS_BEST):
+        with open(GS_BEST, encoding="utf-8") as f:
+            best = json.load(f)
+
+    updated = 0
+    for char in characters:
+        name = char.get("Name", "")
+        gs   = char.get("GearScore", 0) or 0
+        prev_gs = best.get(name, {}).get("GearScore", 0) or 0
+        if gs > prev_gs:
+            best[name] = char
+            updated += 1
+
+    with open(GS_BEST, "w", encoding="utf-8") as f:
+        json.dump(best, f, ensure_ascii=False, separators=(",", ":"))
+
+    # Build result: use best record for each character
+    # Include both current-scan chars (possibly replaced by better historical)
+    # and historical chars not in current scan
+    result = list(best.values())
+    kept   = sum(1 for c in characters if (c.get("GearScore") or 0) < (best.get(c["Name"], {}).get("GearScore") or 0))
+    print(f"  Best GS: {len(result)} total | {updated} improved | {kept} kept historical (transmog guard)")
+    return result
 
 
 # ── ITEM CACHE ────────────────────────────────────────────────────────────────
@@ -238,6 +270,8 @@ def main():
     characters = parse_lua()
     if not characters:
         sys.exit(1)
+
+    characters = apply_best_gs(characters)
 
     cache = load_cache()
     print(f"Items already cached: {len(cache)}")
