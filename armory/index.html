@@ -30,8 +30,9 @@
     justify-content:center;font-size:18px;line-height:1;}
 
   /* ── LAYOUT ── */
-  .page{max-width:1200px;margin:0 auto;padding:32px 24px 64px;}
-  .page-header{margin-bottom:28px;}
+  .page{max-width:1260px;margin:0 auto;padding:32px 24px 64px;}
+  .page-header{margin-bottom:28px;padding-left:52px;}
+  .list-view{padding-left:52px;}
   .page-title{font-family:'Exo 2',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:900;
     letter-spacing:.1em;color:var(--text);margin-bottom:6px;}
   .page-sub{color:var(--text-muted);font-size:13px;}
@@ -80,25 +81,27 @@
     transition:.15s;}
   .btn-back:hover{color:var(--text);border-color:var(--accent-dim);}
 
-  /* Profile header */
+  /* Profile body: items LEFT, info RIGHT */
+  .profile-body{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;}
+
+  /* Profile header / info panel */
   .profile-hdr{background:var(--bg2);border:1px solid var(--border);border-radius:12px;
-    padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+    padding:20px 24px;display:flex;flex-direction:column;gap:16px;}
   .profile-icon{width:60px;height:60px;border-radius:10px;overflow:hidden;flex-shrink:0;
     border:2px solid var(--border2);}
   .profile-icon img{width:100%;height:100%;object-fit:cover;display:block;}
-  .profile-info{flex:1;min-width:180px;}
   .profile-name{font-family:'Exo 2',sans-serif;font-size:clamp(18px,3vw,26px);font-weight:900;
     letter-spacing:.05em;line-height:1.1;margin-bottom:5px;}
   .profile-meta{color:var(--text-muted);font-size:13px;margin-bottom:3px;}
   .profile-guild{font-weight:700;color:var(--accent);font-size:13px;}
   .profile-scan{color:var(--text-faint);font-size:11px;margin-top:5px;}
-  .profile-stats-row{display:flex;gap:20px;text-align:center;flex-shrink:0;}
+  .profile-stats-row{display:flex;gap:20px;text-align:center;}
   .ps{display:flex;flex-direction:column;align-items:center;}
   .ps-val{font-family:'Exo 2',sans-serif;font-size:26px;font-weight:900;line-height:1;}
   .ps-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-top:3px;}
 
-  /* Paper doll */
-  .doll{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:880px;}
+  /* Paper doll — two columns, items LEFT */
+  .doll{display:grid;grid-template-columns:1fr 1fr;gap:6px;min-width:520px;}
   .doll-col{display:flex;flex-direction:column;gap:5px;}
 
   .item-slot{display:flex;align-items:center;gap:9px;background:var(--bg2);
@@ -134,7 +137,10 @@
     .nav-links a{padding:12px 14px;font-size:15px;}
     .nav-toggle{display:flex;}
     .nav-logo{margin-right:0;}
-    .doll{grid-template-columns:1fr;}
+    .page-header{padding-left:0;}
+    .list-view{padding-left:0;}
+    .doll{grid-template-columns:1fr;min-width:0;}
+    .profile-body{grid-template-columns:1fr;}
     .profile-stats-row{gap:14px;}
   }
 </style>
@@ -213,8 +219,10 @@
   <!-- PROFILE VIEW -->
   <div class="profile-view" id="profile-view">
     <button class="btn-back" onclick="showList()">← Назад до списку</button>
-    <div class="profile-hdr" id="profile-hdr"></div>
-    <div class="doll" id="profile-doll"></div>
+    <div class="profile-body">
+      <div class="doll" id="profile-doll"></div>
+      <div class="profile-hdr" id="profile-hdr"></div>
+    </div>
   </div>
 
 </div>
@@ -325,17 +333,19 @@ function renderProfile(char){
   const icon = CLASS_ICON[char.class] || 'warrior';
 
   document.getElementById('profile-hdr').innerHTML = `
-    <div class="profile-icon">
-      <img src="https://wow.zamimg.com/images/wow/icons/large/classicon_${icon}.jpg"
-           alt="${cls}" onerror="this.style.opacity='.3'">
-    </div>
-    <div class="profile-info">
-      <div class="profile-name" style="color:${col}">${esc(char.name)}</div>
-      <div class="profile-meta">${cls} · ${race} · Рівень ${char.level||80}</div>
-      ${guild ? `<div class="profile-guild">&lt;${esc(guild)}&gt;</div>` : ''}
-      <div class="profile-scan">
-        Відскановано: ${fmtDate(char.date)}${char.scanned ? ` · by ${esc(char.scanned)}` : ''}
+    <div style="display:flex;align-items:center;gap:14px">
+      <div class="profile-icon">
+        <img src="https://wow.zamimg.com/images/wow/icons/large/classicon_${icon}.jpg"
+             alt="${cls}" onerror="this.style.opacity='.3'">
       </div>
+      <div>
+        <div class="profile-name" style="color:${col}">${esc(char.name)}</div>
+        <div class="profile-meta">${cls} · ${race} · Рівень ${char.level||80}</div>
+        ${guild ? `<div class="profile-guild">&lt;${esc(guild)}&gt;</div>` : ''}
+      </div>
+    </div>
+    <div class="profile-scan">
+      Відскановано: ${fmtDate(char.date)}${char.scanned ? ` · by ${esc(char.scanned)}` : ''}
     </div>
     <div class="profile-stats-row">
       <div class="ps">
