@@ -329,7 +329,7 @@ function slotHtml(slotNum, equip){
   const q=item.quality||1;
   const ico=`https://wow.zamimg.com/images/wow/icons/medium/${item.icon}.jpg`;
   const wh=`https://www.wowhead.com/wotlk/item=${e.itemId}`;
-  return `<a class="gs gq${q}" href="${wh}" target="_blank" rel="noopener">
+  return `<a class="gs gq${q}" href="${wh}" target="_blank" rel="noopener" data-wowhead="item=${e.itemId}&domain=wotlk">
     <div class="gs-ico"><img src="${ico}" alt="" loading="lazy" onerror="this.parentNode.classList.add('blank');this.remove()"></div>
     <div class="gs-txt">
       <div class="gs-slt">${slotName}</div>
@@ -381,6 +381,8 @@ function renderPanel(char){
       <div class="gp-col">${right}</div>
     </div>
     <div class="gp-weapons">${weapons}</div>`;
+
+  if(typeof $WowheadPower!=='undefined') $WowheadPower.refreshLinks();
 }
 
 async function init(){
@@ -402,5 +404,7 @@ async function init(){
 
 init();
 </script>
+<script>const whTooltips={colorLinks:false,iconizeLinks:false,renameLinks:false};</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
 </body>
 </html>
