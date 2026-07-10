@@ -353,6 +353,11 @@ def extract_stats(text):
     for pattern, key in STAT_PATTERNS:
         for m in re.finditer(pattern, text, re.IGNORECASE):
             stats[key] = stats.get(key, 0) + int(m.group(1))
+    # "+10 All Stats" → all five primary stats
+    for m in re.finditer(r'\+(\d+) (?:to )?All Stats', text, re.IGNORECASE):
+        v = int(m.group(1))
+        for k in ('str', 'agi', 'sta', 'int', 'spi'):
+            stats[k] = stats.get(k, 0) + v
     return stats
 
 
@@ -655,13 +660,19 @@ def build_json(characters, items_cache, examiner_data, enchants_cache,
         stats = sum_char_stats(equip, items_cache)
         lvl = char.get("Level", 80) or 80
         race, cls = char.get("Race", ""), char.get("Class", "")
-        stats_by_spec = [
-            compute_stats(
-                (gear_by_spec[i]["equip"] if i in gear_by_spec else equip),
-                items_cache, enchants_cache, race, cls, level=lvl, tree=i)
-            for i in range(3)
-        ]
-        spec_detected = dominant_tree(examiner_talents.get(name))
+        exam_tp = examiner_talents.get(name)
+        stats_by_spec = []
+        for i in range(3):
+            if i in gear_by_spec:
+                tree_equip = gear_by_spec[i]["equip"]
+                tree_spec  = gear_by_spec[i].get("spec") or None
+            else:
+                tree_equip = equip
+                tree_spec  = exam_tp if dominant_tree(exam_tp) == i else None
+            stats_by_spec.append(compute_stats(
+                tree_equip, items_cache, enchants_cache, race, cls,
+                talent_points=tree_spec, level=lvl, tree=i))
+        spec_detected = dominant_tree(exam_tp)
         if spec_detected is None and gear_by_spec:
             spec_detected = max(gear_by_spec, key=lambda t: gear_by_spec[t].get("date", ""))
 

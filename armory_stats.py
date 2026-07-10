@@ -82,6 +82,11 @@ def enchant_stats(name_en):
     for pat, key in ENCH_PATTERNS:
         for m in re.finditer(pat, name_en, re.I):
             out[key] = out.get(key, 0) + int(m.group(1))
+    # "+10 All Stats" / "All Stats by 10" → all five primary stats
+    for m in re.finditer(r'\+(\d+) (?:to )?All Stats|All Stats(?: and\b[^+]*)? by (\d+)', name_en, re.I):
+        v = int(m.group(1) or m.group(2))
+        for k in ('str', 'agi', 'sta', 'int', 'spi'):
+            out[k] = out.get(k, 0) + v
     return out
 
 
@@ -144,6 +149,36 @@ TALENTS = {
     ("DR", 1): {"str": 1.06, "agi": 1.06, "sta": 1.06, "int": 1.06, "spi": 1.06},  # Feral: SotF
     ("DR", 2): {},                                                           # Resto
 }
+
+
+def parse_points(spec_str):
+    """'0/17/54' → [0, 17, 54] or None."""
+    if not spec_str:
+        return None
+    try:
+        pts = [int(x) for x in spec_str.split("/")]
+        return pts if len(pts) == 3 and sum(pts) > 0 else None
+    except ValueError:
+        return None
+
+
+def talent_mods(class_code, tree, pts=None):
+    """Talent stat modifiers. With real point spread (pts) uses per-subtree
+    rules where we have them; otherwise the dominant-tree defaults."""
+    if pts and class_code == "DK":
+        b, f, u = pts
+        mods = {}
+        str_mul = 1.0
+        if b >= 5:  mods["ap_per_armor"] = 5 / 180   # Bladed Armor (Blood t1)
+        if b >= 13: str_mul *= 1.06                   # Veteran of the Third War
+        if b >= 13: mods["sta"] = 1.03
+        if f >= 15: str_mul *= 1.04                   # Endless Winter
+        if f >= 10: mods["armor_items"] = 1.10        # Toughness
+        if u >= 10: str_mul *= 1.03                   # Ravenous Dead
+        if str_mul != 1.0:
+            mods["str"] = round(str_mul, 6)
+        return mods
+    return TALENTS.get((class_code, tree), {}) if tree is not None else {}
 
 
 def dominant_tree(talent_points):
@@ -223,9 +258,10 @@ def compute_stats(equip, items_cache, enchants_cache, race_code, class_code,
                     t[k] += v
 
     # talents
+    pts = parse_points(talent_points)
     if tree is None:
         tree = dominant_tree(talent_points)
-    mods = TALENTS.get((class_code, tree), {}) if tree is not None else {}
+    mods = talent_mods(class_code, tree, pts)
     for stat in ("str", "agi", "sta", "int", "spi"):
         if stat in mods:
             t[stat] = round(t[stat] * mods[stat])
