@@ -322,8 +322,8 @@ STAT_PATTERNS = [
     (r'\+(\d+) Critical Strike Rating',   'crit'),
     (r'\+(\d+) Hit Rating',               'hit'),
     (r'\+(\d+) Haste Rating',             'haste'),
-    (r'\+(\d+) Expertise Rating',         'exp'),
-    (r'\+(\d+) Armor Penetration Rating', 'arp'),
+    (r'\+(\d+) Expertise(?: Rating)?',    'exp'),
+    (r'\+(\d+) Armor Penetration(?: Rating)?', 'arp'),
     (r'\+(\d+) Resilience Rating',        'res'),
     (r'\+(\d+) Defense Rating',           'def'),
     (r'\+(\d+) Dodge Rating',             'dodge'),
@@ -333,8 +333,8 @@ STAT_PATTERNS = [
     (r'critical strike rating by (\d+)',  'crit'),
     (r'\bhit rating by (\d+)',            'hit'),
     (r'haste rating by (\d+)',            'haste'),
-    (r'expertise rating by (\d+)',        'exp'),
-    (r'armor penetration rating by (\d+)','arp'),
+    (r'expertise(?: rating)? by (\d+)',   'exp'),
+    (r'armor penetration(?: rating)? by (\d+)', 'arp'),
     (r'defense rating by (\d+)',          'def'),
     (r'dodge rating by (\d+)',            'dodge'),
     (r'parry rating by (\d+)',            'parry'),
@@ -405,7 +405,7 @@ def fetch_item(item_id):
                 "quality": data.get("quality", 1),
                 "icon":    data.get("icon", "inv_misc_questionmark"),
                 "ilvl":    int(ilvl_m.group(1)) if ilvl_m else 0,
-                "v":       2,   # parser version marker (armor/sockets/equip-line stats)
+                "v":       3,   # parser version marker (v3: arp/exp without "rating")
             }
             out.update(parse_gear_details(tooltip))
             return out
@@ -417,7 +417,7 @@ def fetch_item(item_id):
 def update_gear_details(equipped_ids, cache):
     """Re-fetch equipped items that lack the new detail fields (armor/sockets/fixed stats)."""
     missing = sorted([iid for iid in equipped_ids
-                      if cache.get(iid, {}).get('v') != 2], key=int)
+                      if cache.get(iid, {}).get('v') != 3], key=int)
     print(f"\nEquipped items needing detail re-fetch: {len(missing)}")
     if not missing:
         return cache

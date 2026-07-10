@@ -46,8 +46,8 @@ ENCH_PATTERNS = [
     (r'\+(\d+) Critical Strike Rating',    'crit'),
     (r'\+(\d+) Hit Rating',                'hit'),
     (r'\+(\d+) Haste Rating',              'haste'),
-    (r'\+(\d+) Expertise Rating',          'exp'),
-    (r'\+(\d+) Armor Penetration Rating',  'arp'),
+    (r'\+(\d+) Expertise(?: Rating)?',     'exp'),
+    (r'\+(\d+) Armor Penetration(?: Rating)?', 'arp'),
     (r'\+(\d+) Resilience Rating',         'res'),
     (r'\+(\d+) Defense Rating',            'def'),
     (r'\+(\d+) Dodge Rating',              'dodge'),
@@ -56,8 +56,8 @@ ENCH_PATTERNS = [
     (r'critical strike rating by (\d+)',   'crit'),
     (r'\bhit rating by (\d+)',             'hit'),
     (r'haste rating by (\d+)',             'haste'),
-    (r'expertise rating by (\d+)',         'exp'),
-    (r'armor penetration rating by (\d+)', 'arp'),
+    (r'expertise(?: rating)? by (\d+)',    'exp'),
+    (r'armor penetration(?: rating)? by (\d+)', 'arp'),
     (r'defense rating by (\d+)',           'def'),
     (r'dodge rating by (\d+)',             'dodge'),
     (r'parry rating by (\d+)',             'parry'),
@@ -173,7 +173,6 @@ def talent_mods(class_code, tree, pts=None):
         if b >= 13: str_mul *= 1.06                   # Veteran of the Third War
         if b >= 13: mods["sta"] = 1.03
         if f >= 15: str_mul *= 1.04                   # Endless Winter
-        if f >= 10: mods["armor_items"] = 1.10        # Toughness
         if u >= 10: str_mul *= 1.03                   # Ravenous Dead
         if str_mul != 1.0:
             mods["str"] = round(str_mul, 6)
