@@ -179,7 +179,7 @@ def parse_examiner():
 
             item_id    = int(link_parts[0]) if link_parts[0] else 0
             enchant_id = int(link_parts[1]) if len(link_parts) > 1 and link_parts[1] else 0
-            gems = [int(link_parts[i]) for i in range(2, min(5, len(link_parts)))
+            gems = [int(link_parts[i]) for i in range(2, min(6, len(link_parts)))
                     if link_parts[i] and int(link_parts[i]) != 0]
 
             slots[slot_num] = {"itemId": item_id, "enchantId": enchant_id, "gems": gems}
@@ -467,13 +467,13 @@ def fetch_enchants(characters, examiner_data, ecache):
     """Collect all enchant/gem SpellItemEnchantment IDs and fetch missing ones."""
     all_ids = set()
 
-    # Enchants from GearScore (all 663 characters)
+    # Enchants + gems from GearScore (all characters; gems present with patched addon)
     for char in characters:
         for entry in char.get("Equip", []):
             parts = entry.split(":")
-            eid = parts[1] if len(parts) > 1 else "0"
-            if eid and eid != "0":
-                all_ids.add(eid)
+            for p in parts[1:6]:
+                if p and p.isdigit() and p != "0":
+                    all_ids.add(p)
 
     # Enchants + gems from Examiner (inspected characters)
     for slots in examiner_data.values():
@@ -539,13 +539,14 @@ def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_
             parts = entry.split(":")
             item_id    = int(parts[0]) if parts[0] else 0
             enchant_id = int(parts[1]) if len(parts) > 1 and parts[1] else 0
-            gems       = []
+            # gems straight from GearScore strings (patched addon keeps fields 3-6)
+            gems       = [int(p) for p in parts[2:6] if p and p.isdigit() and int(p) != 0]
 
             # Examiner overrides: more precise enchant + adds gems
             if slot_idx in exam_slots:
                 ex = exam_slots[slot_idx]
                 enchant_id = ex["enchantId"]
-                gems       = ex["gems"]
+                gems       = ex["gems"] or gems
 
             equip.append({
                 "slot":      slot_idx,
@@ -576,7 +577,7 @@ def build_json(characters, items_cache, examiner_data, enchants_cache, examiner_
             "date":        char.get("Date", 0),
             "scanned":     char.get("Scanned", ""),
             "equip":       equip,
-            "hasGems":     bool(exam_slots),
+            "hasGems":     bool(exam_slots) or any(e["gems"] for e in equip),
             "stats":       stats,
             "statsFull":   stats_full,
             "talents":     examiner_talents.get(name, ""),
