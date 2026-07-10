@@ -170,6 +170,11 @@
   .tip-gem{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted);}
   .tip-gem img{width:13px;height:13px;border-radius:2px;flex-shrink:0;}
   .tip-gem-sq{width:13px;height:13px;border:1px dashed rgba(255,255,255,.25);border-radius:2px;flex-shrink:0;}
+  .tip-stats-block{display:flex;flex-direction:column;gap:2px;}
+  .tip-stats{display:flex;flex-wrap:wrap;gap:2px 10px;}
+  .tip-stats span{font-size:11px;color:#1eff00;white-space:nowrap;}
+  .tip-sec span{color:#1eff00;}
+  .tip-sep{border:none;border-top:1px solid rgba(255,255,255,.1);margin:4px 0;}
 
   @media(max-width:900px){
     .armory-wrap{flex-direction:column-reverse;}
@@ -535,6 +540,34 @@ init();
   document.body.appendChild(t);
   const QC=['#9d9d9d','var(--text)','#1eff00','#0070dd','#a335ee','#ff8000','#e6cc80'];
 
+  const STAT_LBL={
+    str:'Сила',agi:'Ловкость',sta:'Выносливость',int:'Интеллект',spi:'Дух',
+    sp:'Сила заклинаний',ap:'Сила атаки',hit:'Меткость',crit:'Крит. удар',
+    haste:'Скорость',exp:'Мастерство',arp:'Пробив. брони',
+    def:'Защита',dodge:'Уклонение',parry:'Парирование',mp5:'Мана/5сек',
+    res:'Сопротивление',block:'Блок'
+  };
+  const STAT_PRI=['str','agi','sta','int','spi'];
+  const STAT_SEC=['sp','ap','hit','crit','haste','exp','arp','def','dodge','parry','mp5','res','block'];
+
+  function statsHtml(st){
+    if(!st||!Object.keys(st).length) return '';
+    const rows=[];
+    const pri=STAT_PRI.filter(k=>st[k]);
+    const sec=STAT_SEC.filter(k=>st[k]);
+    if(pri.length){
+      rows.push(`<div class="tip-stats">`+
+        pri.map(k=>`<span>+${st[k]} ${STAT_LBL[k]}</span>`).join('')+
+      `</div>`);
+    }
+    if(sec.length){
+      rows.push(`<div class="tip-stats tip-sec">`+
+        sec.map(k=>`<span>+${st[k]} ${STAT_LBL[k]}</span>`).join('')+
+      `</div>`);
+    }
+    return rows.length?`<div class="tip-stats-block">${rows.join('')}</div>`:'';
+  }
+
   function build(sn){
     const slot=currentEquip[sn];
     if(!slot||!slot.itemId) return null;
@@ -542,7 +575,8 @@ init();
     if(!item) return null;
     const hasEnch=!!slot.enchantId;
     const hasGems=!!(slot.gems&&slot.gems.filter(Boolean).length);
-    if(!hasEnch&&!hasGems) return null;
+    const hasStats=!!(item.stats&&Object.keys(item.stats).length);
+    if(!hasEnch&&!hasGems&&!hasStats) return null;
 
     const nc=QC[item.quality]||'var(--text)';
     const icoSrc=`https://wow.zamimg.com/images/wow/icons/medium/${item.icon}.jpg`;
@@ -556,21 +590,26 @@ init();
       </div>
     </div><div class="tip-body">`;
 
-    if(hasEnch){
-      const en=enchants[String(slot.enchantId)]||{};
-      const nm=en.name?esc(en.name):`Enchant ${slot.enchantId}`;
-      const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:'' ;
-      h+=`<div class="tip-ench">${ico}✦ ${nm}</div>`;
-    }
-    if(hasGems){
-      slot.gems.forEach(gid=>{
-        if(!gid) return;
-        const en=enchants[String(gid)]||{};
-        const nm=en.name?esc(en.name):`Gem ${gid}`;
-        const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:
-          `<span class="tip-gem-sq"></span>`;
-        h+=`<div class="tip-gem">${ico}${nm}</div>`;
-      });
+    if(hasStats) h+=statsHtml(item.stats);
+
+    if(hasEnch||hasGems){
+      if(hasStats) h+=`<hr class="tip-sep">`;
+      if(hasEnch){
+        const en=enchants[String(slot.enchantId)]||{};
+        const nm=en.name?esc(en.name):`Enchant ${slot.enchantId}`;
+        const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:'' ;
+        h+=`<div class="tip-ench">${ico}✦ ${nm}</div>`;
+      }
+      if(hasGems){
+        slot.gems.forEach(gid=>{
+          if(!gid) return;
+          const en=enchants[String(gid)]||{};
+          const nm=en.name?esc(en.name):`Gem ${gid}`;
+          const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:
+            `<span class="tip-gem-sq"></span>`;
+          h+=`<div class="tip-gem">${ico}${nm}</div>`;
+        });
+      }
     }
     h+='</div>';
     return h;
