@@ -153,6 +153,21 @@
   footer{text-align:center;padding:36px 24px;color:var(--text-faint);font-size:12px;
     border-top:1px solid var(--border);margin-top:24px;}
 
+  /* Item hover tooltip */
+  #item-tip{position:fixed;z-index:9999;pointer-events:none;
+    background:rgba(8,12,20,.97);border:1px solid rgba(80,120,180,.4);
+    border-radius:7px;padding:10px 13px;min-width:180px;max-width:300px;
+    font-size:12px;line-height:1.5;box-shadow:0 6px 30px rgba(0,0,0,.8);display:none;}
+  .tip-name{font-size:13px;font-weight:700;font-family:'Exo 2',sans-serif;margin-bottom:2px;}
+  .tip-meta{font-size:10px;color:var(--text-faint);}
+  .tip-sep{border:none;border-top:1px solid rgba(255,255,255,.1);margin:6px 0;}
+  .tip-ench{display:flex;align-items:center;gap:5px;color:#4fc3f7;font-size:11px;font-weight:600;margin-bottom:2px;}
+  .tip-ench img{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
+  .tip-gems{display:flex;flex-direction:column;gap:3px;}
+  .tip-gem{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted);}
+  .tip-gem img{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
+  .tip-gem-sq{width:14px;height:14px;border:1px dashed rgba(255,255,255,.2);border-radius:2px;flex-shrink:0;}
+
   @media(max-width:900px){
     .armory-wrap{flex-direction:column-reverse;}
     .gear-panel{width:100%;min-width:0;position:static;max-height:none;}
@@ -276,7 +291,7 @@ const LEFT_SLOTS   = [1, 2, 3, 15, 5, 4, 9];       // Head Neck Shoulders Back C
 const RIGHT_SLOTS  = [10, 6, 7, 8, 11, 12, 13, 14]; // Hands Waist Legs Feet Ring1 Ring2 Tri1 Tri2
 const WEAPON_SLOTS = [16, 17, 18];                   // Main Hand Off Hand Ranged
 
-let allChars=[], items={}, enchants={}, filtered=[], activeIdx=-1;
+let allChars=[], items={}, enchants={}, filtered=[], activeIdx=-1, currentEquip={};
 
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmtDate(d){if(!d)return'—';const s=String(d);return s.length>=8?s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8):s;}
@@ -385,14 +400,14 @@ function slotHtml(slotNum, equip){
   const slotName=SLOT_NAMES[slotNum]||('Slot '+slotNum);
   const e=equip[slotNum];
   if(!e||!e.itemId){
-    return `<div class="gs empty">
+    return `<div class="gs empty" data-slot="${slotNum}">
       <div class="gs-ico blank"></div>
       <div class="gs-txt"><div class="gs-slt">${slotName}</div><div class="gs-nm" style="color:var(--text-faint);font-weight:400">—</div></div>
     </div>`;
   }
   const item=items[String(e.itemId)];
   if(!item){
-    return `<div class="gs gq1">
+    return `<div class="gs gq1" data-slot="${slotNum}">
       <div class="gs-ico blank"></div>
       <div class="gs-txt"><div class="gs-slt">${slotName}</div><div class="gs-nm">Item #${e.itemId}</div></div>
     </div>`;
@@ -401,7 +416,7 @@ function slotHtml(slotNum, equip){
   const ico=`https://wow.zamimg.com/images/wow/icons/medium/${item.icon}.jpg`;
   const wh=`https://www.wowhead.com/wotlk/item=${e.itemId}`;
   const whData=buildWhAttr(e);
-  return `<a class="gs gq${q}" href="${wh}" target="_blank" rel="noopener" data-wowhead="${whData}">
+  return `<a class="gs gq${q}" href="${wh}" target="_blank" rel="noopener" data-slot="${slotNum}" data-wowhead="${whData}">
     <div class="gs-ico"><img src="${ico}" alt="" loading="lazy" onerror="this.parentNode.classList.add('blank');this.remove()"></div>
     <div class="gs-txt">
       <div class="gs-slt">${slotName}</div>
@@ -471,6 +486,7 @@ function renderPanel(char){
 
   const equip={};
   (char.equip||[]).forEach(e=>{if(e.itemId)equip[e.slot]=e;});
+  currentEquip=equip;
 
   const left=LEFT_SLOTS.map(s=>slotHtml(s,equip)).join('');
   const right=RIGHT_SLOTS.map(s=>slotHtml(s,equip)).join('');
@@ -505,6 +521,69 @@ async function init(){
 }
 
 init();
+
+// ── Item hover tooltip ────────────────────────────────────────────────────────
+(function(){
+  const tip=document.createElement('div');
+  tip.id='item-tip';
+  document.body.appendChild(tip);
+  const QC=['#9d9d9d','var(--text)','#1eff00','#0070dd','#a335ee','#ff8000','#e6cc80'];
+
+  function buildTip(slotNum){
+    const slot=currentEquip[slotNum];
+    if(!slot||!slot.itemId) return null;
+    const item=items[String(slot.itemId)];
+    if(!item) return null;
+    const hasEnch=!!slot.enchantId;
+    const hasGems=!!(slot.gems&&slot.gems.filter(Boolean).length);
+    if(!hasEnch&&!hasGems) return null;
+
+    const nc=QC[item.quality]||'var(--text)';
+    let h=`<div class="tip-name" style="color:${nc}">${esc(item.name)}</div>`;
+    const meta=[SLOT_NAMES[slotNum],item.subtype,item.ilvl?item.ilvl+'  ilvl':null].filter(Boolean).join(' · ');
+    if(meta) h+=`<div class="tip-meta">${meta}</div>`;
+    h+=`<hr class="tip-sep">`;
+
+    if(hasEnch){
+      const en=enchants[String(slot.enchantId)]||{};
+      const nm=en.name?esc(en.name):`Enchant ${slot.enchantId}`;
+      const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:
+        `<span style="width:14px;height:14px;display:inline-block;flex-shrink:0;"></span>`;
+      h+=`<div class="tip-ench">${ico}✦ ${nm}</div>`;
+    }
+
+    if(hasGems){
+      if(hasEnch) h+=`<div style="height:3px"></div>`;
+      h+=`<div class="tip-gems">`;
+      slot.gems.forEach(gid=>{
+        if(!gid) return;
+        const en=enchants[String(gid)]||{};
+        const nm=en.name?esc(en.name):`Gem ${gid}`;
+        const ico=en.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${en.icon}.jpg" alt="">`:
+          `<span class="tip-gem-sq"></span>`;
+        h+=`<div class="tip-gem">${ico}${nm}</div>`;
+      });
+      h+=`</div>`;
+    }
+    return h;
+  }
+
+  const panel=document.getElementById('gear-panel');
+  panel.addEventListener('mousemove',function(e){
+    const gs=e.target.closest('.gs[data-slot]');
+    if(!gs||gs.classList.contains('empty')){tip.style.display='none';return;}
+    const h=buildTip(+gs.dataset.slot);
+    if(!h){tip.style.display='none';return;}
+    tip.innerHTML=h;
+    tip.style.display='block';
+    const x=e.clientX+16, y=e.clientY+8;
+    const tw=tip.offsetWidth, th=tip.offsetHeight;
+    const vw=window.innerWidth, vh=window.innerHeight;
+    tip.style.left=(x+tw>vw?e.clientX-tw-12:x)+'px';
+    tip.style.top=(y+th>vh?e.clientY-th-12:y)+'px';
+  });
+  panel.addEventListener('mouseleave',function(){tip.style.display='none';});
+})();
 </script>
 <script>const whTooltips={colorLinks:false,iconizeLinks:false,renameLinks:false};</script>
 <script src="https://wow.zamimg.com/widgets/power.js"></script>
