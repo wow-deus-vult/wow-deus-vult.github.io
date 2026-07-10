@@ -540,7 +540,11 @@ init();
         sock.innerHTML=`${ico}<span style="color:#fff">${esc(en.name)}</span>`;
         sock.className='q1';
         sock.style.display='block';
-        sock.style.marginTop='2px';
+        sock.style.lineHeight='17px';
+        // wowhead adds <br> after each socket row — remove it to avoid double spacing
+        let nx=sock.nextSibling;
+        while(nx&&nx.nodeType===3&&!nx.textContent.trim()) nx=nx.nextSibling;
+        if(nx&&nx.nodeName==='BR') nx.remove();
       });
     });
   }
