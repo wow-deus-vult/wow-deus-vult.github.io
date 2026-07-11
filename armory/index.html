@@ -241,7 +241,7 @@
           <option value="RO">Rogue</option>
           <option value="SH">Shaman</option>
           <option value="WA">Warrior</option>
-          <option value="WL">Warlock</option>
+          <option value="WK">Warlock</option>
         </select>
         <select class="sort-select" id="sort-sel" onchange="filterAndRender()">
           <option value="gs">GearScore ↓</option>
@@ -283,13 +283,13 @@
 
 <script>
 const CLASS_NAMES={DK:'Death Knight',DR:'Druid',HU:'Hunter',MA:'Mage',PA:'Paladin',
-  PR:'Priest',RO:'Rogue',SH:'Shaman',WA:'Warrior',WL:'Warlock'};
+  PR:'Priest',RO:'Rogue',SH:'Shaman',WA:'Warrior',WK:'Warlock'};
 const RACE_NAMES={OR:'Orc',TR:'Troll',TA:'Tauren',UN:'Undead',BE:'Blood Elf',
   HU:'Human',DW:'Dwarf',NE:'Night Elf',GN:'Gnome',DR:'Draenei',GO:'Goblin',WO:'Worgen'};
 const CLASS_COLORS={DK:'#c41e3a',DR:'#ff7c0a',HU:'#aad372',MA:'#3fc7eb',PA:'#f48cba',
-  PR:'#d4d4d4',RO:'#fff468',SH:'#0070dd',WA:'#c69b3a',WL:'#8788ee'};
+  PR:'#d4d4d4',RO:'#fff468',SH:'#0070dd',WA:'#c69b3a',WK:'#8788ee'};
 const CLASS_ICON={DK:'deathknight',DR:'druid',HU:'hunter',MA:'mage',PA:'paladin',
-  PR:'priest',RO:'rogue',SH:'shaman',WA:'warrior',WL:'warlock'};
+  PR:'priest',RO:'rogue',SH:'shaman',WA:'warrior',WK:'warlock'};
 const SLOT_NAMES=[null,'Head','Neck','Shoulders','Shirt','Chest',
   'Waist','Legs','Feet','Wrist','Hands',
   'Ring 1','Ring 2','Trinket 1','Trinket 2','Back',
