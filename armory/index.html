@@ -142,6 +142,11 @@
   .sort-select,.class-filter{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
     color:var(--text);font-size:13px;padding:9px 12px;outline:none;cursor:pointer;}
   .result-count{color:var(--text-muted);font-size:13px;white-space:nowrap;}
+  .guild-check{display:flex;align-items:center;gap:6px;background:var(--bg2);
+    border:1px solid var(--border2);border-radius:8px;padding:9px 12px;cursor:pointer;
+    font-size:13px;font-weight:600;color:var(--text);user-select:none;white-space:nowrap;}
+  .guild-check input{accent-color:var(--accent);cursor:pointer;margin:0;}
+  .guild-check:hover{border-color:var(--accent-dim);}
 
   .tbl-wrap{overflow-x:auto;}
   .char-table{width:100%;border-collapse:collapse;}
@@ -244,6 +249,10 @@
           <option value="name">Ім'я A–Z</option>
           <option value="date">Дата сканування ↓</option>
         </select>
+        <label class="guild-check" title="Показувати лише гільдію Deus Vult">
+          <input type="checkbox" id="guild-filter" checked onchange="filterAndRender()">
+          <span>Deus Vult</span>
+        </label>
         <span class="result-count" id="result-count"></span>
       </div>
       <div class="tbl-wrap">
@@ -315,7 +324,9 @@ function filterAndRender(){
   const q=(document.getElementById('search').value||'').trim().toLowerCase();
   const cls=document.getElementById('class-filter').value;
   const sort=document.getElementById('sort-sel').value;
+  const guildOnly=document.getElementById('guild-filter').checked;
   filtered=allChars.filter(c=>{
+    if(guildOnly&&(!c.guild||c.guild.toLowerCase()!=='deus vult'))return false;
     if(cls&&c.class!==cls)return false;
     if(q){
       const nameOk=c.name.toLowerCase().includes(q);
