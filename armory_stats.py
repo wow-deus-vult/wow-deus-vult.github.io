@@ -118,7 +118,7 @@ def socket_bonus_active(sockets, gem_colors):
 # keys: str/agi/sta/int/spi multipliers, armor_items multiplier,
 #       ap_per_armor (Bladed Armor), ap_mul, exp_pts (flat expertise points)
 TALENTS = {
-    ("DK", 0): {"str": 1.06 * 1.02, "sta": 1.03, "ap_per_armor": 5 / 180, "exp_pts": 6},  # Blood: VotTW+AbomMight+BladedArmor
+    ("DK", 0): {"str": 1.06, "sta": 1.03, "ap_mul": 1.02, "ap_per_armor": 5 / 180, "exp_pts": 6},  # Blood: VotTW+AbomMight+BladedArmor
     ("DK", 1): {"str": 1.04, "ap_per_armor": 5 / 180, "exp_pts": 5},         # Frost: EndlessWinter+TundraStalker
     ("DK", 2): {"str": 1.03, "ap_per_armor": 5 / 180, "exp_pts": 5},         # Unholy: RavenousDead+RageOfRivendare
     ("WA", 0): {"str": 1.04, "sta": 1.04, "exp_pts": 4},                     # Arms: Strength of Arms
@@ -173,7 +173,9 @@ def talent_mods(class_code, tree, pts=None):
         if b >= 13: str_mul *= 1.06                   # Veteran of the Third War (+6% str, +3% sta, +6 exp)
         if b >= 13: mods["sta"] = 1.03
         if b >= 13: mods["exp_pts"] = mods.get("exp_pts", 0) + 6
-        if f >= 15: str_mul *= 1.04                   # Endless Winter
+        if b >= 15: mods["ap_mul"] = 1.02             # Abomination's Might (+2% total AP)
+        # Endless Winter: standard in frost/unholy DPS subs, skipped by blood tanks
+        if f >= 15 and tree != 0: str_mul *= 1.04
         if f >= 44: mods["exp_pts"] = mods.get("exp_pts", 0) + 5   # Tundra Stalker
         if u >= 10: str_mul *= 1.03                   # Ravenous Dead
         if u >= 44: mods["exp_pts"] = mods.get("exp_pts", 0) + 5   # Rage of Rivendare
@@ -287,6 +289,10 @@ def compute_stats(equip, items_cache, enchants_cache, race_code, class_code,
     ap = round(ap * mods.get("ap_mul", 1.0))
 
     exp_pts = int(t["exp"] / 8.1974) + mods.get("exp_pts", 0)
+
+    # DK passive Forceful Deflection: parry rating += 25% of total Strength
+    if class_code == "DK":
+        t["parry"] += round(t["str"] * 0.25)
 
     is_caster = class_code in CASTER_CLASSES or (
         tree is not None and tree in CASTER_TREES.get(class_code, set()))
