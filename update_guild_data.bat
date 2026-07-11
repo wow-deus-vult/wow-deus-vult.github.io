@@ -43,7 +43,7 @@ if %ERRORLEVEL% NEQ 0 (
 echo Git push...
 git fetch origin master >> %LOGFILE% 2>&1
 git reset --mixed origin/master >> %LOGFILE% 2>&1
-git add data/guild-data.json data/guild-heal.json data/guild-tank.json data/potion-stats.json data/total-damage.json data/guild-stats.json data/raid-stats.json data/duplicate_logs_map.json data/pending_total_damage.json data/pending_potion.json data/pending_guild_stats.json data/pending_raid_stats.json data/pending_heal_rating.json data/pending_tank_rating.json data/potion-stats_cache.json data/total-damage_cache.json data/guild-stats_cache.json data/raid-stats_cache.json data/guild-heal_cache.json data/guild-tank_cache.json armory/armory_data.json armory/items_cache.json armory/enchants_cache.json armory/gs_best.json >> %LOGFILE% 2>&1
+git add data/guild-data.json data/guild-heal.json data/guild-tank.json data/potion-stats.json data/total-damage.json data/guild-stats.json data/raid-stats.json data/duplicate_logs_map.json data/pending_total_damage.json data/pending_potion.json data/pending_guild_stats.json data/pending_raid_stats.json data/pending_heal_rating.json data/pending_tank_rating.json data/potion-stats_cache.json data/total-damage_cache.json data/guild-stats_cache.json data/raid-stats_cache.json data/guild-heal_cache.json data/guild-tank_cache.json armory/armory_data.json armory/items_cache.json armory/enchants_cache.json armory/gs_best.json armory/spec_best.json >> %LOGFILE% 2>&1
 git diff --staged --quiet || git commit -m "Auto-update guild data %date%" >> %LOGFILE% 2>&1
 git push origin master >> %LOGFILE% 2>&1
 

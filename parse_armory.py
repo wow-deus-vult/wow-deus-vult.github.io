@@ -30,6 +30,7 @@ ITEMS_CACHE    = os.path.join(OUTPUT_DIR, "items_cache.json")
 ENCHANTS_CACHE = os.path.join(OUTPUT_DIR, "enchants_cache.json")
 DATA_FILE      = os.path.join(OUTPUT_DIR, "armory_data.json")
 GS_BEST        = os.path.join(OUTPUT_DIR, "gs_best.json")
+SPEC_BEST      = os.path.join(OUTPUT_DIR, "spec_best.json")
 
 # Examiner slot name → slot number used in GearScore (1-18)
 EXAMINER_SLOT_MAP = {
@@ -135,19 +136,45 @@ def _parse_lua_file(lua_path):
     return players
 
 
+def _better_snap(old, new):
+    """Newest snapshot wins, unless its GS collapsed (transmogged look items)."""
+    if old is None:
+        return new
+    if (new.get("Date", 0) or 0) <= (old.get("Date", 0) or 0):
+        return old
+    old_gs, new_gs = old.get("GearScore", 0) or 0, new.get("GearScore", 0) or 0
+    if old_gs and new_gs < old_gs * 0.85:
+        return old                       # transmog guard
+    return new
+
+
 def parse_specgear():
-    """Merge GS_SpecGear from all installs/accounts (newest snapshot per tree wins)."""
+    """Merge GS_SpecGear from all installs/accounts + persistent spec_best store."""
     merged = {}
     for path in LUA_PATHS:
         for name, trees in _parse_specgear_file(path).items():
             dst = merged.setdefault(name, {})
             for tree, snap in trees.items():
-                if tree not in dst or (snap.get("Date", 0) or 0) > (dst[tree].get("Date", 0) or 0):
-                    dst[tree] = snap
-    if merged:
-        total = sum(len(v) for v in merged.values())
-        print(f"SpecGear: {len(merged)} characters, {total} spec snapshots")
-    return merged
+                dst[tree] = _better_snap(dst.get(tree), snap)
+
+    # persistent store survives in-Lua overwrites (addon guard added later)
+    store = {}
+    if os.path.exists(SPEC_BEST):
+        with open(SPEC_BEST, encoding="utf-8") as f:
+            store = {n: {int(t): s for t, s in trees.items()}
+                     for n, trees in json.load(f).items()}
+    for name, trees in merged.items():
+        dst = store.setdefault(name, {})
+        for tree, snap in trees.items():
+            dst[tree] = _better_snap(dst.get(tree), snap)
+    with open(SPEC_BEST, "w", encoding="utf-8") as f:
+        json.dump({n: {str(t): s for t, s in trees.items()}
+                   for n, trees in store.items()}, f, ensure_ascii=False, separators=(",", ":"))
+
+    if store:
+        total = sum(len(v) for v in store.values())
+        print(f"SpecGear: {len(store)} characters, {total} spec snapshots (store)")
+    return store
 
 
 def _parse_specgear_file(lua_path):
