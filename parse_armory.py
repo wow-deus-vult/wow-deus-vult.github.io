@@ -719,7 +719,7 @@ DEFAULT_TREE = {"DK": 2, "WA": 1, "PA": 2, "HU": 1, "RO": 1,
 
 def build_json(characters, items_cache, examiner_data, enchants_cache,
                examiner_talents=None, spec_gear=None):
-    from armory_stats import compute_stats, dominant_tree, classify_pvx
+    from armory_stats import compute_stats, dominant_tree
     examiner_talents = examiner_talents or {}
     spec_gear = spec_gear or {}
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -753,27 +753,22 @@ def build_json(characters, items_cache, examiner_data, enchants_cache,
         # Gear follows the spec; stats follow the gear.
         specs = {}
         for tree, gb in gear_by_spec.items():
-            st = compute_stats(gb["equip"], items_cache, enchants_cache,
-                               race, cls, talent_points=gb.get("spec"),
-                               level=lvl, tree=tree)
             specs[str(tree)] = {
                 "equip": gb["equip"], "gs": gb["gs"], "ilvl": gb["ilvl"],
                 "date": gb["date"], "spec": gb["spec"],
                 "talentRanks": gb.get("talentRanks", ""),
-                "stats": st,
-                "pvx": classify_pvx(cls, gb.get("talentRanks", ""), st,
-                                    gb["equip"], items_cache),
+                "stats": compute_stats(gb["equip"], items_cache, enchants_cache,
+                                       race, cls, talent_points=gb.get("spec"),
+                                       level=lvl, tree=tree),
             }
         # Examiner-known spec: attribute the main gear to that tree
         if exam_tree is not None and str(exam_tree) not in specs:
-            st = compute_stats(equip, items_cache, enchants_cache,
-                               race, cls, talent_points=exam_tp,
-                               level=lvl, tree=exam_tree)
             specs[str(exam_tree)] = {
                 "equip": equip, "gs": char.get("GearScore", 0),
                 "ilvl": char.get("Average", 0), "date": "", "spec": exam_tp,
-                "stats": st,
-                "pvx": classify_pvx(cls, "", st, equip, items_cache),
+                "stats": compute_stats(equip, items_cache, enchants_cache,
+                                       race, cls, talent_points=exam_tp,
+                                       level=lvl, tree=exam_tree),
             }
 
         spec_detected = exam_tree

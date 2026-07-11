@@ -120,9 +120,6 @@
   .gp-spec.active{color:var(--accent);background:rgba(143,193,227,.1);border-color:var(--accent-dim);}
   .gp-spec.off{opacity:.35;cursor:not-allowed;}
   .gp-spec.off:hover{color:var(--text-muted);border-color:var(--border2);}
-  .pvx-badge{display:inline-block;font-size:8px;font-weight:800;letter-spacing:.05em;
-    color:#ff6b6b;border:1px solid rgba(255,107,107,.45);border-radius:3px;
-    padding:0 3px;vertical-align:1px;margin-left:2px;}
 
   /* Talent trees */
   .gp-tal-toggle{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;
@@ -548,10 +545,8 @@ function renderPanel(char){
     const has=!!specsMap[String(i)];
     if(!has) return `<button class="gp-spec off" disabled
       title="не бачили персонажа в цьому спеку">${n}</button>`;
-    const pvx=specsMap[String(i)].pvx;
-    const badge=pvx==='pvp'?' <span class="pvx-badge">PvP</span>':'';
     return `<button class="gp-spec${i===selectedSpec?' active':''}" onclick="selectSpec(${i})"
-      title="${esc(specsMap[String(i)].spec||'')}${pvx?' · '+pvx.toUpperCase():''}">${n}${badge}</button>`;
+      title="${esc(specsMap[String(i)].spec||'')}">${n}</button>`;
   }).join('')}</div>`:'';
   let statsHtml='';
   if(sf){
