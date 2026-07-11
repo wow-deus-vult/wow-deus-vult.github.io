@@ -784,6 +784,18 @@ def main():
 
     print(f"Items cached: {len(items_cache)} | Enchants cached: {len(enchants_cache)}")
 
+    # snapshot previous state for the daily status report
+    old_names, old_gems = set(), 0
+    if os.path.exists(DATA_FILE):
+        try:
+            with open(DATA_FILE, encoding="utf-8") as f:
+                _old = json.load(f).get("characters", [])
+            old_names = {c["name"] for c in _old}
+            old_gems  = sum(1 for c in _old if c.get("hasGems"))
+        except Exception:
+            pass
+    items_before, ench_before = len(items_cache), len(enchants_cache)
+
     if not args.parse_only and not args.export:
         items_cache    = fetch_items(characters, items_cache)
         enchants_cache = fetch_enchants(characters, examiner_data, enchants_cache)
@@ -803,6 +815,27 @@ def main():
 
     build_json(characters, items_cache, examiner_data, enchants_cache,
                examiner_talents, spec_gear)
+
+    # Discord status ping — only on the full daily run
+    if not args.parse_only and not args.export:
+        try:
+            from discord_notify import send_dm
+            with open(DATA_FILE, encoding="utf-8") as f:
+                chars = json.load(f).get("characters", [])
+            today = date.today().strftime("%Y%m%d")
+            new_players = sum(1 for c in chars if c["name"] not in old_names) if old_names else 0
+            scanned_today = sum(1 for c in chars if str(c.get("date", "")).startswith(today))
+            gems_now = sum(1 for c in chars if c.get("hasGems"))
+            spec_tabs = sum(len(c.get("specs") or {}) for c in chars)
+            send_dm(
+                f"**[Armory]** Гравців: {len(chars)} (+{new_players} нових) | "
+                f"Скановано сьогодні: {scanned_today}\n"
+                f"З гемами: {gems_now} ({gems_now - old_gems:+d}) | Спек-вкладок: {spec_tabs} | "
+                f"Нових предметів: {len(items_cache) - items_before} | "
+                f"Нових чарок/гемів: {len(enchants_cache) - ench_before}"
+            )
+        except Exception as e:
+            print(f"  [discord] помилка звіту: {e}")
 
 
 if __name__ == "__main__":
