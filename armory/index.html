@@ -32,6 +32,10 @@
   /* PAGE */
   .page{max-width:1400px;margin:0 auto;padding:28px 24px 64px;}
   .page-header{margin-bottom:20px;}
+  .page-header-row{display:flex;gap:24px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
+  .page-note{max-width:640px;font-size:12px;line-height:1.55;color:var(--text-muted);
+    background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent-dim);
+    border-radius:8px;padding:10px 14px;}
   .page-title{font-family:'Exo 2',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:900;
     letter-spacing:.1em;color:var(--text);margin-bottom:5px;}
   .page-sub{color:var(--text-muted);font-size:13px;}
@@ -213,8 +217,19 @@
 
 <div class="page">
   <div class="page-header">
-    <h1 class="page-title">ARMORY</h1>
-    <p class="page-sub" id="page-sub">Завантаження…</p>
+    <div class="page-header-row">
+      <div>
+        <h1 class="page-title">ARMORY</h1>
+        <p class="page-sub" id="page-sub">Завантаження…</p>
+      </div>
+      <div class="page-note">
+        Оскільки доступу до бази даних сервера в нас немає — вся ця інфа збирається
+        кустарним методом, за допомогою аддону. Якщо вас немає в списку або інфа по вам
+        не зовсім коректна (не вистачає гемів, чарок, шмоток) — я просто ще вас не
+        відсканував. Як тільки я вас побачу — аддончік все відсканує, запише, і на
+        наступний день все оновиться. Тобто з часом все наповниться самостійно 🙂
+      </div>
+    </div>
   </div>
 
   <div class="armory-wrap">
