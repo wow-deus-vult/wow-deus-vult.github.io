@@ -42,6 +42,10 @@ SLOT_NAMES = [
 session = requests.Session()
 session.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0"
 
+# GearScore saves a record under the localized "Unknown" placeholder when it
+# scans a player before the client resolved their name — garbage entries.
+BAD_NAMES = {"Невідомо", "Неизвестно", "Unknown", "Inconnu", "Unbekannt"}
+
 
 # ── GEARSCORE LUA PARSER ──────────────────────────────────────────────────────
 
@@ -85,6 +89,9 @@ def parse_lua():
             j += 1
 
         body = players_text[block_open : j - 1]
+        if name in BAD_NAMES:
+            scan = j
+            continue
         char = {"Name": name}
 
         for fm in re.finditer(r'\["(\w+)"\]\s*=\s*"([^"]*)"', body):
@@ -149,6 +156,8 @@ def parse_specgear():
         name_bodies.extend(_blocks(realm_body))
 
     for name, body in name_bodies:
+        if name in BAD_NAMES:
+            continue
         trees = {}
         for tm in re.finditer(r'\[(\d)\]\s*=\s*\{', body):
             tree = int(tm.group(1)) - 1        # lua 1-based → 0-based
@@ -278,6 +287,8 @@ def apply_best_gs(characters):
     if os.path.exists(GS_BEST):
         with open(GS_BEST, encoding="utf-8") as f:
             best = json.load(f)
+    for bad in BAD_NAMES:
+        best.pop(bad, None)
 
     updated = 0
     for char in characters:
