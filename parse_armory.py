@@ -528,13 +528,25 @@ def update_item_stats(equipped_ids, cache):
     return cache
 
 
-def fetch_items(characters, cache):
+def collect_item_ids(characters, spec_gear=None):
+    """All equipped item IDs: main GS equips + per-spec snapshots."""
     item_ids = set()
     for char in characters:
         for entry in char.get("Equip", []):
             iid = entry.split(":")[0]
             if iid and iid != "0":
                 item_ids.add(iid)
+    for trees in (spec_gear or {}).values():
+        for snap in trees.values():
+            for entry in snap.get("Equip", []):
+                iid = entry.split(":")[0]
+                if iid and iid != "0":
+                    item_ids.add(iid)
+    return item_ids
+
+
+def fetch_items(characters, cache, spec_gear=None):
+    item_ids = collect_item_ids(characters, spec_gear)
 
     missing = sorted([iid for iid in item_ids if iid not in cache], key=int)
     print(f"\nUnique items: {len(item_ids)} | Missing from cache: {len(missing)}")
@@ -605,7 +617,7 @@ def fetch_enchant(eid):
     return None
 
 
-def fetch_enchants(characters, examiner_data, ecache):
+def fetch_enchants(characters, examiner_data, ecache, spec_gear=None):
     """Collect all enchant/gem SpellItemEnchantment IDs and fetch missing ones."""
     all_ids = set()
 
@@ -616,6 +628,15 @@ def fetch_enchants(characters, examiner_data, ecache):
             for p in parts[1:6]:
                 if p and p.isdigit() and p != "0":
                     all_ids.add(p)
+
+    # Enchants + gems from per-spec snapshots
+    for trees in (spec_gear or {}).values():
+        for snap in trees.values():
+            for entry in snap.get("Equip", []):
+                parts = entry.split(":")
+                for p in parts[1:6]:
+                    if p and p.isdigit() and p != "0":
+                        all_ids.add(p)
 
     # Enchants + gems from Examiner (inspected characters)
     for slots in examiner_data.values():
@@ -846,17 +867,11 @@ def main():
     items_before, ench_before = len(items_cache), len(enchants_cache)
 
     if not args.parse_only and not args.export:
-        items_cache    = fetch_items(characters, items_cache)
-        enchants_cache = fetch_enchants(characters, examiner_data, enchants_cache)
+        items_cache    = fetch_items(characters, items_cache, spec_gear)
+        enchants_cache = fetch_enchants(characters, examiner_data, enchants_cache, spec_gear)
 
     if args.update_stats or args.update_gear:
-        # Collect all equipped item IDs across all characters
-        equipped_ids = set()
-        for char in characters:
-            for entry in char.get("Equip", []):
-                iid = entry.split(":")[0]
-                if iid and iid != "0":
-                    equipped_ids.add(iid)
+        equipped_ids = collect_item_ids(characters, spec_gear)
         if args.update_gear:
             items_cache = update_gear_details(equipped_ids, items_cache)
         if args.update_stats:
