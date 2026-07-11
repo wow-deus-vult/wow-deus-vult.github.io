@@ -191,20 +191,36 @@ def _parse_specgear_file(lua_path):
     for _realm, realm_body in _blocks(text):
         name_bodies.extend(_blocks(realm_body))
 
+    def _tree_blocks(body):
+        """Top-level tree entries of a name block. Lua writes the sequential
+        array prefix WITHOUT explicit keys ("{...}," == [1]), the rest as
+        "[3] = {...}" — handle both."""
+        i, arr = 0, 0
+        while i < len(body):
+            m = re.match(r'\s*,?\s*\[(\d+)\]\s*=\s*\{', body[i:])
+            if m:
+                tree = int(m.group(1))
+                open_at = i + m.end() - 1
+            else:
+                m = re.match(r'\s*,?\s*\{', body[i:])
+                if not m:
+                    break
+                arr += 1
+                tree = arr
+                open_at = i + m.end() - 1
+            depth, j = 1, open_at + 1
+            while j < len(body) and depth > 0:
+                if body[j] == "{": depth += 1
+                elif body[j] == "}": depth -= 1
+                j += 1
+            yield tree - 1, body[open_at + 1 : j - 1]   # lua 1-based → 0-based
+            i = j
+
     for name, body in name_bodies:
         if name in BAD_NAMES:
             continue
         trees = {}
-        for tm in re.finditer(r'\[(\d)\]\s*=\s*\{', body):
-            tree = int(tm.group(1)) - 1        # lua 1-based → 0-based
-            t_open = tm.end()
-            d2 = 1
-            k = t_open
-            while k < len(body) and d2 > 0:
-                if body[k] == "{": d2 += 1
-                elif body[k] == "}": d2 -= 1
-                k += 1
-            t_body = body[t_open : k - 1]
+        for tree, t_body in _tree_blocks(body):
 
             snap = {}
             for fm in re.finditer(r'\["(\w+)"\]\s*=\s*"([^"]*)"', t_body):
