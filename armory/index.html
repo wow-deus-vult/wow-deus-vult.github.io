@@ -465,17 +465,21 @@ function renderPanel(char){
   let statsHtml='';
   if(sf){
     const row=(lbl,val,cls)=>val?`<div class="gp-srow"><span class="gp-srl">${lbl}</span><span class="gp-srv ${cls||''}">${val.toLocaleString()}</span></div>`:'';
+    // rating → % conversions at level 80 (melee hit 32.79, spell hit 26.23, crit 45.91, arp 13.99)
+    const pct=(r,per)=>r?(r/per).toFixed(2).replace(/\.?0+$/,''):'0';
+    const rowPct=(lbl,val,per,cls)=>val?`<div class="gp-srow"><span class="gp-srl">${lbl}</span><span class="gp-srv ${cls||''}">${val.toLocaleString()} / ${pct(val,per)}%</span></div>`:'';
+    const hitPer=sf.caster?26.232:32.79;
     const left=[
       row('Сила',sf.str,'sv-str'), row('Інтелект',sf.int,'sv-int'),
       row('Ловкість',sf.agi,'sv-agi'), row('Витривалість',sf.sta,'sv-sta'),
       row('Дух',sf.spi,'sv-spi'), row('Броня',sf.armor,'sv-arp'),
     ].join('');
     const right=[
-      row('Хіт',sf.hit,'sv-hit'), row('Кріт',sf.crit,'sv-crit'),
+      rowPct('Хіт',sf.hit,hitPer,'sv-hit'), rowPct('Кріт',sf.crit,45.906,'sv-crit'),
       row('Хаст',sf.haste,'sv-haste'),
       sf.caster?row('Сила закл.',sf.sp,'sv-sp'):row('Атака',sf.ap,'sv-ap'),
       sf.caster?row('Мана/5с',sf.mp5,'sv-mp5'):row('Мастері',sf.expPts,'sv-exp'),
-      sf.caster?(sf.spi?'':''):row('Проб. броні',sf.arp,'sv-arp'),
+      sf.caster?(sf.spi?'':''):rowPct('Проб. броні',sf.arp,13.9957,'sv-arp'),
       (!sf.caster&&sf.sp)?row('Сила закл.',sf.sp,'sv-sp'):'',
       sf.def?row('Захист',sf.def,'sv-def'):'',
       sf.dodge?row('Ухилення',sf.dodge,'sv-dodge'):'',

@@ -118,12 +118,12 @@ def socket_bonus_active(sockets, gem_colors):
 # keys: str/agi/sta/int/spi multipliers, armor_items multiplier,
 #       ap_per_armor (Bladed Armor), ap_mul, exp_pts (flat expertise points)
 TALENTS = {
-    ("DK", 0): {"str": 1.06 * 1.02, "sta": 1.03, "ap_per_armor": 5 / 180},   # Blood: VotTW+AbomMight+BladedArmor
-    ("DK", 1): {"str": 1.04, "ap_per_armor": 5 / 180},                       # Frost: Endless Winter
-    ("DK", 2): {"str": 1.03, "ap_per_armor": 5 / 180},                       # Unholy: Ravenous Dead
-    ("WA", 0): {"str": 1.04, "sta": 1.04},                                   # Arms: Strength of Arms
+    ("DK", 0): {"str": 1.06 * 1.02, "sta": 1.03, "ap_per_armor": 5 / 180, "exp_pts": 6},  # Blood: VotTW+AbomMight+BladedArmor
+    ("DK", 1): {"str": 1.04, "ap_per_armor": 5 / 180, "exp_pts": 5},         # Frost: EndlessWinter+TundraStalker
+    ("DK", 2): {"str": 1.03, "ap_per_armor": 5 / 180, "exp_pts": 5},         # Unholy: RavenousDead+RageOfRivendare
+    ("WA", 0): {"str": 1.04, "sta": 1.04, "exp_pts": 4},                     # Arms: Strength of Arms
     ("WA", 1): {"str": 1.20},                                                # Fury: Imp Berserker Stance
-    ("WA", 2): {"str": 1.02, "sta": 1.06, "armor_items": 1.10},              # Prot: Vitality+Toughness
+    ("WA", 2): {"str": 1.02, "sta": 1.06, "armor_items": 1.10, "exp_pts": 6},# Prot: Vitality+Toughness
     ("PA", 0): {"int": 1.10},                                                # Holy: Divine Intellect
     ("PA", 1): {"str": 1.15, "sta": 1.06 * 1.08, "armor_items": 1.10, "exp_pts": 6},  # Prot
     ("PA", 2): {"str": 1.15},                                                # Ret: Divine Strength
@@ -131,13 +131,13 @@ TALENTS = {
     ("HU", 1): {"agi": 1.04, "int": 1.04},                                   # MM: Combat Experience
     ("HU", 2): {"agi": 1.15 * 1.03},                                         # SV: LightningReflexes+HuntingParty
     ("RO", 0): {},                                                           # Assa
-    ("RO", 1): {"sta": 1.04, "agi": 1.02},                                   # Combat: Vitality
+    ("RO", 1): {"sta": 1.04, "agi": 1.02, "exp_pts": 10},                    # Combat: Vitality+WeaponExpertise
     ("RO", 2): {"agi": 1.15, "str": 1.15},                                   # Sub: Sinister Calling
     ("PR", 0): {"int": 1.15},                                                # Disc: Mental Strength
     ("PR", 1): {"spi": 1.05},                                                # Holy: Spirit of Redemption
     ("PR", 2): {},                                                           # Shadow
     ("SH", 0): {},                                                           # Ele
-    ("SH", 1): {"int": 1.10, "sta": 1.10},                                   # Enh: AncestralKnowledge+Toughness
+    ("SH", 1): {"int": 1.10, "sta": 1.10, "exp_pts": 9},                     # Enh: AK+Toughness+UnleashedRage
     ("SH", 2): {},                                                           # Resto
     ("MA", 0): {"int": 1.15},                                                # Arcane: Arcane Mind
     ("MA", 1): {},                                                           # Fire
@@ -146,7 +146,7 @@ TALENTS = {
     ("WK", 1): {"sta": 1.10},                                                # Demo
     ("WK", 2): {"sta": 1.10},                                                # Destro
     ("DR", 0): {},                                                           # Balance
-    ("DR", 1): {"str": 1.06, "agi": 1.06, "sta": 1.06, "int": 1.06, "spi": 1.06},  # Feral: SotF
+    ("DR", 1): {"str": 1.06, "agi": 1.06, "sta": 1.06, "int": 1.06, "spi": 1.06, "exp_pts": 10},  # Feral: SotF+PrimalPrecision
     ("DR", 2): {},                                                           # Resto
 }
 
@@ -170,10 +170,13 @@ def talent_mods(class_code, tree, pts=None):
         mods = {}
         str_mul = 1.0
         if b >= 5:  mods["ap_per_armor"] = 5 / 180   # Bladed Armor (Blood t1)
-        if b >= 13: str_mul *= 1.06                   # Veteran of the Third War
+        if b >= 13: str_mul *= 1.06                   # Veteran of the Third War (+6% str, +3% sta, +6 exp)
         if b >= 13: mods["sta"] = 1.03
+        if b >= 13: mods["exp_pts"] = mods.get("exp_pts", 0) + 6
         if f >= 15: str_mul *= 1.04                   # Endless Winter
+        if f >= 44: mods["exp_pts"] = mods.get("exp_pts", 0) + 5   # Tundra Stalker
         if u >= 10: str_mul *= 1.03                   # Ravenous Dead
+        if u >= 44: mods["exp_pts"] = mods.get("exp_pts", 0) + 5   # Rage of Rivendare
         if str_mul != 1.0:
             mods["str"] = round(str_mul, 6)
         return mods
