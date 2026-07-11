@@ -138,6 +138,13 @@
     border-radius:3px;font-size:8px;font-weight:700;line-height:1;padding:1px 2px;color:#1eff00;}
   .tal.max .tal-rank{color:#ffd100;}
   .tal-empty{width:24px;height:24px;}
+  #tal-tip{position:fixed;z-index:9999;pointer-events:none;display:none;
+    background:rgba(8,10,16,.97);border:1px solid rgba(255,255,255,.25);
+    border-radius:6px;padding:8px 11px;max-width:260px;
+    font-size:12px;line-height:1.45;box-shadow:0 6px 24px rgba(0,0,0,.8);}
+  #tal-tip .tt-name{font-weight:700;color:#fff;}
+  #tal-tip .tt-rank{color:#fff;font-size:11px;margin-bottom:4px;}
+  #tal-tip .tt-desc{color:#ffd100;font-size:11px;}
 
   /* Stats panel (in-game style rows) */
   .gp-statcols{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;
@@ -350,8 +357,10 @@ function talentTreesHtml(cls, ranksStr){
     const cells=tr.talents.map((t,i)=>{
       const r=+(s[i]||0);
       const c=r===0?'tal off':(r===t.max?'tal max':'tal');
-      const title=`${t.name_ru||t.name} — ${r}/${t.max}`;
-      return `<div class="${c}" style="grid-row:${t.tier+1};grid-column:${t.col+1}" title="${esc(title)}">
+      // like in-game: show current rank's description, rank-1 preview if untaken
+      const desc=(t.desc&&t.desc[Math.max(r,1)-1])||'';
+      return `<div class="${c}" style="grid-row:${t.tier+1};grid-column:${t.col+1}"
+        data-tt-name="${esc(t.name_ru||t.name)}" data-tt-rank="${r}/${t.max}" data-tt-desc="${esc(desc)}">
         <img src="https://wow.zamimg.com/images/wow/icons/small/${t.icon}.jpg" alt="" loading="lazy">
         ${r?`<span class="tal-rank">${r}</span>`:''}
       </div>`;
@@ -646,6 +655,29 @@ async function init(){
 }
 
 init();
+
+// ── Talent tooltip (in-game style) ───────────────────────────────────────────
+(function(){
+  const tip=document.createElement('div');
+  tip.id='tal-tip';
+  document.body.appendChild(tip);
+  document.addEventListener('mouseover',function(e){
+    const tal=e.target.closest('.tal[data-tt-name]');
+    if(!tal){tip.style.display='none';return;}
+    tip.innerHTML=`<div class="tt-name">${tal.dataset.ttName}</div>
+      <div class="tt-rank">Уровень ${tal.dataset.ttRank}</div>
+      ${tal.dataset.ttDesc?`<div class="tt-desc">${tal.dataset.ttDesc}</div>`:''}`;
+    tip.style.display='block';
+    const r=tal.getBoundingClientRect();
+    const tw=tip.offsetWidth,th=tip.offsetHeight;
+    let x=r.right+8,y=r.top-4;
+    if(x+tw>window.innerWidth)x=r.left-tw-8;
+    if(x<4)x=4;
+    if(y+th>window.innerHeight)y=window.innerHeight-th-6;
+    if(y<4)y=4;
+    tip.style.left=x+'px';tip.style.top=y+'px';
+  });
+})();
 
 // ── Inject real gems into wowhead tooltip socket rows ─────────────────────────
 (function(){

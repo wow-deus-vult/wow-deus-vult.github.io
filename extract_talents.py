@@ -115,14 +115,65 @@ def detect_icon_col(d):
 ICON_COL = detect_icon_col(spell_en)
 print(f"Spell icon col: {ICON_COL}")
 
-spell_names_en, spell_icons = {}, {}
+# description column (ruRU canonical=178; detect to be safe) + basepoints (EN file, cols 86-88)
+def detect_desc_col(d, spell_id, probe):
+    rc, fc, rs, sbs = struct.unpack_from('<4I', d, 4)
+    sb = d[20 + rc * rs: 20 + rc * rs + sbs]
+    for rec in dbc_iter(d):
+        if rec[0] != spell_id:
+            continue
+        for col, v in enumerate(rec):
+            if 0 < v < sbs and probe in sb[v:sb.find(b'\x00', v)]:
+                return col
+    return None
+
+DESC_RU_COL = detect_desc_col(spell_ru, 49664, 'урон от магии льда'.encode('utf-8')) if spell_ru else None
+DESC_EN_COL = detect_desc_col(spell_en, 49664, b'Increases your frost')
+BP_COLS = (86, 87, 88)   # EffectBasePoints1-3 in this (shifted) EN layout
+print(f"Desc cols: RU={DESC_RU_COL} EN={DESC_EN_COL}")
+
+spell_names_en, spell_icons, spell_bp, spell_desc_en = {}, {}, {}, {}
 for rec in dbc_iter(spell_en):
-    spell_names_en[rec[0]] = rec[NAME_EN_COL]
-    spell_icons[rec[0]] = rec[ICON_COL]
-spell_names_ru = {}
+    sid = rec[0]
+    spell_names_en[sid] = rec[NAME_EN_COL]
+    spell_icons[sid] = rec[ICON_COL]
+    spell_bp[sid] = tuple(struct.unpack('<i', struct.pack('<I', rec[c]))[0] for c in BP_COLS)
+    if DESC_EN_COL:
+        spell_desc_en[sid] = rec[DESC_EN_COL]
+spell_names_ru, spell_desc_ru = {}, {}
 if spell_ru and NAME_RU_COL:
     for rec in dbc_iter(spell_ru):
         spell_names_ru[rec[0]] = rec[NAME_RU_COL]
+        if DESC_RU_COL:
+            spell_desc_ru[rec[0]] = rec[DESC_RU_COL]
+
+import re as _re
+
+def render_desc(sid):
+    """Substitute $s1 / $49665s2 / ${...} macros with numbers."""
+    off = spell_desc_ru.get(sid) or spell_desc_en.get(sid, 0)
+    src = spell_ru if spell_desc_ru.get(sid) else spell_en
+    raw = dbc_str(src, off)
+    if not raw:
+        return ''
+
+    def sub_val(m):
+        ref = int(m.group(1)) if m.group(1) else sid
+        idx = int(m.group(3)) - 1
+        bp = spell_bp.get(ref, (0, 0, 0))
+        v = abs(bp[idx] + 1) if idx < 3 else 0
+        return str(v)
+
+    txt = _re.sub(r'\$(\d+)?([sSoOmM])([1-3])', sub_val, raw)
+    # simple ${a/b} / ${a*b} arithmetic left after substitution
+    def sub_math(m):
+        try:
+            return str(round(eval(m.group(1), {"__builtins__": {}}), 1)).rstrip('0').rstrip('.')
+        except Exception:
+            return '?'
+    txt = _re.sub(r'\$\{([\d\s\.\+\-\*\/]+)\}', sub_math, txt)
+    txt = _re.sub(r'\$[a-zA-Z]\d?', '?', txt)   # leftover macros ($d etc.)
+    return txt
 
 # ── Talent.dbc: id, tab, tier, col, rankSpells[9] ────────────────────────────
 talent_dbc = load_dbc(EN, "Talent.dbc")
@@ -140,6 +191,7 @@ for rec in dbc_iter(talent_dbc):
         "name": dbc_str(spell_en, spell_names_en.get(sp1, 0)),
         "name_ru": dbc_str(spell_ru, spell_names_ru.get(sp1, 0)) if spell_ru else "",
         "icon": icons.get(spell_icons.get(sp1, 0), "inv_misc_questionmark"),
+        "desc": [render_desc(r) for r in ranks],
     })
 
 # GetTalentInfo enumerates sorted by (tier, col)
