@@ -121,6 +121,24 @@
   .gp-spec.off{opacity:.35;cursor:not-allowed;}
   .gp-spec.off:hover{color:var(--text-muted);border-color:var(--border2);}
 
+  /* Talent trees */
+  .gp-tal-toggle{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;
+    color:var(--text-muted);font-size:11px;font-weight:600;padding:5px;cursor:pointer;margin-bottom:8px;}
+  .gp-tal-toggle:hover{color:var(--text);border-color:var(--accent-dim);}
+  .gp-trees{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;}
+  .gp-tree{background:var(--bg3);border-radius:6px;padding:6px 4px;}
+  .gp-tree-hd{font-size:10px;font-weight:700;text-align:center;margin-bottom:5px;color:var(--text);}
+  .gp-tree-hd span{color:var(--accent);}
+  .gp-tree-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;justify-items:center;}
+  .tal{position:relative;width:24px;height:24px;border-radius:4px;overflow:visible;}
+  .tal img{width:100%;height:100%;border-radius:4px;display:block;border:1px solid rgba(255,255,255,.25);}
+  .tal.off img{filter:grayscale(1) brightness(.45);border-color:rgba(255,255,255,.08);}
+  .tal.max img{border-color:#ffd100;}
+  .tal-rank{position:absolute;bottom:-4px;right:-4px;background:#000;border:1px solid var(--border2);
+    border-radius:3px;font-size:8px;font-weight:700;line-height:1;padding:1px 2px;color:#1eff00;}
+  .tal.max .tal-rank{color:#ffd100;}
+  .tal-empty{width:24px;height:24px;}
+
   /* Stats panel (in-game style rows) */
   .gp-statcols{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;
     margin-bottom:10px;padding:9px 11px;background:var(--bg3);border-radius:6px;}
@@ -317,6 +335,31 @@ const WEAPON_SLOTS = [16, 17, 18];                   // Main Hand Off Hand Range
 
 let allChars=[], items={}, enchants={}, filtered=[], activeIdx=-1, currentEquip={};
 let panelCharName=null, selectedSpec=0, panelChar=null;
+let TALENTS_DB=null, talOpen=false;
+function toggleTalents(){talOpen=!talOpen;if(panelChar)renderPanel(panelChar);}
+
+function talentTreesHtml(cls, ranksStr){
+  const trees=TALENTS_DB&&TALENTS_DB[cls];
+  if(!trees||!ranksStr) return '';
+  const tabs=ranksStr.split('|');
+  return `<div class="gp-trees">${trees.map((tr,ti)=>{
+    if(!tr) return '<div></div>';
+    const s=tabs[ti]||'';
+    let pts=0;for(const ch of s)pts+=(+ch||0);
+    const maxTier=Math.max(...tr.talents.map(t=>t.tier));
+    const cells=tr.talents.map((t,i)=>{
+      const r=+(s[i]||0);
+      const c=r===0?'tal off':(r===t.max?'tal max':'tal');
+      const title=`${t.name_ru||t.name} — ${r}/${t.max}`;
+      return `<div class="${c}" style="grid-row:${t.tier+1};grid-column:${t.col+1}" title="${esc(title)}">
+        <img src="https://wow.zamimg.com/images/wow/icons/small/${t.icon}.jpg" alt="" loading="lazy">
+        ${r?`<span class="tal-rank">${r}</span>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="gp-tree"><div class="gp-tree-hd">${esc(tr.name)} <span>${pts}</span></div>
+      <div class="gp-tree-grid" style="grid-template-rows:repeat(${maxTier+1},auto)">${cells}</div></div>`;
+  }).join('')}</div>`;
+}
 
 const TREE_NAMES={
   DK:['Кров','Лід','Анхолі'], WA:['Армс','Фурі','Прот'], PA:['Холі','Прот','Ретрі'],
@@ -522,7 +565,13 @@ function renderPanel(char){
     const notes=[];
     if(!char.hasGems) notes.push('≈ без гемів (персонаж ще не відсканований зблизька)');
     if(!specEntry) notes.push('≈ спек невідомий — стати по типовому білду класу');
-    statsHtml=`${specBtns}<div class="gp-statcols">
+    let talHtml='';
+    if(specEntry&&specEntry.talentRanks&&TALENTS_DB){
+      talHtml=`<button class="gp-tal-toggle" onclick="toggleTalents()">
+        ${talOpen?'▲ Сховати таланти':'▼ Таланти '+esc(specEntry.spec||'')}</button>
+        ${talOpen?talentTreesHtml(char.class,specEntry.talentRanks):''}`;
+    }
+    statsHtml=`${specBtns}${talHtml}<div class="gp-statcols">
       <div class="gp-statcol">${left}</div>
       <div class="gp-statcol">${right}</div>
     </div>
@@ -575,6 +624,10 @@ function renderPanel(char){
 }
 
 async function init(){
+  fetch('./talents.json').then(r=>r.ok?r.json():null).then(t=>{
+    TALENTS_DB=t;
+    if(panelChar)renderPanel(panelChar);
+  }).catch(()=>{});
   try{
     const r=await fetch('./armory_data.json');
     if(!r.ok)throw new Error('HTTP '+r.status);

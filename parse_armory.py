@@ -740,6 +740,7 @@ def build_json(characters, items_cache, examiner_data, enchants_cache,
                 "ilvl":  snap.get("Average", 0),
                 "date":  snap.get("Date", ""),
                 "spec":  snap.get("Spec", ""),
+                "talentRanks": snap.get("TalentRanks", ""),
             }
 
         stats = sum_char_stats(equip, items_cache)
@@ -755,6 +756,7 @@ def build_json(characters, items_cache, examiner_data, enchants_cache,
             specs[str(tree)] = {
                 "equip": gb["equip"], "gs": gb["gs"], "ilvl": gb["ilvl"],
                 "date": gb["date"], "spec": gb["spec"],
+                "talentRanks": gb.get("talentRanks", ""),
                 "stats": compute_stats(gb["equip"], items_cache, enchants_cache,
                                        race, cls, talent_points=gb.get("spec"),
                                        level=lvl, tree=tree),
