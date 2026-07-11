@@ -14,6 +14,15 @@ import re, json, time, os, sys, argparse, random
 from datetime import date
 import requests
 
+import glob as _glob
+
+def _gearscore_luas():
+    """All GearScore.lua across installs/accounts (skip backups/copies)."""
+    paths = _glob.glob(r"D:\world of warcraft*\WTF\Account\*\SavedVariables\GearScore.lua")
+    return [p for p in paths
+            if "копія" not in p.lower() and "backup" not in p.lower()]
+
+LUA_PATHS      = _gearscore_luas()
 LUA_PATH       = r"D:\world of warcraft 3.3.5a hd – 3\WTF\Account\R113\SavedVariables\GearScore.lua"
 EXAMINER_LUA   = r"D:\world of warcraft 3.3.5a hd – 3\WTF\Account\R113\SavedVariables\Examiner.lua"
 OUTPUT_DIR     = "armory"
@@ -50,8 +59,21 @@ BAD_NAMES = {"Невідомо", "Неизвестно", "Unknown", "Inconnu", "
 # ── GEARSCORE LUA PARSER ──────────────────────────────────────────────────────
 
 def parse_lua():
-    print(f"Reading: {LUA_PATH}")
-    with open(LUA_PATH, encoding="utf-8", errors="replace") as f:
+    """Parse and merge GearScore data from all installs/accounts (newest wins)."""
+    merged = {}
+    for path in LUA_PATHS:
+        for char in _parse_lua_file(path):
+            name = char["Name"]
+            if name not in merged or (char.get("Date", 0) or 0) > (merged[name].get("Date", 0) or 0):
+                merged[name] = char
+    players = list(merged.values())
+    print(f"Parsed {len(players)} characters from {len(LUA_PATHS)} GearScore files")
+    return players
+
+
+def _parse_lua_file(lua_path):
+    print(f"Reading: {lua_path}")
+    with open(lua_path, encoding="utf-8", errors="replace") as f:
         content = f.read()
 
     content = re.sub(r"--[^\n]*", "", content)
@@ -110,14 +132,28 @@ def parse_lua():
         players.append(char)
         scan = j
 
-    print(f"Parsed {len(players)} characters from GearScore")
     return players
 
 
 def parse_specgear():
+    """Merge GS_SpecGear from all installs/accounts (newest snapshot per tree wins)."""
+    merged = {}
+    for path in LUA_PATHS:
+        for name, trees in _parse_specgear_file(path).items():
+            dst = merged.setdefault(name, {})
+            for tree, snap in trees.items():
+                if tree not in dst or (snap.get("Date", 0) or 0) > (dst[tree].get("Date", 0) or 0):
+                    dst[tree] = snap
+    if merged:
+        total = sum(len(v) for v in merged.values())
+        print(f"SpecGear: {len(merged)} characters, {total} spec snapshots")
+    return merged
+
+
+def _parse_specgear_file(lua_path):
     """Parse GS_SpecGear (patched addon) → {name: {tree0based: snapshot}}.
     snapshot = {"Equip": [...], "GearScore": n, "Average": n, "Date": str, "Spec": str}"""
-    with open(LUA_PATH, encoding="utf-8", errors="replace") as f:
+    with open(lua_path, encoding="utf-8", errors="replace") as f:
         content = f.read()
     content = re.sub(r"--[^\n]*", "", content)
 
@@ -187,9 +223,6 @@ def parse_specgear():
         if trees:
             result[name] = trees
 
-    if result:
-        total = sum(len(v) for v in result.values())
-        print(f"SpecGear: {len(result)} characters, {total} spec snapshots")
     return result
 
 
