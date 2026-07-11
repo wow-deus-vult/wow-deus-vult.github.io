@@ -515,9 +515,9 @@ function renderPanel(char){
       sf.caster?row('Мана/5с',sf.mp5,'sv-mp5'):row('Мастері',sf.expPts,'sv-exp'),
       sf.caster?(sf.spi?'':''):rowPct('Проб. броні',sf.arp,13.9957,'sv-arp'),
       (!sf.caster&&sf.sp)?row('Сила закл.',sf.sp,'sv-sp'):'',
-      sf.def?row('Захист',sf.def,'sv-def'):'',
-      sf.dodge?row('Ухилення',sf.dodge,'sv-dodge'):'',
-      sf.parry?row('Парір.',sf.parry,'sv-parry'):'',
+      sf.def?`<div class="gp-srow"><span class="gp-srl">Захист</span><span class="gp-srv sv-def">${sf.def.toLocaleString()} / +${Math.floor(sf.def/4.918)}</span></div>`:'',
+      sf.dodge?rowPct('Ухилення',sf.dodge,39.348,'sv-dodge'):'',
+      sf.parry?rowPct('Парір.',sf.parry,49.185,'sv-parry'):'',
     ].join('');
     const notes=[];
     if(!char.hasGems) notes.push('≈ без гемів (персонаж ще не відсканований зблизька)');
