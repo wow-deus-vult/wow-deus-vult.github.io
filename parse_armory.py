@@ -632,6 +632,10 @@ def build_equip_list(equip_strings, exam_slots=None):
     return equip
 
 
+# class-typical tree guess when spec is unknown (matches JS DEFAULT_TREE)
+DEFAULT_TREE = {"DK": 2, "WA": 1, "PA": 2, "HU": 1, "RO": 1,
+                "PR": 2, "SH": 0, "MA": 2, "WK": 0, "DR": 1}
+
 def build_json(characters, items_cache, examiner_data, enchants_cache,
                examiner_talents=None, spec_gear=None):
     from armory_stats import compute_stats, dominant_tree
@@ -661,20 +665,40 @@ def build_json(characters, items_cache, examiner_data, enchants_cache,
         lvl = char.get("Level", 80) or 80
         race, cls = char.get("Race", ""), char.get("Class", "")
         exam_tp = examiner_talents.get(name)
-        stats_by_spec = []
-        for i in range(3):
-            if i in gear_by_spec:
-                tree_equip = gear_by_spec[i]["equip"]
-                tree_spec  = gear_by_spec[i].get("spec") or None
-            else:
-                tree_equip = equip
-                tree_spec  = exam_tp if dominant_tree(exam_tp) == i else None
-            stats_by_spec.append(compute_stats(
-                tree_equip, items_cache, enchants_cache, race, cls,
-                talent_points=tree_spec, level=lvl, tree=i))
-        spec_detected = dominant_tree(exam_tp)
-        if spec_detected is None and gear_by_spec:
-            spec_detected = max(gear_by_spec, key=lambda t: gear_by_spec[t].get("date", ""))
+        exam_tree = dominant_tree(exam_tp)
+
+        # specs: only trees we actually SAW the character in.
+        # Gear follows the spec; stats follow the gear.
+        specs = {}
+        for tree, gb in gear_by_spec.items():
+            specs[str(tree)] = {
+                "equip": gb["equip"], "gs": gb["gs"], "ilvl": gb["ilvl"],
+                "date": gb["date"], "spec": gb["spec"],
+                "stats": compute_stats(gb["equip"], items_cache, enchants_cache,
+                                       race, cls, talent_points=gb.get("spec"),
+                                       level=lvl, tree=tree),
+            }
+        # Examiner-known spec: attribute the main gear to that tree
+        if exam_tree is not None and str(exam_tree) not in specs:
+            specs[str(exam_tree)] = {
+                "equip": equip, "gs": char.get("GearScore", 0),
+                "ilvl": char.get("Average", 0), "date": "", "spec": exam_tp,
+                "stats": compute_stats(equip, items_cache, enchants_cache,
+                                       race, cls, talent_points=exam_tp,
+                                       level=lvl, tree=exam_tree),
+            }
+
+        spec_detected = exam_tree
+        if gear_by_spec:
+            spec_detected = int(max(gear_by_spec,
+                                    key=lambda t: str(gear_by_spec[t].get("date", ""))))
+
+        # spec unknown → stats from main gear with the class-typical tree guess
+        stats_main = None
+        if not specs:
+            stats_main = compute_stats(equip, items_cache, enchants_cache,
+                                       race, cls, level=lvl,
+                                       tree=DEFAULT_TREE.get(cls, 0))
 
         chars_out.append({
             "name":        name,
@@ -692,9 +716,9 @@ def build_json(characters, items_cache, examiner_data, enchants_cache,
             "equip":       equip,
             "hasGems":     bool(exam_slots) or any(e["gems"] for e in equip),
             "stats":       stats,
-            "statsBySpec": stats_by_spec,
+            "specs":       specs or None,
             "specTree":    spec_detected,
-            "gearBySpec":  {str(k): v for k, v in gear_by_spec.items()} or None,
+            "statsMain":   stats_main,
             "talents":     examiner_talents.get(name, ""),
         })
 

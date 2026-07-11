@@ -114,6 +114,8 @@
     padding:5px 4px;cursor:pointer;transition:.12s;}
   .gp-spec:hover{color:var(--text);border-color:var(--accent-dim);}
   .gp-spec.active{color:var(--accent);background:rgba(143,193,227,.1);border-color:var(--accent-dim);}
+  .gp-spec.off{opacity:.35;cursor:not-allowed;}
+  .gp-spec.off:hover{color:var(--text-muted);border-color:var(--border2);}
 
   /* Stats panel (in-game style rows) */
   .gp-statcols{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;
@@ -448,19 +450,25 @@ function renderPanel(char){
   const guild=(char.guild&&char.guild!=='*')?char.guild:null;
   const icon=CLASS_ICON[char.class]||'warrior';
 
-  const specs=char.statsBySpec;
+  // specs = only trees the character was actually SEEN in (gear follows spec)
+  const specsMap=char.specs||{};
+  const availTrees=Object.keys(specsMap).map(Number);
   if(panelCharName!==char.name){
     panelCharName=char.name;
-    selectedSpec=(char.specTree!=null)?char.specTree:defaultTree(char.class);
+    selectedSpec=(char.specTree!=null&&specsMap[String(char.specTree)])
+      ?char.specTree
+      :(availTrees.length?availTrees[0]:-1);
   }
-  const sf=specs?specs[selectedSpec]:null;
-  const specGearTop=char.gearBySpec&&char.gearBySpec[String(selectedSpec)];
-  const sgGs=specGearTop?specGearTop.gs:0, sgIlvl=specGearTop?specGearTop.ilvl:0;
+  const specEntry=specsMap[String(selectedSpec)]||null;
+  const sf=specEntry?specEntry.stats:(char.statsMain||null);
+  const sgGs=specEntry?specEntry.gs:0, sgIlvl=specEntry?specEntry.ilvl:0;
   const treeNames=TREE_NAMES[char.class]||['1','2','3'];
-  const specBtns=specs?`<div class="gp-specs">${treeNames.map((n,i)=>{
-    const hasSnap=char.gearBySpec&&char.gearBySpec[String(i)];
+  const specBtns=availTrees.length?`<div class="gp-specs">${treeNames.map((n,i)=>{
+    const has=!!specsMap[String(i)];
+    if(!has) return `<button class="gp-spec off" disabled
+      title="не бачили персонажа в цьому спеку">${n}</button>`;
     return `<button class="gp-spec${i===selectedSpec?' active':''}" onclick="selectSpec(${i})"
-      title="${hasSnap?'є знімок шмоту в цьому спеку':'стати пораховані по основному шмоту'}">${n}${hasSnap?' •':''}</button>`;
+      title="${esc(specsMap[String(i)].spec||'')}">${n}</button>`;
   }).join('')}</div>`:'';
   let statsHtml='';
   if(sf){
@@ -485,11 +493,16 @@ function renderPanel(char){
       sf.dodge?row('Ухилення',sf.dodge,'sv-dodge'):'',
       sf.parry?row('Парір.',sf.parry,'sv-parry'):'',
     ].join('');
+    const notes=[];
+    if(!char.hasGems) notes.push('≈ без гемів (персонаж ще не відсканований зблизька)');
+    if(!specEntry) notes.push('≈ спек невідомий — стати по типовому білду класу');
     statsHtml=`${specBtns}<div class="gp-statcols">
       <div class="gp-statcol">${left}</div>
       <div class="gp-statcol">${right}</div>
     </div>
-    ${char.hasGems?'':'<div class="gp-statnote">≈ без гемів (персонаж ще не відсканований зблизька)</div>'}`;
+    ${notes.map(n=>`<div class="gp-statnote">${n}</div>`).join('')}`;
+  }else{
+    statsHtml=specBtns;
   }
 
   document.getElementById('gp-top').innerHTML=`
@@ -515,8 +528,8 @@ function renderPanel(char){
     </div>
     ${statsHtml}`;
 
-  // per-spec gear snapshot when the addon has seen this player in that spec
-  const equipSrc=specGearTop?specGearTop.equip:(char.equip||[]);
+  // gear follows the selected spec; fallback = main scanned gear
+  const equipSrc=specEntry?specEntry.equip:(char.equip||[]);
   const equip={};
   equipSrc.forEach(e=>{if(e.itemId)equip[e.slot]=e;});
   currentEquip=equip;
