@@ -36,23 +36,23 @@ CASTER_TREES = {                              # class → trees that play as cas
 # Stat text patterns for enchant/gem EN names, e.g. "+30 Spell Power",
 # "Increases attack power by 140"
 ENCH_PATTERNS = [
-    (r'\+(\d+) Strength',                  'str'),
-    (r'\+(\d+) Agility',                   'agi'),
-    (r'\+(\d+) Stamina',                   'sta'),
-    (r'\+(\d+) Intellect',                 'int'),
-    (r'\+(\d+) Spirit',                    'spi'),
-    (r'\+(\d+) Attack Power',              'ap'),
-    (r'\+(\d+) (?:Spell Power|Spell Damage and Healing)', 'sp'),
-    (r'\+(\d+) Critical Strike Rating',    'crit'),
-    (r'\+(\d+) Hit Rating',                'hit'),
-    (r'\+(\d+) Haste Rating',              'haste'),
-    (r'\+(\d+) Expertise(?: Rating)?',     'exp'),
-    (r'\+(\d+) Armor Penetration(?: Rating)?', 'arp'),
-    (r'\+(\d+) Resilience Rating',         'res'),
-    (r'\+(\d+) Defense Rating',            'def'),
-    (r'\+(\d+) Dodge Rating',              'dodge'),
-    (r'\+(\d+) Parry Rating',              'parry'),
-    (r'\+(\d+) Armor',                     'armor'),
+    (r'([+-]?\d+) Strength',                  'str'),
+    (r'([+-]?\d+) Agility',                   'agi'),
+    (r'([+-]?\d+) Stamina',                   'sta'),
+    (r'([+-]?\d+) Intellect',                 'int'),
+    (r'([+-]?\d+) Spirit',                    'spi'),
+    (r'([+-]?\d+) Attack Power',              'ap'),
+    (r'([+-]?\d+) (?:Spell Power|Spell Damage and Healing)', 'sp'),
+    (r'([+-]?\d+) Critical Strike Rating',    'crit'),
+    (r'([+-]?\d+) Hit Rating',                'hit'),
+    (r'([+-]?\d+) Haste Rating',              'haste'),
+    (r'([+-]?\d+) Expertise(?: Rating)?',     'exp'),
+    (r'([+-]?\d+) Armor Penetration(?: Rating)?', 'arp'),
+    (r'([+-]?\d+) Resilience Rating',         'res'),
+    (r'([+-]?\d+) Defense Rating',            'def'),
+    (r'([+-]?\d+) Dodge Rating',              'dodge'),
+    (r'([+-]?\d+) Parry Rating',              'parry'),
+    (r'([+-]?\d+) Armor',                     'armor'),
     (r'critical strike rating by (\d+)',   'crit'),
     (r'\bhit rating by (\d+)',             'hit'),
     (r'haste rating by (\d+)',             'haste'),
@@ -83,7 +83,7 @@ def enchant_stats(name_en):
         for m in re.finditer(pat, name_en, re.I):
             out[key] = out.get(key, 0) + int(m.group(1))
     # "+10 All Stats" / "All Stats by 10" → all five primary stats
-    for m in re.finditer(r'\+(\d+) (?:to )?All Stats|All Stats(?: and\b[^+]*)? by (\d+)', name_en, re.I):
+    for m in re.finditer(r'([+-]?\d+) (?:to )?All Stats|All Stats(?: and\b[^+]*)? by (\d+)', name_en, re.I):
         v = int(m.group(1) or m.group(2))
         for k in ('str', 'agi', 'sta', 'int', 'spi'):
             out[k] = out.get(k, 0) + v

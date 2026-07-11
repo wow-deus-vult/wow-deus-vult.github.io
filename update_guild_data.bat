@@ -26,8 +26,9 @@ python fetch_raid_stats.py >> %LOGFILE% 2>&1
 echo [7/7] Tank Rating collector...
 python fetch_tank_data.py >> %LOGFILE% 2>&1
 
-echo [8/8] Armory (GearScore/Examiner + wowhead + DBC)...
+echo [8/8] Armory (GearScore/Examiner + wowhead + WDB + DBC)...
 python parse_armory.py >> %LOGFILE% 2>&1
+python merge_wdb_items.py >> %LOGFILE% 2>&1
 python update_enchants_cache.py >> %LOGFILE% 2>&1
 python parse_armory.py --export >> %LOGFILE% 2>&1
 
