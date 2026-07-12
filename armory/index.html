@@ -227,6 +227,11 @@
     .gp-statcols{grid-template-columns:1fr;}
     .sort-select,.class-filter,.guild-check{flex:1;}
   }
+  /* touch devices: wowhead tooltip must fit the screen */
+  @media(hover:none){
+    .wowhead-tooltip{max-width:94vw !important;}
+    .wowhead-tooltip table{max-width:100% !important;}
+  }
   @media(max-width:768px){
     nav{padding:0 14px;}
     .nav-links{display:none;flex-direction:column;gap:2px;width:100%;}
@@ -674,6 +679,25 @@ async function init(){
 }
 
 init();
+
+// ── Touch devices: tap on an item shows the tooltip instead of navigating ────
+(function(){
+  if(!matchMedia('(hover: none)').matches) return;
+  let lastTap=null;
+  document.getElementById('gear-panel').addEventListener('click',function(e){
+    const gs=e.target.closest('a.gs');
+    if(!gs) return;
+    e.preventDefault();                    // the tap itself already fired
+    lastTap=gs;                            // mouseover → wowhead tooltip shown
+  });
+  // tap anywhere outside an item hides the tooltip
+  document.addEventListener('touchstart',function(e){
+    if(lastTap&&!e.target.closest('a.gs')){
+      lastTap.dispatchEvent(new MouseEvent('mouseout',{bubbles:true}));
+      lastTap=null;
+    }
+  },{passive:true});
+})();
 
 // ── Talent tooltip (in-game style) ───────────────────────────────────────────
 (function(){
