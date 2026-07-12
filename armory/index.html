@@ -227,6 +227,25 @@
     .gp-statcols{grid-template-columns:1fr;}
     .sort-select,.class-filter,.guild-check{flex:1;}
   }
+  /* Mobile item sheet (own popup, WDB data) */
+  #item-sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;display:none;}
+  #item-sheet{position:fixed;left:0;right:0;bottom:0;z-index:9001;display:none;
+    background:#0b0f18;border-top:1px solid rgba(90,130,190,.5);border-radius:14px 14px 0 0;
+    padding:14px 16px calc(16px + env(safe-area-inset-bottom));max-height:72vh;overflow-y:auto;
+    font-size:13px;line-height:1.55;}
+  #item-sheet .is-hdr{display:flex;gap:10px;align-items:center;margin-bottom:8px;}
+  #item-sheet .is-ico{width:44px;height:44px;border-radius:6px;border:1px solid var(--border2);}
+  #item-sheet .is-name{font-family:'Exo 2',sans-serif;font-size:15px;font-weight:800;line-height:1.2;}
+  #item-sheet .is-meta{font-size:11px;color:var(--text-faint);}
+  #item-sheet .is-close{margin-left:auto;background:var(--bg3);border:1px solid var(--border2);
+    border-radius:8px;color:var(--text);width:32px;height:32px;font-size:15px;flex-shrink:0;}
+  #item-sheet .is-white{color:#fff;}
+  #item-sheet .is-green{color:#1eff00;}
+  #item-sheet .is-ench{color:#4fc3f7;font-weight:600;}
+  #item-sheet .is-gem{display:flex;align-items:center;gap:6px;margin:2px 0;color:#fff;}
+  #item-sheet .is-gem img{width:18px;height:18px;border-radius:3px;}
+  #item-sheet .is-sb{color:var(--text-faint);font-size:12px;}
+
   /* touch devices: wowhead tooltip must fit the screen */
   @media(hover:none){
     .wowhead-tooltip{max-width:94vw !important;}
@@ -680,23 +699,68 @@ async function init(){
 
 init();
 
-// ── Touch devices: tap on an item shows the tooltip instead of navigating ────
+// ── Touch devices: tap on an item opens our own detail sheet ─────────────────
 (function(){
   if(!matchMedia('(hover: none)').matches) return;
-  let lastTap=null;
-  document.getElementById('gear-panel').addEventListener('click',function(e){
-    const gs=e.target.closest('a.gs');
-    if(!gs) return;
-    e.preventDefault();                    // the tap itself already fired
-    lastTap=gs;                            // mouseover → wowhead tooltip shown
-  });
-  // tap anywhere outside an item hides the tooltip
-  document.addEventListener('touchstart',function(e){
-    if(lastTap&&!e.target.closest('a.gs')){
-      lastTap.dispatchEvent(new MouseEvent('mouseout',{bubbles:true}));
-      lastTap=null;
+  const bg=document.createElement('div');bg.id='item-sheet-bg';
+  const sh=document.createElement('div');sh.id='item-sheet';
+  document.body.appendChild(bg);document.body.appendChild(sh);
+  const QC=['#9d9d9d','#fff','#1eff00','#0070dd','#a335ee','#ff8000','#e6cc80'];
+  const STAT_RU={str:'к силе',agi:'к ловкости',sta:'к выносливости',int:'к интеллекту',spi:'к духу'};
+  const RATE_RU={hit:'Рейтинг меткости',crit:'Рейтинг критического удара',haste:'Рейтинг скорости',
+    exp:'Рейтинг мастерства',arp:'Пробивание брони',def:'Рейтинг защиты',dodge:'Рейтинг уклонения',
+    parry:'Рейтинг парирования',res:'Устойчивость',sp:'Сила заклинаний',ap:'Сила атаки',block:'Рейтинг блока'};
+
+  function statLines(st){
+    let h='';
+    for(const k of ['str','agi','sta','int','spi'])
+      if(st[k]) h+=`<div class="is-white">${st[k]>0?'+':''}${st[k]} ${STAT_RU[k]}</div>`;
+    for(const k in RATE_RU)
+      if(st[k]) h+=`<div class="is-green">${RATE_RU[k]} ${st[k]>0?'+':''}${st[k]}</div>`;
+    if(st.mp5) h+=`<div class="is-green">Восполнение ${st.mp5} ед. маны в 5 сек.</div>`;
+    return h;
+  }
+
+  function openSheet(slotNum){
+    const e=currentEquip[slotNum];
+    if(!e||!e.itemId) return;
+    const it=items[String(e.itemId)]||{};
+    const q=QC[it.quality||1]||'#fff';
+    const nm=it.name_ru||it.name||('Item '+e.itemId);
+    let h=`<div class="is-hdr">
+      <img class="is-ico" src="https://wow.zamimg.com/images/wow/icons/large/${it.icon||'inv_misc_questionmark'}.jpg" alt="">
+      <div><div class="is-name" style="color:${q}">${esc(nm)}</div>
+      <div class="is-meta">${SLOT_NAMES[slotNum]||''}${it.ilvl?' · '+it.ilvl+' ilvl':''}</div></div>
+      <button class="is-close" onclick="document.getElementById('item-sheet').style.display='none';document.getElementById('item-sheet-bg').style.display='none'">✕</button>
+    </div>`;
+    if(it.armor) h+=`<div class="is-white">Броня: ${it.armor.toLocaleString()}</div>`;
+    h+=statLines(it.stats||{});
+    if(e.enchantId){
+      const en=enchants[String(e.enchantId)]||{};
+      h+=`<div class="is-ench">✦ ${esc(en.name||('Enchant '+e.enchantId))}</div>`;
     }
-  },{passive:true});
+    for(const gid of (e.gems||[])){
+      if(!gid) continue;
+      const ge=enchants[String(gid)]||{};
+      const gi=ge.icon?`<img src="https://wow.zamimg.com/images/wow/icons/small/${ge.icon}.jpg" alt="">`:'';
+      h+=`<div class="is-gem">${gi}${esc(ge.name||('Gem '+gid))}</div>`;
+    }
+    if(it.socketBonus){
+      const sb=Object.entries(it.socketBonus).map(([k,v])=>
+        `${v>0?'+':''}${v} ${(STAT_RU[k]||RATE_RU[k]||k)}`).join(', ');
+      h+=`<div class="is-sb">При соответствии цвета: ${sb}</div>`;
+    }
+    sh.innerHTML=h;
+    sh.style.display='block';bg.style.display='block';
+  }
+
+  document.getElementById('gear-panel').addEventListener('click',function(ev){
+    const gs=ev.target.closest('.gs[data-slot]:not(.empty)');
+    if(!gs) return;
+    ev.preventDefault();
+    openSheet(+gs.dataset.slot);
+  });
+  bg.addEventListener('click',function(){sh.style.display='none';bg.style.display='none';});
 })();
 
 // ── Talent tooltip (in-game style) ───────────────────────────────────────────
