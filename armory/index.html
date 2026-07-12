@@ -203,13 +203,29 @@
   .gs-gem-nm{font-size:10px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
   @media(max-width:900px){
-    .armory-wrap{flex-direction:column-reverse;}
+    .page{padding:18px 12px 48px;}
+    .armory-wrap{flex-direction:column;}
     .gear-panel{width:100%;min-width:0;position:static;max-height:none;}
     .gp-cols{grid-template-columns:1fr 1fr;}
+    /* hide secondary table columns on small screens */
+    .char-table .m-hide{display:none;}
+    .char-table th,.char-table td{padding:8px 8px;}
+    .search-input{min-width:100%;order:-1;}
+    .page-note{max-width:none;}
   }
   @media(max-width:540px){
     .gp-cols{grid-template-columns:1fr;}
     .gp-weapons{grid-template-columns:1fr;}
+    /* talent trees: stack vertically, bigger icons for touch */
+    .gp-trees{grid-template-columns:1fr;}
+    .gp-tree-grid{max-width:190px;margin:0 auto;}
+    .tal,.tal-empty{width:30px;height:30px;}
+    .char-table td{font-size:12px;}
+    .c-name{font-size:13px;}
+    .c-gs{font-size:14px;}
+    .char-table .m-hide2{display:none;}
+    .gp-statcols{grid-template-columns:1fr;}
+    .sort-select,.class-filter,.guild-check{flex:1;}
   }
   @media(max-width:768px){
     nav{padding:0 14px;}
@@ -301,12 +317,12 @@
             <tr>
               <th class="r" style="width:36px">#</th>
               <th>Ім'я</th>
-              <th>Клас</th>
-              <th>Раса</th>
-              <th>Гільдія</th>
+              <th class="m-hide2">Клас</th>
+              <th class="m-hide">Раса</th>
+              <th class="m-hide2">Гільдія</th>
               <th class="r">GearScore</th>
               <th class="r">iLevel</th>
-              <th>Скановано</th>
+              <th class="m-hide">Скановано</th>
             </tr>
           </thead>
           <tbody id="char-tbody"></tbody>
@@ -419,12 +435,12 @@ function renderTable(){
     return `<tr class="data-row" onclick="showChar(${i})">
       <td class="c-rank">${i+1}</td>
       <td><span class="c-name" style="color:${col}">${esc(c.name)}</span></td>
-      <td class="c-class" style="color:${col}">${CLASS_NAMES[c.class]||c.class}</td>
-      <td class="c-race">${RACE_NAMES[c.race]||c.race||'—'}</td>
-      <td class="c-guild">${guild}</td>
+      <td class="c-class m-hide2" style="color:${col}">${CLASS_NAMES[c.class]||c.class}</td>
+      <td class="c-race m-hide">${RACE_NAMES[c.race]||c.race||'—'}</td>
+      <td class="c-guild m-hide2">${guild}</td>
       <td class="c-gs" style="color:${col}">${c.gs?c.gs.toLocaleString():'—'}</td>
       <td class="c-ilvl">${c.ilvl||'—'}</td>
-      <td class="c-date">${fmtDate(c.date)}</td>
+      <td class="c-date m-hide">${fmtDate(c.date)}</td>
     </tr>`;
   });
   document.getElementById('char-tbody').innerHTML=rows.join('');
@@ -435,7 +451,10 @@ function showChar(idx){
   activeIdx=idx;
   document.querySelectorAll('#char-tbody .data-row').forEach((tr,i)=>tr.classList.toggle('active',i===idx));
   renderPanel(filtered[idx]);
-  document.getElementById('gear-panel').classList.add('open');
+  const panel=document.getElementById('gear-panel');
+  panel.classList.add('open');
+  // on mobile the panel sits above the list — scroll it into view
+  if(window.innerWidth<=900) panel.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function closePanel(){
