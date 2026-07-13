@@ -200,8 +200,67 @@ def dominant_tree(talent_points):
 
 SHIRT_TABARD_SLOTS = {4, 19}
 
+# ── Crit % (full, like the in-game panel) ────────────────────────────────────
+# class base crit + crit-per-agi(int) at lvl 80 from GtChanceToMeleeCrit*.dbc
+try:
+    with open(os.path.join(_HERE, "armory", "crit_tables.json"), encoding="utf-8") as f:
+        CRIT_TABLES = json.load(f)
+except Exception:
+    CRIT_TABLES = {}
+
+_TALENTS_DB = None
+def _talents_db():
+    global _TALENTS_DB
+    if _TALENTS_DB is None:
+        try:
+            with open(os.path.join(_HERE, "armory", "talents.json"), encoding="utf-8") as f:
+                _TALENTS_DB = json.load(f)
+        except Exception:
+            _TALENTS_DB = {}
+    return _TALENTS_DB
+
+
+def talent_crit_bonus(class_code, talent_ranks, is_caster):
+    """Sum panel-crit % from talent auras (critW/critS baked into talents.json)."""
+    if not talent_ranks:
+        return 0.0
+    trees = _talents_db().get(class_code)
+    if not trees:
+        return 0.0
+    key = "critS" if is_caster else "critW"
+    bonus = 0.0
+    tabs = talent_ranks.split("|")
+    for ti, tree in enumerate(trees):
+        if not tree or ti >= len(tabs):
+            continue
+        s = tabs[ti]
+        for i, t in enumerate(tree.get("talents", [])):
+            if i < len(s) and s[i].isdigit() and int(s[i]) > 0 and key in t:
+                r = min(int(s[i]), len(t[key]))
+                bonus += t[key][r - 1]
+    return bonus
+
+
+def crit_percent(class_code, is_caster, agi, intel, crit_rating, talent_ranks):
+    """Full panel crit%: class base + agi/int contribution + rating + talents."""
+    if not CRIT_TABLES:
+        return None
+    if is_caster:
+        base = CRIT_TABLES.get("spellBase", {}).get(class_code)
+        per  = CRIT_TABLES.get("spellInt", {}).get(class_code)
+        attr = intel
+    else:
+        base = CRIT_TABLES.get("meleeBase", {}).get(class_code)
+        per  = CRIT_TABLES.get("meleeAgi", {}).get(class_code)
+        attr = agi
+    if base is None or per is None:
+        return None
+    pct = base * 100 + attr * per * 100 + crit_rating / 45.906
+    pct += talent_crit_bonus(class_code, talent_ranks, is_caster)
+    return round(pct, 2)
+
 def compute_stats(equip, items_cache, enchants_cache, race_code, class_code,
-                  talent_points=None, level=80, tree=None):
+                  talent_points=None, level=80, tree=None, talent_ranks=None):
     """Return the character-panel stat dict, or None if base stats unknown.
     tree: 0/1/2 forces a talent tree; None = derive from talent_points."""
     race = RACE_MAP.get(race_code)
@@ -304,6 +363,9 @@ def compute_stats(equip, items_cache, enchants_cache, race_code, class_code,
         "hit": t["hit"], "crit": t["crit"], "haste": t["haste"],
         "caster": is_caster,
     }
+    cp = crit_percent(class_code, is_caster, t["agi"], t["int"], t["crit"], talent_ranks)
+    if cp is not None:
+        out["critPct"] = cp
     if is_caster:
         out["sp"]  = t["sp"]
         out["mp5"] = t["mp5"]

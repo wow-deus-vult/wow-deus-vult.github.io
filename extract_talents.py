@@ -132,12 +132,17 @@ DESC_EN_COL = detect_desc_col(spell_en, 49664, b'Increases your frost')
 BP_COLS = (86, 87, 88)   # EffectBasePoints1-3 in this (shifted) EN layout
 print(f"Desc cols: RU={DESC_RU_COL} EN={DESC_EN_COL}")
 
-spell_names_en, spell_icons, spell_bp, spell_desc_en = {}, {}, {}, {}
+AURA_COLS = (101, 102, 103)   # EffectApplyAuraName1-3 in this layout
+AURA_WEAPON_CRIT, AURA_SPELL_CRIT = 52, 57
+
+spell_names_en, spell_icons, spell_bp, spell_desc_en, spell_auras = {}, {}, {}, {}, {}
 for rec in dbc_iter(spell_en):
     sid = rec[0]
     spell_names_en[sid] = rec[NAME_EN_COL]
     spell_icons[sid] = rec[ICON_COL]
-    spell_bp[sid] = tuple(struct.unpack('<i', struct.pack('<I', rec[c]))[0] for c in BP_COLS)
+    bp = tuple(struct.unpack('<i', struct.pack('<I', rec[c]))[0] for c in BP_COLS)
+    spell_bp[sid] = bp
+    spell_auras[sid] = [(rec[AURA_COLS[e]], bp[e] + 1) for e in range(3) if rec[AURA_COLS[e]]]
     if DESC_EN_COL:
         spell_desc_en[sid] = rec[DESC_EN_COL]
 spell_names_ru, spell_desc_ru = {}, {}
@@ -186,13 +191,19 @@ for rec in dbc_iter(talent_dbc):
     if not ranks:
         continue
     sp1 = ranks[0]
-    by_tab.setdefault(tab_id, []).append({
+    entry = {
         "tier": tier, "col": col, "max": len(ranks),
         "name": dbc_str(spell_en, spell_names_en.get(sp1, 0)),
         "name_ru": dbc_str(spell_ru, spell_names_ru.get(sp1, 0)) if spell_ru else "",
         "icon": icons.get(spell_icons.get(sp1, 0), "inv_misc_questionmark"),
         "desc": [render_desc(r) for r in ranks],
-    })
+    }
+    # panel crit bonuses straight from spell auras (52 = weapon crit %, 57 = spell crit %)
+    critW = [sum(v for a, v in spell_auras.get(r, []) if a == AURA_WEAPON_CRIT) for r in ranks]
+    critS = [sum(v for a, v in spell_auras.get(r, []) if a == AURA_SPELL_CRIT) for r in ranks]
+    if any(critW): entry["critW"] = critW
+    if any(critS): entry["critS"] = critS
+    by_tab.setdefault(tab_id, []).append(entry)
 
 # GetTalentInfo enumerates sorted by (tier, col)
 out = {}

@@ -614,7 +614,9 @@ function renderPanel(char){
       row('Дух',sf.spi,'sv-spi'), row('Броня',sf.armor,'sv-arp'),
     ].join('');
     const right=[
-      rowPct('Хіт',sf.hit,hitPer,'sv-hit'), rowPct('Кріт',sf.crit,45.906,'sv-crit'),
+      rowPct('Хіт',sf.hit,hitPer,'sv-hit'), sf.critPct!=null
+        ?`<div class="gp-srow"><span class="gp-srl">Кріт</span><span class="gp-srv sv-crit">${sf.crit.toLocaleString()} / ${sf.critPct}%</span></div>`
+        :rowPct('Кріт',sf.crit,45.906,'sv-crit'),
       row('Хаст',sf.haste,'sv-haste'),
       sf.caster?row('Сила закл.',sf.sp,'sv-sp'):row('Атака',sf.ap,'sv-ap'),
       sf.caster?row('Мана/5с',sf.mp5,'sv-mp5'):row('Мастері',sf.expPts,'sv-exp'),

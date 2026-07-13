@@ -786,7 +786,8 @@ def build_json(characters, items_cache, examiner_data, enchants_cache,
                 "talentRanks": gb.get("talentRanks", ""),
                 "stats": compute_stats(gb["equip"], items_cache, enchants_cache,
                                        race, cls, talent_points=gb.get("spec"),
-                                       level=lvl, tree=tree),
+                                       level=lvl, tree=tree,
+                                       talent_ranks=gb.get("talentRanks")),
             }
         # Examiner-known spec: attribute the main gear to that tree
         if exam_tree is not None and str(exam_tree) not in specs:
