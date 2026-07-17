@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-16T11:18:15.990974+00:00",
+  "lastUpdated": "2026-07-17T07:03:15.877146+00:00",
   "currentSeasonId": "s1",
   "seasons": [
     {
@@ -7,7 +7,7 @@
       "name": "Season 1",
       "start": "2026-04-01",
       "end": "2026-10-01",
-      "raidsCount": 116,
+      "raidsCount": 117,
       "rows": [
         {
           "name": "Мараксус",
@@ -1088,6 +1088,13 @@
           "totalDamage": 43563917
         },
         {
+          "name": "Капуста",
+          "server": "FreedomUA",
+          "class": "Warrior",
+          "spec": "Fury Warrior",
+          "totalDamage": 42838017
+        },
+        {
           "name": "Осатанілий",
           "server": "FreedomUA",
           "class": "Warrior",
@@ -1100,13 +1107,6 @@
           "class": "Warrior",
           "spec": "Fury Warrior",
           "totalDamage": 41695855
-        },
-        {
-          "name": "Капуста",
-          "server": "FreedomUA",
-          "class": "Warrior",
-          "spec": "Fury Warrior",
-          "totalDamage": 38996477
         },
         {
           "name": "Тремчу",
@@ -1601,7 +1601,7 @@
     }
   ],
   "allTime": {
-    "raidsCount": 164,
+    "raidsCount": 165,
     "rows": [
       {
         "name": "Явсятремчу",
@@ -2836,6 +2836,13 @@
         "totalDamage": 43134619
       },
       {
+        "name": "Капуста",
+        "server": "FreedomUA",
+        "class": "Warrior",
+        "spec": "Fury Warrior",
+        "totalDamage": 42838017
+      },
+      {
         "name": "Rene",
         "server": "FreedomUA",
         "class": "Rogue",
@@ -2862,13 +2869,6 @@
         "class": "Paladin",
         "spec": "Paladin",
         "totalDamage": 39780420
-      },
-      {
-        "name": "Капуста",
-        "server": "FreedomUA",
-        "class": "Warrior",
-        "spec": "Fury Warrior",
-        "totalDamage": 38996477
       },
       {
         "name": "Тремчу",
