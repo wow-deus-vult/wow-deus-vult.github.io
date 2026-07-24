@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-23T07:05:15.823011+00:00",
+  "lastUpdated": "2026-07-24T07:07:02.516915+00:00",
   "totalTanks": 34,
   "rows": [
     {
@@ -18,10 +18,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 311669114,
+      "totalTaken": 314416240,
       "lichTaken": 94481043,
-      "halionTaken": 39176449,
-      "raidCount": 36,
+      "halionTaken": 41082209,
+      "raidCount": 37,
       "guildRank": 2
     },
     {
@@ -62,10 +62,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 96052337,
+      "totalTaken": 98854347,
       "lichTaken": 27043287,
-      "halionTaken": 5082974,
-      "raidCount": 11,
+      "halionTaken": 7011561,
+      "raidCount": 12,
       "guildRank": 6
     },
     {
@@ -95,10 +95,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 75941138,
+      "totalTaken": 76572319,
       "lichTaken": 21034809,
-      "halionTaken": 3528780,
-      "raidCount": 25,
+      "halionTaken": 3778360,
+      "raidCount": 26,
       "guildRank": 9
     },
     {
@@ -106,10 +106,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 75664211,
+      "totalTaken": 76385065,
       "lichTaken": 18463225,
-      "halionTaken": 1679608,
-      "raidCount": 19,
+      "halionTaken": 1964490,
+      "raidCount": 20,
       "guildRank": 10
     },
     {
@@ -128,11 +128,22 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 47252043,
+      "totalTaken": 52729236,
       "lichTaken": 8975734,
       "halionTaken": 765802,
-      "raidCount": 9,
+      "raidCount": 10,
       "guildRank": 12
+    },
+    {
+      "name": "Kalmar",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 47985231,
+      "lichTaken": 2401132,
+      "halionTaken": 0,
+      "raidCount": 5,
+      "guildRank": 13
     },
     {
       "name": "Palpatine",
@@ -143,7 +154,7 @@
       "lichTaken": 15212343,
       "halionTaken": 2112958,
       "raidCount": 14,
-      "guildRank": 13
+      "guildRank": 14
     },
     {
       "name": "Лісовиця",
@@ -154,7 +165,7 @@
       "lichTaken": 12938584,
       "halionTaken": 693129,
       "raidCount": 8,
-      "guildRank": 14
+      "guildRank": 15
     },
     {
       "name": "Sataninside",
@@ -165,17 +176,6 @@
       "lichTaken": 16112885,
       "halionTaken": 1671377,
       "raidCount": 10,
-      "guildRank": 15
-    },
-    {
-      "name": "Kalmar",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 37457457,
-      "lichTaken": 2401132,
-      "halionTaken": 0,
-      "raidCount": 4,
       "guildRank": 16
     },
     {

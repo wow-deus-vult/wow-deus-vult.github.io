@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-23T11:28:12.079083+00:00",
+  "lastUpdated": "2026-07-24T07:04:51.850422+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -98,6 +98,32 @@
       "guildRank": 3
     },
     {
+      "name": "Sweden",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Holy",
+      "avgHps": 11784.7,
+      "bossCount": 15,
+      "bosses": {
+        "Lord Marrowgar": 11377.8,
+        "Lady Deathwhisper": 12104.0,
+        "Deathbringer Saurfang": 11934.7,
+        "Festergut": 11739.4,
+        "Rotface": 13608.5,
+        "Professor Putricide": 12332.4,
+        "Blood Prince Council": 10004.0,
+        "Blood-Queen Lana'thel": 15436.8,
+        "Sindragosa": 9554.7,
+        "The Lich King": 7975.1,
+        "Valithria Dreamwalker": 40269.6,
+        "Halion": 11089.3,
+        "Saviana Ragefire": 518.7,
+        "General Zarithrian": 6431.5,
+        "Baltharus the Warborn": 2394.1
+      },
+      "guildRank": 4
+    },
+    {
       "name": "Kleef",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -120,32 +146,6 @@
         "Saviana Ragefire": 1950.5,
         "General Zarithrian": 1804.0,
         "Baltharus the Warborn": 3514.8
-      },
-      "guildRank": 4
-    },
-    {
-      "name": "Sweden",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Holy",
-      "avgHps": 11784.4,
-      "bossCount": 15,
-      "bosses": {
-        "Lord Marrowgar": 11376.5,
-        "Lady Deathwhisper": 12103.2,
-        "Deathbringer Saurfang": 11934.7,
-        "Festergut": 11739.4,
-        "Rotface": 13608.5,
-        "Professor Putricide": 12332.4,
-        "Blood Prince Council": 10004.0,
-        "Blood-Queen Lana'thel": 15434.2,
-        "Sindragosa": 9554.7,
-        "The Lich King": 7975.1,
-        "Valithria Dreamwalker": 40269.6,
-        "Halion": 11089.3,
-        "Saviana Ragefire": 518.7,
-        "General Zarithrian": 6431.5,
-        "Baltharus the Warborn": 2394.1
       },
       "guildRank": 5
     },
@@ -273,7 +273,7 @@
         "The Lich King": 8017.6,
         "Valithria Dreamwalker": 37767.8,
         "Halion": 9897.1,
-        "Saviana Ragefire": 4676.7,
+        "Saviana Ragefire": 4676.8,
         "General Zarithrian": 4854.0,
         "Baltharus the Warborn": 4208.6
       },
@@ -674,7 +674,7 @@
       "server": "FreedomUA",
       "class": "Druid",
       "spec": "Restoration",
-      "avgHps": 7852.4,
+      "avgHps": 7852.6,
       "bossCount": 15,
       "bosses": {
         "Lord Marrowgar": 5427.8,
@@ -684,7 +684,7 @@
         "Rotface": 7297.6,
         "Professor Putricide": 11580.4,
         "Blood Prince Council": 7363.8,
-        "Blood-Queen Lana'thel": 13853.2,
+        "Blood-Queen Lana'thel": 13855.6,
         "Sindragosa": 14694.1,
         "The Lich King": 8289.9,
         "Valithria Dreamwalker": 18394.0,
@@ -856,7 +856,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 9975.8,
+      "avgHps": 10013.3,
       "bossCount": 14,
       "bosses": {
         "Lord Marrowgar": 13003.1,
@@ -869,7 +869,7 @@
         "Blood-Queen Lana'thel": 15217.6,
         "Sindragosa": 12324.9,
         "The Lich King": 11855.3,
-        "Valithria Dreamwalker": 4896.6,
+        "Valithria Dreamwalker": 5420.9,
         "Halion": 8339.5,
         "Saviana Ragefire": 9268.6,
         "General Zarithrian": 3582.7,
@@ -1610,7 +1610,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
