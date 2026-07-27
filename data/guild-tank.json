@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-26T07:03:11.227291+00:00",
+  "lastUpdated": "2026-07-27T07:06:17.862667+00:00",
   "totalTanks": 34,
   "rows": [
     {
@@ -7,10 +7,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 404261503,
-      "lichTaken": 148641596,
+      "totalTaken": 411466968,
+      "lichTaken": 155847061,
       "halionTaken": 46628231,
-      "raidCount": 45,
+      "raidCount": 46,
       "guildRank": 1
     },
     {
@@ -80,6 +80,17 @@
       "guildRank": 7
     },
     {
+      "name": "Piceduke",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 84267981,
+      "lichTaken": 23920997,
+      "halionTaken": 3778360,
+      "raidCount": 27,
+      "guildRank": 8
+    },
+    {
       "name": "Dombrodeus",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -88,17 +99,6 @@
       "lichTaken": 11074873,
       "halionTaken": 8735514,
       "raidCount": 10,
-      "guildRank": 8
-    },
-    {
-      "name": "Piceduke",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "totalTaken": 76572319,
-      "lichTaken": 21034809,
-      "halionTaken": 3778360,
-      "raidCount": 26,
       "guildRank": 9
     },
     {
@@ -212,6 +212,17 @@
       "guildRank": 19
     },
     {
+      "name": "Johnnysins",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 22378205,
+      "lichTaken": 0,
+      "halionTaken": 706036,
+      "raidCount": 6,
+      "guildRank": 20
+    },
+    {
       "name": "Sichovyk",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -220,7 +231,7 @@
       "lichTaken": 0,
       "halionTaken": 7736320,
       "raidCount": 5,
-      "guildRank": 20
+      "guildRank": 21
     },
     {
       "name": "Antropofagus",
@@ -230,17 +241,6 @@
       "totalTaken": 15961262,
       "lichTaken": 9305151,
       "halionTaken": 4578235,
-      "raidCount": 5,
-      "guildRank": 21
-    },
-    {
-      "name": "Johnnysins",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 14542927,
-      "lichTaken": 0,
-      "halionTaken": 706036,
       "raidCount": 5,
       "guildRank": 22
     },

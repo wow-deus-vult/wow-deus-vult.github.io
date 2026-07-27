@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-07-27T07:03:07.420467+00:00",
-  "totalPlayersInSource": 274,
-  "totalRows": 356,
+  "lastUpdated": "2026-07-27T07:03:59.253916+00:00",
+  "totalPlayersInSource": 275,
+  "totalRows": 358,
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -888,7 +888,7 @@
         "Sindragosa": 15549.2,
         "The Lich King": 11572.0,
         "Halion": 15715.6,
-        "Saviana Ragefire": 11671.1,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 16303.8,
         "Baltharus the Warborn": 13596.7,
         "Valithria Dreamwalker": 13.9
@@ -1374,7 +1374,7 @@
         "Sindragosa": 15348.9,
         "The Lich King": 12144.2,
         "Halion": 12312.2,
-        "Saviana Ragefire": 11051.4,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 14284.1,
         "Baltharus the Warborn": 12055.2,
         "Valithria Dreamwalker": 0
@@ -1563,7 +1563,7 @@
         "Sindragosa": 14698.6,
         "The Lich King": 11887.0,
         "Halion": 12907.1,
-        "Saviana Ragefire": 10491.1,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 13953.8,
         "Baltharus the Warborn": 12856.4,
         "Valithria Dreamwalker": 0
@@ -1833,7 +1833,7 @@
         "Sindragosa": 15333.2,
         "The Lich King": 10607.5,
         "Halion": 14159.9,
-        "Saviana Ragefire": 10348.3,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 14581.0,
         "Baltharus the Warborn": 11498.1,
         "Valithria Dreamwalker": 0
@@ -2103,7 +2103,7 @@
         "Sindragosa": 14726.4,
         "The Lich King": 10252.0,
         "Halion": 13799.1,
-        "Saviana Ragefire": 10656.9,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 16506.6,
         "Baltharus the Warborn": 13071.0,
         "Valithria Dreamwalker": 0
@@ -2805,7 +2805,7 @@
         "Sindragosa": 15638.2,
         "The Lich King": 8964.1,
         "Halion": 11717.3,
-        "Saviana Ragefire": 10212.2,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 16132.8,
         "Baltharus the Warborn": 12337.3,
         "Valithria Dreamwalker": 0
@@ -2967,7 +2967,7 @@
         "Sindragosa": 13951.7,
         "The Lich King": 10405.6,
         "Halion": 12438.5,
-        "Saviana Ragefire": 10609.5,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 16256.6,
         "Baltharus the Warborn": 11807.3,
         "Valithria Dreamwalker": 65.7
@@ -3102,7 +3102,7 @@
         "Sindragosa": 13707.5,
         "The Lich King": 9765.3,
         "Halion": 12772.9,
-        "Saviana Ragefire": 11797.9,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 13999.4,
         "Baltharus the Warborn": 11895.2,
         "Valithria Dreamwalker": 0
@@ -3399,7 +3399,7 @@
         "Sindragosa": 11896.2,
         "The Lich King": 7988.1,
         "Halion": 11853.1,
-        "Saviana Ragefire": 11449.9,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 13995.4,
         "Baltharus the Warborn": 11765.6,
         "Valithria Dreamwalker": 0
@@ -3480,7 +3480,7 @@
         "Sindragosa": 9169.0,
         "The Lich King": 9541.8,
         "Halion": 11728.1,
-        "Saviana Ragefire": 8928.3,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 11402.7,
         "Baltharus the Warborn": 9892.3,
         "Valithria Dreamwalker": 0
@@ -4803,7 +4803,7 @@
         "Sindragosa": 11355.0,
         "The Lich King": 0,
         "Halion": 9876.7,
-        "Saviana Ragefire": 9195.9,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 9939.6,
         "Baltharus the Warborn": 9599.1,
         "Valithria Dreamwalker": 0
@@ -5181,7 +5181,7 @@
         "Sindragosa": 11337.5,
         "The Lich King": 7209.0,
         "Halion": 9682.1,
-        "Saviana Ragefire": 9937.7,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 10895.1,
         "Baltharus the Warborn": 9629.9,
         "Valithria Dreamwalker": 0
@@ -6153,7 +6153,7 @@
         "Sindragosa": 8098.4,
         "The Lich King": 6511.6,
         "Halion": 9382.9,
-        "Saviana Ragefire": 8420.5,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 11000.0,
         "Baltharus the Warborn": 8637.0,
         "Valithria Dreamwalker": 0
@@ -6238,6 +6238,33 @@
         "General Zarithrian": 12354.8,
         "Baltharus the Warborn": 9823.3,
         "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Yniko",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "specIndex": 2,
+      "overallRank": 89,
+      "overallScore": 50.85,
+      "lastLogDate": "2025-12-18",
+      "bosses": {
+        "Lord Marrowgar": 3963.3,
+        "Lady Deathwhisper": 5121.6,
+        "Deathbringer Saurfang": 4211.9,
+        "Festergut": 4725.6,
+        "Rotface": 78.0,
+        "Professor Putricide": 3528.3,
+        "Blood Prince Council": 3450.3,
+        "Blood-Queen Lana'thel": 3996.1,
+        "Sindragosa": 2965.0,
+        "The Lich King": 2232.4,
+        "Halion": 1945.8,
+        "Saviana Ragefire": 2510.7,
+        "General Zarithrian": 601.4,
+        "Baltharus the Warborn": 1952.8,
+        "Valithria Dreamwalker": 406.4
       }
     },
     {
@@ -6450,7 +6477,7 @@
         "Sindragosa": 9617.5,
         "The Lich King": 6474.1,
         "Halion": 10755.1,
-        "Saviana Ragefire": 8453.3,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 10599.7,
         "Baltharus the Warborn": 9951.5,
         "Valithria Dreamwalker": 0
@@ -6693,7 +6720,7 @@
         "Sindragosa": 1889.3,
         "The Lich King": 0,
         "Halion": 9803.3,
-        "Saviana Ragefire": 9654.5,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 11634.1,
         "Baltharus the Warborn": 8745.6,
         "Valithria Dreamwalker": 0
@@ -6882,7 +6909,7 @@
         "Sindragosa": 7761.1,
         "The Lich King": 0,
         "Halion": 4242.0,
-        "Saviana Ragefire": 6770.3,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 10822.6,
         "Baltharus the Warborn": 8992.9,
         "Valithria Dreamwalker": 0
@@ -8367,7 +8394,7 @@
         "Sindragosa": 0,
         "The Lich King": 0,
         "Halion": 0,
-        "Saviana Ragefire": 5960.6,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 9135.3,
         "Baltharus the Warborn": 6235.3,
         "Valithria Dreamwalker": 0
@@ -8560,6 +8587,33 @@
         "General Zarithrian": 246.0,
         "Baltharus the Warborn": 131.9,
         "Valithria Dreamwalker": 18469.5
+      }
+    },
+    {
+      "name": "Палельф",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Retribution",
+      "specIndex": 3,
+      "overallRank": 298,
+      "overallScore": 32.04,
+      "lastLogDate": "2026-07-22",
+      "bosses": {
+        "Lord Marrowgar": 13796.6,
+        "Lady Deathwhisper": 0,
+        "Deathbringer Saurfang": 12331.2,
+        "Festergut": 13162.1,
+        "Rotface": 12762.2,
+        "Professor Putricide": 0,
+        "Blood Prince Council": 9185.1,
+        "Blood-Queen Lana'thel": 9868.6,
+        "Sindragosa": 0,
+        "The Lich King": 0,
+        "Halion": 0,
+        "Saviana Ragefire": 6418.9,
+        "General Zarithrian": 8736.2,
+        "Baltharus the Warborn": 4480.7,
+        "Valithria Dreamwalker": 0
       }
     },
     {
@@ -9150,7 +9204,7 @@
         "Sindragosa": 0,
         "The Lich King": 7201.9,
         "Halion": 8267.5,
-        "Saviana Ragefire": 7352.3,
+        "Saviana Ragefire": 0,
         "General Zarithrian": 9399.0,
         "Baltharus the Warborn": 8412.3,
         "Valithria Dreamwalker": 0
