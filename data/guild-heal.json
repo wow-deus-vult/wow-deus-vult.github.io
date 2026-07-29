@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-29T06:29:56.947179+00:00",
+  "lastUpdated": "2026-07-29T07:03:36.915656+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -1008,6 +1008,32 @@
       "guildRank": 38
     },
     {
+      "name": "Byronkamymy",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Restoration",
+      "avgHps": 7271.6,
+      "bossCount": 14,
+      "bosses": {
+        "Lord Marrowgar": 5756.8,
+        "Lady Deathwhisper": 5303.3,
+        "Deathbringer Saurfang": 6148.9,
+        "Festergut": 8700.6,
+        "Rotface": 6230.4,
+        "Professor Putricide": 11225.4,
+        "Blood Prince Council": 7292.5,
+        "Blood-Queen Lana'thel": 13407.1,
+        "Sindragosa": 9628.4,
+        "The Lich King": 6426.7,
+        "Valithria Dreamwalker": 17433.5,
+        "Halion": 0,
+        "Saviana Ragefire": 2060.9,
+        "General Zarithrian": 693.0,
+        "Baltharus the Warborn": 1495.2
+      },
+      "guildRank": 39
+    },
+    {
       "name": "Чудачка",
       "server": "FreedomUA",
       "class": "Druid",
@@ -1031,7 +1057,7 @@
         "General Zarithrian": 1861.5,
         "Baltharus the Warborn": 1246.1
       },
-      "guildRank": 39
+      "guildRank": 40
     },
     {
       "name": "Aurelia",
@@ -1057,7 +1083,7 @@
         "General Zarithrian": 1655.8,
         "Baltharus the Warborn": 2831.4
       },
-      "guildRank": 40
+      "guildRank": 41
     },
     {
       "name": "Мегатайтус",
@@ -1083,7 +1109,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 1863.6
       },
-      "guildRank": 41
+      "guildRank": 42
     },
     {
       "name": "Zmeelove",
@@ -1109,7 +1135,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 2001.3
       },
-      "guildRank": 42
+      "guildRank": 43
     },
     {
       "name": "Салямі",
@@ -1135,7 +1161,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 43
+      "guildRank": 44
     },
     {
       "name": "Полінце",
@@ -1161,7 +1187,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 44
+      "guildRank": 45
     },
     {
       "name": "Бастурма",
@@ -1183,32 +1209,6 @@
         "The Lich King": 5360.2,
         "Valithria Dreamwalker": 10886.4,
         "Halion": 6923.6,
-        "Saviana Ragefire": 0,
-        "General Zarithrian": 0,
-        "Baltharus the Warborn": 0
-      },
-      "guildRank": 45
-    },
-    {
-      "name": "Byronkamymy",
-      "server": "FreedomUA",
-      "class": "Druid",
-      "spec": "Restoration",
-      "avgHps": 8868.5,
-      "bossCount": 11,
-      "bosses": {
-        "Lord Marrowgar": 5756.8,
-        "Lady Deathwhisper": 5303.3,
-        "Deathbringer Saurfang": 6148.9,
-        "Festergut": 8700.6,
-        "Rotface": 6230.4,
-        "Professor Putricide": 11225.4,
-        "Blood Prince Council": 7292.5,
-        "Blood-Queen Lana'thel": 13407.1,
-        "Sindragosa": 9628.4,
-        "The Lich King": 6426.7,
-        "Valithria Dreamwalker": 17433.5,
-        "Halion": 0,
         "Saviana Ragefire": 0,
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
@@ -1584,7 +1584,7 @@
       "server": "FreedomUA",
       "class": "Shaman",
       "spec": "Restoration",
-      "avgHps": 3490.8,
+      "avgHps": 4134.6,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
@@ -1599,9 +1599,9 @@
         "The Lich King": 0,
         "Valithria Dreamwalker": 0,
         "Halion": 8289.4,
-        "Saviana Ragefire": 1241.5,
-        "General Zarithrian": 1742.5,
-        "Baltharus the Warborn": 2689.8
+        "Saviana Ragefire": 2750.2,
+        "General Zarithrian": 2783.2,
+        "Baltharus the Warborn": 2715.8
       },
       "guildRank": 61
     },
@@ -1636,7 +1636,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
