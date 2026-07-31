@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-07-31T06:43:16.434238+00:00",
-  "totalPlayersInSource": 274,
-  "totalRows": 356,
+  "lastUpdated": "2026-07-31T07:03:05.367473+00:00",
+  "totalPlayersInSource": 275,
+  "totalRows": 358,
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -5458,6 +5458,33 @@
       }
     },
     {
+      "name": "Amaterasuqb",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Restoration",
+      "specIndex": 3,
+      "overallRank": 32,
+      "overallScore": 56.77,
+      "lastLogDate": "2025-11-26",
+      "bosses": {
+        "Lord Marrowgar": 74.8,
+        "Lady Deathwhisper": 0,
+        "Deathbringer Saurfang": 0,
+        "Festergut": 0,
+        "Rotface": 11.2,
+        "Professor Putricide": 0,
+        "Blood Prince Council": 0,
+        "Blood-Queen Lana'thel": 0,
+        "Sindragosa": 0,
+        "The Lich King": 0,
+        "Halion": 0,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0,
+        "Valithria Dreamwalker": 14984.7
+      }
+    },
+    {
       "name": "Занзул",
       "server": "FreedomUA",
       "class": "Shaman",
@@ -8775,6 +8802,33 @@
         "Saviana Ragefire": 8303.7,
         "General Zarithrian": 13285.1,
         "Baltharus the Warborn": 7830.7,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Gilza",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Feral Combat",
+      "specIndex": 2,
+      "overallRank": 195,
+      "overallScore": 29.7,
+      "lastLogDate": "2026-05-13",
+      "bosses": {
+        "Lord Marrowgar": 12269.6,
+        "Lady Deathwhisper": 0,
+        "Deathbringer Saurfang": 15707.6,
+        "Festergut": 13313.8,
+        "Rotface": 12236.5,
+        "Professor Putricide": 6832.4,
+        "Blood Prince Council": 8533.7,
+        "Blood-Queen Lana'thel": 14258.4,
+        "Sindragosa": 5184.3,
+        "The Lich King": 0,
+        "Halion": 0,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0,
         "Valithria Dreamwalker": 0
       }
     },
