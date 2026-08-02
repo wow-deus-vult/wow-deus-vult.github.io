@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-08-01T07:04:33.701353+00:00",
-  "totalPlayersInSource": 274,
-  "totalRows": 357,
+  "lastUpdated": "2026-08-02T06:32:23.667737+00:00",
+  "totalPlayersInSource": 275,
+  "totalRows": 358,
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -145,7 +145,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 3,
-      "overallScore": 99.53,
+      "overallScore": 99.54,
       "lastLogDate": "2026-06-29",
       "bosses": {
         "Lord Marrowgar": 26826.1,
@@ -198,8 +198,8 @@
       "class": "Mage",
       "spec": "Fire",
       "specIndex": 2,
-      "overallRank": 9,
-      "overallScore": 99.37,
+      "overallRank": 10,
+      "overallScore": 99.38,
       "lastLogDate": "2026-04-05",
       "bosses": {
         "Lord Marrowgar": 25798.6,
@@ -280,7 +280,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 6,
-      "overallScore": 98.91,
+      "overallScore": 98.9,
       "lastLogDate": "2026-05-25",
       "bosses": {
         "Lord Marrowgar": 20546.0,
@@ -442,7 +442,7 @@
       "spec": "Enhancement",
       "specIndex": 2,
       "overallRank": 2,
-      "overallScore": 98.44,
+      "overallScore": 98.45,
       "lastLogDate": "2026-04-20",
       "bosses": {
         "Lord Marrowgar": 21881.6,
@@ -490,33 +490,6 @@
       }
     },
     {
-      "name": "Сількамяна",
-      "server": "FreedomUA",
-      "class": "Priest",
-      "spec": "Shadow",
-      "specIndex": 3,
-      "overallRank": 9,
-      "overallScore": 98.03,
-      "lastLogDate": "2026-05-10",
-      "bosses": {
-        "Lord Marrowgar": 20144.6,
-        "Lady Deathwhisper": 19426.8,
-        "Deathbringer Saurfang": 19687.8,
-        "Festergut": 17904.5,
-        "Rotface": 18982.4,
-        "Professor Putricide": 17920.1,
-        "Blood Prince Council": 16612.7,
-        "Blood-Queen Lana'thel": 27050.6,
-        "Sindragosa": 14762.9,
-        "The Lich King": 12444.7,
-        "Halion": 13387.8,
-        "Saviana Ragefire": 12436.0,
-        "General Zarithrian": 13449.1,
-        "Baltharus the Warborn": 12532.6,
-        "Valithria Dreamwalker": 213.1
-      }
-    },
-    {
       "name": "Imperators",
       "server": "FreedomUA",
       "class": "Druid",
@@ -541,6 +514,33 @@
         "General Zarithrian": 23018.5,
         "Baltharus the Warborn": 14230.1,
         "Valithria Dreamwalker": 475.6
+      }
+    },
+    {
+      "name": "Сількамяна",
+      "server": "FreedomUA",
+      "class": "Priest",
+      "spec": "Shadow",
+      "specIndex": 3,
+      "overallRank": 9,
+      "overallScore": 98.01,
+      "lastLogDate": "2026-05-10",
+      "bosses": {
+        "Lord Marrowgar": 20144.6,
+        "Lady Deathwhisper": 19426.8,
+        "Deathbringer Saurfang": 19687.8,
+        "Festergut": 17904.5,
+        "Rotface": 18982.4,
+        "Professor Putricide": 17920.1,
+        "Blood Prince Council": 16612.7,
+        "Blood-Queen Lana'thel": 27050.6,
+        "Sindragosa": 14762.9,
+        "The Lich King": 12444.7,
+        "Halion": 13387.8,
+        "Saviana Ragefire": 12436.0,
+        "General Zarithrian": 13449.1,
+        "Baltharus the Warborn": 12532.6,
+        "Valithria Dreamwalker": 213.1
       }
     },
     {
@@ -577,7 +577,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 10,
-      "overallScore": 97.91,
+      "overallScore": 97.88,
       "lastLogDate": "2026-03-22",
       "bosses": {
         "Lord Marrowgar": 20016.1,
@@ -604,7 +604,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 13,
-      "overallScore": 97.72,
+      "overallScore": 97.71,
       "lastLogDate": "2026-04-13",
       "bosses": {
         "Lord Marrowgar": 19968.0,
@@ -631,7 +631,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 29,
-      "overallScore": 97.53,
+      "overallScore": 97.52,
       "lastLogDate": "2026-07-19",
       "bosses": {
         "Lord Marrowgar": 24485.2,
@@ -685,7 +685,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 18,
-      "overallScore": 97.44,
+      "overallScore": 97.45,
       "lastLogDate": "2026-06-01",
       "bosses": {
         "Lord Marrowgar": 24206.8,
@@ -766,7 +766,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 11,
-      "overallScore": 97.23,
+      "overallScore": 97.2,
       "lastLogDate": "2026-05-24",
       "bosses": {
         "Lord Marrowgar": 19498.8,
@@ -793,7 +793,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 31,
-      "overallScore": 96.97,
+      "overallScore": 96.98,
       "lastLogDate": "2026-07-05",
       "bosses": {
         "Lord Marrowgar": 25210.6,
@@ -874,7 +874,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 13,
-      "overallScore": 96.29,
+      "overallScore": 96.28,
       "lastLogDate": "2026-06-21",
       "bosses": {
         "Lord Marrowgar": 21608.8,
@@ -954,8 +954,8 @@
       "class": "Death Knight",
       "spec": "Unholy",
       "specIndex": 3,
-      "overallRank": 15,
-      "overallScore": 94.59,
+      "overallRank": 16,
+      "overallScore": 94.6,
       "lastLogDate": "2026-06-01",
       "bosses": {
         "Lord Marrowgar": 23974.3,
@@ -976,40 +976,13 @@
       }
     },
     {
-      "name": "Likeaboss",
-      "server": "FreedomUA",
-      "class": "Priest",
-      "spec": "Shadow",
-      "specIndex": 3,
-      "overallRank": 23,
-      "overallScore": 94.54,
-      "lastLogDate": "2026-07-07",
-      "bosses": {
-        "Lord Marrowgar": 17613.5,
-        "Lady Deathwhisper": 17662.3,
-        "Deathbringer Saurfang": 19531.3,
-        "Festergut": 18723.5,
-        "Rotface": 18840.5,
-        "Professor Putricide": 16070.8,
-        "Blood Prince Council": 15113.1,
-        "Blood-Queen Lana'thel": 22094.4,
-        "Sindragosa": 13760.5,
-        "The Lich King": 11901.8,
-        "Halion": 12877.7,
-        "Saviana Ragefire": 11833.6,
-        "General Zarithrian": 13709.2,
-        "Baltharus the Warborn": 11731.6,
-        "Valithria Dreamwalker": 196.2
-      }
-    },
-    {
       "name": "Бш",
       "server": "FreedomUA",
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 42,
-      "overallScore": 94.53,
+      "overallScore": 94.54,
       "lastLogDate": "2026-07-20",
       "bosses": {
         "Lord Marrowgar": 23847.4,
@@ -1027,6 +1000,33 @@
         "General Zarithrian": 18548.6,
         "Baltharus the Warborn": 11837.6,
         "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Likeaboss",
+      "server": "FreedomUA",
+      "class": "Priest",
+      "spec": "Shadow",
+      "specIndex": 3,
+      "overallRank": 23,
+      "overallScore": 94.51,
+      "lastLogDate": "2026-07-07",
+      "bosses": {
+        "Lord Marrowgar": 17613.5,
+        "Lady Deathwhisper": 17662.3,
+        "Deathbringer Saurfang": 19531.3,
+        "Festergut": 18723.5,
+        "Rotface": 18840.5,
+        "Professor Putricide": 16070.8,
+        "Blood Prince Council": 15113.1,
+        "Blood-Queen Lana'thel": 22094.4,
+        "Sindragosa": 13760.5,
+        "The Lich King": 11901.8,
+        "Halion": 12877.7,
+        "Saviana Ragefire": 11833.6,
+        "General Zarithrian": 13709.2,
+        "Baltharus the Warborn": 11731.6,
+        "Valithria Dreamwalker": 196.2
       }
     },
     {
@@ -1062,7 +1062,7 @@
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
-      "overallRank": 9,
+      "overallRank": 10,
       "overallScore": 93.59,
       "lastLogDate": "2025-11-04",
       "bosses": {
@@ -1090,7 +1090,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 27,
-      "overallScore": 93.58,
+      "overallScore": 93.57,
       "lastLogDate": "2025-12-02",
       "bosses": {
         "Lord Marrowgar": 20160.2,
@@ -1144,7 +1144,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 25,
-      "overallScore": 93.13,
+      "overallScore": 93.12,
       "lastLogDate": "2026-01-04",
       "bosses": {
         "Lord Marrowgar": 27267.7,
@@ -1171,7 +1171,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 32,
-      "overallScore": 92.95,
+      "overallScore": 92.93,
       "lastLogDate": "2026-03-10",
       "bosses": {
         "Lord Marrowgar": 19673.4,
@@ -1198,7 +1198,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 14,
-      "overallScore": 92.69,
+      "overallScore": 92.7,
       "lastLogDate": "2026-07-29",
       "bosses": {
         "Lord Marrowgar": 18537.6,
@@ -1225,7 +1225,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 58,
-      "overallScore": 92.55,
+      "overallScore": 92.54,
       "lastLogDate": "2025-12-28",
       "bosses": {
         "Lord Marrowgar": 22255.7,
@@ -1252,7 +1252,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 60,
-      "overallScore": 92.5,
+      "overallScore": 92.49,
       "lastLogDate": "2026-06-21",
       "bosses": {
         "Lord Marrowgar": 23339.4,
@@ -1279,7 +1279,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 61,
-      "overallScore": 92.4,
+      "overallScore": 92.38,
       "lastLogDate": "2026-06-30",
       "bosses": {
         "Lord Marrowgar": 23522.4,
@@ -1306,7 +1306,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 63,
-      "overallScore": 92.22,
+      "overallScore": 92.21,
       "lastLogDate": "2026-06-16",
       "bosses": {
         "Lord Marrowgar": 21446.2,
@@ -1333,7 +1333,7 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 28,
-      "overallScore": 92.15,
+      "overallScore": 92.16,
       "lastLogDate": "2026-07-07",
       "bosses": {
         "Lord Marrowgar": 18425.4,
@@ -1360,7 +1360,7 @@
       "spec": "Elemental",
       "specIndex": 1,
       "overallRank": 11,
-      "overallScore": 92.09,
+      "overallScore": 92.06,
       "lastLogDate": "2026-05-18",
       "bosses": {
         "Lord Marrowgar": 17942.6,
@@ -1387,7 +1387,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 29,
-      "overallScore": 91.74,
+      "overallScore": 91.7,
       "lastLogDate": "2026-06-07",
       "bosses": {
         "Lord Marrowgar": 18163.1,
@@ -1413,8 +1413,8 @@
       "class": "Priest",
       "spec": "Shadow",
       "specIndex": 3,
-      "overallRank": 35,
-      "overallScore": 91.66,
+      "overallRank": 36,
+      "overallScore": 91.63,
       "lastLogDate": "2026-06-21",
       "bosses": {
         "Lord Marrowgar": 18047.9,
@@ -1440,8 +1440,8 @@
       "class": "Mage",
       "spec": "Fire",
       "specIndex": 2,
-      "overallRank": 67,
-      "overallScore": 90.03,
+      "overallRank": 68,
+      "overallScore": 90.02,
       "lastLogDate": "2026-06-29",
       "bosses": {
         "Lord Marrowgar": 23432.3,
@@ -1459,60 +1459,6 @@
         "General Zarithrian": 18254.1,
         "Baltharus the Warborn": 15092.3,
         "Valithria Dreamwalker": 24.9
-      }
-    },
-    {
-      "name": "Esquiree",
-      "server": "FreedomUA",
-      "class": "Hunter",
-      "spec": "Marksmanship",
-      "specIndex": 2,
-      "overallRank": 33,
-      "overallScore": 89.77,
-      "lastLogDate": "2026-05-31",
-      "bosses": {
-        "Lord Marrowgar": 18569.0,
-        "Lady Deathwhisper": 18176.9,
-        "Deathbringer Saurfang": 20997.2,
-        "Festergut": 18613.5,
-        "Rotface": 18168.6,
-        "Professor Putricide": 14052.0,
-        "Blood Prince Council": 8300.1,
-        "Blood-Queen Lana'thel": 35976.8,
-        "Sindragosa": 14698.6,
-        "The Lich King": 11887.0,
-        "Halion": 12907.1,
-        "Saviana Ragefire": 11398.0,
-        "General Zarithrian": 13953.8,
-        "Baltharus the Warborn": 12856.4,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
-      "name": "Цефарирон",
-      "server": "FreedomUA",
-      "class": "Rogue",
-      "spec": "Combat",
-      "specIndex": 2,
-      "overallRank": 33,
-      "overallScore": 89.74,
-      "lastLogDate": "2026-05-10",
-      "bosses": {
-        "Lord Marrowgar": 20072.1,
-        "Lady Deathwhisper": 18298.6,
-        "Deathbringer Saurfang": 20422.5,
-        "Festergut": 18193.6,
-        "Rotface": 18891.6,
-        "Professor Putricide": 12789.2,
-        "Blood Prince Council": 14202.2,
-        "Blood-Queen Lana'thel": 17201.9,
-        "Sindragosa": 10388.4,
-        "The Lich King": 11475.2,
-        "Halion": 15424.3,
-        "Saviana Ragefire": 10321.6,
-        "General Zarithrian": 15039.7,
-        "Baltharus the Warborn": 12046.2,
-        "Valithria Dreamwalker": 0
       }
     },
     {
@@ -1539,6 +1485,60 @@
         "Saviana Ragefire": 12341.8,
         "General Zarithrian": 14132.4,
         "Baltharus the Warborn": 14096.3,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Esquiree",
+      "server": "FreedomUA",
+      "class": "Hunter",
+      "spec": "Marksmanship",
+      "specIndex": 2,
+      "overallRank": 33,
+      "overallScore": 89.73,
+      "lastLogDate": "2026-05-31",
+      "bosses": {
+        "Lord Marrowgar": 18569.0,
+        "Lady Deathwhisper": 18176.9,
+        "Deathbringer Saurfang": 20997.2,
+        "Festergut": 18613.5,
+        "Rotface": 18168.6,
+        "Professor Putricide": 14052.0,
+        "Blood Prince Council": 8300.1,
+        "Blood-Queen Lana'thel": 35976.8,
+        "Sindragosa": 14698.6,
+        "The Lich King": 11887.0,
+        "Halion": 12907.1,
+        "Saviana Ragefire": 11398.0,
+        "General Zarithrian": 13953.8,
+        "Baltharus the Warborn": 12856.4,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Цефарирон",
+      "server": "FreedomUA",
+      "class": "Rogue",
+      "spec": "Combat",
+      "specIndex": 2,
+      "overallRank": 33,
+      "overallScore": 89.71,
+      "lastLogDate": "2026-05-10",
+      "bosses": {
+        "Lord Marrowgar": 20072.1,
+        "Lady Deathwhisper": 18298.6,
+        "Deathbringer Saurfang": 20422.5,
+        "Festergut": 18193.6,
+        "Rotface": 18891.6,
+        "Professor Putricide": 12789.2,
+        "Blood Prince Council": 14202.2,
+        "Blood-Queen Lana'thel": 17201.9,
+        "Sindragosa": 10388.4,
+        "The Lich King": 11475.2,
+        "Halion": 15424.3,
+        "Saviana Ragefire": 10321.6,
+        "General Zarithrian": 15039.7,
+        "Baltharus the Warborn": 12046.2,
         "Valithria Dreamwalker": 0
       }
     },
@@ -1576,7 +1576,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 23,
-      "overallScore": 89.42,
+      "overallScore": 89.43,
       "lastLogDate": "2026-06-01",
       "bosses": {
         "Lord Marrowgar": 17427.7,
@@ -1603,7 +1603,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 48,
-      "overallScore": 89.41,
+      "overallScore": 89.38,
       "lastLogDate": "2026-06-16",
       "bosses": {
         "Lord Marrowgar": 16680.5,
@@ -1657,7 +1657,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 31,
-      "overallScore": 89.05,
+      "overallScore": 89.08,
       "lastLogDate": "2025-11-04",
       "bosses": {
         "Lord Marrowgar": 21550.0,
@@ -1711,7 +1711,7 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 34,
-      "overallScore": 88.96,
+      "overallScore": 88.97,
       "lastLogDate": "2026-04-05",
       "bosses": {
         "Lord Marrowgar": 20229.8,
@@ -1738,7 +1738,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 13,
-      "overallScore": 88.93,
+      "overallScore": 88.94,
       "lastLogDate": "2026-06-01",
       "bosses": {
         "Lord Marrowgar": 5476.9,
@@ -1765,7 +1765,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 25,
-      "overallScore": 88.86,
+      "overallScore": 88.87,
       "lastLogDate": "2026-06-15",
       "bosses": {
         "Lord Marrowgar": 413.7,
@@ -1792,7 +1792,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 28,
-      "overallScore": 88.73,
+      "overallScore": 88.75,
       "lastLogDate": "2026-06-16",
       "bosses": {
         "Lord Marrowgar": 16182.4,
@@ -1819,7 +1819,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 38,
-      "overallScore": 88.37,
+      "overallScore": 88.35,
       "lastLogDate": "2025-12-28",
       "bosses": {
         "Lord Marrowgar": 17459.9,
@@ -1873,7 +1873,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 23,
-      "overallScore": 88.04,
+      "overallScore": 88.03,
       "lastLogDate": "2026-05-24",
       "bosses": {
         "Lord Marrowgar": 3921.3,
@@ -1900,7 +1900,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 53,
-      "overallScore": 87.76,
+      "overallScore": 87.73,
       "lastLogDate": "2026-06-29",
       "bosses": {
         "Lord Marrowgar": 16968.9,
@@ -1927,7 +1927,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 36,
-      "overallScore": 87.43,
+      "overallScore": 87.45,
       "lastLogDate": "2026-07-26",
       "bosses": {
         "Lord Marrowgar": 18431.7,
@@ -1981,7 +1981,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 41,
-      "overallScore": 87.2,
+      "overallScore": 87.18,
       "lastLogDate": "2026-04-13",
       "bosses": {
         "Lord Marrowgar": 19316.5,
@@ -2008,7 +2008,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 37,
-      "overallScore": 87.11,
+      "overallScore": 87.13,
       "lastLogDate": "2026-05-03",
       "bosses": {
         "Lord Marrowgar": 15686.4,
@@ -2035,7 +2035,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 38,
-      "overallScore": 87.04,
+      "overallScore": 87.05,
       "lastLogDate": "2026-07-07",
       "bosses": {
         "Lord Marrowgar": 400.2,
@@ -2115,8 +2115,8 @@
       "class": "Hunter",
       "spec": "Marksmanship",
       "specIndex": 2,
-      "overallRank": 43,
-      "overallScore": 86.25,
+      "overallRank": 44,
+      "overallScore": 86.22,
       "lastLogDate": "2026-06-15",
       "bosses": {
         "Lord Marrowgar": 18044.5,
@@ -2134,33 +2134,6 @@
         "General Zarithrian": 16506.6,
         "Baltharus the Warborn": 13071.0,
         "Valithria Dreamwalker": 0
-      }
-    },
-    {
-      "name": "Спірітусвей",
-      "server": "FreedomUA",
-      "class": "Shaman",
-      "spec": "Enhancement",
-      "specIndex": 2,
-      "overallRank": 11,
-      "overallScore": 85.78,
-      "lastLogDate": "2026-07-05",
-      "bosses": {
-        "Lord Marrowgar": 19050.4,
-        "Lady Deathwhisper": 17951.4,
-        "Deathbringer Saurfang": 19434.1,
-        "Festergut": 17653.1,
-        "Rotface": 17503.2,
-        "Professor Putricide": 11884.9,
-        "Blood Prince Council": 14328.4,
-        "Blood-Queen Lana'thel": 15908.1,
-        "Sindragosa": 11106.8,
-        "The Lich King": 10249.2,
-        "Halion": 12372.5,
-        "Saviana Ragefire": 9660.9,
-        "General Zarithrian": 14379.2,
-        "Baltharus the Warborn": 10054.5,
-        "Valithria Dreamwalker": 294.1
       }
     },
     {
@@ -2191,13 +2164,40 @@
       }
     },
     {
+      "name": "Спірітусвей",
+      "server": "FreedomUA",
+      "class": "Shaman",
+      "spec": "Enhancement",
+      "specIndex": 2,
+      "overallRank": 11,
+      "overallScore": 85.7,
+      "lastLogDate": "2026-07-05",
+      "bosses": {
+        "Lord Marrowgar": 19050.4,
+        "Lady Deathwhisper": 17951.4,
+        "Deathbringer Saurfang": 19434.1,
+        "Festergut": 17653.1,
+        "Rotface": 17503.2,
+        "Professor Putricide": 11884.9,
+        "Blood Prince Council": 14328.4,
+        "Blood-Queen Lana'thel": 15908.1,
+        "Sindragosa": 11106.8,
+        "The Lich King": 10249.2,
+        "Halion": 12372.5,
+        "Saviana Ragefire": 9660.9,
+        "General Zarithrian": 14379.2,
+        "Baltharus the Warborn": 10054.5,
+        "Valithria Dreamwalker": 294.1
+      }
+    },
+    {
       "name": "Криголам",
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 38,
-      "overallScore": 85.57,
+      "overallScore": 85.6,
       "lastLogDate": "2026-07-29",
       "bosses": {
         "Lord Marrowgar": 20275.3,
@@ -2251,7 +2251,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 65,
-      "overallScore": 85.42,
+      "overallScore": 85.38,
       "lastLogDate": "2026-05-20",
       "bosses": {
         "Lord Marrowgar": 17764.0,
@@ -2272,40 +2272,13 @@
       }
     },
     {
-      "name": "Electric",
-      "server": "FreedomUA",
-      "class": "Mage",
-      "spec": "Fire",
-      "specIndex": 2,
-      "overallRank": 83,
-      "overallScore": 85.11,
-      "lastLogDate": "2025-12-21",
-      "bosses": {
-        "Lord Marrowgar": 21399.3,
-        "Lady Deathwhisper": 20262.8,
-        "Deathbringer Saurfang": 23954.2,
-        "Festergut": 21491.1,
-        "Rotface": 21776.9,
-        "Professor Putricide": 14658.4,
-        "Blood Prince Council": 17387.5,
-        "Blood-Queen Lana'thel": 35472.0,
-        "Sindragosa": 14494.4,
-        "The Lich King": 11235.3,
-        "Halion": 16674.0,
-        "Saviana Ragefire": 13106.6,
-        "General Zarithrian": 16673.6,
-        "Baltharus the Warborn": 15943.6,
-        "Valithria Dreamwalker": 0
-      }
-    },
-    {
       "name": "Destiqq",
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 45,
-      "overallScore": 85.11,
+      "overallScore": 85.12,
       "lastLogDate": "2025-09-10",
       "bosses": {
         "Lord Marrowgar": 443.3,
@@ -2326,13 +2299,40 @@
       }
     },
     {
+      "name": "Electric",
+      "server": "FreedomUA",
+      "class": "Mage",
+      "spec": "Fire",
+      "specIndex": 2,
+      "overallRank": 84,
+      "overallScore": 85.1,
+      "lastLogDate": "2025-12-21",
+      "bosses": {
+        "Lord Marrowgar": 21399.3,
+        "Lady Deathwhisper": 20262.8,
+        "Deathbringer Saurfang": 23954.2,
+        "Festergut": 21491.1,
+        "Rotface": 21776.9,
+        "Professor Putricide": 14658.4,
+        "Blood Prince Council": 17387.5,
+        "Blood-Queen Lana'thel": 35472.0,
+        "Sindragosa": 14494.4,
+        "The Lich King": 11235.3,
+        "Halion": 16674.0,
+        "Saviana Ragefire": 13106.6,
+        "General Zarithrian": 16673.6,
+        "Baltharus the Warborn": 15943.6,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
       "name": "Speedy",
       "server": "FreedomUA",
       "class": "Shaman",
       "spec": "Enhancement",
       "specIndex": 2,
       "overallRank": 12,
-      "overallScore": 84.92,
+      "overallScore": 84.86,
       "lastLogDate": "2026-05-03",
       "bosses": {
         "Lord Marrowgar": 19788.2,
@@ -2412,8 +2412,8 @@
       "class": "Rogue",
       "spec": "Combat",
       "specIndex": 2,
-      "overallRank": 57,
-      "overallScore": 84.41,
+      "overallRank": 58,
+      "overallScore": 84.37,
       "lastLogDate": "2026-04-05",
       "bosses": {
         "Lord Marrowgar": 19755.4,
@@ -2440,7 +2440,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 76,
-      "overallScore": 83.14,
+      "overallScore": 83.12,
       "lastLogDate": "2025-09-07",
       "bosses": {
         "Lord Marrowgar": 17595.7,
@@ -2467,7 +2467,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 37,
-      "overallScore": 82.97,
+      "overallScore": 82.95,
       "lastLogDate": "2026-04-19",
       "bosses": {
         "Lord Marrowgar": 3911.7,
@@ -2494,7 +2494,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 7,
-      "overallScore": 82.23,
+      "overallScore": 82.22,
       "lastLogDate": "2026-06-30",
       "bosses": {
         "Lord Marrowgar": 208.8,
@@ -2521,7 +2521,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 80,
-      "overallScore": 82.11,
+      "overallScore": 82.08,
       "lastLogDate": "2026-07-05",
       "bosses": {
         "Lord Marrowgar": 18391.0,
@@ -2547,8 +2547,8 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 100,
-      "overallScore": 82.05,
+      "overallRank": 102,
+      "overallScore": 82.06,
       "lastLogDate": "2026-02-24",
       "bosses": {
         "Lord Marrowgar": 21660.6,
@@ -2596,40 +2596,13 @@
       }
     },
     {
-      "name": "Закарпайтус",
-      "server": "FreedomUA",
-      "class": "Priest",
-      "spec": "Shadow",
-      "specIndex": 3,
-      "overallRank": 67,
-      "overallScore": 81.81,
-      "lastLogDate": "2026-07-05",
-      "bosses": {
-        "Lord Marrowgar": 17940.7,
-        "Lady Deathwhisper": 14949.3,
-        "Deathbringer Saurfang": 19029.3,
-        "Festergut": 17591.2,
-        "Rotface": 17619.6,
-        "Professor Putricide": 13981.0,
-        "Blood Prince Council": 12710.9,
-        "Blood-Queen Lana'thel": 24553.9,
-        "Sindragosa": 11888.4,
-        "The Lich King": 7641.8,
-        "Halion": 13374.2,
-        "Saviana Ragefire": 12516.8,
-        "General Zarithrian": 13892.3,
-        "Baltharus the Warborn": 12452.5,
-        "Valithria Dreamwalker": 146.7
-      }
-    },
-    {
       "name": "Bomboclaat",
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 41,
-      "overallScore": 81.78,
+      "overallScore": 81.77,
       "lastLogDate": "2026-06-15",
       "bosses": {
         "Lord Marrowgar": 3820.1,
@@ -2650,13 +2623,40 @@
       }
     },
     {
+      "name": "Закарпайтус",
+      "server": "FreedomUA",
+      "class": "Priest",
+      "spec": "Shadow",
+      "specIndex": 3,
+      "overallRank": 68,
+      "overallScore": 81.77,
+      "lastLogDate": "2026-07-05",
+      "bosses": {
+        "Lord Marrowgar": 17940.7,
+        "Lady Deathwhisper": 14949.3,
+        "Deathbringer Saurfang": 19029.3,
+        "Festergut": 17591.2,
+        "Rotface": 17619.6,
+        "Professor Putricide": 13981.0,
+        "Blood Prince Council": 12710.9,
+        "Blood-Queen Lana'thel": 24553.9,
+        "Sindragosa": 11888.4,
+        "The Lich King": 7641.8,
+        "Halion": 13374.2,
+        "Saviana Ragefire": 12516.8,
+        "General Zarithrian": 13892.3,
+        "Baltharus the Warborn": 12452.5,
+        "Valithria Dreamwalker": 146.7
+      }
+    },
+    {
       "name": "Firemage",
       "server": "FreedomUA",
       "class": "Mage",
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 104,
-      "overallScore": 81.41,
+      "overallScore": 81.4,
       "lastLogDate": "2026-07-13",
       "bosses": {
         "Lord Marrowgar": 22062.3,
@@ -2737,7 +2737,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 108,
-      "overallScore": 80.76,
+      "overallScore": 80.77,
       "lastLogDate": "2026-07-19",
       "bosses": {
         "Lord Marrowgar": 19389.4,
@@ -2764,7 +2764,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 34,
-      "overallScore": 80.72,
+      "overallScore": 80.73,
       "lastLogDate": "2025-04-15",
       "bosses": {
         "Lord Marrowgar": 668.5,
@@ -2791,7 +2791,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 29,
-      "overallScore": 80.68,
+      "overallScore": 80.7,
       "lastLogDate": "2026-06-10",
       "bosses": {
         "Lord Marrowgar": 5336.2,
@@ -2818,7 +2818,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 55,
-      "overallScore": 80.4,
+      "overallScore": 80.38,
       "lastLogDate": "2026-06-01",
       "bosses": {
         "Lord Marrowgar": 17993.0,
@@ -2845,7 +2845,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 30,
-      "overallScore": 80.27,
+      "overallScore": 80.26,
       "lastLogDate": "2026-03-29",
       "bosses": {
         "Lord Marrowgar": 241.3,
@@ -2872,7 +2872,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 31,
-      "overallScore": 79.82,
+      "overallScore": 79.84,
       "lastLogDate": "2025-08-25",
       "bosses": {
         "Lord Marrowgar": 5271.1,
@@ -2980,7 +2980,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 61,
-      "overallScore": 78.61,
+      "overallScore": 78.58,
       "lastLogDate": "2026-06-29",
       "bosses": {
         "Lord Marrowgar": 18904.5,
@@ -3007,7 +3007,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 69,
-      "overallScore": 78.39,
+      "overallScore": 78.34,
       "lastLogDate": "2026-06-22",
       "bosses": {
         "Lord Marrowgar": 17853.3,
@@ -3034,7 +3034,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 70,
-      "overallScore": 78.17,
+      "overallScore": 78.13,
       "lastLogDate": "2026-07-13",
       "bosses": {
         "Lord Marrowgar": 16827.4,
@@ -3088,7 +3088,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 8,
-      "overallScore": 77.72,
+      "overallScore": 77.7,
       "lastLogDate": "2025-09-13",
       "bosses": {
         "Lord Marrowgar": 205.5,
@@ -3115,7 +3115,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 65,
-      "overallScore": 77.72,
+      "overallScore": 77.7,
       "lastLogDate": "2026-05-18",
       "bosses": {
         "Lord Marrowgar": 18124.1,
@@ -3142,7 +3142,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 118,
-      "overallScore": 77.45,
+      "overallScore": 77.46,
       "lastLogDate": "2026-07-12",
       "bosses": {
         "Lord Marrowgar": 19710.9,
@@ -3169,7 +3169,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 105,
-      "overallScore": 77.39,
+      "overallScore": 77.38,
       "lastLogDate": "2025-10-05",
       "bosses": {
         "Lord Marrowgar": 16714.3,
@@ -3196,7 +3196,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 107,
-      "overallScore": 77.11,
+      "overallScore": 77.07,
       "lastLogDate": "2026-06-15",
       "bosses": {
         "Lord Marrowgar": 16652.5,
@@ -3223,7 +3223,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 64,
-      "overallScore": 76.53,
+      "overallScore": 76.51,
       "lastLogDate": "2026-06-22",
       "bosses": {
         "Lord Marrowgar": 22413.7,
@@ -3276,8 +3276,8 @@
       "class": "Warlock",
       "spec": "Demonology",
       "specIndex": 2,
-      "overallRank": 65,
-      "overallScore": 75.13,
+      "overallRank": 66,
+      "overallScore": 75.15,
       "lastLogDate": "2026-05-18",
       "bosses": {
         "Lord Marrowgar": 15008.7,
@@ -3304,7 +3304,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 100,
-      "overallScore": 75.01,
+      "overallScore": 74.99,
       "lastLogDate": "2026-07-19",
       "bosses": {
         "Lord Marrowgar": 14967.5,
@@ -3358,7 +3358,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 73,
-      "overallScore": 74.49,
+      "overallScore": 74.47,
       "lastLogDate": "2025-05-13",
       "bosses": {
         "Lord Marrowgar": 16613.8,
@@ -3385,7 +3385,7 @@
       "spec": "Balance",
       "specIndex": 1,
       "overallRank": 70,
-      "overallScore": 74.43,
+      "overallScore": 74.44,
       "lastLogDate": "2026-02-24",
       "bosses": {
         "Lord Marrowgar": 16192.2,
@@ -3412,7 +3412,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 133,
-      "overallScore": 74.41,
+      "overallScore": 74.39,
       "lastLogDate": "2026-07-26",
       "bosses": {
         "Lord Marrowgar": 20494.3,
@@ -3439,7 +3439,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 47,
-      "overallScore": 74.27,
+      "overallScore": 74.25,
       "lastLogDate": "2026-06-01",
       "bosses": {
         "Lord Marrowgar": 284.7,
@@ -3457,6 +3457,33 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0,
         "Valithria Dreamwalker": 645.9
+      }
+    },
+    {
+      "name": "Antes",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Holy",
+      "specIndex": 1,
+      "overallRank": 71,
+      "overallScore": 74.17,
+      "lastLogDate": "2026-04-13",
+      "bosses": {
+        "Lord Marrowgar": 435.9,
+        "Lady Deathwhisper": 207.8,
+        "Deathbringer Saurfang": 577.2,
+        "Festergut": 237.7,
+        "Rotface": 435.9,
+        "Professor Putricide": 379.1,
+        "Blood Prince Council": 165.3,
+        "Blood-Queen Lana'thel": 411.2,
+        "Sindragosa": 130.6,
+        "The Lich King": 202.8,
+        "Halion": 130.4,
+        "Saviana Ragefire": 310.2,
+        "General Zarithrian": 190.9,
+        "Baltharus the Warborn": 191.5,
+        "Valithria Dreamwalker": 38450.6
       }
     },
     {
@@ -3519,8 +3546,8 @@
       "class": "Rogue",
       "spec": "Combat",
       "specIndex": 2,
-      "overallRank": 82,
-      "overallScore": 73.48,
+      "overallRank": 84,
+      "overallScore": 73.43,
       "lastLogDate": "2026-07-16",
       "bosses": {
         "Lord Marrowgar": 16036.3,
@@ -3547,7 +3574,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 105,
-      "overallScore": 73.44,
+      "overallScore": 73.41,
       "lastLogDate": "2026-05-20",
       "bosses": {
         "Lord Marrowgar": 14765.0,
@@ -3574,7 +3601,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 128,
-      "overallScore": 73.17,
+      "overallScore": 73.16,
       "lastLogDate": "2026-06-22",
       "bosses": {
         "Lord Marrowgar": 21097.4,
@@ -3600,8 +3627,8 @@
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
-      "overallRank": 65,
-      "overallScore": 73.16,
+      "overallRank": 66,
+      "overallScore": 73.15,
       "lastLogDate": "2025-09-24",
       "bosses": {
         "Lord Marrowgar": 4006.1,
@@ -3628,7 +3655,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 49,
-      "overallScore": 72.94,
+      "overallScore": 72.95,
       "lastLogDate": "2026-07-07",
       "bosses": {
         "Lord Marrowgar": 311.4,
@@ -3655,7 +3682,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 129,
-      "overallScore": 72.62,
+      "overallScore": 72.61,
       "lastLogDate": "2026-05-24",
       "bosses": {
         "Lord Marrowgar": 18903.5,
@@ -3703,40 +3730,13 @@
       }
     },
     {
-      "name": "Misspall",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Retribution",
-      "specIndex": 3,
-      "overallRank": 119,
-      "overallScore": 72.45,
-      "lastLogDate": "2026-07-06",
-      "bosses": {
-        "Lord Marrowgar": 15185.1,
-        "Lady Deathwhisper": 16752.3,
-        "Deathbringer Saurfang": 17021.0,
-        "Festergut": 16581.1,
-        "Rotface": 16824.2,
-        "Professor Putricide": 10660.9,
-        "Blood Prince Council": 11129.2,
-        "Blood-Queen Lana'thel": 15720.6,
-        "Sindragosa": 9574.5,
-        "The Lich King": 8385.7,
-        "Halion": 9894.3,
-        "Saviana Ragefire": 9077.3,
-        "General Zarithrian": 12221.6,
-        "Baltharus the Warborn": 7120.5,
-        "Valithria Dreamwalker": 201.6
-      }
-    },
-    {
       "name": "Ramboss",
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 69,
-      "overallScore": 72.44,
+      "overallScore": 72.46,
       "lastLogDate": "2026-04-13",
       "bosses": {
         "Lord Marrowgar": 17467.5,
@@ -3757,13 +3757,40 @@
       }
     },
     {
+      "name": "Misspall",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Retribution",
+      "specIndex": 3,
+      "overallRank": 119,
+      "overallScore": 72.43,
+      "lastLogDate": "2026-07-06",
+      "bosses": {
+        "Lord Marrowgar": 15185.1,
+        "Lady Deathwhisper": 16752.3,
+        "Deathbringer Saurfang": 17021.0,
+        "Festergut": 16581.1,
+        "Rotface": 16824.2,
+        "Professor Putricide": 10660.9,
+        "Blood Prince Council": 11129.2,
+        "Blood-Queen Lana'thel": 15720.6,
+        "Sindragosa": 9574.5,
+        "The Lich King": 8385.7,
+        "Halion": 9894.3,
+        "Saviana Ragefire": 9077.3,
+        "General Zarithrian": 12221.6,
+        "Baltharus the Warborn": 7120.5,
+        "Valithria Dreamwalker": 201.6
+      }
+    },
+    {
       "name": "Танкзаголду",
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 68,
-      "overallScore": 72.4,
+      "overallScore": 72.38,
       "lastLogDate": "2026-07-07",
       "bosses": {
         "Lord Marrowgar": 4008.6,
@@ -3790,7 +3817,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 47,
-      "overallScore": 72.32,
+      "overallScore": 72.34,
       "lastLogDate": "2026-06-15",
       "bosses": {
         "Lord Marrowgar": 5559.8,
@@ -3817,7 +3844,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 49,
-      "overallScore": 72.07,
+      "overallScore": 72.09,
       "lastLogDate": "2026-06-16",
       "bosses": {
         "Lord Marrowgar": 5108.6,
@@ -3924,8 +3951,8 @@
       "class": "Shaman",
       "spec": "Enhancement",
       "specIndex": 2,
-      "overallRank": 22,
-      "overallScore": 70.54,
+      "overallRank": 23,
+      "overallScore": 70.53,
       "lastLogDate": "2026-02-24",
       "bosses": {
         "Lord Marrowgar": 16045.9,
@@ -3979,7 +4006,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 133,
-      "overallScore": 70.24,
+      "overallScore": 70.25,
       "lastLogDate": "2026-07-13",
       "bosses": {
         "Lord Marrowgar": 17567.6,
@@ -4006,7 +4033,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 158,
-      "overallScore": 69.81,
+      "overallScore": 69.8,
       "lastLogDate": "2026-04-27",
       "bosses": {
         "Lord Marrowgar": 19295.0,
@@ -4059,8 +4086,8 @@
       "class": "Rogue",
       "spec": "Combat",
       "specIndex": 2,
-      "overallRank": 92,
-      "overallScore": 69.25,
+      "overallRank": 94,
+      "overallScore": 69.23,
       "lastLogDate": "2025-11-18",
       "bosses": {
         "Lord Marrowgar": 16296.9,
@@ -4087,7 +4114,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 81,
-      "overallScore": 69.16,
+      "overallScore": 69.17,
       "lastLogDate": "2026-02-03",
       "bosses": {
         "Lord Marrowgar": 15457.4,
@@ -4114,7 +4141,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 166,
-      "overallScore": 68.95,
+      "overallScore": 68.93,
       "lastLogDate": "2026-05-04",
       "bosses": {
         "Lord Marrowgar": 19910.0,
@@ -4141,7 +4168,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 88,
-      "overallScore": 68.65,
+      "overallScore": 68.64,
       "lastLogDate": "2026-06-22",
       "bosses": {
         "Lord Marrowgar": 327.3,
@@ -4222,7 +4249,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 16,
-      "overallScore": 67.65,
+      "overallScore": 67.61,
       "lastLogDate": "2026-03-16",
       "bosses": {
         "Lord Marrowgar": 71.2,
@@ -4249,7 +4276,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 133,
-      "overallScore": 67.53,
+      "overallScore": 67.51,
       "lastLogDate": "2025-10-28",
       "bosses": {
         "Lord Marrowgar": 15655.8,
@@ -4267,33 +4294,6 @@
         "General Zarithrian": 12433.0,
         "Baltharus the Warborn": 10978.1,
         "Valithria Dreamwalker": 829.8
-      }
-    },
-    {
-      "name": "Aspin",
-      "server": "FreedomUA",
-      "class": "Priest",
-      "spec": "Shadow",
-      "specIndex": 3,
-      "overallRank": 134,
-      "overallScore": 67.49,
-      "lastLogDate": "2026-06-07",
-      "bosses": {
-        "Lord Marrowgar": 15859.5,
-        "Lady Deathwhisper": 15006.8,
-        "Deathbringer Saurfang": 17034.2,
-        "Festergut": 15225.0,
-        "Rotface": 15516.9,
-        "Professor Putricide": 11532.7,
-        "Blood Prince Council": 12859.4,
-        "Blood-Queen Lana'thel": 16679.4,
-        "Sindragosa": 9764.2,
-        "The Lich King": 7583.4,
-        "Halion": 9714.0,
-        "Saviana Ragefire": 10174.3,
-        "General Zarithrian": 13555.0,
-        "Baltharus the Warborn": 10263.8,
-        "Valithria Dreamwalker": 207.0
       }
     },
     {
@@ -4324,13 +4324,40 @@
       }
     },
     {
+      "name": "Aspin",
+      "server": "FreedomUA",
+      "class": "Priest",
+      "spec": "Shadow",
+      "specIndex": 3,
+      "overallRank": 134,
+      "overallScore": 67.47,
+      "lastLogDate": "2026-06-07",
+      "bosses": {
+        "Lord Marrowgar": 15859.5,
+        "Lady Deathwhisper": 15006.8,
+        "Deathbringer Saurfang": 17034.2,
+        "Festergut": 15225.0,
+        "Rotface": 15516.9,
+        "Professor Putricide": 11532.7,
+        "Blood Prince Council": 12859.4,
+        "Blood-Queen Lana'thel": 16679.4,
+        "Sindragosa": 9764.2,
+        "The Lich King": 7583.4,
+        "Halion": 9714.0,
+        "Saviana Ragefire": 10174.3,
+        "General Zarithrian": 13555.0,
+        "Baltharus the Warborn": 10263.8,
+        "Valithria Dreamwalker": 207.0
+      }
+    },
+    {
       "name": "Делайна",
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 136,
-      "overallScore": 67.33,
+      "overallScore": 67.31,
       "lastLogDate": "2025-08-17",
       "bosses": {
         "Lord Marrowgar": 15567.0,
@@ -4357,7 +4384,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 96,
-      "overallScore": 66.62,
+      "overallScore": 66.59,
       "lastLogDate": "2026-07-06",
       "bosses": {
         "Lord Marrowgar": 430.9,
@@ -4384,7 +4411,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 142,
-      "overallScore": 66.02,
+      "overallScore": 66.01,
       "lastLogDate": "2026-06-01",
       "bosses": {
         "Lord Marrowgar": 17208.1,
@@ -4438,7 +4465,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 146,
-      "overallScore": 65.11,
+      "overallScore": 65.09,
       "lastLogDate": "2026-07-20",
       "bosses": {
         "Lord Marrowgar": 12769.8,
@@ -4492,7 +4519,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 143,
-      "overallScore": 64.77,
+      "overallScore": 64.75,
       "lastLogDate": "2026-07-29",
       "bosses": {
         "Lord Marrowgar": 15713.3,
@@ -4519,7 +4546,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 92,
-      "overallScore": 64.63,
+      "overallScore": 64.62,
       "lastLogDate": "2026-05-21",
       "bosses": {
         "Lord Marrowgar": 14109.5,
@@ -4546,7 +4573,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 86,
-      "overallScore": 64.24,
+      "overallScore": 64.22,
       "lastLogDate": "2026-04-12",
       "bosses": {
         "Lord Marrowgar": 20172.9,
@@ -4627,7 +4654,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 151,
-      "overallScore": 64.14,
+      "overallScore": 64.13,
       "lastLogDate": "2026-07-26",
       "bosses": {
         "Lord Marrowgar": 14127.6,
@@ -4654,7 +4681,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 93,
-      "overallScore": 64.05,
+      "overallScore": 64.06,
       "lastLogDate": "2026-06-22",
       "bosses": {
         "Lord Marrowgar": 17191.9,
@@ -4762,7 +4789,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 95,
-      "overallScore": 63.48,
+      "overallScore": 63.49,
       "lastLogDate": "2026-07-29",
       "bosses": {
         "Lord Marrowgar": 17248.4,
@@ -4843,7 +4870,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 111,
-      "overallScore": 63.07,
+      "overallScore": 63.04,
       "lastLogDate": "2025-10-05",
       "bosses": {
         "Lord Marrowgar": 551.4,
@@ -4897,7 +4924,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 151,
-      "overallScore": 62.6,
+      "overallScore": 62.61,
       "lastLogDate": "2026-06-30",
       "bosses": {
         "Lord Marrowgar": 16786.9,
@@ -4924,7 +4951,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 69,
-      "overallScore": 62.28,
+      "overallScore": 62.27,
       "lastLogDate": "2026-05-20",
       "bosses": {
         "Lord Marrowgar": 4694.8,
@@ -4951,7 +4978,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 94,
-      "overallScore": 61.78,
+      "overallScore": 61.76,
       "lastLogDate": "2026-06-28",
       "bosses": {
         "Lord Marrowgar": 18288.1,
@@ -5005,7 +5032,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 72,
-      "overallScore": 61.51,
+      "overallScore": 61.52,
       "lastLogDate": "2026-05-25",
       "bosses": {
         "Lord Marrowgar": 71.0,
@@ -5032,7 +5059,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 73,
-      "overallScore": 61.46,
+      "overallScore": 61.47,
       "lastLogDate": "2026-07-19",
       "bosses": {
         "Lord Marrowgar": 279.4,
@@ -5113,7 +5140,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 157,
-      "overallScore": 59.97,
+      "overallScore": 59.99,
       "lastLogDate": "2026-07-26",
       "bosses": {
         "Lord Marrowgar": 17660.9,
@@ -5140,7 +5167,7 @@
       "spec": "Shadow",
       "specIndex": 3,
       "overallRank": 167,
-      "overallScore": 59.67,
+      "overallScore": 59.66,
       "lastLogDate": "2026-06-14",
       "bosses": {
         "Lord Marrowgar": 11336.6,
@@ -5166,7 +5193,7 @@
       "class": "Hunter",
       "spec": "Marksmanship",
       "specIndex": 2,
-      "overallRank": 118,
+      "overallRank": 119,
       "overallScore": 59.54,
       "lastLogDate": "2026-07-05",
       "bosses": {
@@ -5221,7 +5248,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 111,
-      "overallScore": 58.97,
+      "overallScore": 58.98,
       "lastLogDate": "2026-07-07",
       "bosses": {
         "Lord Marrowgar": 16579.9,
@@ -5248,7 +5275,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 29,
-      "overallScore": 58.93,
+      "overallScore": 58.89,
       "lastLogDate": "2026-04-19",
       "bosses": {
         "Lord Marrowgar": 94.2,
@@ -5275,7 +5302,7 @@
       "spec": "Combat",
       "specIndex": 2,
       "overallRank": 124,
-      "overallScore": 58.56,
+      "overallScore": 58.55,
       "lastLogDate": "2026-07-03",
       "bosses": {
         "Lord Marrowgar": 15514.6,
@@ -5301,7 +5328,7 @@
       "class": "Paladin",
       "spec": "Retribution",
       "specIndex": 3,
-      "overallRank": 179,
+      "overallRank": 180,
       "overallScore": 58.5,
       "lastLogDate": "2026-06-10",
       "bosses": {
@@ -5329,7 +5356,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 99,
-      "overallScore": 58.23,
+      "overallScore": 58.21,
       "lastLogDate": "2026-06-22",
       "bosses": {
         "Lord Marrowgar": 3692.8,
@@ -5383,7 +5410,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 63,
-      "overallScore": 57.64,
+      "overallScore": 57.62,
       "lastLogDate": "2026-05-04",
       "bosses": {
         "Lord Marrowgar": 348.0,
@@ -5409,8 +5436,8 @@
       "class": "Warlock",
       "spec": "Demonology",
       "specIndex": 2,
-      "overallRank": 117,
-      "overallScore": 57.26,
+      "overallRank": 118,
+      "overallScore": 57.27,
       "lastLogDate": "2026-07-13",
       "bosses": {
         "Lord Marrowgar": 10679.9,
@@ -5437,7 +5464,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 32,
-      "overallScore": 56.73,
+      "overallScore": 56.69,
       "lastLogDate": "2025-11-26",
       "bosses": {
         "Lord Marrowgar": 74.8,
@@ -5491,7 +5518,7 @@
       "spec": "Enhancement",
       "specIndex": 2,
       "overallRank": 31,
-      "overallScore": 56.69,
+      "overallScore": 56.67,
       "lastLogDate": "2025-08-25",
       "bosses": {
         "Lord Marrowgar": 16699.6,
@@ -5545,7 +5572,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 34,
-      "overallScore": 56.12,
+      "overallScore": 56.09,
       "lastLogDate": "2026-07-07",
       "bosses": {
         "Lord Marrowgar": 8.9,
@@ -5572,7 +5599,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 173,
-      "overallScore": 56.06,
+      "overallScore": 56.08,
       "lastLogDate": "2026-05-28",
       "bosses": {
         "Lord Marrowgar": 15208.9,
@@ -5599,7 +5626,7 @@
       "spec": "Enhancement",
       "specIndex": 2,
       "overallRank": 32,
-      "overallScore": 56.01,
+      "overallScore": 55.98,
       "lastLogDate": "2026-06-16",
       "bosses": {
         "Lord Marrowgar": 17145.5,
@@ -5653,7 +5680,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 125,
-      "overallScore": 54.94,
+      "overallScore": 54.95,
       "lastLogDate": "2026-04-29",
       "bosses": {
         "Lord Marrowgar": 10721.3,
@@ -5680,7 +5707,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 112,
-      "overallScore": 54.7,
+      "overallScore": 54.68,
       "lastLogDate": "2026-06-05",
       "bosses": {
         "Lord Marrowgar": 3663.8,
@@ -5706,7 +5733,7 @@
       "class": "Priest",
       "spec": "Discipline",
       "specIndex": 1,
-      "overallRank": 83,
+      "overallRank": 84,
       "overallScore": 54.39,
       "lastLogDate": "2026-06-11",
       "bosses": {
@@ -5760,8 +5787,8 @@
       "class": "Paladin",
       "spec": "Protection",
       "specIndex": 2,
-      "overallRank": 85,
-      "overallScore": 54.01,
+      "overallRank": 86,
+      "overallScore": 54.03,
       "lastLogDate": "2026-06-15",
       "bosses": {
         "Lord Marrowgar": 5371.5,
@@ -5788,7 +5815,7 @@
       "spec": "Retribution",
       "specIndex": 3,
       "overallRank": 197,
-      "overallScore": 53.85,
+      "overallScore": 53.84,
       "lastLogDate": "2025-09-10",
       "bosses": {
         "Lord Marrowgar": 14893.2,
@@ -5868,7 +5895,7 @@
       "class": "Paladin",
       "spec": "Retribution",
       "specIndex": 3,
-      "overallRank": 209,
+      "overallRank": 210,
       "overallScore": 52.35,
       "lastLogDate": "2026-07-20",
       "bosses": {
@@ -5950,7 +5977,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 47,
-      "overallScore": 52.04,
+      "overallScore": 52.01,
       "lastLogDate": "2026-05-17",
       "bosses": {
         "Lord Marrowgar": 208.2,
@@ -5977,7 +6004,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 74,
-      "overallScore": 51.85,
+      "overallScore": 51.86,
       "lastLogDate": "2026-04-06",
       "bosses": {
         "Lord Marrowgar": 308.6,
@@ -6004,7 +6031,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 237,
-      "overallScore": 51.69,
+      "overallScore": 51.7,
       "lastLogDate": "2025-12-10",
       "bosses": {
         "Lord Marrowgar": 18034.6,
@@ -6030,8 +6057,8 @@
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
-      "overallRank": 120,
-      "overallScore": 51.65,
+      "overallRank": 121,
+      "overallScore": 51.63,
       "lastLogDate": "2026-07-19",
       "bosses": {
         "Lord Marrowgar": 3436.3,
@@ -6085,7 +6112,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 147,
-      "overallScore": 51.31,
+      "overallScore": 51.3,
       "lastLogDate": "2025-12-16",
       "bosses": {
         "Lord Marrowgar": 14589.3,
@@ -6112,7 +6139,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 50,
-      "overallScore": 51.18,
+      "overallScore": 51.14,
       "lastLogDate": "2026-07-06",
       "bosses": {
         "Lord Marrowgar": 4.5,
@@ -6139,7 +6166,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 51,
-      "overallScore": 51.14,
+      "overallScore": 51.11,
       "lastLogDate": "2026-07-29",
       "bosses": {
         "Lord Marrowgar": 24.5,
@@ -6219,7 +6246,7 @@
       "class": "Paladin",
       "spec": "Protection",
       "specIndex": 2,
-      "overallRank": 90,
+      "overallRank": 91,
       "overallScore": 50.91,
       "lastLogDate": "2025-12-18",
       "bosses": {
@@ -6274,7 +6301,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 204,
-      "overallScore": 50.39,
+      "overallScore": 50.4,
       "lastLogDate": "2025-09-20",
       "bosses": {
         "Lord Marrowgar": 17722.4,
@@ -6301,7 +6328,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 156,
-      "overallScore": 50.26,
+      "overallScore": 50.27,
       "lastLogDate": "2026-06-30",
       "bosses": {
         "Lord Marrowgar": 12814.6,
@@ -6327,7 +6354,7 @@
       "class": "Paladin",
       "spec": "Retribution",
       "specIndex": 3,
-      "overallRank": 215,
+      "overallRank": 216,
       "overallScore": 50.13,
       "lastLogDate": "2026-06-15",
       "bosses": {
@@ -6355,7 +6382,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 133,
-      "overallScore": 49.88,
+      "overallScore": 49.89,
       "lastLogDate": "2026-06-05",
       "bosses": {
         "Lord Marrowgar": 15812.3,
@@ -6409,7 +6436,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 206,
-      "overallScore": 49.26,
+      "overallScore": 49.28,
       "lastLogDate": "2026-01-07",
       "bosses": {
         "Lord Marrowgar": 13206.2,
@@ -6436,7 +6463,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 121,
-      "overallScore": 49.11,
+      "overallScore": 49.1,
       "lastLogDate": "2026-03-31",
       "bosses": {
         "Lord Marrowgar": 15952.5,
@@ -6489,8 +6516,8 @@
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
-      "overallRank": 129,
-      "overallScore": 48.69,
+      "overallRank": 130,
+      "overallScore": 48.67,
       "lastLogDate": "2026-03-30",
       "bosses": {
         "Lord Marrowgar": 2978.5,
@@ -6516,8 +6543,8 @@
       "class": "Paladin",
       "spec": "Protection",
       "specIndex": 2,
-      "overallRank": 97,
-      "overallScore": 48.45,
+      "overallRank": 98,
+      "overallScore": 48.43,
       "lastLogDate": "2026-07-22",
       "bosses": {
         "Lord Marrowgar": 4351.5,
@@ -6571,7 +6598,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 62,
-      "overallScore": 47.59,
+      "overallScore": 47.58,
       "lastLogDate": "2025-07-26",
       "bosses": {
         "Lord Marrowgar": 93.9,
@@ -6597,8 +6624,8 @@
       "class": "Death Knight",
       "spec": "Blood",
       "specIndex": 1,
-      "overallRank": 133,
-      "overallScore": 47.57,
+      "overallRank": 134,
+      "overallScore": 47.56,
       "lastLogDate": "2026-04-13",
       "bosses": {
         "Lord Marrowgar": 3315.8,
@@ -6624,8 +6651,8 @@
       "class": "Paladin",
       "spec": "Protection",
       "specIndex": 2,
-      "overallRank": 99,
-      "overallScore": 47.41,
+      "overallRank": 101,
+      "overallScore": 47.39,
       "lastLogDate": "2026-07-07",
       "bosses": {
         "Lord Marrowgar": 4236.4,
@@ -6652,7 +6679,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 82,
-      "overallScore": 47.05,
+      "overallScore": 47.04,
       "lastLogDate": "2026-04-22",
       "bosses": {
         "Lord Marrowgar": 246.4,
@@ -6679,7 +6706,7 @@
       "spec": "Marksmanship",
       "specIndex": 2,
       "overallRank": 169,
-      "overallScore": 46.86,
+      "overallScore": 46.87,
       "lastLogDate": "2025-05-15",
       "bosses": {
         "Lord Marrowgar": 13393.5,
@@ -6706,7 +6733,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 126,
-      "overallScore": 46.74,
+      "overallScore": 46.73,
       "lastLogDate": "2026-07-16",
       "bosses": {
         "Lord Marrowgar": 17125.4,
@@ -6733,7 +6760,7 @@
       "spec": "Demonology",
       "specIndex": 2,
       "overallRank": 155,
-      "overallScore": 46.19,
+      "overallScore": 46.18,
       "lastLogDate": "2026-03-23",
       "bosses": {
         "Lord Marrowgar": 11668.0,
@@ -6760,7 +6787,7 @@
       "spec": "Unholy",
       "specIndex": 3,
       "overallRank": 147,
-      "overallScore": 46.16,
+      "overallScore": 46.17,
       "lastLogDate": "2025-08-30",
       "bosses": {
         "Lord Marrowgar": 14791.6,
@@ -6867,7 +6894,7 @@
       "class": "Hunter",
       "spec": "Marksmanship",
       "specIndex": 2,
-      "overallRank": 176,
+      "overallRank": 177,
       "overallScore": 45.34,
       "lastLogDate": "2025-11-26",
       "bosses": {
@@ -6922,7 +6949,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 164,
-      "overallScore": 44.98,
+      "overallScore": 44.97,
       "lastLogDate": "2025-12-16",
       "bosses": {
         "Lord Marrowgar": 325.1,
@@ -6976,7 +7003,7 @@
       "spec": "Fury",
       "specIndex": 2,
       "overallRank": 224,
-      "overallScore": 44.78,
+      "overallScore": 44.77,
       "lastLogDate": "2026-06-16",
       "bosses": {
         "Lord Marrowgar": 14833.4,
@@ -7030,7 +7057,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 91,
-      "overallScore": 43.79,
+      "overallScore": 43.82,
       "lastLogDate": "2026-04-19",
       "bosses": {
         "Lord Marrowgar": 67.0,
@@ -7057,7 +7084,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 72,
-      "overallScore": 43.6,
+      "overallScore": 43.54,
       "lastLogDate": "2026-06-29",
       "bosses": {
         "Lord Marrowgar": 14.6,
@@ -7246,7 +7273,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 174,
-      "overallScore": 42.7,
+      "overallScore": 42.68,
       "lastLogDate": "2025-10-08",
       "bosses": {
         "Lord Marrowgar": 400.7,
@@ -7381,7 +7408,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 180,
-      "overallScore": 42.01,
+      "overallScore": 42.0,
       "lastLogDate": "2026-07-26",
       "bosses": {
         "Lord Marrowgar": 302.5,
@@ -7462,7 +7489,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 100,
-      "overallScore": 41.7,
+      "overallScore": 41.71,
       "lastLogDate": "2025-12-10",
       "bosses": {
         "Lord Marrowgar": 81.5,
@@ -7515,8 +7542,8 @@
       "class": "Paladin",
       "spec": "Retribution",
       "specIndex": 3,
-      "overallRank": 252,
-      "overallScore": 41.18,
+      "overallRank": 254,
+      "overallScore": 41.19,
       "lastLogDate": "2026-04-02",
       "bosses": {
         "Lord Marrowgar": 12122.9,
@@ -7570,7 +7597,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 105,
-      "overallScore": 40.76,
+      "overallScore": 40.73,
       "lastLogDate": "2025-12-07",
       "bosses": {
         "Lord Marrowgar": 65.1,
@@ -7597,7 +7624,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 127,
-      "overallScore": 40.68,
+      "overallScore": 40.66,
       "lastLogDate": "2026-06-21",
       "bosses": {
         "Lord Marrowgar": 64.3,
@@ -7624,7 +7651,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 80,
-      "overallScore": 40.42,
+      "overallScore": 40.39,
       "lastLogDate": "2026-06-22",
       "bosses": {
         "Lord Marrowgar": 60.5,
@@ -7651,7 +7678,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 108,
-      "overallScore": 40.36,
+      "overallScore": 40.34,
       "lastLogDate": "2026-04-02",
       "bosses": {
         "Lord Marrowgar": 182.4,
@@ -7678,7 +7705,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 123,
-      "overallScore": 40.26,
+      "overallScore": 40.27,
       "lastLogDate": "2025-12-16",
       "bosses": {
         "Lord Marrowgar": 4002.0,
@@ -7786,7 +7813,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 83,
-      "overallScore": 39.52,
+      "overallScore": 39.48,
       "lastLogDate": "2025-09-10",
       "bosses": {
         "Lord Marrowgar": 0,
@@ -7812,8 +7839,8 @@
       "class": "Druid",
       "spec": "Restoration",
       "specIndex": 3,
-      "overallRank": 85,
-      "overallScore": 39.47,
+      "overallRank": 84,
+      "overallScore": 39.44,
       "lastLogDate": "2026-07-07",
       "bosses": {
         "Lord Marrowgar": 45.4,
@@ -7921,7 +7948,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 111,
-      "overallScore": 38.96,
+      "overallScore": 38.93,
       "lastLogDate": "2026-07-24",
       "bosses": {
         "Lord Marrowgar": 71.0,
@@ -7975,7 +8002,7 @@
       "spec": "Feral Combat",
       "specIndex": 2,
       "overallRank": 151,
-      "overallScore": 38.57,
+      "overallScore": 38.56,
       "lastLogDate": "2026-07-16",
       "bosses": {
         "Lord Marrowgar": 13400.5,
@@ -8029,7 +8056,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 198,
-      "overallScore": 37.05,
+      "overallScore": 37.03,
       "lastLogDate": "2025-12-09",
       "bosses": {
         "Lord Marrowgar": 267.3,
@@ -8164,7 +8191,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 146,
-      "overallScore": 35.67,
+      "overallScore": 35.65,
       "lastLogDate": "2025-09-30",
       "bosses": {
         "Lord Marrowgar": 203.7,
@@ -8191,7 +8218,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 121,
-      "overallScore": 35.42,
+      "overallScore": 35.43,
       "lastLogDate": "2026-06-29",
       "bosses": {
         "Lord Marrowgar": 18.1,
@@ -8326,7 +8353,7 @@
       "spec": "Protection",
       "specIndex": 2,
       "overallRank": 140,
-      "overallScore": 33.93,
+      "overallScore": 33.95,
       "lastLogDate": "2026-07-16",
       "bosses": {
         "Lord Marrowgar": 4759.9,
@@ -8353,7 +8380,7 @@
       "spec": "Blood",
       "specIndex": 1,
       "overallRank": 159,
-      "overallScore": 33.89,
+      "overallScore": 33.88,
       "lastLogDate": "2026-03-03",
       "bosses": {
         "Lord Marrowgar": 3346.3,
@@ -8460,7 +8487,7 @@
       "class": "Paladin",
       "spec": "Retribution",
       "specIndex": 3,
-      "overallRank": 294,
+      "overallRank": 295,
       "overallScore": 33.08,
       "lastLogDate": "2026-05-21",
       "bosses": {
@@ -8487,7 +8514,7 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 280,
+      "overallRank": 281,
       "overallScore": 32.98,
       "lastLogDate": "2026-06-28",
       "bosses": {
@@ -8542,7 +8569,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 138,
-      "overallScore": 32.68,
+      "overallScore": 32.67,
       "lastLogDate": "2026-06-16",
       "bosses": {
         "Lord Marrowgar": 85.7,
@@ -8569,7 +8596,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 210,
-      "overallScore": 32.65,
+      "overallScore": 32.64,
       "lastLogDate": "2026-06-10",
       "bosses": {
         "Lord Marrowgar": 233.5,
@@ -8595,8 +8622,8 @@
       "class": "Paladin",
       "spec": "Retribution",
       "specIndex": 3,
-      "overallRank": 299,
-      "overallScore": 32.04,
+      "overallRank": 300,
+      "overallScore": 32.05,
       "lastLogDate": "2026-07-22",
       "bosses": {
         "Lord Marrowgar": 13796.6,
@@ -8623,7 +8650,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 147,
-      "overallScore": 31.54,
+      "overallScore": 31.56,
       "lastLogDate": "2025-04-08",
       "bosses": {
         "Lord Marrowgar": 0,
@@ -8677,7 +8704,7 @@
       "spec": "Fire",
       "specIndex": 2,
       "overallRank": 311,
-      "overallScore": 30.56,
+      "overallScore": 30.57,
       "lastLogDate": "2025-08-10",
       "bosses": {
         "Lord Marrowgar": 10865.9,
@@ -8704,7 +8731,7 @@
       "spec": "Restoration",
       "specIndex": 3,
       "overallRank": 151,
-      "overallScore": 30.54,
+      "overallScore": 30.51,
       "lastLogDate": "2025-11-26",
       "bosses": {
         "Lord Marrowgar": 64.5,
@@ -8730,7 +8757,7 @@
       "class": "Shaman",
       "spec": "Enhancement",
       "specIndex": 2,
-      "overallRank": 59,
+      "overallRank": 60,
       "overallScore": 30.42,
       "lastLogDate": "2026-05-21",
       "bosses": {
@@ -8811,7 +8838,7 @@
       "class": "Warrior",
       "spec": "Fury",
       "specIndex": 2,
-      "overallRank": 295,
+      "overallRank": 296,
       "overallScore": 29.57,
       "lastLogDate": "2026-02-17",
       "bosses": {
@@ -8892,7 +8919,7 @@
       "class": "Shaman",
       "spec": "Enhancement",
       "specIndex": 2,
-      "overallRank": 61,
+      "overallRank": 62,
       "overallScore": 28.5,
       "lastLogDate": "2025-12-07",
       "bosses": {
@@ -8946,8 +8973,8 @@
       "class": "Druid",
       "spec": "Restoration",
       "specIndex": 3,
-      "overallRank": 129,
-      "overallScore": 27.66,
+      "overallRank": 130,
+      "overallScore": 27.65,
       "lastLogDate": "2026-05-31",
       "bosses": {
         "Lord Marrowgar": 169.9,
@@ -9082,7 +9109,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 169,
-      "overallScore": 25.29,
+      "overallScore": 25.27,
       "lastLogDate": "2026-05-21",
       "bosses": {
         "Lord Marrowgar": 95.7,
@@ -9108,8 +9135,8 @@
       "class": "Druid",
       "spec": "Restoration",
       "specIndex": 3,
-      "overallRank": 146,
-      "overallScore": 24.89,
+      "overallRank": 147,
+      "overallScore": 24.86,
       "lastLogDate": "2025-04-07",
       "bosses": {
         "Lord Marrowgar": 80.7,
@@ -9135,8 +9162,8 @@
       "class": "Death Knight",
       "spec": "Unholy",
       "specIndex": 3,
-      "overallRank": 204,
-      "overallScore": 24.76,
+      "overallRank": 205,
+      "overallScore": 24.77,
       "lastLogDate": "2025-04-17",
       "bosses": {
         "Lord Marrowgar": 9978.8,
@@ -9243,8 +9270,8 @@
       "class": "Druid",
       "spec": "Restoration",
       "specIndex": 3,
-      "overallRank": 159,
-      "overallScore": 22.28,
+      "overallRank": 160,
+      "overallScore": 22.27,
       "lastLogDate": "2025-08-17",
       "bosses": {
         "Lord Marrowgar": 8.5,
@@ -9270,7 +9297,7 @@
       "class": "Death Knight",
       "spec": "Unholy",
       "specIndex": 3,
-      "overallRank": 209,
+      "overallRank": 210,
       "overallScore": 22.2,
       "lastLogDate": "2026-04-30",
       "bosses": {
@@ -9297,8 +9324,8 @@
       "class": "Druid",
       "spec": "Restoration",
       "specIndex": 3,
-      "overallRank": 160,
-      "overallScore": 22.12,
+      "overallRank": 161,
+      "overallScore": 22.11,
       "lastLogDate": "2026-07-12",
       "bosses": {
         "Lord Marrowgar": 0,
@@ -9433,7 +9460,7 @@
       "spec": "Holy",
       "specIndex": 1,
       "overallRank": 242,
-      "overallScore": 16.56,
+      "overallScore": 16.54,
       "lastLogDate": "2026-04-02",
       "bosses": {
         "Lord Marrowgar": 151.9,
@@ -9487,7 +9514,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 194,
-      "overallScore": 14.36,
+      "overallScore": 14.38,
       "lastLogDate": "2026-06-07",
       "bosses": {
         "Lord Marrowgar": 0,
@@ -9540,7 +9567,7 @@
       "class": "Druid",
       "spec": "Restoration",
       "specIndex": 3,
-      "overallRank": 194,
+      "overallRank": 195,
       "overallScore": 12.14,
       "lastLogDate": "2025-05-03",
       "bosses": {
@@ -9568,7 +9595,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 202,
-      "overallScore": 11.18,
+      "overallScore": 11.16,
       "lastLogDate": "2026-04-30",
       "bosses": {
         "Lord Marrowgar": 16.4,
@@ -9622,7 +9649,7 @@
       "spec": "Discipline",
       "specIndex": 1,
       "overallRank": 233,
-      "overallScore": 8.0,
+      "overallScore": 8.01,
       "lastLogDate": "2026-06-01",
       "bosses": {
         "Lord Marrowgar": 0,
