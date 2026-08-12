@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-08-11T07:05:32.821535+00:00",
-  "totalTanks": 35,
+  "lastUpdated": "2026-08-12T07:06:17.117714+00:00",
+  "totalTanks": 36,
   "rows": [
     {
       "name": "Йдунави",
@@ -69,6 +69,17 @@
       "guildRank": 6
     },
     {
+      "name": "Dubstep",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 100983731,
+      "lichTaken": 27043287,
+      "halionTaken": 8126298,
+      "raidCount": 13,
+      "guildRank": 7
+    },
+    {
       "name": "Piceduke",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -77,17 +88,6 @@
       "lichTaken": 29463915,
       "halionTaken": 3778360,
       "raidCount": 30,
-      "guildRank": 7
-    },
-    {
-      "name": "Dubstep",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 98854347,
-      "lichTaken": 27043287,
-      "halionTaken": 7011561,
-      "raidCount": 12,
       "guildRank": 8
     },
     {
@@ -355,6 +355,17 @@
       "guildRank": 32
     },
     {
+      "name": "Zarel",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 555790,
+      "lichTaken": 0,
+      "halionTaken": 858,
+      "raidCount": 1,
+      "guildRank": 33
+    },
+    {
       "name": "Arahiska",
       "server": "FreedomUA",
       "class": "Warrior",
@@ -363,7 +374,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 33
+      "guildRank": 34
     },
     {
       "name": "Sweden",
@@ -374,7 +385,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 34
+      "guildRank": 35
     },
     {
       "name": "Могильник",
@@ -385,7 +396,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 35
+      "guildRank": 36
     }
   ]
 }

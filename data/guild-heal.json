@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-12T05:29:31.956804+00:00",
+  "lastUpdated": "2026-08-12T07:05:10.905367+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -17,7 +17,7 @@
     "General Zarithrian",
     "Baltharus the Warborn"
   ],
-  "totalHealers": 75,
+  "totalHealers": 77,
   "rows": [
     {
       "name": "Лісовиця",
@@ -102,7 +102,7 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Holy",
-      "avgHps": 11784.7,
+      "avgHps": 11795.7,
       "bossCount": 15,
       "bosses": {
         "Lord Marrowgar": 11377.8,
@@ -117,7 +117,7 @@
         "The Lich King": 7975.1,
         "Valithria Dreamwalker": 40269.6,
         "Halion": 11089.3,
-        "Saviana Ragefire": 518.7,
+        "Saviana Ragefire": 683.0,
         "General Zarithrian": 6431.5,
         "Baltharus the Warborn": 2394.1
       },
@@ -1584,7 +1584,7 @@
       "server": "FreedomUA",
       "class": "Shaman",
       "spec": "Restoration",
-      "avgHps": 4134.6,
+      "avgHps": 4651.8,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
@@ -1600,8 +1600,8 @@
         "Valithria Dreamwalker": 0,
         "Halion": 8289.4,
         "Saviana Ragefire": 2750.2,
-        "General Zarithrian": 2783.2,
-        "Baltharus the Warborn": 2715.8
+        "General Zarithrian": 3716.1,
+        "Baltharus the Warborn": 3851.7
       },
       "guildRank": 61
     },
@@ -1636,7 +1636,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
@@ -1684,6 +1684,32 @@
       "guildRank": 64
     },
     {
+      "name": "Popkorn",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Restoration",
+      "avgHps": 1464.4,
+      "bossCount": 4,
+      "bosses": {
+        "Lord Marrowgar": 0,
+        "Lady Deathwhisper": 0,
+        "Deathbringer Saurfang": 0,
+        "Festergut": 0,
+        "Rotface": 0,
+        "Professor Putricide": 0,
+        "Blood Prince Council": 0,
+        "Blood-Queen Lana'thel": 0,
+        "Sindragosa": 0,
+        "The Lich King": 0,
+        "Valithria Dreamwalker": 0,
+        "Halion": 172.4,
+        "Saviana Ragefire": 438.7,
+        "General Zarithrian": 3202.7,
+        "Baltharus the Warborn": 2043.9
+      },
+      "guildRank": 65
+    },
+    {
       "name": "Shampatine",
       "server": "FreedomUA",
       "class": "Shaman",
@@ -1707,7 +1733,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 65
+      "guildRank": 66
     },
     {
       "name": "Moonskye",
@@ -1733,7 +1759,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 66
+      "guildRank": 67
     },
     {
       "name": "Facelesspal",
@@ -1759,7 +1785,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 67
+      "guildRank": 68
     },
     {
       "name": "Метро",
@@ -1785,7 +1811,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 68
+      "guildRank": 69
     },
     {
       "name": "Possibly",
@@ -1811,7 +1837,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 69
+      "guildRank": 70
     },
     {
       "name": "Takenada",
@@ -1837,7 +1863,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 70
+      "guildRank": 71
     },
     {
       "name": "Powwder",
@@ -1863,7 +1889,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 71
+      "guildRank": 72
     },
     {
       "name": "Дупокусь",
@@ -1889,7 +1915,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 72
+      "guildRank": 73
     },
     {
       "name": "Aspin",
@@ -1915,7 +1941,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 73
+      "guildRank": 74
     },
     {
       "name": "Missprist",
@@ -1941,7 +1967,33 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 74
+      "guildRank": 75
+    },
+    {
+      "name": "Mikeprist",
+      "server": "FreedomUA",
+      "class": "Priest",
+      "spec": "Holy",
+      "avgHps": 153.4,
+      "bossCount": 1,
+      "bosses": {
+        "Lord Marrowgar": 0,
+        "Lady Deathwhisper": 0,
+        "Deathbringer Saurfang": 0,
+        "Festergut": 0,
+        "Rotface": 0,
+        "Professor Putricide": 0,
+        "Blood Prince Council": 0,
+        "Blood-Queen Lana'thel": 0,
+        "Sindragosa": 0,
+        "The Lich King": 0,
+        "Valithria Dreamwalker": 0,
+        "Halion": 153.4,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0
+      },
+      "guildRank": 76
     },
     {
       "name": "Імбо",
@@ -1967,7 +2019,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 75
+      "guildRank": 77
     }
   ]
 }
