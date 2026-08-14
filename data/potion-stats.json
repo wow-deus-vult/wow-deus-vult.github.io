@@ -1,6 +1,6 @@
 {
-  "generated": "2026-08-14T05:32:06.456210+00:00",
-  "totalRaids": 184,
+  "generated": "2026-08-14T07:04:18.391474+00:00",
+  "totalRaids": 185,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -34512,6 +34512,32 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-08-13--16-21--Зорекрила--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-08-13--16-21--Зорекрила--FreedomUA/consumables/",
+      "date": "2026-08-13",
+      "uploader": "Зорекрила",
+      "players": [
+        {
+          "name": "Зорекрила",
+          "total": 14,
+          "potionOfSpeed": 2,
+          "potionOfWildMagic": 12,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        },
+        {
+          "name": "Facelesprist",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -36320,6 +36346,17 @@
       "avgPerRaid": 4.38
     },
     {
+      "name": "Зорекрила",
+      "raids": 12,
+      "totalPotions": 52,
+      "potionOfSpeed": 6,
+      "potionOfWildMagic": 46,
+      "insaneStrength": 0,
+      "flameCap": 0,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 4.33
+    },
+    {
       "name": "Flame",
       "raids": 1,
       "totalPotions": 4,
@@ -36373,17 +36410,6 @@
       "flameCap": 0,
       "indestructiblePotion": 0,
       "avgPerRaid": 3.5
-    },
-    {
-      "name": "Зорекрила",
-      "raids": 11,
-      "totalPotions": 38,
-      "potionOfSpeed": 4,
-      "potionOfWildMagic": 34,
-      "insaneStrength": 0,
-      "flameCap": 0,
-      "indestructiblePotion": 0,
-      "avgPerRaid": 3.45
     },
     {
       "name": "Крік",
@@ -36716,17 +36742,6 @@
       "avgPerRaid": 0.81
     },
     {
-      "name": "Facelesprist",
-      "raids": 4,
-      "totalPotions": 3,
-      "potionOfSpeed": 0,
-      "potionOfWildMagic": 3,
-      "insaneStrength": 0,
-      "flameCap": 0,
-      "indestructiblePotion": 0,
-      "avgPerRaid": 0.75
-    },
-    {
       "name": "Mikeprist",
       "raids": 6,
       "totalPotions": 4,
@@ -36747,6 +36762,17 @@
       "flameCap": 0,
       "indestructiblePotion": 0,
       "avgPerRaid": 0.62
+    },
+    {
+      "name": "Facelesprist",
+      "raids": 5,
+      "totalPotions": 3,
+      "potionOfSpeed": 0,
+      "potionOfWildMagic": 3,
+      "insaneStrength": 0,
+      "flameCap": 0,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 0.6
     },
     {
       "name": "Тайтус",

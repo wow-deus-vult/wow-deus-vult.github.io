@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-14T05:31:59.212643+00:00",
+  "lastUpdated": "2026-08-14T07:04:05.361464+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -1216,6 +1216,32 @@
       "guildRank": 46
     },
     {
+      "name": "Facelesprist",
+      "server": "FreedomUA",
+      "class": "Priest",
+      "spec": "Discipline",
+      "avgHps": 8477.4,
+      "bossCount": 11,
+      "bosses": {
+        "Lord Marrowgar": 7821.7,
+        "Lady Deathwhisper": 8654.1,
+        "Deathbringer Saurfang": 5765.3,
+        "Festergut": 11429.9,
+        "Rotface": 8741.5,
+        "Professor Putricide": 11596.3,
+        "Blood Prince Council": 6252.5,
+        "Blood-Queen Lana'thel": 12204.6,
+        "Sindragosa": 8788.0,
+        "The Lich King": 6808.2,
+        "Valithria Dreamwalker": 5188.9,
+        "Halion": 0,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0
+      },
+      "guildRank": 47
+    },
+    {
       "name": "Sandora",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -1239,7 +1265,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 47
+      "guildRank": 48
     },
     {
       "name": "Вавілон",
@@ -1265,7 +1291,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 48
+      "guildRank": 49
     },
     {
       "name": "Powwderr",
@@ -1291,7 +1317,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 49
+      "guildRank": 50
     },
     {
       "name": "Naturalist",
@@ -1317,7 +1343,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 50
+      "guildRank": 51
     },
     {
       "name": "Говерла",
@@ -1343,7 +1369,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 51
+      "guildRank": 52
     },
     {
       "name": "Amaterasuqb",
@@ -1364,32 +1390,6 @@
         "Sindragosa": 10269.9,
         "The Lich King": 6903.0,
         "Valithria Dreamwalker": 15150.1,
-        "Halion": 0,
-        "Saviana Ragefire": 0,
-        "General Zarithrian": 0,
-        "Baltharus the Warborn": 0
-      },
-      "guildRank": 52
-    },
-    {
-      "name": "Facelesprist",
-      "server": "FreedomUA",
-      "class": "Priest",
-      "spec": "Discipline",
-      "avgHps": 8102.7,
-      "bossCount": 10,
-      "bosses": {
-        "Lord Marrowgar": 5263.9,
-        "Lady Deathwhisper": 8654.1,
-        "Deathbringer Saurfang": 0,
-        "Festergut": 10925.0,
-        "Rotface": 8741.5,
-        "Professor Putricide": 11596.3,
-        "Blood Prince Council": 5069.4,
-        "Blood-Queen Lana'thel": 11622.1,
-        "Sindragosa": 7934.0,
-        "The Lich King": 6678.4,
-        "Valithria Dreamwalker": 4542.6,
         "Halion": 0,
         "Saviana Ragefire": 0,
         "General Zarithrian": 0,
@@ -1584,7 +1584,7 @@
       "server": "FreedomUA",
       "class": "Shaman",
       "spec": "Restoration",
-      "avgHps": 4651.9,
+      "avgHps": 4651.8,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
@@ -1636,7 +1636,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
