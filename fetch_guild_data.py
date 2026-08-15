@@ -253,10 +253,8 @@ def build_guild_data(members):
 
 if __name__ == "__main__":
     print("[DV] Deus Vult / FreedomUA\n")
-    if not os.path.exists(EPGP_FILE):
-        print(f"[X] {EPGP_FILE} не знайдено!")
-        exit(1)
-    members = parse_epgp_members(EPGP_FILE)
+    # None → найсвіжіший epgp.lua з інсталяцій, фолбек — копія в репо
+    members = parse_epgp_members(None)
     print(f"   Шукаємо {len(members)} гравців\n")
     os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
     data = build_guild_data(members)

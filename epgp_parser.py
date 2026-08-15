@@ -53,11 +53,34 @@ EXTRA_MEMBERS = {
 }
 
 
-def parse_epgp_members(path="EPGP.lua", our_guilds=OUR_GUILD_NAMES, verbose=True):
+def _resolve_epgp_path():
+    """Найсвіжіший epgp.lua з WoW-інсталяцій; фолбек — копія в репо.
+
+    Живі файли лежать у SavedVariables акаунтів і оновлюються самі при
+    виході з гри — копію в репо більше не треба оновлювати руками."""
+    import glob as _glob
+    import os as _os
+    candidates = _glob.glob(
+        r"D:\world of warcraft*\WTF\Account\*\SavedVariables\epgp.lua")
+    candidates = [p for p in candidates if "копія" not in p.lower()]
+    repo_copy = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "EPGP.lua")
+    if _os.path.exists(repo_copy):
+        candidates.append(repo_copy)
+    if not candidates:
+        return "EPGP.lua"
+    return max(candidates, key=_os.path.getmtime)
+
+
+def parse_epgp_members(path=None, our_guilds=OUR_GUILD_NAMES, verbose=True):
     """
     Повертає set імен гравців з ростерів нашої гільдії (обидва написання).
     Чужі гільдії (Blue Oyster Bar, End point тощо) ігноруються.
+    path=None → найсвіжіший epgp.lua з інсталяцій (див. _resolve_epgp_path).
     """
+    if path is None:
+        path = _resolve_epgp_path()
+    if verbose:
+        print(f"   EPGP файл: {path}")
     with open(path, encoding="utf-8", errors="replace") as f:
         content = f.read()
 
