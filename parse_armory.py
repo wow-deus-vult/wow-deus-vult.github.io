@@ -14,17 +14,10 @@ import re, json, time, os, sys, argparse, random
 from datetime import date
 import requests
 
-import glob as _glob
-
-def _gearscore_luas():
-    """All GearScore.lua across installs/accounts (skip backups/copies)."""
-    paths = _glob.glob(r"D:\world of warcraft*\WTF\Account\*\SavedVariables\GearScore.lua")
-    return [p for p in paths
-            if "копія" not in p.lower() and "backup" not in p.lower()]
+from wow_paths import gearscore_luas as _gearscore_luas, examiner_lua as _examiner_lua
 
 LUA_PATHS      = _gearscore_luas()
-LUA_PATH       = r"D:\world of warcraft 3.3.5a hd – 3\WTF\Account\R113\SavedVariables\GearScore.lua"
-EXAMINER_LUA   = r"D:\world of warcraft 3.3.5a hd – 3\WTF\Account\R113\SavedVariables\Examiner.lua"
+EXAMINER_LUA   = _examiner_lua()
 OUTPUT_DIR     = "armory"
 ITEMS_CACHE    = os.path.join(OUTPUT_DIR, "items_cache.json")
 ENCHANTS_CACHE = os.path.join(OUTPUT_DIR, "enchants_cache.json")

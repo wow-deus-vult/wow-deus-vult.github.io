@@ -8,7 +8,8 @@ The rank-string order is GetTalentInfo order = talents sorted by (tier, col).
 import mpyq, struct, os, sys, json, glob
 sys.stdout.reconfigure(encoding='utf-8')
 
-DATA = glob.glob("D:/world of warcraft 3.3.5a hd*3/Data")[0]
+from wow_paths import data_dir as _wow_data_dir
+DATA = _wow_data_dir()
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "armory", "talents.json")
 
 CLASS_MASK = {1: "WA", 2: "PA", 4: "HU", 8: "RO", 16: "PR",

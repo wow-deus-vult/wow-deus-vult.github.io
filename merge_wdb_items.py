@@ -11,8 +11,10 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 ITEMS_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "armory", "items_cache.json")
 
-WDB_PATHS = [p for p in glob.glob(r"D:\world of warcraft*\Cache\WDB\ruRU\itemcache.wdb")
-             if "копія" not in p.lower() and "backup" not in p.lower()]
+from wow_paths import wdb_itemcaches, active_install
+# порядок: активна інсталяція останньою, ruRU після enUS — щоб її записи перемагали
+WDB_PATHS = sorted(wdb_itemcaches(),
+                   key=lambda p: (p.startswith(active_install()), "ruRU" in p))
 
 # ItemMod enum (3.3.5) → our stat keys
 STAT_MAP = {
@@ -134,7 +136,8 @@ def load_display_icons():
         import mpyq
     except ImportError:
         return {}
-    DATA_DIR = r"D:\world of warcraft 3.3.5a hd – 3\Data"
+    from wow_paths import data_dir as _wow_data_dir
+    DATA_DIR = _wow_data_dir()
     for rel in (r"enus\patch-enus-2.mpq", r"enus\patch-enus.mpq", r"enus\locale-enus.mpq",
                 r"patch-2.mpq", r"patch.mpq", r"common-2.mpq", r"common.mpq"):
         path = os.path.join(DATA_DIR, rel)

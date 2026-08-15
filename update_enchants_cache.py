@@ -4,7 +4,8 @@ Update enchants_cache.json with names from DBC + gem icons from GemProperties.
 import mpyq, struct, sys, os, json
 sys.stdout.reconfigure(encoding='utf-8')
 
-DATA_DIR  = r"D:\world of warcraft 3.3.5a hd – 3\Data"
+from wow_paths import data_dir as _wow_data_dir
+DATA_DIR  = _wow_data_dir()
 CACHE_OUT = r"D:\Uwu-parcer-DEUS\armory\enchants_cache.json"
 
 
@@ -51,6 +52,10 @@ def build_sie_lookup(dbc, name_field):
 en_names = build_sie_lookup(sie_en, 14)
 ru_names = build_sie_lookup(sie_ru, 22) or build_sie_lookup(sie_en, 22)
 print(f"SpellItemEnchantment: {len(en_names)} EN, {len(ru_names)} RU names loaded")
+if not en_names:
+    # MPQ не знайдені (переїзд інсталяції?) — НЕ затираємо кеш порожняком
+    print("ABORT: DBC не завантажені, кеш не чіпаємо")
+    sys.exit(1)
 
 
 # ── 2. GemProperties: enchantId → socketColor ────────────────────────────────
