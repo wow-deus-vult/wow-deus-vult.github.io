@@ -5,6 +5,13 @@ set LOGFILE=D:\Uwu-parcer-DEUS\update_log.txt
 
 python log_writer.py START
 
+echo [0/8] Probe uwu-logs...
+python probe_uwu.py >> %LOGFILE% 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    echo uwu-logs down - skipping collectors, armory only >> %LOGFILE%
+    goto armory
+)
+
 echo [1/7] DPS collector...
 python fetch_guild_data.py >> %LOGFILE% 2>&1
 
@@ -26,6 +33,7 @@ python fetch_raid_stats.py >> %LOGFILE% 2>&1
 echo [7/7] Tank Rating collector...
 python fetch_tank_data.py >> %LOGFILE% 2>&1
 
+:armory
 echo [8/8] Armory (GearScore/Examiner + wowhead + WDB + DBC)...
 python parse_armory.py >> %LOGFILE% 2>&1
 python merge_wdb_items.py >> %LOGFILE% 2>&1
