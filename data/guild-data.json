@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-08-18T04:32:00.425584+00:00",
-  "totalPlayersInSource": 275,
-  "totalRows": 358,
+  "lastUpdated": "2026-08-19T04:34:07.723637+00:00",
+  "totalPlayersInSource": 277,
+  "totalRows": 360,
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -7645,6 +7645,33 @@
       }
     },
     {
+      "name": "Mishapall",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Retribution",
+      "specIndex": 3,
+      "overallRank": 258,
+      "overallScore": 41.12,
+      "lastLogDate": "2026-04-02",
+      "bosses": {
+        "Lord Marrowgar": 12122.9,
+        "Lady Deathwhisper": 11130.0,
+        "Deathbringer Saurfang": 13510.6,
+        "Festergut": 11736.9,
+        "Rotface": 11532.4,
+        "Professor Putricide": 3946.2,
+        "Blood Prince Council": 6470.2,
+        "Blood-Queen Lana'thel": 11535.5,
+        "Sindragosa": 6781.5,
+        "The Lich King": 0,
+        "Halion": 9071.1,
+        "Saviana Ragefire": 7915.5,
+        "General Zarithrian": 9236.5,
+        "Baltharus the Warborn": 7230.9,
+        "Valithria Dreamwalker": 158.1
+      }
+    },
+    {
       "name": "Живунчик",
       "server": "FreedomUA",
       "class": "Rogue",
@@ -8559,6 +8586,33 @@
         "Saviana Ragefire": 7405.1,
         "General Zarithrian": 9792.8,
         "Baltharus the Warborn": 7515.7,
+        "Valithria Dreamwalker": 0
+      }
+    },
+    {
+      "name": "Takenada",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Retribution",
+      "specIndex": 3,
+      "overallRank": 302,
+      "overallScore": 33.09,
+      "lastLogDate": "2026-05-21",
+      "bosses": {
+        "Lord Marrowgar": 8385.7,
+        "Lady Deathwhisper": 0,
+        "Deathbringer Saurfang": 14449.0,
+        "Festergut": 14279.8,
+        "Rotface": 14573.1,
+        "Professor Putricide": 7845.0,
+        "Blood Prince Council": 8265.5,
+        "Blood-Queen Lana'thel": 0,
+        "Sindragosa": 0,
+        "The Lich King": 0,
+        "Halion": 8822.7,
+        "Saviana Ragefire": 6128.7,
+        "General Zarithrian": 4933.1,
+        "Baltharus the Warborn": 4752.0,
         "Valithria Dreamwalker": 0
       }
     },
