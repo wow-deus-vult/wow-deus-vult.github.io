@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-23T04:33:37.957315+00:00",
+  "lastUpdated": "2026-08-23T07:03:06.908963+00:00",
   "currentSeasonId": "s1",
   "seasons": [
     {
@@ -7,7 +7,7 @@
       "name": "Season 1",
       "start": "2026-04-01",
       "end": "2026-10-01",
-      "raidsCount": 173,
+      "raidsCount": 174,
       "rows": [
         {
           "name": "Zmeelow",
@@ -378,7 +378,7 @@
           "server": "FreedomUA",
           "class": "Warrior",
           "spec": "Fury Warrior",
-          "totalDamage": 458856263
+          "totalDamage": 459563331
         },
         {
           "name": "Бонд",
@@ -1790,7 +1790,7 @@
     }
   ],
   "allTime": {
-    "raidsCount": 221,
+    "raidsCount": 222,
     "rows": [
       {
         "name": "Zmeelow",
@@ -2308,7 +2308,7 @@
         "server": "FreedomUA",
         "class": "Warrior",
         "spec": "Fury Warrior",
-        "totalDamage": 458856263
+        "totalDamage": 459563331
       },
       {
         "name": "Бонд",

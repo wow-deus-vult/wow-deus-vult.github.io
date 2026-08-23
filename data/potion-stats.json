@@ -1,6 +1,6 @@
 {
-  "generated": "2026-08-23T04:33:31.336182+00:00",
-  "totalRaids": 201,
+  "generated": "2026-08-23T07:03:13.401570+00:00",
+  "totalRaids": 202,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -35620,6 +35620,23 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-08-22--02-09--Капуста--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-08-22--02-09--Капуста--FreedomUA/consumables/",
+      "date": "2026-08-22",
+      "uploader": "Капуста",
+      "players": [
+        {
+          "name": "Капуста",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -36460,17 +36477,6 @@
       "avgPerRaid": 14.5
     },
     {
-      "name": "Капуста",
-      "raids": 16,
-      "totalPotions": 230,
-      "potionOfSpeed": 140,
-      "potionOfWildMagic": 0,
-      "insaneStrength": 0,
-      "flameCap": 21,
-      "indestructiblePotion": 69,
-      "avgPerRaid": 14.38
-    },
-    {
       "name": "Бандеровець",
       "raids": 38,
       "totalPotions": 540,
@@ -36546,6 +36552,17 @@
       "flameCap": 0,
       "indestructiblePotion": 0,
       "avgPerRaid": 13.62
+    },
+    {
+      "name": "Капуста",
+      "raids": 17,
+      "totalPotions": 230,
+      "potionOfSpeed": 140,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 21,
+      "indestructiblePotion": 69,
+      "avgPerRaid": 13.53
     },
     {
       "name": "Rambo",
