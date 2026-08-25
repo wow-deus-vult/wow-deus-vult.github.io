@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-24T07:06:31.918015+00:00",
+  "lastUpdated": "2026-08-25T07:06:48.894823+00:00",
   "totalTanks": 37,
   "rows": [
     {
@@ -7,10 +7,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 433708162,
+      "totalTaken": 434593737,
       "lichTaken": 160575320,
-      "halionTaken": 52507893,
-      "raidCount": 51,
+      "halionTaken": 53393468,
+      "raidCount": 53,
       "guildRank": 1
     },
     {
@@ -18,10 +18,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 317099158,
+      "totalTaken": 318066304,
       "lichTaken": 94481043,
       "halionTaken": 42841255,
-      "raidCount": 39,
+      "raidCount": 41,
       "guildRank": 2
     },
     {
@@ -36,6 +36,17 @@
       "guildRank": 3
     },
     {
+      "name": "Dombrodeus",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 148308673,
+      "lichTaken": 25658813,
+      "halionTaken": 13218453,
+      "raidCount": 19,
+      "guildRank": 4
+    },
+    {
       "name": "Notdombro",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -44,17 +55,6 @@
       "lichTaken": 43917349,
       "halionTaken": 29216448,
       "raidCount": 20,
-      "guildRank": 4
-    },
-    {
-      "name": "Dombrodeus",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 142705654,
-      "lichTaken": 25658813,
-      "halionTaken": 8908758,
-      "raidCount": 16,
       "guildRank": 5
     },
     {
@@ -62,10 +62,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 119463744,
-      "lichTaken": 33419810,
+      "totalTaken": 135954550,
+      "lichTaken": 39796333,
       "halionTaken": 8827870,
-      "raidCount": 15,
+      "raidCount": 16,
       "guildRank": 6
     },
     {
@@ -106,10 +106,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 91562903,
-      "lichTaken": 20878844,
+      "totalTaken": 98491543,
+      "lichTaken": 23294463,
       "halionTaken": 1964490,
-      "raidCount": 23,
+      "raidCount": 24,
       "guildRank": 10
     },
     {
