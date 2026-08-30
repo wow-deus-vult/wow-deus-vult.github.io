@@ -1,6 +1,6 @@
 {
-  "generated": "2026-08-29T10:41:31.892623+00:00",
-  "totalRaids": 206,
+  "generated": "2026-08-30T07:03:37.072845+00:00",
+  "totalRaids": 208,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -36398,6 +36398,85 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-08-29--20-51--Зорекрила--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-08-29--20-51--Зорекрила--FreedomUA/consumables/",
+      "date": "2026-08-29",
+      "uploader": "Зорекрила",
+      "players": [
+        {
+          "name": "Явсятремчу",
+          "total": 35,
+          "potionOfSpeed": 15,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 2,
+          "flameCap": 16,
+          "indestructiblePotion": 2
+        },
+        {
+          "name": "Dombro",
+          "total": 23,
+          "potionOfSpeed": 12,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 11,
+          "indestructiblePotion": 0
+        },
+        {
+          "name": "Piceduke",
+          "total": 15,
+          "potionOfSpeed": 13,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 2
+        },
+        {
+          "name": "Играт",
+          "total": 12,
+          "potionOfSpeed": 8,
+          "potionOfWildMagic": 4,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        },
+        {
+          "name": "Зорекрила",
+          "total": 11,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 11,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        },
+        {
+          "name": "Facelessdk",
+          "total": 2,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 2
+        }
+      ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-08-29--16-23--Чіпічапа--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-08-29--16-23--Чіпічапа--FreedomUA/consumables/",
+      "date": "2026-08-29",
+      "uploader": "Чіпічапа",
+      "players": [
+        {
+          "name": "Byronkamymy",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -36469,14 +36548,14 @@
     },
     {
       "name": "Явсятремчу",
-      "raids": 47,
-      "totalPotions": 1571,
-      "potionOfSpeed": 572,
+      "raids": 48,
+      "totalPotions": 1606,
+      "potionOfSpeed": 587,
       "potionOfWildMagic": 0,
-      "insaneStrength": 171,
-      "flameCap": 627,
-      "indestructiblePotion": 201,
-      "avgPerRaid": 33.43
+      "insaneStrength": 173,
+      "flameCap": 643,
+      "indestructiblePotion": 203,
+      "avgPerRaid": 33.46
     },
     {
       "name": "Electric",
@@ -36941,6 +37020,17 @@
       "avgPerRaid": 19.67
     },
     {
+      "name": "Dombro",
+      "raids": 12,
+      "totalPotions": 234,
+      "potionOfSpeed": 119,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 4,
+      "flameCap": 111,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 19.5
+    },
+    {
       "name": "Теттерок",
       "raids": 10,
       "totalPotions": 195,
@@ -36972,17 +37062,6 @@
       "flameCap": 142,
       "indestructiblePotion": 0,
       "avgPerRaid": 19.19
-    },
-    {
-      "name": "Dombro",
-      "raids": 11,
-      "totalPotions": 211,
-      "potionOfSpeed": 107,
-      "potionOfWildMagic": 0,
-      "insaneStrength": 4,
-      "flameCap": 100,
-      "indestructiblePotion": 0,
-      "avgPerRaid": 19.18
     },
     {
       "name": "Калабаня",
@@ -37536,14 +37615,14 @@
     },
     {
       "name": "Играт",
-      "raids": 17,
-      "totalPotions": 194,
-      "potionOfSpeed": 153,
-      "potionOfWildMagic": 41,
+      "raids": 18,
+      "totalPotions": 206,
+      "potionOfSpeed": 161,
+      "potionOfWildMagic": 45,
       "insaneStrength": 0,
       "flameCap": 0,
       "indestructiblePotion": 0,
-      "avgPerRaid": 11.41
+      "avgPerRaid": 11.44
     },
     {
       "name": "Шепіт",
@@ -37602,14 +37681,14 @@
     },
     {
       "name": "Piceduke",
-      "raids": 51,
-      "totalPotions": 561,
-      "potionOfSpeed": 248,
+      "raids": 52,
+      "totalPotions": 576,
+      "potionOfSpeed": 261,
       "potionOfWildMagic": 0,
       "insaneStrength": 0,
       "flameCap": 0,
-      "indestructiblePotion": 313,
-      "avgPerRaid": 11.0
+      "indestructiblePotion": 315,
+      "avgPerRaid": 11.08
     },
     {
       "name": "Misslock",
@@ -38196,14 +38275,25 @@
     },
     {
       "name": "Facelessdk",
-      "raids": 34,
-      "totalPotions": 198,
+      "raids": 35,
+      "totalPotions": 200,
       "potionOfSpeed": 0,
       "potionOfWildMagic": 0,
       "insaneStrength": 0,
       "flameCap": 0,
-      "indestructiblePotion": 198,
-      "avgPerRaid": 5.82
+      "indestructiblePotion": 200,
+      "avgPerRaid": 5.71
+    },
+    {
+      "name": "Зорекрила",
+      "raids": 14,
+      "totalPotions": 77,
+      "potionOfSpeed": 7,
+      "potionOfWildMagic": 70,
+      "insaneStrength": 0,
+      "flameCap": 0,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 5.5
     },
     {
       "name": "Purple",
@@ -38281,17 +38371,6 @@
       "flameCap": 2,
       "indestructiblePotion": 2,
       "avgPerRaid": 5.13
-    },
-    {
-      "name": "Зорекрила",
-      "raids": 13,
-      "totalPotions": 66,
-      "potionOfSpeed": 7,
-      "potionOfWildMagic": 59,
-      "insaneStrength": 0,
-      "flameCap": 0,
-      "indestructiblePotion": 0,
-      "avgPerRaid": 5.08
     },
     {
       "name": "Балумбус",
@@ -38713,14 +38792,14 @@
     },
     {
       "name": "Byronkamymy",
-      "raids": 9,
+      "raids": 10,
       "totalPotions": 13,
       "potionOfSpeed": 11,
       "potionOfWildMagic": 0,
       "insaneStrength": 0,
       "flameCap": 0,
       "indestructiblePotion": 2,
-      "avgPerRaid": 1.44
+      "avgPerRaid": 1.3
     },
     {
       "name": "Rene",
