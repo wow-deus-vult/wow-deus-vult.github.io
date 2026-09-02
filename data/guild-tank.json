@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-01T07:02:54.100113+00:00",
+  "lastUpdated": "2026-09-02T07:08:27.308302+00:00",
   "totalTanks": 38,
   "rows": [
     {
@@ -91,6 +91,17 @@
       "guildRank": 8
     },
     {
+      "name": "Piceduke",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 107584842,
+      "lichTaken": 32528873,
+      "halionTaken": 3778360,
+      "raidCount": 32,
+      "guildRank": 9
+    },
+    {
       "name": "Dombros",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -99,17 +110,6 @@
       "lichTaken": 23294463,
       "halionTaken": 1964490,
       "raidCount": 25,
-      "guildRank": 9
-    },
-    {
-      "name": "Piceduke",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "totalTaken": 99715394,
-      "lichTaken": 29463915,
-      "halionTaken": 3778360,
-      "raidCount": 30,
       "guildRank": 10
     },
     {
