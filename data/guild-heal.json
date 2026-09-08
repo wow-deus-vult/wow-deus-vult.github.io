@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-07T08:50:11.277079+00:00",
+  "lastUpdated": "2026-09-08T07:04:15.995616+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -102,7 +102,7 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Holy",
-      "avgHps": 12197.5,
+      "avgHps": 12285.2,
       "bossCount": 15,
       "bosses": {
         "Lord Marrowgar": 11377.8,
@@ -117,7 +117,7 @@
         "The Lich King": 7975.1,
         "Valithria Dreamwalker": 40269.6,
         "Halion": 11089.3,
-        "Saviana Ragefire": 683.0,
+        "Saviana Ragefire": 1998.3,
         "General Zarithrian": 6431.5,
         "Baltharus the Warborn": 2394.1
       },
@@ -748,6 +748,32 @@
       "guildRank": 28
     },
     {
+      "name": "Byronkamymy",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Restoration",
+      "avgHps": 7939.7,
+      "bossCount": 15,
+      "bosses": {
+        "Lord Marrowgar": 5756.8,
+        "Lady Deathwhisper": 5670.6,
+        "Deathbringer Saurfang": 6148.9,
+        "Festergut": 8700.6,
+        "Rotface": 7228.7,
+        "Professor Putricide": 11225.4,
+        "Blood Prince Council": 7952.3,
+        "Blood-Queen Lana'thel": 13407.1,
+        "Sindragosa": 15112.1,
+        "The Lich King": 8703.3,
+        "Valithria Dreamwalker": 21525.6,
+        "Halion": 2804.0,
+        "Saviana Ragefire": 2060.9,
+        "General Zarithrian": 1304.1,
+        "Baltharus the Warborn": 1495.2
+      },
+      "guildRank": 29
+    },
+    {
       "name": "Spirits",
       "server": "FreedomUA",
       "class": "Druid",
@@ -771,7 +797,7 @@
         "General Zarithrian": 1640.2,
         "Baltharus the Warborn": 2820.5
       },
-      "guildRank": 29
+      "guildRank": 30
     },
     {
       "name": "Бондик",
@@ -797,7 +823,7 @@
         "General Zarithrian": 2344.7,
         "Baltharus the Warborn": 2231.3
       },
-      "guildRank": 30
+      "guildRank": 31
     },
     {
       "name": "Nighthealer",
@@ -823,7 +849,7 @@
         "General Zarithrian": 4061.5,
         "Baltharus the Warborn": 2241.2
       },
-      "guildRank": 31
+      "guildRank": 32
     },
     {
       "name": "Badabu",
@@ -849,7 +875,7 @@
         "General Zarithrian": 948.9,
         "Baltharus the Warborn": 1015.9
       },
-      "guildRank": 32
+      "guildRank": 33
     },
     {
       "name": "Missdru",
@@ -875,7 +901,7 @@
         "General Zarithrian": 1138.3,
         "Baltharus the Warborn": 1065.2
       },
-      "guildRank": 33
+      "guildRank": 34
     },
     {
       "name": "Sandora",
@@ -901,7 +927,7 @@
         "General Zarithrian": 5164.2,
         "Baltharus the Warborn": 2191.1
       },
-      "guildRank": 34
+      "guildRank": 35
     },
     {
       "name": "Дівія",
@@ -927,7 +953,33 @@
         "General Zarithrian": 2797.4,
         "Baltharus the Warborn": 3170.0
       },
-      "guildRank": 35
+      "guildRank": 36
+    },
+    {
+      "name": "Facelessdru",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Restoration",
+      "avgHps": 10067.4,
+      "bossCount": 14,
+      "bosses": {
+        "Lord Marrowgar": 7493.4,
+        "Lady Deathwhisper": 10123.1,
+        "Deathbringer Saurfang": 0,
+        "Festergut": 11319.3,
+        "Rotface": 8649.7,
+        "Professor Putricide": 12537.9,
+        "Blood Prince Council": 10183.5,
+        "Blood-Queen Lana'thel": 14599.0,
+        "Sindragosa": 15283.4,
+        "The Lich King": 11299.8,
+        "Valithria Dreamwalker": 20367.8,
+        "Halion": 10997.2,
+        "Saviana Ragefire": 2491.8,
+        "General Zarithrian": 2578.6,
+        "Baltharus the Warborn": 3018.5
+      },
+      "guildRank": 37
     },
     {
       "name": "Закарпайтус",
@@ -953,33 +1005,7 @@
         "General Zarithrian": 3582.7,
         "Baltharus the Warborn": 3146.6
       },
-      "guildRank": 36
-    },
-    {
-      "name": "Facelessdru",
-      "server": "FreedomUA",
-      "class": "Druid",
-      "spec": "Restoration",
-      "avgHps": 9876.4,
-      "bossCount": 14,
-      "bosses": {
-        "Lord Marrowgar": 7493.4,
-        "Lady Deathwhisper": 10123.1,
-        "Deathbringer Saurfang": 0,
-        "Festergut": 11319.3,
-        "Rotface": 8649.7,
-        "Professor Putricide": 12537.9,
-        "Blood Prince Council": 10183.5,
-        "Blood-Queen Lana'thel": 14599.0,
-        "Sindragosa": 15283.4,
-        "The Lich King": 11299.8,
-        "Valithria Dreamwalker": 20367.8,
-        "Halion": 10997.2,
-        "Saviana Ragefire": 2491.8,
-        "General Zarithrian": 1539.4,
-        "Baltharus the Warborn": 1384.2
-      },
-      "guildRank": 37
+      "guildRank": 38
     },
     {
       "name": "Зорекрила",
@@ -1005,7 +1031,7 @@
         "General Zarithrian": 2240.8,
         "Baltharus the Warborn": 2125.0
       },
-      "guildRank": 38
+      "guildRank": 39
     },
     {
       "name": "Likeaboss",
@@ -1031,7 +1057,7 @@
         "General Zarithrian": 1242.7,
         "Baltharus the Warborn": 2787.3
       },
-      "guildRank": 39
+      "guildRank": 40
     },
     {
       "name": "Ельгато",
@@ -1056,32 +1082,6 @@
         "Saviana Ragefire": 2246.7,
         "General Zarithrian": 1984.8,
         "Baltharus the Warborn": 1841.2
-      },
-      "guildRank": 40
-    },
-    {
-      "name": "Byronkamymy",
-      "server": "FreedomUA",
-      "class": "Druid",
-      "spec": "Restoration",
-      "avgHps": 8262.9,
-      "bossCount": 14,
-      "bosses": {
-        "Lord Marrowgar": 5756.8,
-        "Lady Deathwhisper": 5670.6,
-        "Deathbringer Saurfang": 6148.9,
-        "Festergut": 8700.6,
-        "Rotface": 7228.7,
-        "Professor Putricide": 11225.4,
-        "Blood Prince Council": 7952.3,
-        "Blood-Queen Lana'thel": 13407.1,
-        "Sindragosa": 15112.1,
-        "The Lich King": 8703.3,
-        "Valithria Dreamwalker": 21525.6,
-        "Halion": 0,
-        "Saviana Ragefire": 2060.9,
-        "General Zarithrian": 693.0,
-        "Baltharus the Warborn": 1495.2
       },
       "guildRank": 41
     },
@@ -1662,7 +1662,7 @@
       "server": "FreedomUA",
       "class": "Shaman",
       "spec": "Restoration",
-      "avgHps": 4651.9,
+      "avgHps": 4651.8,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
@@ -1688,7 +1688,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
