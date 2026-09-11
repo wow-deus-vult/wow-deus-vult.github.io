@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-10T07:06:43.102119+00:00",
+  "lastUpdated": "2026-09-11T07:04:28.978207+00:00",
   "totalTanks": 38,
   "rows": [
     {
@@ -69,6 +69,17 @@
       "guildRank": 6
     },
     {
+      "name": "Auferstanden",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 121212257,
+      "lichTaken": 40743958,
+      "halionTaken": 1245707,
+      "raidCount": 14,
+      "guildRank": 7
+    },
+    {
       "name": "Piceduke",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -77,17 +88,6 @@
       "lichTaken": 35355371,
       "halionTaken": 3778360,
       "raidCount": 34,
-      "guildRank": 7
-    },
-    {
-      "name": "Auferstanden",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 115104763,
-      "lichTaken": 34636464,
-      "halionTaken": 1245707,
-      "raidCount": 13,
       "guildRank": 8
     },
     {
@@ -205,10 +205,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 31736974,
-      "lichTaken": 9462815,
+      "totalTaken": 33965516,
+      "lichTaken": 11691357,
       "halionTaken": 1939716,
-      "raidCount": 11,
+      "raidCount": 12,
       "guildRank": 19
     },
     {
