@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-12T08:21:02.466693+00:00",
+  "lastUpdated": "2026-09-13T07:03:25.122883+00:00",
   "currentSeasonId": "s1",
   "seasons": [
     {
@@ -7,7 +7,7 @@
       "name": "Season 1",
       "start": "2026-04-01",
       "end": "2026-10-01",
-      "raidsCount": 198,
+      "raidsCount": 200,
       "rows": [
         {
           "name": "Zmeelow",
@@ -56,7 +56,7 @@
           "server": "FreedomUA",
           "class": "Druid",
           "spec": "Feral Combat Druid",
-          "totalDamage": 1253909142
+          "totalDamage": 1259359127
         },
         {
           "name": "Muti",
@@ -112,7 +112,7 @@
           "server": "FreedomUA",
           "class": "Paladin",
           "spec": "Retribution Paladin",
-          "totalDamage": 1026903289
+          "totalDamage": 1028429279
         },
         {
           "name": "Татусь",
@@ -133,14 +133,14 @@
           "server": "FreedomUA",
           "class": "Death Knight",
           "spec": "Unholy Death Knight",
-          "totalDamage": 985790048
+          "totalDamage": 990126349
         },
         {
           "name": "Бандеровець",
           "server": "FreedomUA",
           "class": "Paladin",
           "spec": "Retribution Paladin",
-          "totalDamage": 969880621
+          "totalDamage": 974278274
         },
         {
           "name": "Worlok",
@@ -245,7 +245,7 @@
           "server": "FreedomUA",
           "class": "Death Knight",
           "spec": "Unholy Death Knight",
-          "totalDamage": 771152417
+          "totalDamage": 774611010
         },
         {
           "name": "Destiq",
@@ -381,18 +381,18 @@
           "totalDamage": 496635495
         },
         {
+          "name": "Dombrodeus",
+          "server": "FreedomUA",
+          "class": "Death Knight",
+          "spec": "Unholy Death Knight",
+          "totalDamage": 481120135
+        },
+        {
           "name": "Glorysnitch",
           "server": "FreedomUA",
           "class": "Mage",
           "spec": "Fire Mage",
           "totalDamage": 480127518
-        },
-        {
-          "name": "Dombrodeus",
-          "server": "FreedomUA",
-          "class": "Death Knight",
-          "spec": "Unholy Death Knight",
-          "totalDamage": 479135798
         },
         {
           "name": "Imperatorvar",
@@ -427,7 +427,7 @@
           "server": "FreedomUA",
           "class": "Hunter",
           "spec": "Hunter",
-          "totalDamage": 440883942
+          "totalDamage": 443784700
         },
         {
           "name": "Facelessrog",
@@ -693,7 +693,7 @@
           "server": "FreedomUA",
           "class": "Death Knight",
           "spec": "Blood Death Knight",
-          "totalDamage": 241096546
+          "totalDamage": 242322673
         },
         {
           "name": "Destilolx",
@@ -903,7 +903,7 @@
           "server": "FreedomUA",
           "class": "Paladin",
           "spec": "Retribution Paladin",
-          "totalDamage": 141342360
+          "totalDamage": 142404587
         },
         {
           "name": "Taknada",
@@ -1958,7 +1958,7 @@
     }
   ],
   "allTime": {
-    "raidsCount": 246,
+    "raidsCount": 248,
     "rows": [
       {
         "name": "Zmeelow",
@@ -1986,7 +1986,7 @@
         "server": "FreedomUA",
         "class": "Druid",
         "spec": "Feral Combat Druid",
-        "totalDamage": 1821119389
+        "totalDamage": 1826569374
       },
       {
         "name": "Mystiq",
@@ -2014,7 +2014,7 @@
         "server": "FreedomUA",
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
-        "totalDamage": 1696118667
+        "totalDamage": 1700454968
       },
       {
         "name": "Kolin",
@@ -2056,14 +2056,14 @@
         "server": "FreedomUA",
         "class": "Paladin",
         "spec": "Retribution Paladin",
-        "totalDamage": 1577067305
+        "totalDamage": 1581464958
       },
       {
         "name": "Facelesspal",
         "server": "FreedomUA",
         "class": "Paladin",
         "spec": "Retribution Paladin",
-        "totalDamage": 1540628228
+        "totalDamage": 1542154218
       },
       {
         "name": "Denmark",
@@ -2182,7 +2182,7 @@
         "server": "FreedomUA",
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
-        "totalDamage": 1122825569
+        "totalDamage": 1126284162
       },
       {
         "name": "Destiq",
@@ -2287,7 +2287,7 @@
         "server": "FreedomUA",
         "class": "Hunter",
         "spec": "Hunter",
-        "totalDamage": 823950665
+        "totalDamage": 826851423
       },
       {
         "name": "Сількамяна",
@@ -2472,18 +2472,18 @@
         "totalDamage": 501989183
       },
       {
+        "name": "Dombrodeus",
+        "server": "FreedomUA",
+        "class": "Death Knight",
+        "spec": "Unholy Death Knight",
+        "totalDamage": 481120135
+      },
+      {
         "name": "Glorysnitch",
         "server": "FreedomUA",
         "class": "Mage",
         "spec": "Fire Mage",
         "totalDamage": 480127518
-      },
-      {
-        "name": "Dombrodeus",
-        "server": "FreedomUA",
-        "class": "Death Knight",
-        "spec": "Unholy Death Knight",
-        "totalDamage": 479135798
       },
       {
         "name": "Imperatrisa",
@@ -2644,7 +2644,7 @@
         "server": "FreedomUA",
         "class": "Death Knight",
         "spec": "Blood Death Knight",
-        "totalDamage": 320317169
+        "totalDamage": 321543296
       },
       {
         "name": "Теттерок",
@@ -2948,18 +2948,18 @@
         "totalDamage": 144601726
       },
       {
+        "name": "Xomka",
+        "server": "FreedomUA",
+        "class": "Paladin",
+        "spec": "Retribution Paladin",
+        "totalDamage": 142404587
+      },
+      {
         "name": "Misslock",
         "server": "FreedomUA",
         "class": "Warlock",
         "spec": "Demonology Warlock",
         "totalDamage": 141858415
-      },
-      {
-        "name": "Xomka",
-        "server": "FreedomUA",
-        "class": "Paladin",
-        "spec": "Retribution Paladin",
-        "totalDamage": 141342360
       },
       {
         "name": "Mikolatopor",
