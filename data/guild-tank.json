@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-13T07:04:09.736614+00:00",
+  "lastUpdated": "2026-09-14T07:05:44.319415+00:00",
   "totalTanks": 38,
   "rows": [
     {
@@ -179,6 +179,17 @@
       "guildRank": 16
     },
     {
+      "name": "Facelessprot",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 39816633,
+      "lichTaken": 13792725,
+      "halionTaken": 1939716,
+      "raidCount": 13,
+      "guildRank": 17
+    },
+    {
       "name": "Астарот",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -187,7 +198,7 @@
       "lichTaken": 12768535,
       "halionTaken": 1386607,
       "raidCount": 12,
-      "guildRank": 17
+      "guildRank": 18
     },
     {
       "name": "Johnnysins",
@@ -198,17 +209,6 @@
       "lichTaken": 0,
       "halionTaken": 706036,
       "raidCount": 9,
-      "guildRank": 18
-    },
-    {
-      "name": "Facelessprot",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "totalTaken": 33965516,
-      "lichTaken": 11691357,
-      "halionTaken": 1939716,
-      "raidCount": 12,
       "guildRank": 19
     },
     {
@@ -223,6 +223,17 @@
       "guildRank": 20
     },
     {
+      "name": "Чахличок",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 29732112,
+      "lichTaken": 5679264,
+      "halionTaken": 0,
+      "raidCount": 2,
+      "guildRank": 21
+    },
+    {
       "name": "Sichovyk",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -231,7 +242,7 @@
       "lichTaken": 0,
       "halionTaken": 7736320,
       "raidCount": 5,
-      "guildRank": 21
+      "guildRank": 22
     },
     {
       "name": "Antropofagus",
@@ -242,7 +253,7 @@
       "lichTaken": 9305151,
       "halionTaken": 4578235,
       "raidCount": 5,
-      "guildRank": 22
+      "guildRank": 23
     },
     {
       "name": "Ramboss",
@@ -253,7 +264,7 @@
       "lichTaken": 1991813,
       "halionTaken": 309936,
       "raidCount": 4,
-      "guildRank": 23
+      "guildRank": 24
     },
     {
       "name": "Танкзаголду",
@@ -264,7 +275,7 @@
       "lichTaken": 0,
       "halionTaken": 2362583,
       "raidCount": 4,
-      "guildRank": 24
+      "guildRank": 25
     },
     {
       "name": "Metalolom",
@@ -275,28 +286,17 @@
       "lichTaken": 4856166,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 25
+      "guildRank": 26
     },
     {
       "name": "Явсяпалаю",
       "server": "FreedomUA",
       "class": "Warrior",
       "spec": "Protection",
-      "totalTaken": 11368019,
+      "totalTaken": 11936273,
       "lichTaken": 1399634,
       "halionTaken": 0,
-      "raidCount": 2,
-      "guildRank": 26
-    },
-    {
-      "name": "Чахличок",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 11013581,
-      "lichTaken": 0,
-      "halionTaken": 0,
-      "raidCount": 1,
+      "raidCount": 3,
       "guildRank": 27
     },
     {
