@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-14T07:05:44.319415+00:00",
+  "lastUpdated": "2026-09-15T07:04:33.114974+00:00",
   "totalTanks": 38,
   "rows": [
     {
@@ -7,10 +7,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 458653295,
+      "totalTaken": 460217335,
       "lichTaken": 166080202,
-      "halionTaken": 58895408,
-      "raidCount": 57,
+      "halionTaken": 59575362,
+      "raidCount": 58,
       "guildRank": 1
     },
     {
@@ -212,6 +212,17 @@
       "guildRank": 19
     },
     {
+      "name": "Чахличок",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 32428470,
+      "lichTaken": 5679264,
+      "halionTaken": 2439416,
+      "raidCount": 3,
+      "guildRank": 20
+    },
+    {
       "name": "Жасмин",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -220,17 +231,6 @@
       "lichTaken": 4854053,
       "halionTaken": 427031,
       "raidCount": 6,
-      "guildRank": 20
-    },
-    {
-      "name": "Чахличок",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 29732112,
-      "lichTaken": 5679264,
-      "halionTaken": 0,
-      "raidCount": 2,
       "guildRank": 21
     },
     {
