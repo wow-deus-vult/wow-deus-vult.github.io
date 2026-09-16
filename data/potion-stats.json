@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-15T09:09:33.735186+00:00",
-  "totalRaids": 230,
+  "generated": "2026-09-16T07:04:27.765762+00:00",
+  "totalRaids": 232,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -39551,6 +39551,40 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-09-15--21-35--Капуста--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-09-15--21-35--Капуста--FreedomUA/consumables/",
+      "date": "2026-09-15",
+      "uploader": "Капуста",
+      "players": [
+        {
+          "name": "Капуста",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-09-15--20-48--Капуста--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-09-15--20-48--Капуста--FreedomUA/consumables/",
+      "date": "2026-09-15",
+      "uploader": "Капуста",
+      "players": [
+        {
+          "name": "Капуста",
+          "total": 8,
+          "potionOfSpeed": 3,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 2,
+          "indestructiblePotion": 3
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -40479,17 +40513,6 @@
       "avgPerRaid": 14.0
     },
     {
-      "name": "Капуста",
-      "raids": 21,
-      "totalPotions": 292,
-      "potionOfSpeed": 186,
-      "potionOfWildMagic": 0,
-      "insaneStrength": 0,
-      "flameCap": 31,
-      "indestructiblePotion": 75,
-      "avgPerRaid": 13.9
-    },
-    {
       "name": "Дарсі",
       "raids": 22,
       "totalPotions": 304,
@@ -40575,6 +40598,17 @@
       "insaneStrength": 0,
       "flameCap": 0,
       "indestructiblePotion": 10,
+      "avgPerRaid": 13.04
+    },
+    {
+      "name": "Капуста",
+      "raids": 23,
+      "totalPotions": 300,
+      "potionOfSpeed": 189,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 33,
+      "indestructiblePotion": 78,
       "avgPerRaid": 13.04
     },
     {
