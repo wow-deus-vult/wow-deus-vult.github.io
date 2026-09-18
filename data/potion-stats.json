@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-17T09:07:24.541615+00:00",
-  "totalRaids": 233,
+  "generated": "2026-09-18T07:04:38.393371+00:00",
+  "totalRaids": 234,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -39890,6 +39890,23 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-09-18--00-05--Зорекрила--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-09-18--00-05--Зорекрила--FreedomUA/consumables/",
+      "date": "2026-09-18",
+      "uploader": "Зорекрила",
+      "players": [
+        {
+          "name": "Зорекрила",
+          "total": 19,
+          "potionOfSpeed": 1,
+          "potionOfWildMagic": 17,
+          "insaneStrength": 0,
+          "flameCap": 1,
+          "indestructiblePotion": 0
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -41764,6 +41781,17 @@
       "avgPerRaid": 6.33
     },
     {
+      "name": "Зорекрила",
+      "raids": 16,
+      "totalPotions": 100,
+      "potionOfSpeed": 8,
+      "potionOfWildMagic": 91,
+      "insaneStrength": 0,
+      "flameCap": 1,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 6.25
+    },
+    {
       "name": "Missdru",
       "raids": 21,
       "totalPotions": 129,
@@ -41828,17 +41856,6 @@
       "flameCap": 0,
       "indestructiblePotion": 0,
       "avgPerRaid": 5.43
-    },
-    {
-      "name": "Зорекрила",
-      "raids": 15,
-      "totalPotions": 81,
-      "potionOfSpeed": 7,
-      "potionOfWildMagic": 74,
-      "insaneStrength": 0,
-      "flameCap": 0,
-      "indestructiblePotion": 0,
-      "avgPerRaid": 5.4
     },
     {
       "name": "Facelessdk",

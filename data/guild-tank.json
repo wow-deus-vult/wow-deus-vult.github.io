@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-17T07:05:04.263675+00:00",
+  "lastUpdated": "2026-09-18T07:05:55.747647+00:00",
   "totalTanks": 39,
   "rows": [
     {
@@ -256,6 +256,17 @@
       "guildRank": 23
     },
     {
+      "name": "Тайтс",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 15025695,
+      "lichTaken": 2863483,
+      "halionTaken": 0,
+      "raidCount": 2,
+      "guildRank": 24
+    },
+    {
       "name": "Ramboss",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -264,7 +275,7 @@
       "lichTaken": 1991813,
       "halionTaken": 309936,
       "raidCount": 4,
-      "guildRank": 24
+      "guildRank": 25
     },
     {
       "name": "Танкзаголду",
@@ -275,7 +286,7 @@
       "lichTaken": 0,
       "halionTaken": 2362583,
       "raidCount": 4,
-      "guildRank": 25
+      "guildRank": 26
     },
     {
       "name": "Metalolom",
@@ -284,17 +295,6 @@
       "spec": "Blood",
       "totalTaken": 13037100,
       "lichTaken": 4856166,
-      "halionTaken": 0,
-      "raidCount": 1,
-      "guildRank": 26
-    },
-    {
-      "name": "Тайтс",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 12162212,
-      "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
       "guildRank": 27
