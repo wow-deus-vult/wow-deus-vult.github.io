@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-19T08:29:02.386501+00:00",
-  "totalRaids": 234,
+  "generated": "2026-09-20T07:03:46.448295+00:00",
+  "totalRaids": 235,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -39907,6 +39907,41 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-09-18--18-16--Сількамяна--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-09-18--18-16--Сількамяна--FreedomUA/consumables/",
+      "date": "2026-09-18",
+      "uploader": "Сількамяна",
+      "players": [
+        {
+          "name": "Сількамяна",
+          "total": 1,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 1,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        },
+        {
+          "name": "Forsa",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        },
+        {
+          "name": "Vodinka",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -41891,17 +41926,6 @@
       "avgPerRaid": 5.28
     },
     {
-      "name": "Сількамяна",
-      "raids": 52,
-      "totalPotions": 262,
-      "potionOfSpeed": 129,
-      "potionOfWildMagic": 129,
-      "insaneStrength": 0,
-      "flameCap": 2,
-      "indestructiblePotion": 2,
-      "avgPerRaid": 5.04
-    },
-    {
       "name": "Балумбус",
       "raids": 1,
       "totalPotions": 5,
@@ -41935,15 +41959,15 @@
       "avgPerRaid": 5.0
     },
     {
-      "name": "Forsa",
-      "raids": 6,
-      "totalPotions": 30,
-      "potionOfSpeed": 30,
-      "potionOfWildMagic": 0,
+      "name": "Сількамяна",
+      "raids": 53,
+      "totalPotions": 263,
+      "potionOfSpeed": 129,
+      "potionOfWildMagic": 130,
       "insaneStrength": 0,
-      "flameCap": 0,
-      "indestructiblePotion": 0,
-      "avgPerRaid": 5.0
+      "flameCap": 2,
+      "indestructiblePotion": 2,
+      "avgPerRaid": 4.96
     },
     {
       "name": "Likeaboss",
@@ -42032,6 +42056,17 @@
       "flameCap": 0,
       "indestructiblePotion": 0,
       "avgPerRaid": 4.4
+    },
+    {
+      "name": "Forsa",
+      "raids": 7,
+      "totalPotions": 30,
+      "potionOfSpeed": 30,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 0,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 4.29
     },
     {
       "name": "Possibly",
@@ -43344,6 +43379,17 @@
     },
     {
       "name": "Immortallord",
+      "raids": 1,
+      "totalPotions": 0,
+      "potionOfSpeed": 0,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 0,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 0.0
+    },
+    {
+      "name": "Vodinka",
       "raids": 1,
       "totalPotions": 0,
       "potionOfSpeed": 0,

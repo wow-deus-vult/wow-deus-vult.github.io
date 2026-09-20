@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-19T08:29:05.012336+00:00",
+  "lastUpdated": "2026-09-20T07:03:33.174987+00:00",
   "currentSeasonId": "s1",
   "seasons": [
     {
@@ -7,7 +7,7 @@
       "name": "Season 1",
       "start": "2026-04-01",
       "end": "2026-10-01",
-      "raidsCount": 207,
+      "raidsCount": 208,
       "rows": [
         {
           "name": "Zmeelow",
@@ -364,7 +364,7 @@
           "server": "FreedomUA",
           "class": "Priest",
           "spec": "Shadow Priest",
-          "totalDamage": 511026461
+          "totalDamage": 512974193
         },
         {
           "name": "Татосі",
@@ -717,18 +717,18 @@
           "totalDamage": 245627680
         },
         {
+          "name": "Forsa",
+          "server": "FreedomUA",
+          "class": "Hunter",
+          "spec": "Marksmanship Hunter",
+          "totalDamage": 236111252
+        },
+        {
           "name": "Destilolx",
           "server": "FreedomUA",
           "class": "Priest",
           "spec": "Shadow Priest",
           "totalDamage": 236089042
-        },
-        {
-          "name": "Forsa",
-          "server": "FreedomUA",
-          "class": "Hunter",
-          "spec": "Marksmanship Hunter",
-          "totalDamage": 234361002
         },
         {
           "name": "Cacciatrice",
@@ -1935,6 +1935,13 @@
           "totalDamage": 5218
         },
         {
+          "name": "Vodinka",
+          "server": "FreedomUA",
+          "class": "Shaman",
+          "spec": "Restoration Shaman",
+          "totalDamage": 4042
+        },
+        {
           "name": "Phh",
           "server": "FreedomUA",
           "class": "Shaman",
@@ -2000,7 +2007,7 @@
     }
   ],
   "allTime": {
-    "raidsCount": 255,
+    "raidsCount": 256,
     "rows": [
       {
         "name": "Zmeelow",
@@ -2350,7 +2357,7 @@
         "server": "FreedomUA",
         "class": "Priest",
         "spec": "Shadow Priest",
-        "totalDamage": 820720893
+        "totalDamage": 822668625
       },
       {
         "name": "Дарсі",
@@ -2833,7 +2840,7 @@
         "server": "FreedomUA",
         "class": "Hunter",
         "spec": "Marksmanship Hunter",
-        "totalDamage": 234361002
+        "totalDamage": 236111252
       },
       {
         "name": "Sanya",
@@ -4164,6 +4171,13 @@
         "class": "Priest",
         "spec": "Discipline Priest",
         "totalDamage": 5218
+      },
+      {
+        "name": "Vodinka",
+        "server": "FreedomUA",
+        "class": "Shaman",
+        "spec": "Restoration Shaman",
+        "totalDamage": 4042
       },
       {
         "name": "Phh",
