@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-09-23T07:05:12.380485+00:00",
-  "totalTanks": 39,
+  "lastUpdated": "2026-09-24T07:08:25.015379+00:00",
+  "totalTanks": 40,
   "rows": [
     {
       "name": "Йдунави",
@@ -36,6 +36,17 @@
       "guildRank": 3
     },
     {
+      "name": "Dubstep",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 166840733,
+      "lichTaken": 49162045,
+      "halionTaken": 9085057,
+      "raidCount": 19,
+      "guildRank": 4
+    },
+    {
       "name": "Dombrodeus",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -44,17 +55,6 @@
       "lichTaken": 30365482,
       "halionTaken": 13867901,
       "raidCount": 21,
-      "guildRank": 4
-    },
-    {
-      "name": "Dubstep",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 151909293,
-      "lichTaken": 44479189,
-      "halionTaken": 9085057,
-      "raidCount": 18,
       "guildRank": 5
     },
     {
@@ -73,10 +73,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 121212257,
-      "lichTaken": 40743958,
+      "totalTaken": 129925490,
+      "lichTaken": 43057482,
       "halionTaken": 1245707,
-      "raidCount": 14,
+      "raidCount": 15,
       "guildRank": 7
     },
     {
@@ -146,6 +146,28 @@
       "guildRank": 13
     },
     {
+      "name": "Чахличок",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 50004752,
+      "lichTaken": 5679264,
+      "halionTaken": 4816947,
+      "raidCount": 6,
+      "guildRank": 14
+    },
+    {
+      "name": "Facelessprot",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 50001091,
+      "lichTaken": 16966031,
+      "halionTaken": 1939716,
+      "raidCount": 15,
+      "guildRank": 15
+    },
+    {
       "name": "Kalmar",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -154,7 +176,7 @@
       "lichTaken": 2401132,
       "halionTaken": 797127,
       "raidCount": 8,
-      "guildRank": 14
+      "guildRank": 16
     },
     {
       "name": "Лісовиця",
@@ -165,18 +187,7 @@
       "lichTaken": 14911734,
       "halionTaken": 693129,
       "raidCount": 9,
-      "guildRank": 15
-    },
-    {
-      "name": "Facelessprot",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "totalTaken": 44908862,
-      "lichTaken": 15379378,
-      "halionTaken": 1939716,
-      "raidCount": 14,
-      "guildRank": 16
+      "guildRank": 17
     },
     {
       "name": "Palpatine",
@@ -187,7 +198,7 @@
       "lichTaken": 15212343,
       "halionTaken": 2112958,
       "raidCount": 14,
-      "guildRank": 17
+      "guildRank": 18
     },
     {
       "name": "Астарот",
@@ -198,7 +209,7 @@
       "lichTaken": 12768535,
       "halionTaken": 4030255,
       "raidCount": 13,
-      "guildRank": 18
+      "guildRank": 19
     },
     {
       "name": "Johnnysins",
@@ -209,17 +220,6 @@
       "lichTaken": 0,
       "halionTaken": 706036,
       "raidCount": 9,
-      "guildRank": 19
-    },
-    {
-      "name": "Чахличок",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 35370309,
-      "lichTaken": 5679264,
-      "halionTaken": 4816947,
-      "raidCount": 5,
       "guildRank": 20
     },
     {
@@ -377,6 +377,17 @@
       "guildRank": 34
     },
     {
+      "name": "Freemaluy",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 1056091,
+      "lichTaken": 612315,
+      "halionTaken": 0,
+      "raidCount": 1,
+      "guildRank": 35
+    },
+    {
       "name": "Pedrofil",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -385,7 +396,7 @@
       "lichTaken": 0,
       "halionTaken": 304474,
       "raidCount": 1,
-      "guildRank": 35
+      "guildRank": 36
     },
     {
       "name": "Zarel",
@@ -396,7 +407,7 @@
       "lichTaken": 0,
       "halionTaken": 858,
       "raidCount": 1,
-      "guildRank": 36
+      "guildRank": 37
     },
     {
       "name": "Arahiska",
@@ -407,7 +418,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 37
+      "guildRank": 38
     },
     {
       "name": "Sweden",
@@ -418,7 +429,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 38
+      "guildRank": 39
     },
     {
       "name": "Могильник",
@@ -429,7 +440,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 39
+      "guildRank": 40
     }
   ]
 }
