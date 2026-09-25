@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-24T08:58:38.246665+00:00",
+  "lastUpdated": "2026-09-25T07:04:28.348317+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -622,7 +622,7 @@
       "server": "FreedomUA",
       "class": "Shaman",
       "spec": "Restoration",
-      "avgHps": 8813.3,
+      "avgHps": 9134.8,
       "bossCount": 15,
       "bosses": {
         "Lord Marrowgar": 10979.4,
@@ -638,8 +638,8 @@
         "Valithria Dreamwalker": 26463.8,
         "Halion": 5757.6,
         "Saviana Ragefire": 5427.6,
-        "General Zarithrian": 3723.0,
-        "Baltharus the Warborn": 2094.4
+        "General Zarithrian": 6975.2,
+        "Baltharus the Warborn": 3664.2
       },
       "guildRank": 24
     },
@@ -1034,6 +1034,32 @@
       "guildRank": 39
     },
     {
+      "name": "Зорекрила",
+      "server": "FreedomUA",
+      "class": "Druid",
+      "spec": "Restoration",
+      "avgHps": 10347.6,
+      "bossCount": 14,
+      "bosses": {
+        "Lord Marrowgar": 8457.7,
+        "Lady Deathwhisper": 4729.4,
+        "Deathbringer Saurfang": 0,
+        "Festergut": 7341.2,
+        "Rotface": 8135.2,
+        "Professor Putricide": 13331.9,
+        "Blood Prince Council": 6298.3,
+        "Blood-Queen Lana'thel": 17926.0,
+        "Sindragosa": 16135.1,
+        "The Lich King": 10667.4,
+        "Valithria Dreamwalker": 25471.9,
+        "Halion": 10113.1,
+        "Saviana Ragefire": 3485.6,
+        "General Zarithrian": 7707.6,
+        "Baltharus the Warborn": 5066.5
+      },
+      "guildRank": 40
+    },
+    {
       "name": "Facelessdru",
       "server": "FreedomUA",
       "class": "Druid",
@@ -1057,7 +1083,7 @@
         "General Zarithrian": 2578.6,
         "Baltharus the Warborn": 3018.5
       },
-      "guildRank": 40
+      "guildRank": 41
     },
     {
       "name": "Закарпайтус",
@@ -1082,32 +1108,6 @@
         "Saviana Ragefire": 9268.6,
         "General Zarithrian": 3582.7,
         "Baltharus the Warborn": 3146.6
-      },
-      "guildRank": 41
-    },
-    {
-      "name": "Зорекрила",
-      "server": "FreedomUA",
-      "class": "Druid",
-      "spec": "Restoration",
-      "avgHps": 9591.7,
-      "bossCount": 14,
-      "bosses": {
-        "Lord Marrowgar": 8457.7,
-        "Lady Deathwhisper": 4729.4,
-        "Deathbringer Saurfang": 0,
-        "Festergut": 7341.2,
-        "Rotface": 8135.2,
-        "Professor Putricide": 13331.9,
-        "Blood Prince Council": 6298.3,
-        "Blood-Queen Lana'thel": 17926.0,
-        "Sindragosa": 16135.1,
-        "The Lich King": 10667.4,
-        "Valithria Dreamwalker": 25471.9,
-        "Halion": 10113.1,
-        "Saviana Ragefire": 1311.2,
-        "General Zarithrian": 2240.8,
-        "Baltharus the Warborn": 2125.0
       },
       "guildRank": 42
     },
@@ -1844,7 +1844,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,

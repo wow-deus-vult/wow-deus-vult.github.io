@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-24T07:08:25.015379+00:00",
+  "lastUpdated": "2026-09-25T07:06:47.634585+00:00",
   "totalTanks": 40,
   "rows": [
     {
@@ -73,10 +73,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 129925490,
+      "totalTaken": 132607078,
       "lichTaken": 43057482,
-      "halionTaken": 1245707,
-      "raidCount": 15,
+      "halionTaken": 2643417,
+      "raidCount": 16,
       "guildRank": 7
     },
     {
@@ -366,6 +366,17 @@
       "guildRank": 33
     },
     {
+      "name": "Zarel",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 1405231,
+      "lichTaken": 0,
+      "halionTaken": 858,
+      "raidCount": 2,
+      "guildRank": 34
+    },
+    {
       "name": "Sanya",
       "server": "FreedomUA",
       "class": "Warrior",
@@ -374,7 +385,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 34
+      "guildRank": 35
     },
     {
       "name": "Freemaluy",
@@ -385,7 +396,7 @@
       "lichTaken": 612315,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 35
+      "guildRank": 36
     },
     {
       "name": "Pedrofil",
@@ -395,17 +406,6 @@
       "totalTaken": 566333,
       "lichTaken": 0,
       "halionTaken": 304474,
-      "raidCount": 1,
-      "guildRank": 36
-    },
-    {
-      "name": "Zarel",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 555790,
-      "lichTaken": 0,
-      "halionTaken": 858,
       "raidCount": 1,
       "guildRank": 37
     },
