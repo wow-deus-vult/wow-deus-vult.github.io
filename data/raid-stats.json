@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-02",
-  "totalRaids": 324,
-  "totalTimeSeconds": 1774014,
-  "totalTimeHours": 492.8,
-  "totalTimeDays": 20.5,
+  "updated": "2026-10-03",
+  "totalRaids": 325,
+  "totalTimeSeconds": 1783051,
+  "totalTimeHours": 495.3,
+  "totalTimeDays": 20.6,
   "maxSaurfangDps": 517122.8,
   "avgSaurfangDpsCurrentSeason": 0,
   "saurfangKills": [
@@ -571,6 +571,11 @@
       "logId": "26-09-29--20-04--Содахарчова--FreedomUA",
       "date": "2026-09-29",
       "dps": 365640.7
+    },
+    {
+      "logId": "26-10-01--23-20--Зорекрила--FreedomUA",
+      "date": "2026-10-01",
+      "dps": 402951.9
     }
   ]
 }

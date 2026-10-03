@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-02T10:19:09.161603+00:00",
+  "lastUpdated": "2026-10-03T07:04:03.071258+00:00",
   "currentSeasonId": "s2",
   "seasons": [
     {
@@ -7,7 +7,7 @@
       "name": "Season 1",
       "start": "2026-04-01",
       "end": "2026-10-01",
-      "raidsCount": 225,
+      "raidsCount": 226,
       "rows": [
         {
           "name": "Zmeelow",
@@ -570,6 +570,13 @@
           "totalDamage": 372856846
         },
         {
+          "name": "Зорекрила",
+          "server": "FreedomUA",
+          "class": "Druid",
+          "spec": "Balance Druid",
+          "totalDamage": 359585485
+        },
+        {
           "name": "Xomka",
           "server": "FreedomUA",
           "class": "Paladin",
@@ -645,13 +652,6 @@
           "class": "Paladin",
           "spec": "Retribution Paladin",
           "totalDamage": 306306176
-        },
-        {
-          "name": "Зорекрила",
-          "server": "FreedomUA",
-          "class": "Druid",
-          "spec": "Balance Druid",
-          "totalDamage": 302164877
         },
         {
           "name": "Старийхант",
@@ -2126,7 +2126,7 @@
     }
   ],
   "allTime": {
-    "raidsCount": 273,
+    "raidsCount": 274,
     "rows": [
       {
         "name": "Zmeelow",
@@ -2836,6 +2836,13 @@
         "totalDamage": 366026161
       },
       {
+        "name": "Зорекрила",
+        "server": "FreedomUA",
+        "class": "Druid",
+        "spec": "Balance Druid",
+        "totalDamage": 359585485
+      },
+      {
         "name": "Xomka",
         "server": "FreedomUA",
         "class": "Paladin",
@@ -2890,13 +2897,6 @@
         "class": "Death Knight",
         "spec": "Blood Death Knight",
         "totalDamage": 302331814
-      },
-      {
-        "name": "Зорекрила",
-        "server": "FreedomUA",
-        "class": "Druid",
-        "spec": "Balance Druid",
-        "totalDamage": 302164877
       },
       {
         "name": "Spirits",

@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-02T10:19:07.470099+00:00",
-  "totalRaids": 250,
+  "generated": "2026-10-03T07:04:09.506218+00:00",
+  "totalRaids": 251,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -42114,6 +42114,23 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-10-01--23-20--Зорекрила--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-10-01--23-20--Зорекрила--FreedomUA/consumables/",
+      "date": "2026-10-01",
+      "uploader": "Зорекрила",
+      "players": [
+        {
+          "name": "Зорекрила",
+          "total": 21,
+          "potionOfSpeed": 6,
+          "potionOfWildMagic": 15,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -44043,6 +44060,17 @@
       "avgPerRaid": 6.5
     },
     {
+      "name": "Зорекрила",
+      "raids": 19,
+      "totalPotions": 123,
+      "potionOfSpeed": 14,
+      "potionOfWildMagic": 108,
+      "insaneStrength": 0,
+      "flameCap": 1,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 6.47
+    },
+    {
       "name": "Kotuhoroshko",
       "raids": 30,
       "totalPotions": 192,
@@ -44118,17 +44146,6 @@
       "flameCap": 3,
       "indestructiblePotion": 119,
       "avgPerRaid": 5.88
-    },
-    {
-      "name": "Зорекрила",
-      "raids": 18,
-      "totalPotions": 102,
-      "potionOfSpeed": 8,
-      "potionOfWildMagic": 93,
-      "insaneStrength": 0,
-      "flameCap": 1,
-      "indestructiblePotion": 0,
-      "avgPerRaid": 5.67
     },
     {
       "name": "Axenta",
