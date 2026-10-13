@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-10-12T07:13:38.183647+00:00",
-  "totalTanks": 41,
+  "lastUpdated": "2026-10-13T07:06:24.765989+00:00",
+  "totalTanks": 43,
   "rows": [
     {
       "name": "Йдунави",
@@ -36,6 +36,17 @@
       "guildRank": 3
     },
     {
+      "name": "Dombrodeus",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 180446782,
+      "lichTaken": 40743382,
+      "halionTaken": 13935535,
+      "raidCount": 26,
+      "guildRank": 4
+    },
+    {
       "name": "Bomboclaat",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -44,17 +55,6 @@
       "lichTaken": 53803050,
       "halionTaken": 18863930,
       "raidCount": 27,
-      "guildRank": 4
-    },
-    {
-      "name": "Dombrodeus",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 179721024,
-      "lichTaken": 40743382,
-      "halionTaken": 13867901,
-      "raidCount": 25,
       "guildRank": 5
     },
     {
@@ -84,10 +84,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 122365182,
+      "totalTaken": 125391207,
       "lichTaken": 40581608,
-      "halionTaken": 4603767,
-      "raidCount": 39,
+      "halionTaken": 6946308,
+      "raidCount": 41,
       "guildRank": 8
     },
     {
@@ -322,6 +322,17 @@
       "guildRank": 29
     },
     {
+      "name": "Барака",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 5693908,
+      "lichTaken": 0,
+      "halionTaken": 3889480,
+      "raidCount": 2,
+      "guildRank": 30
+    },
+    {
       "name": "Palm",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -330,7 +341,18 @@
       "lichTaken": 0,
       "halionTaken": 2172075,
       "raidCount": 9,
-      "guildRank": 30
+      "guildRank": 31
+    },
+    {
+      "name": "Hannibal",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 3976504,
+      "lichTaken": 0,
+      "halionTaken": 3716610,
+      "raidCount": 1,
+      "guildRank": 32
     },
     {
       "name": "Puzzle",
@@ -341,7 +363,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 31
+      "guildRank": 33
     },
     {
       "name": "Вандаркхолм",
@@ -352,7 +374,7 @@
       "lichTaken": 0,
       "halionTaken": 801078,
       "raidCount": 2,
-      "guildRank": 32
+      "guildRank": 34
     },
     {
       "name": "Fistahska",
@@ -363,7 +385,7 @@
       "lichTaken": 0,
       "halionTaken": 992858,
       "raidCount": 1,
-      "guildRank": 33
+      "guildRank": 35
     },
     {
       "name": "Ш'кереберть",
@@ -374,7 +396,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 34
+      "guildRank": 36
     },
     {
       "name": "Zarel",
@@ -385,7 +407,7 @@
       "lichTaken": 0,
       "halionTaken": 858,
       "raidCount": 2,
-      "guildRank": 35
+      "guildRank": 37
     },
     {
       "name": "Sanya",
@@ -396,7 +418,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 36
+      "guildRank": 38
     },
     {
       "name": "Freemaluy",
@@ -407,7 +429,7 @@
       "lichTaken": 612315,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 37
+      "guildRank": 39
     },
     {
       "name": "Pedrofil",
@@ -418,7 +440,7 @@
       "lichTaken": 0,
       "halionTaken": 304474,
       "raidCount": 1,
-      "guildRank": 38
+      "guildRank": 40
     },
     {
       "name": "Arahiska",
@@ -429,7 +451,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 39
+      "guildRank": 41
     },
     {
       "name": "Sweden",
@@ -440,7 +462,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 40
+      "guildRank": 42
     },
     {
       "name": "Могильник",
@@ -451,7 +473,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 41
+      "guildRank": 43
     }
   ]
 }
