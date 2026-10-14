@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-13T07:06:24.765989+00:00",
+  "lastUpdated": "2026-10-14T07:05:38.481025+00:00",
   "totalTanks": 43,
   "rows": [
     {
@@ -95,10 +95,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 115840261,
-      "lichTaken": 26940899,
+      "totalTaken": 121639706,
+      "lichTaken": 28714206,
       "halionTaken": 1964490,
-      "raidCount": 28,
+      "raidCount": 29,
       "guildRank": 9
     },
     {
@@ -234,6 +234,17 @@
       "guildRank": 21
     },
     {
+      "name": "Тайтс",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 29939948,
+      "lichTaken": 8453874,
+      "halionTaken": 0,
+      "raidCount": 3,
+      "guildRank": 22
+    },
+    {
       "name": "Sichovyk",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -242,7 +253,7 @@
       "lichTaken": 0,
       "halionTaken": 7736320,
       "raidCount": 5,
-      "guildRank": 22
+      "guildRank": 23
     },
     {
       "name": "Antropofagus",
@@ -253,17 +264,6 @@
       "lichTaken": 9305151,
       "halionTaken": 4578235,
       "raidCount": 5,
-      "guildRank": 23
-    },
-    {
-      "name": "Тайтс",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 15025695,
-      "lichTaken": 2863483,
-      "halionTaken": 0,
-      "raidCount": 2,
       "guildRank": 24
     },
     {
