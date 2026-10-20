@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-19T07:08:17.805190+00:00",
+  "lastUpdated": "2026-10-20T07:03:54.775034+00:00",
   "totalTanks": 43,
   "rows": [
     {
@@ -7,10 +7,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 518993939,
+      "totalTaken": 520192132,
       "lichTaken": 181767624,
-      "halionTaken": 63145629,
-      "raidCount": 66,
+      "halionTaken": 64048366,
+      "raidCount": 67,
       "guildRank": 1
     },
     {
@@ -25,6 +25,17 @@
       "guildRank": 2
     },
     {
+      "name": "Dombrodeus",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 183553513,
+      "lichTaken": 40743382,
+      "halionTaken": 16176027,
+      "raidCount": 27,
+      "guildRank": 3
+    },
+    {
       "name": "Dubstep",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -33,17 +44,6 @@
       "lichTaken": 54179604,
       "halionTaken": 9898008,
       "raidCount": 22,
-      "guildRank": 3
-    },
-    {
-      "name": "Dombrodeus",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 180446782,
-      "lichTaken": 40743382,
-      "halionTaken": 13935535,
-      "raidCount": 26,
       "guildRank": 4
     },
     {
