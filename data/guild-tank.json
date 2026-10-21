@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-20T07:03:54.775034+00:00",
+  "lastUpdated": "2026-10-21T07:06:24.664015+00:00",
   "totalTanks": 43,
   "rows": [
     {
@@ -128,11 +128,22 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 65999790,
-      "lichTaken": 19685222,
+      "totalTaken": 73709786,
+      "lichTaken": 22479827,
       "halionTaken": 879042,
-      "raidCount": 13,
+      "raidCount": 14,
       "guildRank": 12
+    },
+    {
+      "name": "Kalmar",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 66637583,
+      "lichTaken": 8052608,
+      "halionTaken": 1589019,
+      "raidCount": 11,
+      "guildRank": 13
     },
     {
       "name": "Палельф",
@@ -142,17 +153,6 @@
       "totalTaken": 52729236,
       "lichTaken": 8975734,
       "halionTaken": 765802,
-      "raidCount": 10,
-      "guildRank": 13
-    },
-    {
-      "name": "Kalmar",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 51602746,
-      "lichTaken": 2401132,
-      "halionTaken": 1589019,
       "raidCount": 10,
       "guildRank": 14
     },
