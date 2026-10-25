@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-24T08:35:10.602732+00:00",
-  "totalRaids": 265,
+  "generated": "2026-10-25T08:06:25.765435+00:00",
+  "totalRaids": 267,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -45483,6 +45483,49 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-10-21--23-10--Капуста--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-10-21--23-10--Капуста--FreedomUA/consumables/",
+      "date": "2026-10-21",
+      "uploader": "Капуста",
+      "players": [
+        {
+          "name": "Капуста",
+          "total": 4,
+          "potionOfSpeed": 2,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 2
+        }
+      ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-10-24--22-00--Калабаня--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-10-24--22-00--Калабаня--FreedomUA/consumables/",
+      "date": "2026-10-24",
+      "uploader": "Калабаня",
+      "players": [
+        {
+          "name": "Xomka",
+          "total": 1,
+          "potionOfSpeed": 1,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        },
+        {
+          "name": "Калабаня",
+          "total": 0,
+          "potionOfSpeed": 0,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 0,
+          "indestructiblePotion": 0
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -46126,14 +46169,14 @@
     },
     {
       "name": "Калабаня",
-      "raids": 61,
+      "raids": 62,
       "totalPotions": 1086,
       "potionOfSpeed": 581,
       "potionOfWildMagic": 0,
       "insaneStrength": 20,
       "flameCap": 485,
       "indestructiblePotion": 0,
-      "avgPerRaid": 17.8
+      "avgPerRaid": 17.52
     },
     {
       "name": "Спірітусвей",
@@ -46664,17 +46707,6 @@
       "avgPerRaid": 12.57
     },
     {
-      "name": "Капуста",
-      "raids": 25,
-      "totalPotions": 313,
-      "potionOfSpeed": 195,
-      "potionOfWildMagic": 0,
-      "insaneStrength": 0,
-      "flameCap": 33,
-      "indestructiblePotion": 85,
-      "avgPerRaid": 12.52
-    },
-    {
       "name": "Тайрен",
       "raids": 2,
       "totalPotions": 25,
@@ -46695,6 +46727,17 @@
       "flameCap": 20,
       "indestructiblePotion": 5,
       "avgPerRaid": 12.5
+    },
+    {
+      "name": "Капуста",
+      "raids": 26,
+      "totalPotions": 317,
+      "potionOfSpeed": 197,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 33,
+      "indestructiblePotion": 87,
+      "avgPerRaid": 12.19
     },
     {
       "name": "Taknado",
@@ -47181,17 +47224,6 @@
       "avgPerRaid": 8.44
     },
     {
-      "name": "Xomka",
-      "raids": 27,
-      "totalPotions": 225,
-      "potionOfSpeed": 225,
-      "potionOfWildMagic": 0,
-      "insaneStrength": 0,
-      "flameCap": 0,
-      "indestructiblePotion": 0,
-      "avgPerRaid": 8.33
-    },
-    {
       "name": "Missprist",
       "raids": 43,
       "totalPotions": 349,
@@ -47201,6 +47233,17 @@
       "flameCap": 3,
       "indestructiblePotion": 0,
       "avgPerRaid": 8.12
+    },
+    {
+      "name": "Xomka",
+      "raids": 28,
+      "totalPotions": 226,
+      "potionOfSpeed": 226,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 0,
+      "indestructiblePotion": 0,
+      "avgPerRaid": 8.07
     },
     {
       "name": "Puzzle",
