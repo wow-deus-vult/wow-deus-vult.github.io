@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-28T10:16:24.103281+00:00",
+  "lastUpdated": "2026-10-29T08:03:52.416020+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -17,7 +17,7 @@
     "General Zarithrian",
     "Baltharus the Warborn"
   ],
-  "totalHealers": 94,
+  "totalHealers": 95,
   "rows": [
     {
       "name": "Лісовиця",
@@ -1762,6 +1762,32 @@
       "guildRank": 67
     },
     {
+      "name": "Мочалка",
+      "server": "FreedomUA",
+      "class": "Shaman",
+      "spec": "Restoration",
+      "avgHps": 10361.8,
+      "bossCount": 9,
+      "bosses": {
+        "Lord Marrowgar": 6320.3,
+        "Lady Deathwhisper": 5980.9,
+        "Deathbringer Saurfang": 9336.0,
+        "Festergut": 8811.1,
+        "Rotface": 9608.0,
+        "Professor Putricide": 11978.4,
+        "Blood Prince Council": 8624.9,
+        "Blood-Queen Lana'thel": 12340.5,
+        "Sindragosa": 0,
+        "The Lich King": 0,
+        "Valithria Dreamwalker": 20256.5,
+        "Halion": 0,
+        "Saviana Ragefire": 0,
+        "General Zarithrian": 0,
+        "Baltharus the Warborn": 0
+      },
+      "guildRank": 68
+    },
+    {
       "name": "Deliell",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -1785,7 +1811,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 68
+      "guildRank": 69
     },
     {
       "name": "Desti",
@@ -1811,7 +1837,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 867.8
       },
-      "guildRank": 69
+      "guildRank": 70
     },
     {
       "name": "Спірітусвей",
@@ -1837,7 +1863,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 70
+      "guildRank": 71
     },
     {
       "name": "Kotuhoroshko",
@@ -1863,7 +1889,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 71
+      "guildRank": 72
     },
     {
       "name": "Phh",
@@ -1889,14 +1915,14 @@
         "General Zarithrian": 4522.7,
         "Baltharus the Warborn": 3624.5
       },
-      "guildRank": 72
+      "guildRank": 73
     },
     {
       "name": "Чудернацька",
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
@@ -1915,7 +1941,7 @@
         "General Zarithrian": 2713.8,
         "Baltharus the Warborn": 1715.7
       },
-      "guildRank": 73
+      "guildRank": 74
     },
     {
       "name": "Fistahska",
@@ -1941,7 +1967,7 @@
         "General Zarithrian": 3313.6,
         "Baltharus the Warborn": 2960.2
       },
-      "guildRank": 74
+      "guildRank": 75
     },
     {
       "name": "Takenado",
@@ -1967,7 +1993,7 @@
         "General Zarithrian": 3798.1,
         "Baltharus the Warborn": 2705.9
       },
-      "guildRank": 75
+      "guildRank": 76
     },
     {
       "name": "Onetopshama",
@@ -1993,7 +2019,7 @@
         "General Zarithrian": 4143.4,
         "Baltharus the Warborn": 2460.3
       },
-      "guildRank": 76
+      "guildRank": 77
     },
     {
       "name": "Popkorn",
@@ -2019,7 +2045,7 @@
         "General Zarithrian": 3202.7,
         "Baltharus the Warborn": 2043.9
       },
-      "guildRank": 77
+      "guildRank": 78
     },
     {
       "name": "Цепизсдець",
@@ -2045,7 +2071,7 @@
         "General Zarithrian": 937.6,
         "Baltharus the Warborn": 486.5
       },
-      "guildRank": 78
+      "guildRank": 79
     },
     {
       "name": "Shampatine",
@@ -2071,7 +2097,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 79
+      "guildRank": 80
     },
     {
       "name": "Злагода",
@@ -2097,7 +2123,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 80
+      "guildRank": 81
     },
     {
       "name": "Xomka",
@@ -2123,7 +2149,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 81
+      "guildRank": 82
     },
     {
       "name": "Facelesspal",
@@ -2149,7 +2175,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 82
+      "guildRank": 83
     },
     {
       "name": "Reshalo",
@@ -2175,7 +2201,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 83
+      "guildRank": 84
     },
     {
       "name": "Метро",
@@ -2201,7 +2227,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 84
+      "guildRank": 85
     },
     {
       "name": "Possibly",
@@ -2227,7 +2253,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 85
+      "guildRank": 86
     },
     {
       "name": "Takenada",
@@ -2253,7 +2279,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 86
+      "guildRank": 87
     },
     {
       "name": "Powwder",
@@ -2279,7 +2305,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 87
+      "guildRank": 88
     },
     {
       "name": "Norway",
@@ -2305,7 +2331,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 88
+      "guildRank": 89
     },
     {
       "name": "Дупокусь",
@@ -2331,7 +2357,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 89
+      "guildRank": 90
     },
     {
       "name": "Aspin",
@@ -2357,7 +2383,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 90
+      "guildRank": 91
     },
     {
       "name": "Missprist",
@@ -2383,7 +2409,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 91
+      "guildRank": 92
     },
     {
       "name": "Riodeposadka",
@@ -2409,7 +2435,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 92
+      "guildRank": 93
     },
     {
       "name": "Mikeprist",
@@ -2435,7 +2461,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 93
+      "guildRank": 94
     },
     {
       "name": "Імбо",
@@ -2461,7 +2487,7 @@
         "General Zarithrian": 0,
         "Baltharus the Warborn": 0
       },
-      "guildRank": 94
+      "guildRank": 95
     }
   ]
 }
