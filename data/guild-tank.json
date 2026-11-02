@@ -1,16 +1,16 @@
 {
-  "lastUpdated": "2026-11-01T08:03:12.004843+00:00",
-  "totalTanks": 43,
+  "lastUpdated": "2026-11-02T08:05:02.957395+00:00",
+  "totalTanks": 44,
   "rows": [
     {
       "name": "Йдунави",
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 521630801,
+      "totalTaken": 529019776,
       "lichTaken": 181767624,
       "halionTaken": 64550165,
-      "raidCount": 68,
+      "raidCount": 69,
       "guildRank": 1
     },
     {
@@ -84,10 +84,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 125391207,
+      "totalTaken": 127030073,
       "lichTaken": 40581608,
       "halionTaken": 6946308,
-      "raidCount": 41,
+      "raidCount": 42,
       "guildRank": 8
     },
     {
@@ -377,6 +377,17 @@
       "guildRank": 34
     },
     {
+      "name": "Рейдан",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 2567783,
+      "lichTaken": 0,
+      "halionTaken": 0,
+      "raidCount": 1,
+      "guildRank": 35
+    },
+    {
       "name": "Fistahska",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -385,7 +396,7 @@
       "lichTaken": 0,
       "halionTaken": 992858,
       "raidCount": 1,
-      "guildRank": 35
+      "guildRank": 36
     },
     {
       "name": "Ш'кереберть",
@@ -396,7 +407,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 36
+      "guildRank": 37
     },
     {
       "name": "Zarel",
@@ -407,7 +418,7 @@
       "lichTaken": 0,
       "halionTaken": 858,
       "raidCount": 2,
-      "guildRank": 37
+      "guildRank": 38
     },
     {
       "name": "Sanya",
@@ -418,7 +429,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 38
+      "guildRank": 39
     },
     {
       "name": "Freemaluy",
@@ -429,7 +440,7 @@
       "lichTaken": 612315,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 39
+      "guildRank": 40
     },
     {
       "name": "Pedrofil",
@@ -440,7 +451,7 @@
       "lichTaken": 0,
       "halionTaken": 304474,
       "raidCount": 1,
-      "guildRank": 40
+      "guildRank": 41
     },
     {
       "name": "Arahiska",
@@ -451,7 +462,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 41
+      "guildRank": 42
     },
     {
       "name": "Sweden",
@@ -462,7 +473,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 42
+      "guildRank": 43
     },
     {
       "name": "Могильник",
@@ -473,7 +484,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 43
+      "guildRank": 44
     }
   ]
 }
