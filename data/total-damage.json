@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-07T10:53:23.373996+00:00",
+  "lastUpdated": "2026-11-08T08:03:58.239517+00:00",
   "currentSeasonId": "s2",
   "seasons": [
     {
@@ -2081,7 +2081,7 @@
       "name": "Season 2",
       "start": "2026-10-02",
       "end": "2026-12-31",
-      "raidsCount": 27,
+      "raidsCount": 28,
       "rows": [
         {
           "name": "Червоний",
@@ -2215,6 +2215,13 @@
           "class": "Paladin",
           "spec": "Retribution Paladin",
           "totalDamage": 180741355
+        },
+        {
+          "name": "Капуста",
+          "server": "FreedomUA",
+          "class": "Warrior",
+          "spec": "Fury Warrior",
+          "totalDamage": 169574144
         },
         {
           "name": "Killhouse",
@@ -2355,13 +2362,6 @@
           "class": "Hunter",
           "spec": "Marksmanship Hunter",
           "totalDamage": 99321177
-        },
-        {
-          "name": "Капуста",
-          "server": "FreedomUA",
-          "class": "Warrior",
-          "spec": "Fury Warrior",
-          "totalDamage": 99013022
         },
         {
           "name": "Клятийчорт",
@@ -3240,7 +3240,7 @@
     }
   ],
   "allTime": {
-    "raidsCount": 301,
+    "raidsCount": 302,
     "rows": [
       {
         "name": "Zmeelow",
@@ -3565,6 +3565,13 @@
         "totalDamage": 917385681
       },
       {
+        "name": "Капуста",
+        "server": "FreedomUA",
+        "class": "Warrior",
+        "spec": "Fury Warrior",
+        "totalDamage": 913928707
+      },
+      {
         "name": "Астарот",
         "server": "FreedomUA",
         "class": "Paladin",
@@ -3605,13 +3612,6 @@
         "class": "Death Knight",
         "spec": "Unholy Death Knight",
         "totalDamage": 848754318
-      },
-      {
-        "name": "Капуста",
-        "server": "FreedomUA",
-        "class": "Warrior",
-        "spec": "Fury Warrior",
-        "totalDamage": 843367585
       },
       {
         "name": "Esquiree",

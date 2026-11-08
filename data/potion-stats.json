@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-07T10:53:21.944109+00:00",
-  "totalRaids": 278,
+  "generated": "2026-11-08T08:04:04.771750+00:00",
+  "totalRaids": 279,
   "raids": [
     {
       "raidUrl": "https://uwu-logs.xyz/reports/25-12-03--20-44--Bonem--FreedomUA/",
@@ -47639,6 +47639,23 @@
           "indestructiblePotion": 0
         }
       ]
+    },
+    {
+      "raidUrl": "https://uwu-logs.xyz/reports/26-11-07--21-01--Капуста--FreedomUA/",
+      "consumablesUrl": "https://uwu-logs.xyz/reports/26-11-07--21-01--Капуста--FreedomUA/consumables/",
+      "date": "2026-11-07",
+      "uploader": "Капуста",
+      "players": [
+        {
+          "name": "Капуста",
+          "total": 24,
+          "potionOfSpeed": 19,
+          "potionOfWildMagic": 0,
+          "insaneStrength": 0,
+          "flameCap": 4,
+          "indestructiblePotion": 1
+        }
+      ]
     }
   ],
   "honorBoard": [
@@ -48776,6 +48793,17 @@
       "avgPerRaid": 13.7
     },
     {
+      "name": "Капуста",
+      "raids": 28,
+      "totalPotions": 381,
+      "potionOfSpeed": 240,
+      "potionOfWildMagic": 0,
+      "insaneStrength": 0,
+      "flameCap": 40,
+      "indestructiblePotion": 101,
+      "avgPerRaid": 13.61
+    },
+    {
       "name": "Дупокусь",
       "raids": 20,
       "totalPotions": 265,
@@ -48795,17 +48823,6 @@
       "insaneStrength": 0,
       "flameCap": 0,
       "indestructiblePotion": 0,
-      "avgPerRaid": 13.22
-    },
-    {
-      "name": "Капуста",
-      "raids": 27,
-      "totalPotions": 357,
-      "potionOfSpeed": 221,
-      "potionOfWildMagic": 0,
-      "insaneStrength": 0,
-      "flameCap": 36,
-      "indestructiblePotion": 100,
       "avgPerRaid": 13.22
     },
     {
