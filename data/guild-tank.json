@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-08T08:05:11.288726+00:00",
+  "lastUpdated": "2026-11-09T08:05:12.615197+00:00",
   "totalTanks": 44,
   "rows": [
     {
@@ -124,25 +124,25 @@
       "guildRank": 11
     },
     {
-      "name": "Yniko",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "totalTaken": 88742873,
-      "lichTaken": 27533637,
-      "halionTaken": 879042,
-      "raidCount": 16,
-      "guildRank": 12
-    },
-    {
       "name": "Kalmar",
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 84280905,
-      "lichTaken": 13704084,
+      "totalTaken": 99673795,
+      "lichTaken": 18310136,
       "halionTaken": 2837726,
-      "raidCount": 13,
+      "raidCount": 14,
+      "guildRank": 12
+    },
+    {
+      "name": "Yniko",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 95488324,
+      "lichTaken": 29443580,
+      "halionTaken": 879042,
+      "raidCount": 17,
       "guildRank": 13
     },
     {
