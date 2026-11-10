@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-09T08:05:12.615197+00:00",
+  "lastUpdated": "2026-11-10T08:05:06.261431+00:00",
   "totalTanks": 44,
   "rows": [
     {
@@ -40,10 +40,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 181281126,
+      "totalTaken": 189971126,
       "lichTaken": 54179604,
       "halionTaken": 9898008,
-      "raidCount": 22,
+      "raidCount": 23,
       "guildRank": 4
     },
     {
@@ -190,6 +190,17 @@
       "guildRank": 17
     },
     {
+      "name": "Астарот",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 45103158,
+      "lichTaken": 12768535,
+      "halionTaken": 5128689,
+      "raidCount": 16,
+      "guildRank": 18
+    },
+    {
       "name": "Palpatine",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -198,17 +209,6 @@
       "lichTaken": 15212343,
       "halionTaken": 2112958,
       "raidCount": 14,
-      "guildRank": 18
-    },
-    {
-      "name": "Астарот",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "totalTaken": 42124990,
-      "lichTaken": 12768535,
-      "halionTaken": 5128689,
-      "raidCount": 15,
       "guildRank": 19
     },
     {
