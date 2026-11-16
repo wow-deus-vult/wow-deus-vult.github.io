@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-15T08:03:58.324069+00:00",
+  "lastUpdated": "2026-11-16T08:05:17.052457+00:00",
   "totalTanks": 44,
   "rows": [
     {
@@ -7,10 +7,10 @@
       "server": "FreedomUA",
       "class": "Death Knight",
       "spec": "Blood",
-      "totalTaken": 537000561,
+      "totalTaken": 547683007,
       "lichTaken": 185084089,
       "halionTaken": 67572775,
-      "raidCount": 73,
+      "raidCount": 74,
       "guildRank": 1
     },
     {
@@ -84,10 +84,10 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Protection",
-      "totalTaken": 127030073,
+      "totalTaken": 131536748,
       "lichTaken": 40581608,
       "halionTaken": 6946308,
-      "raidCount": 42,
+      "raidCount": 43,
       "guildRank": 8
     },
     {
@@ -355,6 +355,17 @@
       "guildRank": 32
     },
     {
+      "name": "Рейдан",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 3165839,
+      "lichTaken": 0,
+      "halionTaken": 0,
+      "raidCount": 2,
+      "guildRank": 33
+    },
+    {
       "name": "Puzzle",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -363,7 +374,7 @@
       "lichTaken": 0,
       "halionTaken": 0,
       "raidCount": 1,
-      "guildRank": 33
+      "guildRank": 34
     },
     {
       "name": "Вандаркхолм",
@@ -374,17 +385,6 @@
       "lichTaken": 0,
       "halionTaken": 810018,
       "raidCount": 3,
-      "guildRank": 34
-    },
-    {
-      "name": "Рейдан",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 2567783,
-      "lichTaken": 0,
-      "halionTaken": 0,
-      "raidCount": 1,
       "guildRank": 35
     },
     {

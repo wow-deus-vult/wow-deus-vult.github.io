@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-15T11:45:31.156818+00:00",
+  "lastUpdated": "2026-11-16T08:03:59.890859+00:00",
   "bossOrder": [
     "Lord Marrowgar",
     "Lady Deathwhisper",
@@ -128,7 +128,7 @@
       "server": "FreedomUA",
       "class": "Paladin",
       "spec": "Holy",
-      "avgHps": 11894.4,
+      "avgHps": 11998.0,
       "bossCount": 15,
       "bosses": {
         "Lord Marrowgar": 11508.9,
@@ -136,10 +136,10 @@
         "Deathbringer Saurfang": 12747.8,
         "Festergut": 11673.3,
         "Rotface": 13241.0,
-        "Professor Putricide": 12516.4,
+        "Professor Putricide": 13366.2,
         "Blood Prince Council": 9510.6,
-        "Blood-Queen Lana'thel": 18091.6,
-        "Sindragosa": 13283.8,
+        "Blood-Queen Lana'thel": 18582.4,
+        "Sindragosa": 13496.4,
         "The Lich King": 9172.5,
         "Valithria Dreamwalker": 37875.0,
         "Halion": 7942.8,
@@ -254,6 +254,32 @@
       "guildRank": 9
     },
     {
+      "name": "Колін",
+      "server": "FreedomUA",
+      "class": "Shaman",
+      "spec": "Restoration",
+      "avgHps": 11180.5,
+      "bossCount": 15,
+      "bosses": {
+        "Lord Marrowgar": 9860.3,
+        "Lady Deathwhisper": 9678.0,
+        "Deathbringer Saurfang": 11308.8,
+        "Festergut": 11065.1,
+        "Rotface": 9542.9,
+        "Professor Putricide": 13028.1,
+        "Blood Prince Council": 10282.6,
+        "Blood-Queen Lana'thel": 15933.7,
+        "Sindragosa": 12058.5,
+        "The Lich King": 9610.9,
+        "Valithria Dreamwalker": 35300.4,
+        "Halion": 6655.6,
+        "Saviana Ragefire": 7504.6,
+        "General Zarithrian": 3091.5,
+        "Baltharus the Warborn": 2786.3
+      },
+      "guildRank": 10
+    },
+    {
       "name": "Purple",
       "server": "FreedomUA",
       "class": "Paladin",
@@ -276,32 +302,6 @@
         "Saviana Ragefire": 6083.6,
         "General Zarithrian": 4801.3,
         "Baltharus the Warborn": 2821.1
-      },
-      "guildRank": 10
-    },
-    {
-      "name": "Колін",
-      "server": "FreedomUA",
-      "class": "Shaman",
-      "spec": "Restoration",
-      "avgHps": 11097.3,
-      "bossCount": 15,
-      "bosses": {
-        "Lord Marrowgar": 9860.3,
-        "Lady Deathwhisper": 9678.0,
-        "Deathbringer Saurfang": 11308.8,
-        "Festergut": 11065.1,
-        "Rotface": 9542.9,
-        "Professor Putricide": 13028.1,
-        "Blood Prince Council": 9035.3,
-        "Blood-Queen Lana'thel": 15933.7,
-        "Sindragosa": 12058.5,
-        "The Lich King": 9610.9,
-        "Valithria Dreamwalker": 35300.4,
-        "Halion": 6655.6,
-        "Saviana Ragefire": 7504.6,
-        "General Zarithrian": 3091.5,
-        "Baltharus the Warborn": 2786.3
       },
       "guildRank": 11
     },
@@ -1974,7 +1974,7 @@
       "server": "FreedomUA",
       "class": "Priest",
       "spec": "Discipline",
-      "avgHps": 3239.6,
+      "avgHps": 3239.7,
       "bossCount": 4,
       "bosses": {
         "Lord Marrowgar": 0,
