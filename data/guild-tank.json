@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-19T08:03:07.791683+00:00",
+  "lastUpdated": "2026-11-20T08:06:53.817062+00:00",
   "totalTanks": 44,
   "rows": [
     {
@@ -25,6 +25,17 @@
       "guildRank": 2
     },
     {
+      "name": "Dubstep",
+      "server": "FreedomUA",
+      "class": "Death Knight",
+      "spec": "Blood",
+      "totalTaken": 209570426,
+      "lichTaken": 59962018,
+      "halionTaken": 9898008,
+      "raidCount": 24,
+      "guildRank": 3
+    },
+    {
       "name": "Dombrodeus",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -33,17 +44,6 @@
       "lichTaken": 43390836,
       "halionTaken": 18437913,
       "raidCount": 32,
-      "guildRank": 3
-    },
-    {
-      "name": "Dubstep",
-      "server": "FreedomUA",
-      "class": "Death Knight",
-      "spec": "Blood",
-      "totalTaken": 189971126,
-      "lichTaken": 54179604,
-      "halionTaken": 9898008,
-      "raidCount": 23,
       "guildRank": 4
     },
     {
@@ -124,6 +124,17 @@
       "guildRank": 11
     },
     {
+      "name": "Yniko",
+      "server": "FreedomUA",
+      "class": "Paladin",
+      "spec": "Protection",
+      "totalTaken": 105215699,
+      "lichTaken": 33321109,
+      "halionTaken": 879042,
+      "raidCount": 18,
+      "guildRank": 12
+    },
+    {
       "name": "Kalmar",
       "server": "FreedomUA",
       "class": "Death Knight",
@@ -132,17 +143,6 @@
       "lichTaken": 18310136,
       "halionTaken": 2837726,
       "raidCount": 14,
-      "guildRank": 12
-    },
-    {
-      "name": "Yniko",
-      "server": "FreedomUA",
-      "class": "Paladin",
-      "spec": "Protection",
-      "totalTaken": 95488324,
-      "lichTaken": 29443580,
-      "halionTaken": 879042,
-      "raidCount": 17,
       "guildRank": 13
     },
     {
